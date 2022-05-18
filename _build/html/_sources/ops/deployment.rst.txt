@@ -73,3 +73,5 @@ The first time you deploy to a new cluster, make sure to connect to mongo and re
       > use argo
       > db.user.insertOne({key: "<token you defined in secret>", tokenValid: 1})
       > exit
+
+*Last reviewed --*

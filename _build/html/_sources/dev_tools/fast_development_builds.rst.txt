@@ -65,3 +65,5 @@ Remember - the version you're editing is being served at ``http://localhost:3001
    - hit ``CTRL+C`` in the tab running the auto builder to kill it, and tear down the app with ``docker-compose down`` as usual
    - revert the change you made in ``environments/environment.ts``
    - Do a regular build per the instructions in :ref:`building_dev_versions` to confirm things still look good after a full build. 
+
+*Last reviewed --*

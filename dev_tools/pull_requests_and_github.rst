@@ -151,4 +151,4 @@ So far, we've learned the mechanical commands of proposing changes to projects o
 3. **Pull early and often**: if you're working on a piece of code for a long time (like longer than one day), do the ``git pull`` step every day at least. This way, if someone is making changes to the code that conflict with yours, you can catch it early and solve the problem while its still relatively easy. See :ref:`merge_conflict` for a discussion of handling merge conflicts.
 
 
-
+*Last reviewed --*

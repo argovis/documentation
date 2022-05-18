@@ -170,3 +170,5 @@ Instead of backing up data on a per-document and collection basis, we can also t
  - If we're lucky, simply copying the complete set of database image files from the backup location to ``/data/db`` might work.
  - If mongo continues to refuse to start, try starting it with the ``--repair`` flag, as presented here: https://www.mongodb.com/docs/manual/tutorial/recover-data-following-unexpected-shutdown/.
  - If mongo repair fails, try removing the journal and ``mongo.lock`` files from ``/data/db`` (while of course being careful to keep a backup of them), and starting with ``--repair`` again; this is an extreme measure that should be avoided, but has saved our database in the past.
+
+*Last reviewed --*

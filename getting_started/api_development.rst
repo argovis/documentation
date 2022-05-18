@@ -38,7 +38,7 @@ In order to set up an effective development environment, we need to set up the m
 
    .. code:: bash
 
-      ~ $ mkdir apidev ; cd apidev
+      ~ $ mkdir ~/apidev ; cd ~/apidev
 
       apidev $ mkdir db ; mkdir raw ; mkdir raw/RG
 
@@ -64,9 +64,9 @@ In order to set up an effective development environment, we need to set up the m
 
    .. code:: bash
 
-      apidev $ docker container run -d --network apinet --name redis redis:6.2.6
+      apidev $ docker container run -p 127.0.0.1:27017:27017 --network apinet -v $(pwd)/db:/data/db -d --name database mongo:5.0.6
 
-      apidev $ docker container run -p 127.0.0.1:27017:27017 --network apinet -v $(pwd)/db:/data/db -d --name database mongo:4.2.3
+      apidev $ docker container run -d --network apinet --name redis argovis/redis:6.2.6-220415
 
 5. Set up an API token for use during development:
 
@@ -92,7 +92,7 @@ In order to set up an effective development environment, we need to set up the m
 
    .. code:: console
 
-      apidev $ curl -H "x-argokey: developer" localhost:8080/griddedProducts/gridMetadata?gridName=rgTempMean
+      apidev $ curl -H "x-argokey: developer" localhost:8080/grids?gridName=rgTempTotal
 
 At this point you should recieve a 404 reponse for every request, since there's no data loaded in the database yet. See :ref:`api_load_test_data` for guidance on loading some test data, or the next section on how to build new code into the API.
 
@@ -247,34 +247,45 @@ See :ref:`startup_load_test_data`.
 Gridded Data
 ++++++++++++
 
-In order to experiment with the gridded product API endpoints, the following will set up a single grid document in the ``argo`` database, ``rgTempMean`` collection:
+In order to experiment with the gridded product API endpoints, the following will load the Roemmich-Gilson Argo Climatology total temperature grid into your local mongo.
 
-1. Set up the API dev environment per :ref:`api_dev_env` .
-
-2. Download ``ftp://kakapo.ucsd.edu/pub/gilson/argo_climatology/RG_ArgoClim_Temperature_2019.nc.gz`` to the ``~/apidev/raw/RG`` directory you set up.
-
-3. Get and build a Docker image to help load this data into mongodb:
+1. Get, build and run the script that defines the collection and schema in mongodb:
 
    .. code:: bash
 
-      ~ $ cd ~/apidev
+      ~ # cd ~/apidev
 
-      apidev $ git clone -b grid-sample https://github.com/argovis/argo-database
+      apidev $ git clone https://github.com/argovis/db-schema
 
-      apidev $ docker image build -t dataloader argo-database
+      apidev $ cd db-schema
 
-4. Launch this new container, and attach an interactive bash shell to it:
+      apidev $ docker image build -t dbschema .
+
+      apidev $ docker container run --network apinet  dbschema python grids-meta.py
+
+      apidev $ docker container run --network apinet  dbschema python grids.py rgTempTotal
+
+2. Download the RG temperature climatology files from https://sio-argo.ucsd.edu/RG_Climatology.html, place them in ``~/apidev/raw/RG``, and unzip them.
+
+3. Download the grid loading scripts:
 
    .. code:: bash
 
-      apidev $ docker container run -it --network apinet -v $(pwd)/raw:/raw dataloader bash
+      ~ # cd ~/apidev
 
-5. Inside the containerized shell, run the data loading script, and exit:
+      apidev $ git clone https://github.com/argovis/grid-sync
+
+4. Build and run:
 
    .. code:: bash
 
-      > cd grids ; python loadgrid.py
-      > exit
+      ~ # cd ~/apidev
 
-The sample grid will be loaded into your mongodb instance.
+      apidev $ docker image build -t gridload grid-sync
 
+      apidev $ docker container run --name loadrg --network apinet -d -v <absolute path to ~/apidev/raw/RG>:/tmp/rg gridload python translate-rg-grid.py temp total
+
+This will take a long time to load the entire grid; once ``curl -H "x-argokey: developer" localhost:8080/grids?gridName=rgTempTotal`` starts returning real results, it's safe to kill the grid loading script with ``docker container rm -f loadrg``, or just let it run in the background to populate the entire grid.
+
+
+*Last reviewed 22-05-17*

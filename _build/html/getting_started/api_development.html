@@ -238,7 +238,7 @@
 <ol class="arabic">
 <li><p>Visit <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a> and fork the repository to your own GitHub account. If you’re new to Git and GitHub, see the walkthrough of how the Argovis team collaborates on GitHub starting with <a class="reference internal" href="../dev_tools/pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>.</p></li>
 <li><p>Create a directory structure to hold all the assets required and clone the API code; don’t forget to change <code class="docutils literal notranslate"><span class="pre">&lt;Your</span> <span class="pre">User</span> <span class="pre">Name&gt;</span></code> to your GitHub username.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ mkdir apidev <span class="p">;</span> <span class="nb">cd</span> apidev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ mkdir ~/apidev <span class="p">;</span> <span class="nb">cd</span> ~/apidev
 
 apidev $ mkdir db <span class="p">;</span> mkdir raw <span class="p">;</span> mkdir raw/RG
 
@@ -261,9 +261,9 @@ argovis_api $ <span class="nb">cd</span> ..
 </div>
 </li>
 <li><p>Set up mongodb and redis:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apidev $ docker container run -d --network apinet --name redis redis:6.2.6
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apidev $ docker container run -p <span class="m">127</span>.0.0.1:27017:27017 --network apinet -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/db:/data/db -d --name database mongo:5.0.6
 
-apidev $ docker container run -p <span class="m">127</span>.0.0.1:27017:27017 --network apinet -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/db:/data/db -d --name database mongo:4.2.3
+apidev $ docker container run -d --network apinet --name redis argovis/redis:6.2.6-220415
 </pre></div>
 </div>
 </li>
@@ -285,7 +285,7 @@ apidev $ docker container run -d -p <span class="m">8080</span>:8080 --network a
 </li>
 <li><p>Everything is now up and running; do <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span></code> to confirm you have three containers running, named <code class="docutils literal notranslate"><span class="pre">database</span></code>, <code class="docutils literal notranslate"><span class="pre">redis</span></code> and <code class="docutils literal notranslate"><span class="pre">api</span></code>.</p></li>
 <li><p>Access an API endpoint like so:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">apidev $ curl -H &quot;x-argokey: developer&quot; localhost:8080/griddedProducts/gridMetadata?gridName=rgTempMean</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">apidev $ curl -H &quot;x-argokey: developer&quot; localhost:8080/grids?gridName=rgTempTotal</span>
 </pre></div>
 </div>
 </li>
@@ -423,32 +423,43 @@ argovis_api $ git merge templates
 </div>
 <div class="section" id="gridded-data">
 <h3>Gridded Data<a class="headerlink" href="#gridded-data" title="Permalink to this headline">¶</a></h3>
-<p>In order to experiment with the gridded product API endpoints, the following will set up a single grid document in the <code class="docutils literal notranslate"><span class="pre">argo</span></code> database, <code class="docutils literal notranslate"><span class="pre">rgTempMean</span></code> collection:</p>
+<p>In order to experiment with the gridded product API endpoints, the following will load the Roemmich-Gilson Argo Climatology total temperature grid into your local mongo.</p>
 <ol class="arabic">
-<li><p>Set up the API dev environment per <a class="reference internal" href="#api-dev-env"><span class="std std-ref">Setting Up a Working Dev Environment</span></a> .</p></li>
-<li><p>Download <code class="docutils literal notranslate"><span class="pre">ftp://kakapo.ucsd.edu/pub/gilson/argo_climatology/RG_ArgoClim_Temperature_2019.nc.gz</span></code> to the <code class="docutils literal notranslate"><span class="pre">~/apidev/raw/RG</span></code> directory you set up.</p></li>
-<li><p>Get and build a Docker image to help load this data into mongodb:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> ~/apidev
+<li><p>Get, build and run the script that defines the collection and schema in mongodb:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ <span class="c1"># cd ~/apidev</span>
 
-apidev $ git clone -b grid-sample https://github.com/argovis/argo-database
+apidev $ git clone https://github.com/argovis/db-schema
 
-apidev $ docker image build -t dataloader argo-database
+apidev $ <span class="nb">cd</span> db-schema
+
+apidev $ docker image build -t dbschema .
+
+apidev $ docker container run --network apinet  dbschema python grids-meta.py
+
+apidev $ docker container run --network apinet  dbschema python grids.py rgTempTotal
 </pre></div>
 </div>
 </li>
-<li><p>Launch this new container, and attach an interactive bash shell to it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apidev $ docker container run -it --network apinet -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/raw:/raw dataloader bash
+<li><p>Download the RG temperature climatology files from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">https://sio-argo.ucsd.edu/RG_Climatology.html</a>, place them in <code class="docutils literal notranslate"><span class="pre">~/apidev/raw/RG</span></code>, and unzip them.</p></li>
+<li><p>Download the grid loading scripts:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ <span class="c1"># cd ~/apidev</span>
+
+apidev $ git clone https://github.com/argovis/grid-sync
 </pre></div>
 </div>
 </li>
-<li><p>Inside the containerized shell, run the data loading script, and exit:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; <span class="nb">cd</span> grids <span class="p">;</span> python loadgrid.py
-&gt; <span class="nb">exit</span>
+<li><p>Build and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ <span class="c1"># cd ~/apidev</span>
+
+apidev $ docker image build -t gridload grid-sync
+
+apidev $ docker container run --name loadrg --network apinet -d -v &lt;absolute path to ~/apidev/raw/RG&gt;:/tmp/rg gridload python translate-rg-grid.py temp total
 </pre></div>
 </div>
 </li>
 </ol>
-<p>The sample grid will be loaded into your mongodb instance.</p>
+<p>This will take a long time to load the entire grid; once <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-H</span> <span class="pre">&quot;x-argokey:</span> <span class="pre">developer&quot;</span> <span class="pre">localhost:8080/grids?gridName=rgTempTotal</span></code> starts returning real results, it’s safe to kill the grid loading script with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">rm</span> <span class="pre">-f</span> <span class="pre">loadrg</span></code>, or just let it run in the background to populate the entire grid.</p>
+<p><em>Last reviewed 22-05-17</em></p>
 </div>
 </div>
 </div>

@@ -52,3 +52,5 @@ The great strength of Angular as a web framework is its orientation towards *mod
 .. admonition:: Do I have to do this inside the container?
 
    It's possible to set up an uncontainerized dev environment that matches your containerized environment, allowing you to do ``ng generate component`` directly on your development environment - but this requires matching a potentially complex stack of dependencies between the two, and managing those changes on your development machine as the application evolves. By doing this inside the container, we are guaranteed to match our running environment *exactly*, every time, without managing stacks of dependencies manually.
+
+*Last reviewed --*

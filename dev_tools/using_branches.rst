@@ -42,3 +42,5 @@ Suppose you're working on some API improvements, but it's a big project and you 
 .. admonition:: Seriously
 
    Seriously - don't forget to ``git checkout main`` right before making a new branch with ``git checkout -b``. Git will happily let you make a branch from whatever branch you want since it isn't technically wrong and there are some extremely rare cases where you might want to, but almost always this is not what you want and will lead to problems.
+
+*Last reviewed --*

@@ -53,3 +53,5 @@ Merge Conflicts on GitHub
 -------------------------
 
 The other place you may hit merge conflicts is when setting up a PR on GitHub, which will block the merge of the PR. In this case, the easiest fix is to ``git pull`` the branch from the upstream repository into the branch you're working on on your own machine. Then you'll get the error message noted above, and can follow the same steps. Once done, commit the fix, and push to your PR on GitHub. If done correctly, the merge conflict will be resolved and the PR will be unblocked.
+
+*Last reviewed --*
