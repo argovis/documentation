@@ -96,6 +96,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :maxdepth: 2
    :caption: Data Management
 
+   data_management/api_usage
    data_management/data_sources
    data_management/point_schema
    data_management/grid_schema
@@ -122,4 +123,3 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
    special_topics/connecting_to_the_container_network
    special_topics/goship-demo
-   special_topics/profiles-alpha

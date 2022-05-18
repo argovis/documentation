@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Argovis API Usage &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Sources" href="data_sources.html" />
+    <link rel="prev" title="Performance Testing" href="../ops/performance_testing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/api_development.html">API Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Argovis API Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-keys-limits">API keys &amp; limits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-your-api-key">Getting your API key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-rate-limitation-works">How rate limitation works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-argovis-without-a-key">Using Argovis without a key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#constructing-queries">Constructing queries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-api-root">Step 1: API root</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-api-route">Step 2: API route</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-query-string-parameters">Step 3: Query String Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_schema.html">Point Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_schema.html">Grid Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Argovis API Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/data_management/api_usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="argovis-api-usage">
+<span id="api-usage"></span><h1>Argovis API Usage<a class="headerlink" href="#argovis-api-usage" title="Permalink to this headline">¶</a></h1>
+<p>Argovis seeks to provide a RESTful API that underwrites <a class="reference external" href="https://www.go-fair.org/fair-principles/">FAIR data principles</a> with a strongly standards compliant set of endpoints that are consistent both in their search filters, and in the object schema they return. This document will get you started on understanding and using the Argovis API.</p>
+<div class="section" id="api-keys-limits">
+<h2>API keys &amp; limits<a class="headerlink" href="#api-keys-limits" title="Permalink to this headline">¶</a></h2>
+<p>Like all APIs, Argovis limits the rate at which users are allowed to make requests. These usage limits are enforced by the provisioning and use of <em>API keys</em>. Your API key identifies you, and entitles you to the same level of service from Argovis as all other key holders.</p>
+<div class="section" id="getting-your-api-key">
+<h3>Getting your API key<a class="headerlink" href="#getting-your-api-key" title="Permalink to this headline">¶</a></h3>
+<p>To get a free API key, visit <a class="reference external" href="https://argovis-keygen.colorado.edu">https://argovis-keygen.colorado.edu</a> and fill out the form titled <em>New Account Registration</em>. Your API key will be sent to the email you provide.</p>
+<div class="admonition-keep-it-secret admonition">
+<p class="admonition-title">Keep It Secret</p>
+<p>Treat your API key like a password. If someone gets ahold of your key, they can make API requests on your behalf and waste your resource allocation. If you ever think your API key has been compromised, or you lose or forget it, visit the same page you created it at and fill out the appropriate form to change, delete, or re-send your API key.</p>
+</div>
+<p>Once you have your key, provide it in the <code class="docutils literal notranslate"><span class="pre">x-argokey</span></code> HTTP header on all requests to the Argovis API. Your programming language of choice should have well-established tools for making requests with custom headers such as this.</p>
+</div>
+<div class="section" id="how-rate-limitation-works">
+<h3>How rate limitation works<a class="headerlink" href="#how-rate-limitation-works" title="Permalink to this headline">¶</a></h3>
+<p>Argovis implements a conventional <em>token bucket</em> algorithm for rate limitation, which provides you with a quota of requests that replenishes automatically over time. Qualitatively, this means two things:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You can make a small number of requests rapidly, for example in a typical <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
+<li><p>If you need to make a large number of requests, you’ll need to add a small delay betweem them, to allow your quota time to replenish.</p></li>
+</ul>
+</div></blockquote>
+<p>The specifics of how many rapid requests you can make, and how fast your quota replenishes, are noted in the table on the API key generation page. Note that these parameters may change over time, as they are tuned to accommodate real usage of Argovis.</p>
+<div class="admonition-error-429-too-many-requests admonition">
+<p class="admonition-title">Error 429: Too Many Requests</p>
+<p>If you recieve a response to an API request with HTTP error code 429, this probably indicates you’ve made too many requests too quickly, and the server is declining you. Wait a minute for your quota to replenish if you’re only making a few requests, or add a delay between requests if you are looping through many requests.</p>
+</div>
+</div>
+<div class="section" id="using-argovis-without-a-key">
+<h3>Using Argovis without a key<a class="headerlink" href="#using-argovis-without-a-key" title="Permalink to this headline">¶</a></h3>
+<p>Savvy users will quickly notice that Argovis’ API will still respond to you if you don’t provide an API key at all - sometimes. Keyless requests are tolerated, but are rate limited <em>globally</em> - you share the same resource allocation with all users worldwide who are making requests without an API key. This is intended for simple introductory use only; do not make production code that relies on keyless requests.</p>
+</div>
+</div>
+<div class="section" id="constructing-queries">
+<h2>Constructing queries<a class="headerlink" href="#constructing-queries" title="Permalink to this headline">¶</a></h2>
+<p>Argovis seeks to provide a highly expressive set of search and filter parameters, so you can ask for and download only the exact data you care about. To do so, you need to use the <a class="reference external" href="https://argovis-api.colorado.edu/docs">API docs</a> to construct your query of interest. In this section, we’ll walk through building a simple query.</p>
+<div class="section" id="step-1-api-root">
+<h3>Step 1: API root<a class="headerlink" href="#step-1-api-root" title="Permalink to this headline">¶</a></h3>
+<p>The first part of all API requests is the <em>API root</em>. It’s always the same: <code class="docutils literal notranslate"><span class="pre">https://argovis-api.colorado.edu</span></code>.</p>
+</div>
+<div class="section" id="step-2-api-route">
+<h3>Step 2: API route<a class="headerlink" href="#step-2-api-route" title="Permalink to this headline">¶</a></h3>
+<p>The second part of an API request is the <em>route</em>. Argovis generally names routes according to the sort of object you’re going to get returned to you. If you visit <a class="reference external" href="https://argovis-api.colorado.edu/docs">https://argovis-api.colorado.edu/docs</a>, you can see all the routes available to you, grouped into a few categories. For this example, let’s consider the <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> route; this will return profile data, as the name suggests. We concatenate this with the API root: <code class="docutils literal notranslate"><span class="pre">https://argovis-api.colorado.edu/profiles</span></code>.</p>
+</div>
+<div class="section" id="step-3-query-string-parameters">
+<h3>Step 3: Query String Parameters<a class="headerlink" href="#step-3-query-string-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Query string parameters are where we start filtering down data to get just what we want. Click on the <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> route on the docs page to see the parameters available to you for this route; each one includes a description of what it’s meant to represent, and an example of how to encode it. You can use as many of these as you like in a single request; these filters are ANDed together, meaning each one you add will restrict the amount of data returned further and further. They are separated from the route with a <code class="docutils literal notranslate"><span class="pre">?</span></code>, and separated from each other with an <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>. In practice, I build up a query like this, one parameter at a time:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/parameters?startDate=2022-01-01T00:00:00Z</span></code>: give me all the profiles after midnight, January 1, 2022.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/parameters?startDate=2022-01-01T00:00:00Z&amp;endDate=2022-01-02T00:00:00Z</span></code>: give me all the profiles after midnight, January 1, 2022, but before midnight, January 2, 2022.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/parameters?startDate=2022-01-01T00:00:00Z&amp;endDate=2022-01-02T00:00:00Z&amp;center=0,0&amp;radius=10</span></code>: give me all the profiles after midnight, January 1, 2022, but before midnight, January 2, 2022, located within 10 kilometers of longitude=0, latitude=0</p></li>
+</ul>
+</div></blockquote>
+<p>Et cetera. Keep adding parameters to zero in on the data you want.</p>
+<div class="admonition-error-413-payload-too-large admonition">
+<p class="admonition-title">Error 413: Payload Too Large</p>
+<p>If you make extremely broad requests, they could match many gigabytes of data, which is infeasible to return in a single download. In this case, the server will reject your request with an error code 413. If this happens to you, try slicing up your large request into several small ones: for example, ask for a 20 degree box at a time instead of the entire Pacific, or one day at a time in a loop instead of an entire year. While the size of an individual request is limited, and the rate at which we can support requests is also limited, the total number of requests you can make is not. Make as many as you need to to get the information you want.</p>
+</div>
+<p>A few nuances about our query string parameter encoding and behavior:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Latitudes must be on [-90,90]; longitudes must be on [-180,180].</p></li>
+<li><p>Parameters that accept lists generally AND together the items found in their lists; so for example, <code class="docutils literal notranslate"><span class="pre">/profiles?data=pres,doxy</span></code> will filter for profiles that have <em>both</em> pressure and dissolved oxygen, not just one or the other.</p></li>
+<li><p>Some parameters note they support <em>~ negation</em>. This means you can search for documents that <em>don’t</em> match the listed value. If we changed tha above example to <code class="docutils literal notranslate"><span class="pre">/profiles?data=pres,~doxy</span></code>, this would match profiles that have pressure but do <em>not</em> have dissolved oxygen.</p></li>
+<li><p>Some parameters, particularly those that have a fixed vocabulary of options, like which data center to query from, have a corresponding special route to show you what all the options are. These will be noted in the API docs beside the parameter, where applicable.</p></li>
+</ul>
+</div></blockquote>
+<p><em>Last reviewed 22-05-18</em></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="data_sources.html" class="btn btn-neutral float-right" title="Data Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ops/performance_testing.html" class="btn btn-neutral float-left" title="Performance Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
