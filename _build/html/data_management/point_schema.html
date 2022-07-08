@@ -127,6 +127,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="grid_schema.html">Grid Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
@@ -211,8 +212,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="point-schema">
-<span id="id1"></span><h1>Point Schema<a class="headerlink" href="#point-schema" title="Permalink to this headline">¶</a></h1>
+  <div class="admonition-deprecated admonition" id="point-schema">
+<p class="admonition-title">DEPRECATED</p>
+<p>This schema is being retired and replaced with what we learned from this early implementation. The new schema is being documented in <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a></p>
+</div>
+<div class="section" id="id1">
+<h1>Point Schema<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>All data indexed by Argovis which can be cast as <em>point data</em> - in general,  any piece of data attached to a set of spacetime coodinates - are represented by the JSON schema described in this document. Argovis’ point data schema is <em>hierarchical</em>,  in that all such schema inherit from the base point data schema; this creates two main advantages:</p>
 <blockquote>
 <div><ul class="simple">

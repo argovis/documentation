@@ -1,5 +1,9 @@
 .. _point_schema:
 
+.. admonition:: DEPRECATED
+
+   This schema is being retired and replaced with what we learned from this early implementation. The new schema is being documented in :ref:`schema`
+
 Point Schema
 ============
 
