@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Argovis data schema &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Merging Argo Data" href="argo_merge.html" />
+    <link rel="prev" title="Grid Schema" href="grid_schema.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/api_development.html">API Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_schema.html">Point Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_schema.html">Grid Schema</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Argovis data schema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-heritable-generic-schema">A heritable generic schema</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-read-this-schema">How to read this schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schema-enforcement-population">Schema enforcement &amp; population</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generic-schema">Generic Schema</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generic-data-schema">Generic Data Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-schema">Generic Metadata Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-schema-extension">Argo Schema Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-division">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id-construction"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argo-specific-data-record-fields">Argo-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argo-specific-metadata-record-fields">Argo-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#go-ship-schema-extension">GO-SHIP Schema Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go-ship-specific-data-record-fields">GO-SHIP-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go-ship-specific-metadata-record-fields">GO-SHIP-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#drifter-schema-extension">Drifter Schema Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drifter-specific-data-record-fields">Drifter-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drifter-specific-metadata-record-fields">Drifter-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc-specific-data-record-fields">TC-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc-specific-metadata-record-fields">TC-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-specific-data-record-fields">Grid-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-specific-metadata-record-fields">Grid-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Argovis data schema</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/data_management/schema.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="argovis-data-schema">
+<span id="schema"></span><h1>Argovis data schema<a class="headerlink" href="#argovis-data-schema" title="Permalink to this headline">¶</a></h1>
+<p>All data indexed by Argovis follows the schema described in this document. The purpose of this schema is to standardize the representation of profile-, grid-,and sea surface-type datasets to promote their interoperability and underwrite a standardized API to serve them all.</p>
+<div class="admonition-the-last-word admonition">
+<p class="admonition-title">The Last Word</p>
+<p>In the event of conflicts in schema definition, the implementation at <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a> is to be taken as correct above all others.</p>
+</div>
+<div class="section" id="a-heritable-generic-schema">
+<h2>A heritable generic schema<a class="headerlink" href="#a-heritable-generic-schema" title="Permalink to this headline">¶</a></h2>
+<p>Argovis schema are designed to inherited from a semi-well-defined generic schema that structures the most universal aspects of earth system data in a regular fashion, thereby standardizing the commonalities between these dataset representations, while preserving the ability for individual datasets to represent unique data. All datasets in Argovis are thus represented by a pair of collections, one for data, and one for metadata, where the dataset-specific records in each inherit from the generic data and metadata schemas respectively. This can be visualized as per:</p>
+<img alt="../_images/schema.png" src="../_images/schema.png" />
+<p>In other words, <em>all</em> data records for <em>all</em> datasets include the fields defined below in the generic data record section, and similarly for metadata records. Each dataset can append additional fields to each to capture their specifics; each dataset supported by Argovis has its extension specifics detailed in subsequent sections of this document.</p>
+<div class="section" id="how-to-read-this-schema">
+<h3>How to read this schema<a class="headerlink" href="#how-to-read-this-schema" title="Permalink to this headline">¶</a></h3>
+<p>Each entry in the schema fragments below contain a few keys:</p>
+<ul class="simple">
+<li><p><strong>required:</strong> whether or not this attribute can be omitted</p></li>
+<li><p><strong>type:</strong> the primitive type,  format,  or object description of a valid entry for this field</p></li>
+<li><p><strong>description:</strong> short comment on what this variable is</p></li>
+<li><p><strong>fill value</strong> (optional): what this should be filled by if absent</p></li>
+<li><p><strong>current vocabulary</strong> (optional): current set of possible values for this key,  with explanations as required.</p></li>
+</ul>
+</div>
+<div class="section" id="schema-enforcement-population">
+<h3>Schema enforcement &amp; population<a class="headerlink" href="#schema-enforcement-population" title="Permalink to this headline">¶</a></h3>
+<p>Argovis uses Mongodb as its backend. All datasets have their data and metadata schema defined in <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a>, which includes enforcement of these schema when uploaded to mongodb; therefore, the schema implementation in that code should be considered the most reliable document of our schema.</p>
+</div>
+</div>
+<div class="section" id="generic-schema">
+<h2>Generic Schema<a class="headerlink" href="#generic-schema" title="Permalink to this headline">¶</a></h2>
+<p>As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema. Subsequent sections describe how specific datasets extend and implement these core definitions.</p>
+<div class="section" id="generic-data-schema">
+<h3>Generic Data Schema<a class="headerlink" href="#generic-data-schema" title="Permalink to this headline">¶</a></h3>
+<p>In general, data records are intended to represent data that is unique or frequently changing per longitude / latitude / timestamp triple, in order to support efficient temporospatial indexing of these records in Mongodb. All data records contain the following fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> unique record identifier that encodes something meaningful, such as measurement order per platform.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> foreign key that matches the <code class="docutils literal notranslate"><span class="pre">_id</span></code> of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point object</p></li>
+<li><p><strong>description:</strong> geojson Point tagging the lon/lat of this record.</p></li>
+<li><p><strong>fill value:</strong> <code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:</span> <span class="pre">&quot;Point&quot;,</span>&#160; <span class="pre">&quot;coordinates&quot;:</span> <span class="pre">[0,</span>&#160; <span class="pre">-90]}</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> integer index of basin.</p></li>
+<li><p><strong>fill value:</strong> -1,  used if reported lon/lat are on land.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
+<li><p><strong>description:</strong> time the record measurement was made at.</p></li>
+<li><p><strong>fill_value:</strong> <code class="docutils literal notranslate"><span class="pre">9999-01-01T00:00:00Z</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> optional array of non-nested JSON documents, OR optional array of arrays of floats</p></li>
+<li><p><strong>description:</strong> in both formats, array indexes depth / altitude; array elements present the measurement values for that level, either as a dictionary with keys that match <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>, or as an array of floats in the same order as <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>.</p></li>
+<li><p><strong>current vocabulary:</strong> measurements defined per dataset; see dataset-specific extensions below.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="generic-metadata-schema">
+<h3>Generic Metadata Schema<a class="headerlink" href="#generic-metadata-schema" title="Permalink to this headline">¶</a></h3>
+<p>In general, metadata records in Argovis are meant to factor out constant or infrequently-changing data from the data records. They only have one required field:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> unique record identifier referred to by the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> field in records from the corresponding data collection.</p></li>
+</ul>
+</li>
+</ul>
+<p>Besides the trivially required <code class="docutils literal notranslate"><span class="pre">_id</span></code> field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in <em>exactly one</em> of the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> token indicating the general class of data</p></li>
+<li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">oceanicProfile</span></code>,  <code class="docutils literal notranslate"><span class="pre">tropicalCyclone</span></code>, <code class="docutils literal notranslate"><span class="pre">drifter</span></code>, <code class="docutils literal notranslate"><span class="pre">grid</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> a complete list of all the keys found in any element in the <code class="docutils literal notranslate"><span class="pre">data</span></code> object, ordered as the inner lists of <code class="docutils literal notranslate"><span class="pre">data</span></code> when <code class="docutils literal notranslate"><span class="pre">data</span></code> is presented as a list of lists of floats.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> strings describing the units of each measurement, in the same order as <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
+<li><p><strong>description:</strong> time the record was added to Argovis; applies to both metadata records and corresponding data records.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p>
+<ul>
+<li><p><strong>required</strong>: true (insofar as some of its subkeys, below, are required)</p></li>
+<li><p><strong>type</strong>: array of objects</p></li>
+<li><p><strong>description</strong>: objects contain information about the upstream files from which this data / metadata was derived; see immediately below for keys of these objects.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> data origin, typically used to label major project subdivisions like <code class="docutils literal notranslate"><span class="pre">argo_core</span></code>, <code class="docutils literal notranslate"><span class="pre">argo_bgc</span></code> and <code class="docutils literal notranslate"><span class="pre">argo_deep</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> url from where the original data file from which this data and metadata was extracted can be downloaded from.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.date_updated</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
+<li><p><strong>description:</strong> date and time the upstream source file for this record was last modified</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> ISO 3166-1 country code.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> entity responsible for processing this record, once received.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> short string tokens indicating possible problems with this record.</p></li>
+<li><p><strong>current vocabulary:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">degenerate_levels</span></code>: data is reported twice for a given pressure / altitude level in a way that cannot be readily resolved</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_basin</span></code>: unable to determine meaningful basin code, despite having a meaningful lat / lon (edge case in basins lookup grid)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_location</span></code>: one or both of longitude and latitude are missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_timestamp</span></code>: no date or time of measurement associated with this profile.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> string token describing the device used to make this measurement,  like <code class="docutils literal notranslate"><span class="pre">profiling_float</span></code>,  <code class="docutils literal notranslate"><span class="pre">ship_ctd</span></code> etc.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pi_name</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> name(s) of principle investigator(s)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> unique identifier for the platform or device responsible for making the measurements included in this recor, where applicable.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> make or model of the platform.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="argo-schema-extension">
+<h2>Argo Schema Extension<a class="headerlink" href="#argo-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>The Argo data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="generic-metadata-division">
+<h3>Generic Metadata Division<a class="headerlink" href="#generic-metadata-division" title="Permalink to this headline">¶</a></h3>
+<p>Argo profiles divide the generic metadata fields between data and metadata records per the following. In general, Argo metadata records describe things that are consistent or slowly changing for a particular physical float, while a data record represents an individual profile.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p></li>
+</ul>
+</li>
+<li><p>Metadata records:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pi_name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id-construction">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id-construction" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records  <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;cycle_number&gt;</span></code></p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_m&lt;metadata_number&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;metadata_number&gt;</span></code> counts from 0 and is prefixed with <code class="docutils literal notranslate"><span class="pre">m</span></code> to easily distinguish it from cycle number; allows distinctions to be made if a slow-changing metadata value, like <code class="docutils literal notranslate"><span class="pre">pi_name</span></code>, changes over the lifetime of the float.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="argo-specific-data-record-fields">
+<h3>Argo-Specific Data Record Fields<a class="headerlink" href="#argo-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>The following fields extend the generic data record for Argo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_number</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> probe cycle index</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_keys_mode</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> non-nested JSON document</p></li>
+<li><p><strong>description:</strong> JSON document with keys matching the entries of <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>,  and values indicating the variable’s data mode</p></li>
+<li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">R</span></code> ealtime,  realtime <code class="docutils literal notranslate"><span class="pre">A</span></code> djusted,  or <code class="docutils literal notranslate"><span class="pre">D</span></code> elayed mode.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_argoqc</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> Argo’s position QC flag</p></li>
+<li><p><strong>fill value:</strong> -1</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">profile_direction</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> whether the profile was gathered as the float ascended or descended</p></li>
+<li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">A</span></code> scending or <code class="docutils literal notranslate"><span class="pre">D</span></code> escending.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_argoqc</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> Argo’s date QC flag</p></li>
+<li><p><strong>fill value:</strong> -1</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vertical_sampling_scheme</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> sampling scheme for this profile.</p></li>
+<li><p><strong>current vocabulary:</strong> see Argo ref table 16</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="argo-specific-metadata-record-fields">
+<h3>Argo-Specific Metadata Record Fields<a class="headerlink" href="#argo-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>The following fields extend the generic metadata records for Argo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fleetmonitoring</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> URL for this float at <a class="reference external" href="https://fleetmonitoring.euro-argo.eu/float/">https://fleetmonitoring.euro-argo.eu/float/</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oceanops</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> URL for this float at <a class="reference external" href="https://www.ocean-ops.org/board/wa/Platform">https://www.ocean-ops.org/board/wa/Platform</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> positioning system for this float.</p></li>
+<li><p>vocabulary: see Argo ref table 9</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmo_inst_type</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type</strong>: string</p></li>
+<li><p><strong>description:</strong> instrument type as indexed by Argo.</p></li>
+<li><p><strong>current vocabulary:</strong> see Argo ref table 8</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
+<p>Implementation of Argo’s schema and pipelines to load the data from IFREMER can be found at the following links.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Schema implementation and indexing: TBD</p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ifremer-sync">https://github.com/argovis/ifremer-sync</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="go-ship-schema-extension">
+<h2>GO-SHIP Schema Extension<a class="headerlink" href="#go-ship-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>The GO-SHIP data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id2">
+<h3>Generic Metadata Division<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular traversal of a WOCE line, while a data record represents a single profile.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records:
+- <code class="docutils literal notranslate"><span class="pre">source</span></code>
+- <code class="docutils literal notranslate"><span class="pre">data_warning</span></code>
+- <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>
+- <code class="docutils literal notranslate"><span class="pre">units</span></code></p></li>
+<li><p>Metadata records:
+- <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>
+- <code class="docutils literal notranslate"><span class="pre">data_type</span></code>
+- <code class="docutils literal notranslate"><span class="pre">country</span></code>
+- <code class="docutils literal notranslate"><span class="pre">data_center</span></code>
+- <code class="docutils literal notranslate"><span class="pre">instrument</span></code>
+- <code class="docutils literal notranslate"><span class="pre">pi_name</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">expo_&lt;expocode&gt;_sta_&lt;station&gt;_cast_&lt;cast&gt;</span></code></p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">cchdo_cruise_id_m&lt;metadata_number&gt;</span></code>,  where <code class="docutils literal notranslate"><span class="pre">&lt;metadata_number&gt;`</span></code> counts from 0 and is prefixed with <code class="docutils literal notranslate"><span class="pre">m</span></code> similar to Argo; allows distinctions to be made if a slow-changing metadata value, like <code class="docutils literal notranslate"><span class="pre">pi_name</span></code>, changes over the lifetime of the cruise.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="go-ship-specific-data-record-fields">
+<h3>GO-SHIP-Specific Data Record Fields<a class="headerlink" href="#go-ship-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>The following fields extend the generic data records for GO-SHIP:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">station</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cast</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="go-ship-specific-metadata-record-fields">
+<h3>GO-SHIP-Specific Metadata Record Fields<a class="headerlink" href="#go-ship-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>The following fields extend the generic metadata records for GO-SHIP:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">expocode</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cchdo_cruise_id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">woce_lines</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h3>Implementation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Implementation of GO-SHIP’s schema and pipelines to load the data from CCHDO can be found at the following links.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Schema implementation and indexing: TBD</p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/cchdo/argovis_convert_netcdf_to_json">https://github.com/cchdo/argovis_convert_netcdf_to_json</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="drifter-schema-extension">
+<h2>Drifter Schema Extension<a class="headerlink" href="#drifter-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Global Drifter Program data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id5">
+<h3>Generic Metadata Division<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Global Drifter Program measurements place all metadata fields in their metadata records; drifter data records correspond exactly to generic data records, while metadata records are per platform.</p>
+</div>
+<div class="section" id="id6">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;measurement_index&gt;</span></code></p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="drifter-specific-data-record-fields">
+<h3>Drifter-Specific Data Record Fields<a class="headerlink" href="#drifter-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>None. Drifter data records are exactly the generic data record specification.</p>
+</div>
+<div class="section" id="drifter-specific-metadata-record-fields">
+<h3>Drifter-Specific Metadata Record Fields<a class="headerlink" href="#drifter-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rowsize</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WMO</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expno</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy_date</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy_lon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy_lat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_date</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_lon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_lat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drogue_lost_date</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedeath</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typebuoy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">long_name</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/drifters.py">https://github.com/argovis/db-schema/blob/main/drifters.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/drifter-sync">https://github.com/argovis/drifter-sync</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="tropical-cyclone-schema-extension">
+<h2>Tropical Cyclone Schema Extension<a class="headerlink" href="#tropical-cyclone-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>HURDAT and JTWC tropical cyclone data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id8">
+<h3>Generic Metadata Division<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Tropical cyclone records place all generic metadata fields in their metadata records.</p>
+</div>
+<div class="section" id="id9">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;_&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;HH&gt;&lt;MM&gt;&lt;SS&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code> is the ID of the cyclone measurement from the upstream data source.</p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="tc-specific-data-record-fields">
+<h3>TC-Specific Data Record Fields<a class="headerlink" href="#tc-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="tc-specific-metadata-record-fields">
+<h3>TC-Specific Metadata Record Fields<a class="headerlink" href="#tc-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id10">
+<h3>Implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Implementation of tropical cyclone schema and pipelines to load the data from source CSVs can be found at the following links.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Schema implementation and indexing: TBD</p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/tc-sync">https://github.com/argovis/tc-sync</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="gridded-product-schema-extension">
+<h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Gridded product data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id11">
+<h3>Generic Metadata Division<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Gridded products place all metadata fields in their metadata records; grid data records correspond exactly to generic data records, while metadata records are per grid product.</p>
+</div>
+<div class="section" id="id12">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: randomly assigned by Mongodb.</p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;grid</span> <span class="pre">name&gt;</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="grid-specific-data-record-fields">
+<h3>Grid-Specific Data Record Fields<a class="headerlink" href="#grid-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>None. Grid data records are exactly the generic data record specification.</p>
+</div>
+<div class="section" id="grid-specific-metadata-record-fields">
+<h3>Grid-Specific Metadata Record Fields<a class="headerlink" href="#grid-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lonrange</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latrange</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timerange</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loncell</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latcell</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id13">
+<h3>Implementation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Schema implementation and indexing: TBD</p></li>
+<li><p>Upload pipeline: TBD</p></li>
+</ul>
+</div></blockquote>
+<p><em>Last reviewed 2022-07-08</em></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="argo_merge.html" class="btn btn-neutral float-right" title="Merging Argo Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="grid_schema.html" class="btn btn-neutral float-left" title="Grid Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
