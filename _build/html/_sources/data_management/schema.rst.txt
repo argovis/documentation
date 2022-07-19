@@ -140,11 +140,17 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
   - **type:** string
   - **description:** url from where the original data file from which this data and metadata was extracted can be downloaded from.
 
+- ``source.doi``
+
+  - **required:** false
+  - **type:** string
+  - **description:** DOI for this file.
+
 - ``source.date_updated``
 
- - **required:** false
- - **type:** ISO 8601 UTC datestring,  example ``1999-12-31T23:59:59Z``
- - **description:** date and time the upstream source file for this record was last modified
+  - **required:** false
+  - **type:** ISO 8601 UTC datestring,  example ``1999-12-31T23:59:59Z``
+  - **description:** date and time the upstream source file for this record was last modified
 
 - ``country``
 
@@ -296,7 +302,7 @@ The following fields extend the generic metadata records for Argo:
   - **required:** false
   - **type:** string
   - **description:** positioning system for this float.
-  - vocabulary: see Argo ref table 9
+  - **current vocabulary**: see Argo ref table 9
 
 - ``wmo_inst_type``
 
@@ -324,12 +330,14 @@ Generic Metadata Division
 GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular traversal of a WOCE line, while a data record represents a single profile.
 
  - Data records:
+
    - ``source``
    - ``data_warning``
    - ``data_keys``
    - ``units``
 
  - Metadata records:
+
    - ``date_updated_argovis``  
    - ``data_type``
    - ``country``
@@ -341,7 +349,7 @@ GO-SHIP profiles divide the generic metadata fields between data and metadata re
 ++++++++++++++++++++
 
  - Data records ``_id``: ``expo_<expocode>_sta_<station>_cast_<cast>``
- - Metadata records ``_id``: ``cchdo_cruise_id_m<metadata_number>``,  where ``<metadata_number>``` counts from 0 and is prefixed with ``m`` similar to Argo; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the cruise.
+ - Metadata records ``_id``: ``<cchdo_cruise_id>_m<metadata_number>``,  where ``<metadata_number>``` counts from 0 and is prefixed with ``m`` similar to Argo; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the cruise.
 
 GO-SHIP-Specific Data Record Fields
 +++++++++++++++++++++++++++++++++++
@@ -461,7 +469,7 @@ Gridded products place all metadata fields in their metadata records; grid data 
 ``_id`` construction
 ++++++++++++++++++++
 
- - Data records ``_id``: randomly assigned by Mongodb.
+ - Data records ``_id``: ``<yyyymmddhhmmss>_<longitude>_<latitude>``
  - Metadata records ``_id``: ``<grid name>``
 
 Grid-Specific Data Record Fields
@@ -478,6 +486,10 @@ Grid-Specific Metadata Record Fields
  - ``timerange``
  - ``loncell``
  - ``latcell``
+
+.. admonition:: Shared grid metadata collection
+
+   Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, ``gridMeta``. This is because for a given gridded data product, there should be exactly one metadata record - it seems silly to make a collection for each.
 
 Implementation
 ++++++++++++++

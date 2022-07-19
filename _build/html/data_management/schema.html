@@ -388,16 +388,20 @@
 <li><p><strong>description:</strong> url from where the original data file from which this data and metadata was extracted can be downloaded from.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">source.date_updated</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> DOI for this file.</p></li>
 </ul>
-<blockquote>
-<div><ul class="simple">
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.date_updated</span></code></p>
+<ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
 <li><p><strong>description:</strong> date and time the upstream source file for this record was last modified</p></li>
 </ul>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
@@ -574,7 +578,7 @@
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> string</p></li>
 <li><p><strong>description:</strong> positioning system for this float.</p></li>
-<li><p>vocabulary: see Argo ref table 9</p></li>
+<li><p><strong>current vocabulary</strong>: see Argo ref table 9</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">wmo_inst_type</span></code></p>
@@ -606,18 +610,24 @@
 <p>GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular traversal of a WOCE line, while a data record represents a single profile.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Data records:
-- <code class="docutils literal notranslate"><span class="pre">source</span></code>
-- <code class="docutils literal notranslate"><span class="pre">data_warning</span></code>
-- <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>
-- <code class="docutils literal notranslate"><span class="pre">units</span></code></p></li>
-<li><p>Metadata records:
-- <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>
-- <code class="docutils literal notranslate"><span class="pre">data_type</span></code>
-- <code class="docutils literal notranslate"><span class="pre">country</span></code>
-- <code class="docutils literal notranslate"><span class="pre">data_center</span></code>
-- <code class="docutils literal notranslate"><span class="pre">instrument</span></code>
-- <code class="docutils literal notranslate"><span class="pre">pi_name</span></code></p></li>
+<li><p>Data records:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p></li>
+</ul>
+</li>
+<li><p>Metadata records:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pi_name</span></code></p></li>
+</ul>
+</li>
 </ul>
 </div></blockquote>
 </div>
@@ -626,7 +636,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">expo_&lt;expocode&gt;_sta_&lt;station&gt;_cast_&lt;cast&gt;</span></code></p></li>
-<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">cchdo_cruise_id_m&lt;metadata_number&gt;</span></code>,  where <code class="docutils literal notranslate"><span class="pre">&lt;metadata_number&gt;`</span></code> counts from 0 and is prefixed with <code class="docutils literal notranslate"><span class="pre">m</span></code> similar to Argo; allows distinctions to be made if a slow-changing metadata value, like <code class="docutils literal notranslate"><span class="pre">pi_name</span></code>, changes over the lifetime of the cruise.</p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;cchdo_cruise_id&gt;_m&lt;metadata_number&gt;</span></code>,  where <code class="docutils literal notranslate"><span class="pre">&lt;metadata_number&gt;`</span></code> counts from 0 and is prefixed with <code class="docutils literal notranslate"><span class="pre">m</span></code> similar to Argo; allows distinctions to be made if a slow-changing metadata value, like <code class="docutils literal notranslate"><span class="pre">pi_name</span></code>, changes over the lifetime of the cruise.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -768,7 +778,7 @@
 <h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: randomly assigned by Mongodb.</p></li>
+<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
 <li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;grid</span> <span class="pre">name&gt;</span></code></p></li>
 </ul>
 </div></blockquote>
@@ -789,6 +799,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">latcell</span></code></p></li>
 </ul>
 </div></blockquote>
+<div class="admonition-shared-grid-metadata-collection admonition">
+<p class="admonition-title">Shared grid metadata collection</p>
+<p>Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, <code class="docutils literal notranslate"><span class="pre">gridMeta</span></code>. This is because for a given gridded data product, there should be exactly one metadata record - it seems silly to make a collection for each.</p>
+</div>
 </div>
 <div class="section" id="id13">
 <h3>Implementation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
