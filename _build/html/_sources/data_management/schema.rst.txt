@@ -327,7 +327,7 @@ The GO-SHIP data and metadata collections extend and implement the generic schem
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular traversal of a WOCE line, while a data record represents a single profile.
+GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular GO-SHIP cruise, while a data record represents a single profile.
 
  - Data records:
 
