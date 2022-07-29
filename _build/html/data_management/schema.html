@@ -475,13 +475,15 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code> (for BGC)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code> (for BGC)</p></li>
 </ul>
 </li>
 <li><p>Metadata records:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code> (for non-BGC)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code> (for non-BGC)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p></li>
@@ -492,6 +494,10 @@
 </li>
 </ul>
 </div></blockquote>
+<div class="admonition-argo-keys-and-units admonition">
+<p class="admonition-title">Argo Keys and Units</p>
+<p>Notice that Argo <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> may be recorded in <em>either</em> the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure.</p>
+</div>
 </div>
 <div class="section" id="id-construction">
 <h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id-construction" title="Permalink to this headline">¶</a></h3>
@@ -516,8 +522,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">data_keys_mode</span></code></p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
-<li><p><strong>type:</strong> non-nested JSON document</p></li>
-<li><p><strong>description:</strong> JSON document with keys matching the entries of <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>,  and values indicating the variable’s data mode</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> array of strings order-matched to the entries of <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>,  with values indicating the variable’s data mode</p></li>
 <li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">R</span></code> ealtime,  realtime <code class="docutils literal notranslate"><span class="pre">A</span></code> djusted,  or <code class="docutils literal notranslate"><span class="pre">D</span></code> elayed mode.</p></li>
 </ul>
 </li>
@@ -596,7 +602,7 @@
 <p>Implementation of Argo’s schema and pipelines to load the data from IFREMER can be found at the following links.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Schema implementation and indexing: TBD</p></li>
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argo.py">https://github.com/argovis/db-schema/blob/main/argo.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ifremer-sync">https://github.com/argovis/ifremer-sync</a></p></li>
 </ul>
 </div></blockquote>
@@ -812,7 +818,7 @@
 <li><p>Upload pipeline: TBD</p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2022-07-08</em></p>
+<p><em>Last reviewed 2022-07-28</em></p>
 </div>
 </div>
 </div>

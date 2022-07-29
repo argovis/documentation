@@ -215,18 +215,24 @@ Argo profiles divide the generic metadata fields between data and metadata recor
    - ``date_updated_argovis``
    - ``source``
    - ``data_warning``
+   - ``data_keys`` (for BGC)
+   - ``units`` (for BGC)
 
  - Metadata records:
 
    - ``data_type``
-   - ``data_keys``
-   - ``units``
+   - ``data_keys`` (for non-BGC)
+   - ``units`` (for non-BGC)
    - ``country``
    - ``data_center``
    - ``instrument``
    - ``pi_name``
    - ``platform``
    - ``platform_type``
+
+.. admonition:: Argo Keys and Units
+
+   Notice that Argo ``data_keys`` and ``units`` may be recorded in *either* the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -248,8 +254,8 @@ The following fields extend the generic data record for Argo:
 - ``data_keys_mode``
 
   - **required:** false
-  - **type:** non-nested JSON document
-  - **description:** JSON document with keys matching the entries of ``data_keys``,  and values indicating the variable's data mode
+  - **type:** array of strings
+  - **description:** array of strings order-matched to the entries of ``data_keys``,  with values indicating the variable's data mode
   - **current vocabulary:** ``R`` ealtime,  realtime ``A`` djusted,  or ``D`` elayed mode.
 
 - ``geolocation_argoqc``
@@ -316,7 +322,7 @@ Implementation
 
 Implementation of Argo's schema and pipelines to load the data from IFREMER can be found at the following links.
 
- - Schema implementation and indexing: TBD
+ - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
  - Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
 
 GO-SHIP Schema Extension
@@ -497,4 +503,4 @@ Implementation
  - Schema implementation and indexing: TBD
  - Upload pipeline: TBD
 
-*Last reviewed 2022-07-08*
+*Last reviewed 2022-07-28*
