@@ -100,10 +100,8 @@
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="data_management/api_usage.html">Argovis API Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/data_sources.html">Data Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/point_schema.html">Point Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/grid_schema.html">Grid Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_management/serving_a_new_dataset.html">Serving a new dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/argo_merge.html">Merging Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
@@ -290,36 +288,21 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li class="toctree-l2"><a class="reference internal" href="data_management/api_usage.html#constructing-queries">Constructing queries</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/data_sources.html">Data Sources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#argo">Argo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#go-ship">GO-SHIP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#tropical-cyclones">Tropical Cyclones</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#gridded-data">Gridded Data</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/point_schema.html">Point Schema</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#how-to-read-this-schema">How to read this schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#schema-enforcement-population">Schema enforcement &amp; population</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#base-point-data-schema">Base point data schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#argo-profile-schema-extension">Argo profile schema extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#go-ship-profile-schema-extension">GO-SHIP profile schema extension</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/grid_schema.html">Grid Schema</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management/grid_schema.html#how-to-read-this-schema">How to read this schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/grid_schema.html#schema-enforcement-population">Schema enforcement &amp; population</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/grid_schema.html#grid-metadata-schema">Grid Metadata Schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/grid_schema.html#grid-data-schema">Grid Data Schema</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/schema.html">Argovis data schema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#a-heritable-generic-schema">A heritable generic schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#generic-schema">Generic Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#argo-schema-extension">Argo Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#go-ship-schema-extension">GO-SHIP Schema Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#cchdo-schema-extension">CCHDO Schema Extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#drifter-schema-extension">Drifter Schema Extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_management/serving_a_new_dataset.html">Serving a new dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#define-the-data-and-metadata-schema">1. Define the data and metadata schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#populate-your-collections">2. Populate your collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#establish-standard-api-routes">3. Establish standard API routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#documentation">4. Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/argo_merge.html">Merging Argo Data</a><ul>

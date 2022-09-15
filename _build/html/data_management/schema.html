@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Merging Argo Data" href="argo_merge.html" />
-    <link rel="prev" title="Grid Schema" href="grid_schema.html" /> 
+    <link rel="next" title="Serving a new dataset" href="serving_a_new_dataset.html" />
+    <link rel="prev" title="Argovis API Usage" href="api_usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,9 +101,6 @@
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_sources.html">Data Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="point_schema.html">Point Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="grid_schema.html">Grid Schema</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Argovis data schema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#a-heritable-generic-schema">A heritable generic schema</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-read-this-schema">How to read this schema</a></li>
@@ -123,11 +120,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#go-ship-schema-extension">GO-SHIP Schema Extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cchdo-schema-extension">CCHDO Schema Extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Generic Metadata Division</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go-ship-specific-data-record-fields">GO-SHIP-Specific Data Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go-ship-specific-metadata-record-fields">GO-SHIP-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cchdo-specific-data-record-fields">CCHDO-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cchdo-specific-metadata-record-fields">CCHDO-Specific Metadata Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Implementation</a></li>
 </ul>
 </li>
@@ -140,23 +137,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tc-specific-data-record-fields">TC-Specific Data Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tc-specific-metadata-record-fields">TC-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid-specific-data-record-fields">Grid-Specific Data Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid-specific-metadata-record-fields">Grid-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Implementation</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="serving_a_new_dataset.html">Serving a new dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
@@ -243,7 +241,7 @@
             
   <div class="section" id="argovis-data-schema">
 <span id="schema"></span><h1>Argovis data schema<a class="headerlink" href="#argovis-data-schema" title="Permalink to this headline">¶</a></h1>
-<p>All data indexed by Argovis follows the schema described in this document. The purpose of this schema is to standardize the representation of profile-, grid-,and sea surface-type datasets to promote their interoperability and underwrite a standardized API to serve them all.</p>
+<p>All data indexed by Argovis follows the schema described in this document. The purpose of this schema is to standardize the representation of profile-, grid-, and sea surface-type datasets to promote their interoperability and underwrite a standardized API to serve them all.</p>
 <div class="admonition-the-last-word admonition">
 <p class="admonition-title">The Last Word</p>
 <p>In the event of conflicts in schema definition, the implementation at <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a> is to be taken as correct above all others.</p>
@@ -464,7 +462,7 @@
 </div>
 <div class="section" id="argo-schema-extension">
 <h2>Argo Schema Extension<a class="headerlink" href="#argo-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>The Argo data and metadata collections extend and implement the generic schema as follows.</p>
+<p>Argovis maintains and indexes a full sync of ifremer’s argo data, updated nightly. The Argo data and metadata collections extend and implement the generic schema as follows.</p>
 <div class="section" id="generic-metadata-division">
 <h3>Generic Metadata Division<a class="headerlink" href="#generic-metadata-division" title="Permalink to this headline">¶</a></h3>
 <p>Argo profiles divide the generic metadata fields between data and metadata records per the following. In general, Argo metadata records describe things that are consistent or slowly changing for a particular physical float, while a data record represents an individual profile.</p>
@@ -599,7 +597,7 @@
 </div>
 <div class="section" id="implementation">
 <h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
-<p>Implementation of Argo’s schema and pipelines to load the data from IFREMER can be found at the following links.</p>
+<p>Implementation of Argo’s schema and pipelines to load the data from ifremer can be found at the following links.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argo.py">https://github.com/argovis/db-schema/blob/main/argo.py</a></p></li>
@@ -608,12 +606,12 @@
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="go-ship-schema-extension">
-<h2>GO-SHIP Schema Extension<a class="headerlink" href="#go-ship-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>The GO-SHIP data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="cchdo-schema-extension">
+<h2>CCHDO Schema Extension<a class="headerlink" href="#cchdo-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis serves a selection of ship-based profiles curated by our colleagues at CCHDO. The CCHDO data and metadata collections extend and implement the generic schema as follows.</p>
 <div class="section" id="id2">
 <h3>Generic Metadata Division<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular GO-SHIP cruise, while a data record represents a single profile.</p>
+<p>CCHDO profiles divide the generic metadata fields between data and metadata records per the following. In general, CCHDO metadata records describe things that are consistent or slowly changing for a particular CCHDO cruise, while a data record represents a single profile.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records:</p>
@@ -646,9 +644,9 @@
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="go-ship-specific-data-record-fields">
-<h3>GO-SHIP-Specific Data Record Fields<a class="headerlink" href="#go-ship-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>The following fields extend the generic data records for GO-SHIP:</p>
+<div class="section" id="cchdo-specific-data-record-fields">
+<h3>CCHDO-Specific Data Record Fields<a class="headerlink" href="#cchdo-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>The following fields extend the generic data records for CCHDO:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">station</span></code></p></li>
@@ -656,9 +654,9 @@
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="go-ship-specific-metadata-record-fields">
-<h3>GO-SHIP-Specific Metadata Record Fields<a class="headerlink" href="#go-ship-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>The following fields extend the generic metadata records for GO-SHIP:</p>
+<div class="section" id="cchdo-specific-metadata-record-fields">
+<h3>CCHDO-Specific Metadata Record Fields<a class="headerlink" href="#cchdo-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>The following fields extend the generic metadata records for CCHDO:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">expocode</span></code></p></li>
@@ -669,17 +667,18 @@
 </div>
 <div class="section" id="id4">
 <h3>Implementation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>Implementation of GO-SHIP’s schema and pipelines to load the data from CCHDO can be found at the following links.</p>
+<p>Implementation of CCHDO’s schema and pipelines to load the data from CCHDO can be found at the following links.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Schema implementation and indexing: TBD</p></li>
-<li><p>Upload pipeline: <a class="reference external" href="https://github.com/cchdo/argovis_convert_netcdf_to_json">https://github.com/cchdo/argovis_convert_netcdf_to_json</a></p></li>
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/cchdo.py">https://github.com/argovis/db-schema/blob/main/cchdo.py</a></p></li>
+<li><p>Upload pipeline: original from CCHDO: <a class="reference external" href="https://github.com/cchdo/argovis_convert_netcdf_to_json">https://github.com/cchdo/argovis_convert_netcdf_to_json</a>; also see fork and branch <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3">https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3</a> for schema compliance and mongo upload.</p></li>
 </ul>
 </div></blockquote>
 </div>
 </div>
 <div class="section" id="drifter-schema-extension">
 <h2>Drifter Schema Extension<a class="headerlink" href="#drifter-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis indexes a subset of the hourly dataset from the <a class="reference external" href="https://www.aoml.noaa.gov/phod/gdp/index.php">NOAA Global Drifter Program</a>, version 2.00 (beta pre-release) (<a class="reference external" href="http://dx.doi.org/10.1002/2016JC011716">Elipot et al. 2016</a>, <a class="reference external" href="https://arxiv.org/abs/2201.08289v1">Elipot et al. 2022 arXiv preprint</a>). See <a class="reference external" href="https://github.com/argovis/drifter-sync">https://github.com/argovis/drifter-sync</a> for data parsing and loading.</p>
 <p>Global Drifter Program data and metadata collections extend and implement the generic schema as follows.</p>
 <div class="section" id="id5">
 <h3>Generic Metadata Division<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
@@ -730,13 +729,13 @@
 </div>
 <div class="section" id="tropical-cyclone-schema-extension">
 <h2>Tropical Cyclone Schema Extension<a class="headerlink" href="#tropical-cyclone-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>HURDAT and JTWC tropical cyclone data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="id8">
-<h3>Generic Metadata Division<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>HURDAT and JTWC tropical cyclone data is indexed by Argovis; TC data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id9">
+<h3>Generic Metadata Division<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>Tropical cyclone records place all generic metadata fields in their metadata records.</p>
 </div>
-<div class="section" id="id9">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;_&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;HH&gt;&lt;MM&gt;&lt;SS&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code> is the ID of the cyclone measurement from the upstream data source.</p></li>
@@ -762,12 +761,12 @@
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="id10">
-<h3>Implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Implementation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of tropical cyclone schema and pipelines to load the data from source CSVs can be found at the following links.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Schema implementation and indexing: TBD</p></li>
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">https://github.com/argovis/db-schema/blob/main/tc.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/tc-sync">https://github.com/argovis/tc-sync</a></p></li>
 </ul>
 </div></blockquote>
@@ -775,13 +774,13 @@
 </div>
 <div class="section" id="gridded-product-schema-extension">
 <h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>Gridded product data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="id11">
-<h3>Generic Metadata Division<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, and the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. Gridded product data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id12">
+<h3>Generic Metadata Division<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>Gridded products place all metadata fields in their metadata records; grid data records correspond exactly to generic data records, while metadata records are per grid product.</p>
 </div>
-<div class="section" id="id12">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -807,18 +806,18 @@
 </div></blockquote>
 <div class="admonition-shared-grid-metadata-collection admonition">
 <p class="admonition-title">Shared grid metadata collection</p>
-<p>Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, <code class="docutils literal notranslate"><span class="pre">gridMeta</span></code>. This is because for a given gridded data product, there should be exactly one metadata record - it seems silly to make a collection for each.</p>
+<p>Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, <code class="docutils literal notranslate"><span class="pre">gridMeta</span></code>. This is because for a given gridded data product, there are only a few or even just one metadata record - it seems silly to make a collection for each.</p>
 </div>
 </div>
-<div class="section" id="id13">
-<h3>Implementation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Implementation<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Schema implementation and indexing: TBD</p></li>
-<li><p>Upload pipeline: TBD</p></li>
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a></p></li>
+<li><p>Upload pipeline: <cite>https://github.com/argovis/grid-sync &lt;https://github.com/argovis/grid-sync&gt;_</cite></p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2022-07-28</em></p>
+<p><em>Last reviewed 2022-09-15</em></p>
 </div>
 </div>
 </div>
@@ -829,8 +828,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="argo_merge.html" class="btn btn-neutral float-right" title="Merging Argo Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="grid_schema.html" class="btn btn-neutral float-left" title="Grid Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="serving_a_new_dataset.html" class="btn btn-neutral float-right" title="Serving a new dataset" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_usage.html" class="btn btn-neutral float-left" title="Argovis API Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

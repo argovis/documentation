@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Serving a new dataset &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Merging Argo Data" href="argo_merge.html" />
+    <link rel="prev" title="Argovis data schema" href="schema.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/api_development.html">API Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Serving a new dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#define-the-data-and-metadata-schema">1. Define the data and metadata schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#populate-your-collections">2. Populate your collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#establish-standard-api-routes">3. Establish standard API routes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api-templates">API templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-build">API build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release">Release</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Serving a new dataset</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/data_management/serving_a_new_dataset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="serving-a-new-dataset">
+<span id="new-data"></span><h1>Serving a new dataset<a class="headerlink" href="#serving-a-new-dataset" title="Permalink to this headline">¶</a></h1>
+<p>Argovis developed and implements semi-standardized data schema and API routes for <em>point-like</em> Earth system data. Any data that can be expressed as JSON documents each associated with a specific latitude, longitude and timestamp can be represented in this schema, and a search and filtering API created to parse it. In this document, we’ll tour the standard procedure for providing Argovis-standard API endpoints across a new dataset.</p>
+<div class="section" id="define-the-data-and-metadata-schema">
+<h2>1. Define the data and metadata schema<a class="headerlink" href="#define-the-data-and-metadata-schema" title="Permalink to this headline">¶</a></h2>
+<p>All standard data in Argovis is described by schemas compliant with <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>, which describes Earth system data as pairs of data and metadata documents. Your first job with a new dataset is creating a compliant schema appropriate for your data.</p>
+<ol class="arabic simple">
+<li><p>Review <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a> to understand the schema requirements, and see examples of customizations for different datasets.</p></li>
+<li><p>Identify an organizing principle for your metadata documents. As discussed in the above doc, data documents should capture information that changes with each temporospatial point, while metadata documents should capture information that is common to many such points. A common organizing principle is physical platform, as seen in Argo floats and Global Drifter Program drifters; these devices have settings and parameters that are common for hundereds or thousands of measurements. CCHDO, on the other hand, uses cruises as its metadata organizing principle - organized campaigns in time that generated a series of measurements with common metadata. Your dataset will be different; try and choose something that is both logically meaningful to subject matter experts in that dataset like these examples, and that generates a many-to-one relationship between data and metadata documents.</p></li>
+<li><p>Once you’ve decided on your data schema, implement it in <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a>, following one of the existing examples.</p></li>
+<li><p>In the above script, be sure to also codify the database indexes you want for both data and metadata collections. Metadata collections can be indexed in any way you intend to search them; data collections must at a minimum be indexed by <code class="docutils literal notranslate"><span class="pre">metadata</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> x <code class="docutils literal notranslate"><span class="pre">geolocation</span></code>, and <code class="docutils literal notranslate"><span class="pre">geolocation</span></code>; see the <code class="docutils literal notranslate"><span class="pre">tc</span></code> schema for a simple example.</p></li>
+<li><p>Build and run your containerized script on the cluster; if all’s well, there should be a data and a metadata collection defined in mongodb, with indexes for your dataset.</p></li>
+</ol>
+</div>
+<div class="section" id="populate-your-collections">
+<h2>2. Populate your collections<a class="headerlink" href="#populate-your-collections" title="Permalink to this headline">¶</a></h2>
+<p>Once collections are defined, they need to be populated from their upstream raw data. A relatively straightforawrd example of this can be seen for the tropical cyclone data in <a class="reference external" href="https://github.com/argovis/tc-sync">https://github.com/argovis/tc-sync</a>. Beyond basic collection population, make sure there’s enough documentation to rebuild the dataset from scratch, and for complex datasets, consider an intrgrity check script that can run in the background after the collections are built, and doublecheck that what’s in the database matches your upstream data origin; see <a class="reference external" href="https://github.com/argovis/ifremer-sync/blob/main/roundtrip.yaml">the Argo roundtrip watchdog</a> and downstream scripts for an example of this.</p>
+</div>
+<div class="section" id="establish-standard-api-routes">
+<h2>3. Establish standard API routes<a class="headerlink" href="#establish-standard-api-routes" title="Permalink to this headline">¶</a></h2>
+<p>All standard collections in our database offer the following routes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;</span></code>: search and filter for the data documents you defined above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;/meta</span></code>: search and filter for the metadata documents you defined above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;/vocabulary</span></code> (optional): vocabulary route to enumerate possible values of search terms of the above two routes, such as names of tropical cyclones for the <code class="docutils literal notranslate"><span class="pre">tc</span></code> routes, or WOCE lines for the <code class="docutils literal notranslate"><span class="pre">cchdo</span></code> routes.</p></li>
+</ul>
+</div></blockquote>
+<p>The steps in this section enumerate how to set these up.</p>
+<div class="section" id="api-templates">
+<h3>API templates<a class="headerlink" href="#api-templates" title="Permalink to this headline">¶</a></h3>
+<p>On the <code class="docutils literal notranslate"><span class="pre">templates</span></code> branch of <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a> in <code class="docutils literal notranslate"><span class="pre">spec.yaml</span></code>, the OpenAPI specifications of your API endpoints are defined. For all of the following, see the tropical cyclone (<code class="docutils literal notranslate"><span class="pre">/tc</span></code>) implementation in the existing code for a simple example.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;</span></code>: mandatory query string parameters: genericID, startDate, endDate, polygon, multipolygon, center, radius, mostrecent and compression. Add extra search parameters from the data or metadata collections as desired, but note that each custom query filter <em>must</em> have its corresponding variable individually indexed in mongo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;/meta</span></code>: the only mandatory query string parameter is genericID, and as above, add any others you like, but ensure they are indexed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;/vocab</span></code> (optional): has exactly one query string parameter called <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, with allowed values equal to <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and the query string parameters from the other two canonical routes which you’d like to offer enumerations of allowed values for. Again, see the tc example, where <code class="docutils literal notranslate"><span class="pre">parameter=name</span></code> is used to list all the tropical cyclone names the tc data and metadata can be searched by.</p></li>
+</ul>
+</div></blockquote>
+<p>In addition to the route definitions, the 200 responses of <code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;/meta</span></code> need valid response schemas defined. These are almost identical to the mongo schema you defined above, with the following exceptions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> should be optional in the response schema for <code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;</span></code>, while mandatory in the mongo data collection documents. In mongo, data collection documents clearly need the data they represent; but the <code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;</span></code> API routes may return a response absent this key, for coordinate-only searches.</p></li>
+<li><p>If the mongo schema define <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> to be on the metadata documents, they should be allowed, but not required, in the <code class="docutils literal notranslate"><span class="pre">/&lt;dataset&gt;</span></code> responses. This is because requests to <code class="docutils literal notranslate"><span class="pre">&lt;/dataset&gt;</span></code> that subset on data variables must carry a custom value of <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> that supercede the metadata document values to reflect user choises.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="api-build">
+<h3>API build<a class="headerlink" href="#api-build" title="Permalink to this headline">¶</a></h3>
+<p>Once you’ve created the templates for your new API endpoints as per the previous section, follow the instructions in <a class="reference external" href="https://github.com/argovis/argovis_api#development-cycle">https://github.com/argovis/argovis_api#development-cycle</a> to merge those templates into the <code class="docutils literal notranslate"><span class="pre">server</span></code> branch and begin implementing the logic to handle them. When following the step in those instructions that says ‘Implement custom logic’, consider the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>First, update the controller for your new routes. The patterns for all of these are identical; as usual, see the tropical cyclone implementation for a simple example.</p></li>
+<li><p>Add models for your new data and metadata documents, and point to their collections.</p></li>
+<li><p>The most sophisticated step is to implement the service for your new endpoints, which captures the bulk of the logic on how these requests are handled. Again, start with the tropical cyclone example as a template, and be sure to insert the correct references to your data and metadata models.</p></li>
+<li><p>If you want some custom logic on your new routes beyond the simple TC patterns, have a look at the Argo service example. In this example, Argo supports a <code class="docutils literal notranslate"><span class="pre">source</span></code> parameter, and Argo’s data service implements some extra custom input validation and filtering to handle this.</p></li>
+<li><p>Finally, now is the time to add some tests for your API logic, at a minimum checking that basic requests and filters return what’s expected. To do so, see the test database in <a class="reference external" href="https://github.com/argovis/testdb">https://github.com/argovis/testdb</a>; add some data and corresponding metadata documents to <code class="docutils literal notranslate"><span class="pre">seed-data.js</span></code> there, build and push a new <code class="docutils literal notranslate"><span class="pre">argovis/testdb:0.xx</span></code> container image, and update <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> in the API to use this new test database version.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="release">
+<h3>Release<a class="headerlink" href="#release" title="Permalink to this headline">¶</a></h3>
+<p>Once API logic is implemented and tests are passing on the <code class="docutils literal notranslate"><span class="pre">server</span></code> branch of the API repo, it’s time to release:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Follow the release process for the API, documented here: <a class="reference external" href="https://github.com/argovis/argovis_api#build--release-cycle">https://github.com/argovis/argovis_api#build–release-cycle</a>.</p></li>
+<li><p>Follow the release process for the deployment manager, documented here: <a class="reference external" href="https://github.com/argovis/argovis_deployment#release-process">https://github.com/argovis/argovis_deployment#release-process</a>.</p></li>
+</ul>
+</div></blockquote>
+<p>At this point, your new data should be reachable from your new API endpoints.</p>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>4. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The final step for your new dataset is to provide some documentation for it. Swagger will have automatically generated and posted the basic API documentation for your new endpoints, but there are a couple other places that should be highlighted:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Describe the schema decisions for your dataset in <a class="reference external" href="https://github.com/argovis/documentation/blob/main/data_management/schema.rst">https://github.com/argovis/documentation/blob/main/data_management/schema.rst</a>; be sure to also link out to any data parsing and upload scripts you developed as well.</p></li>
+<li><p>(Optional): Consider illustrating any novel usage or applications of your new dataset in a demo notebook at <a class="reference external" href="https://github.com/argovis/demo_notebooks">https://github.com/argovis/demo_notebooks</a>.</p></li>
+</ul>
+<p><em>Last reviewed 2022-09-14</em></p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="argo_merge.html" class="btn btn-neutral float-right" title="Merging Argo Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="schema.html" class="btn btn-neutral float-left" title="Argovis data schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

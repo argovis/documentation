@@ -2,7 +2,7 @@
 
 Argovis data schema
 ===================
-All data indexed by Argovis follows the schema described in this document. The purpose of this schema is to standardize the representation of profile-, grid-,and sea surface-type datasets to promote their interoperability and underwrite a standardized API to serve them all.
+All data indexed by Argovis follows the schema described in this document. The purpose of this schema is to standardize the representation of profile-, grid-, and sea surface-type datasets to promote their interoperability and underwrite a standardized API to serve them all.
 
 .. admonition:: The Last Word
 
@@ -203,7 +203,7 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
 Argo Schema Extension
 ---------------------
 
-The Argo data and metadata collections extend and implement the generic schema as follows.
+Argovis maintains and indexes a full sync of ifremer's argo data, updated nightly. The Argo data and metadata collections extend and implement the generic schema as follows.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
@@ -320,20 +320,20 @@ The following fields extend the generic metadata records for Argo:
 Implementation
 ++++++++++++++
 
-Implementation of Argo's schema and pipelines to load the data from IFREMER can be found at the following links.
+Implementation of Argo's schema and pipelines to load the data from ifremer can be found at the following links.
 
  - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
  - Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
 
-GO-SHIP Schema Extension
+CCHDO Schema Extension
 ------------------------
 
-The GO-SHIP data and metadata collections extend and implement the generic schema as follows.
+Argovis serves a selection of ship-based profiles curated by our colleagues at CCHDO. The CCHDO data and metadata collections extend and implement the generic schema as follows.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-GO-SHIP profiles divide the generic metadata fields between data and metadata records per the following. In general, GO-SHIP metadata records describe things that are consistent or slowly changing for a particular GO-SHIP cruise, while a data record represents a single profile.
+CCHDO profiles divide the generic metadata fields between data and metadata records per the following. In general, CCHDO metadata records describe things that are consistent or slowly changing for a particular CCHDO cruise, while a data record represents a single profile.
 
  - Data records:
 
@@ -357,18 +357,18 @@ GO-SHIP profiles divide the generic metadata fields between data and metadata re
  - Data records ``_id``: ``expo_<expocode>_sta_<station>_cast_<cast>``
  - Metadata records ``_id``: ``<cchdo_cruise_id>_m<metadata_number>``,  where ``<metadata_number>``` counts from 0 and is prefixed with ``m`` similar to Argo; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the cruise.
 
-GO-SHIP-Specific Data Record Fields
+CCHDO-Specific Data Record Fields
 +++++++++++++++++++++++++++++++++++
 
-The following fields extend the generic data records for GO-SHIP:
+The following fields extend the generic data records for CCHDO:
 
  - ``station``
  - ``cast``
 
-GO-SHIP-Specific Metadata Record Fields
+CCHDO-Specific Metadata Record Fields
 +++++++++++++++++++++++++++++++++++++++
 
-The following fields extend the generic metadata records for GO-SHIP:
+The following fields extend the generic metadata records for CCHDO:
 
  - ``expocode``
  - ``cchdo_cruise_id``
@@ -377,13 +377,15 @@ The following fields extend the generic metadata records for GO-SHIP:
 Implementation
 ++++++++++++++
 
-Implementation of GO-SHIP's schema and pipelines to load the data from CCHDO can be found at the following links.
+Implementation of CCHDO's schema and pipelines to load the data from CCHDO can be found at the following links.
 
- - Schema implementation and indexing: TBD
- - Upload pipeline: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_
+ - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/cchdo.py <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_
+ - Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3 <https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3>`_ for schema compliance and mongo upload.
 
 Drifter Schema Extension
 ------------------------
+
+Argovis indexes a subset of the hourly dataset from the `NOAA Global Drifter Program <https://www.aoml.noaa.gov/phod/gdp/index.php>`_, version 2.00 (beta pre-release) (`Elipot et al. 2016 <http://dx.doi.org/10.1002/2016JC011716>`_, `Elipot et al. 2022 arXiv preprint <https://arxiv.org/abs/2201.08289v1>`_). See `https://github.com/argovis/drifter-sync <https://github.com/argovis/drifter-sync>`_ for data parsing and loading.
 
 Global Drifter Program data and metadata collections extend and implement the generic schema as follows.
 
@@ -429,7 +431,7 @@ Implementation
 Tropical Cyclone Schema Extension
 ---------------------------------
 
-HURDAT and JTWC tropical cyclone data and metadata collections extend and implement the generic schema as follows.
+HURDAT and JTWC tropical cyclone data is indexed by Argovis; TC data and metadata collections extend and implement the generic schema as follows.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
@@ -459,13 +461,13 @@ Implementation
 
 Implementation of tropical cyclone schema and pipelines to load the data from source CSVs can be found at the following links.
 
- - Schema implementation and indexing: TBD
+ - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/tc.py <https://github.com/argovis/db-schema/blob/main/tc.py>`_
  - Upload pipeline: `https://github.com/argovis/tc-sync <https://github.com/argovis/tc-sync>`_
 
 Gridded Product Schema Extension
 --------------------------------
 
-Gridded product data and metadata collections extend and implement the generic schema as follows.
+Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, and the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_. Gridded product data and metadata collections extend and implement the generic schema as follows.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
@@ -495,12 +497,13 @@ Grid-Specific Metadata Record Fields
 
 .. admonition:: Shared grid metadata collection
 
-   Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, ``gridMeta``. This is because for a given gridded data product, there should be exactly one metadata record - it seems silly to make a collection for each.
+   Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, ``gridMeta``. This is because for a given gridded data product, there are only a few or even just one metadata record - it seems silly to make a collection for each.
 
 Implementation
 ++++++++++++++
 
- - Schema implementation and indexing: TBD
- - Upload pipeline: TBD
+ - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_
 
-*Last reviewed 2022-07-28*
+ - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>_`
+
+*Last reviewed 2022-09-15*

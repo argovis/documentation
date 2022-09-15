@@ -97,10 +97,8 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :caption: Data Management
 
    data_management/api_usage
-   data_management/data_sources
-   data_management/point_schema
-   data_management/grid_schema
    data_management/schema
+   data_management/serving_a_new_dataset
    data_management/argo_merge
 
 .. toctree::
