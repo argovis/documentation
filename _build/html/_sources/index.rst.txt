@@ -114,6 +114,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :maxdepth: 2
    :caption: Disaster Recovery
 
+   disaster_recovery/rebuild_mongo_from_scratch
    disaster_recovery/restore_a_mongo_collection
 
 .. toctree::
