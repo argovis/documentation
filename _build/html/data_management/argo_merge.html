@@ -116,6 +116,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#database-considerations">Database Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-omissions">Known Omissions</a></li>
 </ul>
 </li>
 </ul>
@@ -288,7 +289,16 @@
 <ul class="simple">
 <li><p>MongoDB’s internal time bson type does not capture sub-millisecond precision; therefore, all times will be rounded off to the ms on write.</p></li>
 </ul>
-<p><em>Last reviewed –</em></p>
+</div>
+<div class="section" id="known-omissions">
+<h2>Known Omissions<a class="headerlink" href="#known-omissions" title="Permalink to this headline">¶</a></h2>
+<p>Some pathologies in the original data files can cause a profile to fail to write to MongoDB. Observed such conditions are listed here:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Missing <code class="docutils literal notranslate"><span class="pre">PARAMETER_DATA_MODE</span></code>: Argovis has a firm expectation that all variables in a BGC file are reported as exactly one of real-time, adjusted or delayed; if a fill value is detected for any variable in a profile, the profile is omitted.</p></li>
+</ul>
+</div></blockquote>
+<p><em>Last reviewed 22-10-05</em></p>
 </div>
 </div>
 

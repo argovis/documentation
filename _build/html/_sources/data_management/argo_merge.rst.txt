@@ -83,6 +83,13 @@ Database Considerations
 
 At the end of the process described above, we have a single JSON document describing the profile of interest, to be written to MongoDB. Write considerations are as follows:
 
-- MongoDB's internal time bson type does not capture sub-millisecond precision; therefore, all times will be rounded off to the ms on write. 
+- MongoDB's internal time bson type does not capture sub-millisecond precision; therefore, all times will be rounded off to the ms on write.
 
-*Last reviewed --*
+Known Omissions
+---------------
+
+Some pathologies in the original data files can cause a profile to fail to write to MongoDB. Observed such conditions are listed here:
+
+ - Missing ``PARAMETER_DATA_MODE``: Argovis has a firm expectation that all variables in a BGC file are reported as exactly one of real-time, adjusted or delayed; if a fill value is detected for any variable in a profile, the profile is omitted.
+
+*Last reviewed 22-10-05*
