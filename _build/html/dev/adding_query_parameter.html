@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Adding a query parameter to an API route &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Argovis API Usage" href="../data_management/api_usage.html" />
+    <link rel="prev" title="Performance Testing" href="../ops/performance_testing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/api_development.html">API Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Playbooks</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adding a query parameter to an API route</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#is-it-feasible">Is it feasible?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-api-code">Updating API code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#update-api-templates">Update API templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-api-business-logic">Update API business logic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#database-prep">Database prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch">Launch</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/serving_a_new_dataset.html">Serving a new dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/argo_merge.html">Merging Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/rebuild_mongo_from_scratch.html">Rebuild Mongo from sctatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Adding a query parameter to an API route</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/dev/adding_query_parameter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adding-a-query-parameter-to-an-api-route">
+<span id="adding-query-parameter"></span><h1>Adding a query parameter to an API route<a class="headerlink" href="#adding-a-query-parameter-to-an-api-route" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes, users will want to be able to search and filter by some parameter that is in the database, but not currently associated with an API query string parameter. Follow this guide with examples to do so.</p>
+<div class="section" id="is-it-feasible">
+<h2>Is it feasible?<a class="headerlink" href="#is-it-feasible" title="Permalink to this headline">¶</a></h2>
+<p>Every searchable parameter in any API requires the underlying database to index the parameter being filtered on, for performance reasons. Check your production database: how big are comparable indexes on the collections you want to add an index to? How much free memory do you have to accommodate this? Bear in mind that every index sitting in memory chokes your server’s ability to maintain a large working set, so proceed cautiously and do not implement unless there is significant, multi-stakeholder demand.</p>
+</div>
+<div class="section" id="updating-api-code">
+<h2>Updating API code<a class="headerlink" href="#updating-api-code" title="Permalink to this headline">¶</a></h2>
+<p>Most of the work will be in correctly updating the API spec and business logic in <a class="reference external" href="https://github.com/argovis/argovis_api">argovis_api</a>, as outlined below.</p>
+<div class="section" id="update-api-templates">
+<h3>Update API templates<a class="headerlink" href="#update-api-templates" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Make sure you have the latest for the <code class="docutils literal notranslate"><span class="pre">templates</span></code> branch of the API repo, and make a dev branch off of this.</p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">spec.yaml</span></code> (and only this file) to add your new query string parameter to the appropriate route.</p></li>
+<li><p>Consider also allowing a vocab search on any parameter with categorical values at this time.</p></li>
+<li><p>Build and stage pull request into upstream <code class="docutils literal notranslate"><span class="pre">templates</span></code> branch.</p></li>
+<li><p>Example (note only the changes to <code class="docutils literal notranslate"><span class="pre">spec.yaml</span></code> here were made by a human, the rest comes from the build process): <a class="reference external" href="https://github.com/argovis/argovis_api/pull/203">template update</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="update-api-business-logic">
+<h3>Update API business logic<a class="headerlink" href="#update-api-business-logic" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Make sure you have the latest for the <code class="docutils literal notranslate"><span class="pre">server</span></code> branch of the API repo, and make a dev branch off of this.</p></li>
+<li><p>Merge in what’s new from the <code class="docutils literal notranslate"><span class="pre">templates</span></code> work you did above. Resolve and commit merge conflicts.</p></li>
+<li><p>Implement any new logic required, and add tests.</p></li>
+<li><p>Once tests passing, merge this and the templates PR upstream.</p></li>
+<li><p>Example: <a class="reference external" href="https://github.com/argovis/argovis_api/pull/202">server update</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="database-prep">
+<h2>Database prep<a class="headerlink" href="#database-prep" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add index manually to existing collections for any new parameter being filtered on.</p></li>
+<li><p>Add index definition to scripts in the <a class="reference external" href="https://github.com/argovis/db-schema">schema definition repo</a></p></li>
+<li><p>Example: <a class="reference external" href="https://github.com/argovis/db-schema/pull/28">new argo indexes</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="launch">
+<h2>Launch<a class="headerlink" href="#launch" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Make an API release on GitHub (<a class="reference external" href="https://github.com/argovis/argovis_api/releases/tag/2.0.0-rc40">example</a>)</p></li>
+<li><p>Build new container image from <code class="docutils literal notranslate"><span class="pre">server</span></code> branch and push to Docker Hub</p></li>
+<li><p>Deploy updated API image in production</p></li>
+<li><p>Try your new filter manually to confirm success.</p></li>
+</ul>
+</div></blockquote>
+<p><em>Last reviewed 2022-12-06</em></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../data_management/api_usage.html" class="btn btn-neutral float-right" title="Argovis API Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ops/performance_testing.html" class="btn btn-neutral float-left" title="Performance Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
