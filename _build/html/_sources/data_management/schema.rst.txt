@@ -232,7 +232,7 @@ Argo profiles divide the generic metadata fields between data and metadata recor
 
 .. admonition:: Argo Keys and Units
 
-   Notice that Argo ``data_keys`` and ``units`` may be recorded in *either* the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure.
+   Notice that Argo ``data_keys`` and ``units`` may be recorded in *either* the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure. Users should also note that this specifies the *backend* schema, as Argo data is stored in our database; our API will in fact place ``data_keys`` and ``units`` on the data document in all cases, to simplify consistency for users.
 
 ``_id`` construction
 ++++++++++++++++++++

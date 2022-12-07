@@ -499,7 +499,7 @@
 </div></blockquote>
 <div class="admonition-argo-keys-and-units admonition">
 <p class="admonition-title">Argo Keys and Units</p>
-<p>Notice that Argo <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> may be recorded in <em>either</em> the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure.</p>
+<p>Notice that Argo <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> may be recorded in <em>either</em> the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure. Users should also note that this specifies the <em>backend</em> schema, as Argo data is stored in our database; our API will in fact place <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> on the data document in all cases, to simplify consistency for users.</p>
 </div>
 </div>
 <div class="section" id="id-construction">
