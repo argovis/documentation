@@ -122,6 +122,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
    disaster_recovery/rebuild_mongo_from_scratch
    disaster_recovery/restore_a_mongo_collection
+   disaster_recovery/restore_from_ami
 
 .. toctree::
    :maxdepth: 2
