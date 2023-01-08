@@ -467,43 +467,40 @@ Implementation of tropical cyclone schema and pipelines to load the data from so
 Gridded Product Schema Extension
 --------------------------------
 
-Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, and the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_. Gridded product data and metadata collections extend and implement the generic schema as follows.
+Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, and the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-Gridded products place all metadata fields in their metadata records; grid data records correspond exactly to generic data records, while metadata records are per grid product.
+Gridded products place ``data_type``, ``date_updated_argovis``, and ``source`` in their metadata documents, while ``data_keys`` and ``units`` live in the grid data documents.
 
 ``_id`` construction
 ++++++++++++++++++++
 
  - Data records ``_id``: ``<yyyymmddhhmmss>_<longitude>_<latitude>``
- - Metadata records ``_id``: ``<grid name>``
+ - Metadata records ``_id``: 
+
+   - For RG: ``<temperature | salinity>_rg_<yyymm of originating file>_Total``
+   - For KG: ``ohc_kg``
 
 Grid-Specific Data Record Fields
 ++++++++++++++++++++++++++++++++
 
-None. Grid data records are exactly the generic data record specification.
+Gridded data does not define any new data record fields, but does treat ``metadata`` and ``data`` differently than the non gridded datasets:
+
+ - ``metadata`` is an array rather than a single string, in the same order as ``data_keys``. This is required since all gridded products on the same latitude/longitude/timestamp lattice are placed in the same collection and data documents; therefore, a single data document can be synthesized from many grids, and may be updated with new grids in future.
+ - ``data`` is effectively the transpose of the same key from the non-gridded products: ``data[i][j]`` is the jth level of the ith grid (where i runs over ``data_keys``). This is to accommodate factoring out levels from the data record into the metadata records, and accommodating the fact that different grids may use different things for levels (depth versus pressure, for example), while occupying the same temporospatial lattice and therefore the same data documents.
 
 Grid-Specific Metadata Record Fields
 ++++++++++++++++++++++++++++++++++++
 
  - ``levels``
- - ``lonrange``
- - ``latrange``
- - ``timerange``
- - ``loncell``
- - ``latcell``
-
-.. admonition:: Shared grid metadata collection
-
-   Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, ``gridMeta``. This is because for a given gridded data product, there are only a few or even just one metadata record - it seems silly to make a collection for each.
 
 Implementation
 ++++++++++++++
 
  - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_
 
- - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>_`
+ - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
-*Last reviewed 2022-09-15*
+*Last reviewed 2023-01-08*

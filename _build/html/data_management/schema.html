@@ -780,50 +780,52 @@
 </div>
 <div class="section" id="gridded-product-schema-extension">
 <h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, and the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. Gridded product data and metadata collections extend and implement the generic schema as follows.</p>
+<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, and the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.</p>
 <div class="section" id="id12">
 <h3>Generic Metadata Division<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
-<p>Gridded products place all metadata fields in their metadata records; grid data records correspond exactly to generic data records, while metadata records are per grid product.</p>
+<p>Gridded products place <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> in their metadata documents, while <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> live in the grid data documents.</p>
 </div>
 <div class="section" id="id13">
 <h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
-<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;grid</span> <span class="pre">name&gt;</span></code></p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>:</p>
+<ul>
+<li><p>For RG: <code class="docutils literal notranslate"><span class="pre">&lt;temperature</span> <span class="pre">|</span> <span class="pre">salinity&gt;_rg_&lt;yyymm</span> <span class="pre">of</span> <span class="pre">originating</span> <span class="pre">file&gt;_Total</span></code></p></li>
+<li><p>For KG: <code class="docutils literal notranslate"><span class="pre">ohc_kg</span></code></p></li>
+</ul>
+</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="grid-specific-data-record-fields">
 <h3>Grid-Specific Data Record Fields<a class="headerlink" href="#grid-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None. Grid data records are exactly the generic data record specification.</p>
+<p>Gridded data does not define any new data record fields, but does treat <code class="docutils literal notranslate"><span class="pre">metadata</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> differently than the non gridded datasets:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code> is an array rather than a single string, in the same order as <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>. This is required since all gridded products on the same latitude/longitude/timestamp lattice are placed in the same collection and data documents; therefore, a single data document can be synthesized from many grids, and may be updated with new grids in future.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> is effectively the transpose of the same key from the non-gridded products: <code class="docutils literal notranslate"><span class="pre">data[i][j]</span></code> is the jth level of the ith grid (where i runs over <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>). This is to accommodate factoring out levels from the data record into the metadata records, and accommodating the fact that different grids may use different things for levels (depth versus pressure, for example), while occupying the same temporospatial lattice and therefore the same data documents.</p></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="grid-specific-metadata-record-fields">
 <h3>Grid-Specific Metadata Record Fields<a class="headerlink" href="#grid-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lonrange</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">latrange</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timerange</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">loncell</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">latcell</span></code></p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-shared-grid-metadata-collection admonition">
-<p class="admonition-title">Shared grid metadata collection</p>
-<p>Unlike other data products which each get their own metadata collection, all gridded products share the same metadata collection, <code class="docutils literal notranslate"><span class="pre">gridMeta</span></code>. This is because for a given gridded data product, there are only a few or even just one metadata record - it seems silly to make a collection for each.</p>
-</div>
 </div>
 <div class="section" id="id14">
 <h3>Implementation<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a></p></li>
-<li><p>Upload pipeline: <cite>https://github.com/argovis/grid-sync &lt;https://github.com/argovis/grid-sync&gt;_</cite></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2022-09-15</em></p>
+<p><em>Last reviewed 2023-01-08</em></p>
 </div>
 </div>
 </div>
