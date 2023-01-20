@@ -22,7 +22,7 @@ How to read this schema
 
 Each entry in the schema fragments below contain a few keys:
 
-- **required:** whether or not this attribute can be omitted
+- **required:** whether or not this attribute can be omitted; "case" indicates case-by-case decisions for different datasets
 - **type:** the primitive type,  format,  or object description of a valid entry for this field
 - **description:** short comment on what this variable is
 - **fill value** (optional): what this should be filled by if absent
@@ -53,8 +53,8 @@ In general, data records are intended to represent data that is unique or freque
 - ``metadata``
 
   - **required:** true
-  - **type:** string
-  - **description:** foreign key that matches the ``_id`` of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.
+  - **type:** string or array
+  - **description:** foreign key(s) that matches the ``_id`` of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.
 
 - ``geolocation``
 
@@ -65,14 +65,14 @@ In general, data records are intended to represent data that is unique or freque
 
 - ``basin``
 
-  - **required:** true
+  - **required:** case
   - **type:** int
   - **description:** integer index of basin.
   - **fill value:** -1,  used if reported lon/lat are on land.
 
 - ``timestamp``
 
-  - **required:** true
+  - **required:** case
   - **type:** ISO 8601 UTC datestring,  example ``1999-12-31T23:59:59Z``
   - **description:** time the record measurement was made at.
   - **fill_value:** ``9999-01-01T00:00:00Z``
@@ -95,7 +95,7 @@ In general, metadata records in Argovis are meant to factor out constant or infr
   - **type:** string
   - **description:** unique record identifier referred to by the ``metadata`` field in records from the corresponding data collection.
 
-Besides the trivially required ``_id`` field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in *exactly one* of the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.
+Besides the trivially required ``_id`` field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.
 
 - ``data_type``
 
@@ -243,6 +243,8 @@ Argo profiles divide the generic metadata fields between data and metadata recor
 Argo-Specific Data Record Fields
 ++++++++++++++++++++++++++++++++
 
+Argo treats ``timestamp`` and ``basin`` all as required items on the data document.
+
 The following fields extend the generic data record for Argo:
 
 - ``cycle_number``
@@ -360,6 +362,8 @@ CCHDO profiles divide the generic metadata fields between data and metadata reco
 CCHDO-Specific Data Record Fields
 +++++++++++++++++++++++++++++++++++
 
+CCHDO treats ``timestamp`` and ``basin`` all as required items on the data document.
+
 The following fields extend the generic data records for CCHDO:
 
  - ``station``
@@ -403,7 +407,9 @@ Global Drifter Program measurements place all metadata fields in their metadata 
 Drifter-Specific Data Record Fields
 +++++++++++++++++++++++++++++++++++
 
-None. Drifter data records are exactly the generic data record specification.
+The drifter collectoin treats ``timestamp`` and ``basin`` all as required items on the data document.
+
+Otherwise, drifter data records are exactly the generic data record specification.
 
 Drifter-Specific Metadata Record Fields
 +++++++++++++++++++++++++++++++++++++++
@@ -447,6 +453,8 @@ Tropical cyclone records place all generic metadata fields in their metadata rec
 TC-Specific Data Record Fields
 ++++++++++++++++++++++++++++++
 
+Tropical cyclones treat ``timestamp`` and ``basin`` all as required items on the data document. Specific data record fields are as follows:
+
  - ``record_identifier``
  - ``class``
 
@@ -480,8 +488,8 @@ Gridded products place ``data_type``, ``date_updated_argovis``, and ``source`` i
  - Data records ``_id``: ``<yyyymmddhhmmss>_<longitude>_<latitude>``
  - Metadata records ``_id``: 
 
-   - For RG: ``<temperature | salinity>_rg_<yyymm of originating file>_Total``
-   - For KG: ``ohc_kg``
+   - For RG: ``rg09_<temperature | salinity>_<yyymm of originating file>_Total``
+   - For KG: ``kg21_ohc15to300``
 
 Grid-Specific Data Record Fields
 ++++++++++++++++++++++++++++++++
@@ -503,4 +511,4 @@ Implementation
 
  - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
-*Last reviewed 2023-01-08*
+*Last reviewed 2023-01-20*

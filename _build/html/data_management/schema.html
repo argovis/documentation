@@ -261,7 +261,7 @@
 <h3>How to read this schema<a class="headerlink" href="#how-to-read-this-schema" title="Permalink to this headline">¶</a></h3>
 <p>Each entry in the schema fragments below contain a few keys:</p>
 <ul class="simple">
-<li><p><strong>required:</strong> whether or not this attribute can be omitted</p></li>
+<li><p><strong>required:</strong> whether or not this attribute can be omitted; “case” indicates case-by-case decisions for different datasets</p></li>
 <li><p><strong>type:</strong> the primitive type,  format,  or object description of a valid entry for this field</p></li>
 <li><p><strong>description:</strong> short comment on what this variable is</p></li>
 <li><p><strong>fill value</strong> (optional): what this should be filled by if absent</p></li>
@@ -290,8 +290,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> foreign key that matches the <code class="docutils literal notranslate"><span class="pre">_id</span></code> of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.</p></li>
+<li><p><strong>type:</strong> string or array</p></li>
+<li><p><strong>description:</strong> foreign key(s) that matches the <code class="docutils literal notranslate"><span class="pre">_id</span></code> of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p>
@@ -304,7 +304,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code></p>
 <ul>
-<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>required:</strong> case</p></li>
 <li><p><strong>type:</strong> int</p></li>
 <li><p><strong>description:</strong> integer index of basin.</p></li>
 <li><p><strong>fill value:</strong> -1,  used if reported lon/lat are on land.</p></li>
@@ -312,7 +312,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p>
 <ul>
-<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>required:</strong> case</p></li>
 <li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
 <li><p><strong>description:</strong> time the record measurement was made at.</p></li>
 <li><p><strong>fill_value:</strong> <code class="docutils literal notranslate"><span class="pre">9999-01-01T00:00:00Z</span></code></p></li>
@@ -340,7 +340,7 @@
 </ul>
 </li>
 </ul>
-<p>Besides the trivially required <code class="docutils literal notranslate"><span class="pre">_id</span></code> field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in <em>exactly one</em> of the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.</p>
+<p>Besides the trivially required <code class="docutils literal notranslate"><span class="pre">_id</span></code> field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p>
 <ul>
@@ -514,6 +514,7 @@
 </div>
 <div class="section" id="argo-specific-data-record-fields">
 <h3>Argo-Specific Data Record Fields<a class="headerlink" href="#argo-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>Argo treats <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document.</p>
 <p>The following fields extend the generic data record for Argo:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cycle_number</span></code></p>
@@ -652,6 +653,7 @@
 </div>
 <div class="section" id="cchdo-specific-data-record-fields">
 <h3>CCHDO-Specific Data Record Fields<a class="headerlink" href="#cchdo-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>CCHDO treats <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document.</p>
 <p>The following fields extend the generic data records for CCHDO:</p>
 <blockquote>
 <div><ul class="simple">
@@ -701,7 +703,8 @@
 </div>
 <div class="section" id="drifter-specific-data-record-fields">
 <h3>Drifter-Specific Data Record Fields<a class="headerlink" href="#drifter-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None. Drifter data records are exactly the generic data record specification.</p>
+<p>The drifter collectoin treats <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document.</p>
+<p>Otherwise, drifter data records are exactly the generic data record specification.</p>
 </div>
 <div class="section" id="drifter-specific-metadata-record-fields">
 <h3>Drifter-Specific Metadata Record Fields<a class="headerlink" href="#drifter-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
@@ -751,6 +754,7 @@
 </div>
 <div class="section" id="tc-specific-data-record-fields">
 <h3>TC-Specific Data Record Fields<a class="headerlink" href="#tc-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>Tropical cyclones treat <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document. Specific data record fields are as follows:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p></li>
@@ -792,8 +796,8 @@
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
 <li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>:</p>
 <ul>
-<li><p>For RG: <code class="docutils literal notranslate"><span class="pre">&lt;temperature</span> <span class="pre">|</span> <span class="pre">salinity&gt;_rg_&lt;yyymm</span> <span class="pre">of</span> <span class="pre">originating</span> <span class="pre">file&gt;_Total</span></code></p></li>
-<li><p>For KG: <code class="docutils literal notranslate"><span class="pre">ohc_kg</span></code></p></li>
+<li><p>For RG: <code class="docutils literal notranslate"><span class="pre">rg09_&lt;temperature</span> <span class="pre">|</span> <span class="pre">salinity&gt;_&lt;yyymm</span> <span class="pre">of</span> <span class="pre">originating</span> <span class="pre">file&gt;_Total</span></code></p></li>
+<li><p>For KG: <code class="docutils literal notranslate"><span class="pre">kg21_ohc15to300</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -825,7 +829,7 @@
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2023-01-08</em></p>
+<p><em>Last reviewed 2023-01-20</em></p>
 </div>
 </div>
 </div>
@@ -844,7 +848,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, Argovis Collaboration.
+        &#169; Copyright 2023, Argovis Collaboration.
 
     </p>
   </div>

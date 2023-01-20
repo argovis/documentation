@@ -20,7 +20,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'argovis'
-copyright = '2021, Argovis Collaboration'
+copyright = '2023, Argovis Collaboration'
 author = 'Argovis Collaboration'
 
 
