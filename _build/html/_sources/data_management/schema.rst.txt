@@ -53,8 +53,8 @@ In general, data records are intended to represent data that is unique or freque
 - ``metadata``
 
   - **required:** true
-  - **type:** string or array
-  - **description:** foreign key(s) that matches the ``_id`` of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.
+  - **type:** array
+  - **description:** foreign key(s) that matches the ``_id`` of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID. If array references exactly one metadata document, then that metadata doc applies to all values in ``data_info[0]`` for this data document; if ``metadata`` lists more than one element, they are to be interpreted as per-item in ``data_info[0]`` (ie, ``metadata[i]`` is the metadata corresponding to ``data_info[0][i]``).
 
 - ``geolocation``
 
@@ -68,7 +68,7 @@ In general, data records are intended to represent data that is unique or freque
   - **required:** case
   - **type:** int
   - **description:** integer index of basin.
-  - **fill value:** -1,  used if reported lon/lat are on land.
+  - **fill value:** -1,  used if reported lon/lat are not associated with a basin (possibly on land) according to our basin index raster.
 
 - ``timestamp``
 
@@ -80,9 +80,8 @@ In general, data records are intended to represent data that is unique or freque
 - ``data``
 
   - **required:** false
-  - **type:** optional array of non-nested JSON documents, OR optional array of arrays of floats
-  - **description:** in both formats, array indexes depth / altitude; array elements present the measurement values for that level, either as a dictionary with keys that match ``data_keys``, or as an array of floats in the same order as ``data_keys``.
-  - **current vocabulary:** measurements defined per dataset; see dataset-specific extensions below.
+  - **type:** array of arrays of floats, ints, strings and / or nulls
+  - **description:** a matrix of per-level measurements and flags, where ``data[i][j]`` represents the ith variable as ordered by ``data_info[0]``, at the jth depth or pressure level.
 
 Generic Metadata Schema
 +++++++++++++++++++++++
@@ -97,24 +96,22 @@ In general, metadata records in Argovis are meant to factor out constant or infr
 
 Besides the trivially required ``_id`` field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.
 
+- ``data_info``
+
+  - **required:** true
+  - **type:** array of arrays of floats, ints, strings and / or nulls
+  - **description:** 
+
+    - ``data_info[0]``: array of strings naming the measurements, estimates or flags, in order, found in ``data``.
+    - ``data_info[1]``: array of strings naming per-variable metadata items (commonly things like units or long descriptions)
+    - ``data_info[2]``: matrix of per-variable metadata, with rows labeled by ``data_info[0]`` and columns labeled by ``data_info[1]``.
+
 - ``data_type``
 
   - **required:** true
   - **type:** string
   - **description:** token indicating the general class of data
-  - **current vocabulary:** ``oceanicProfile``,  ``tropicalCyclone``, ``drifter``, ``grid``
-
-- ``data_keys`` 
-
-  - **required:** true
-  - **type:** array of strings
-  - **description:** a complete list of all the keys found in any element in the ``data`` object, ordered as the inner lists of ``data`` when ``data`` is presented as a list of lists of floats.
-
-- ``units`` 
-
-  - **required:** true
-  - **type:** array of strings
-  - **description:** strings describing the units of each measurement, in the same order as ``data_keys``.
+  - **current vocabulary:** ``oceanicProfile``,  ``tropicalCyclone``, ``drifter``, and ``argo_trajectory`` for point-like data, and ``temperature``, ``salinity``, ``ocean_heat_content`` and ``covariance`` for grids.
 
 - ``date_updated_argovis``
 
@@ -132,7 +129,7 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
 
   - **required:** true
   - **type:** array of strings
-  - **description:** data origin, typically used to label major project subdivisions like ``argo_core``, ``argo_bgc`` and ``argo_deep``
+  - **description:** data origin, typically used to label major project subdivisions like ``argo_core``, ``argo_bgc`` and ``argo_deep``.
 
 - ``source.url``
 
@@ -150,7 +147,7 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
 
   - **required:** false
   - **type:** ISO 8601 UTC datestring,  example ``1999-12-31T23:59:59Z``
-  - **description:** date and time the upstream source file for this record was last modified
+  - **description:** date and time the upstream source file for this record was last modified.
 
 - ``country``
 
@@ -186,7 +183,7 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
 
   - **required:** false
   - **type:** array of strings
-  - **description:** name(s) of principle investigator(s)
+  - **description:** name(s) of principle investigator(s).
 
 - ``platform``
 
@@ -215,24 +212,17 @@ Argo profiles divide the generic metadata fields between data and metadata recor
    - ``date_updated_argovis``
    - ``source``
    - ``data_warning``
-   - ``data_keys`` (for BGC)
-   - ``units`` (for BGC)
+   - ``data_info``
 
  - Metadata records:
 
    - ``data_type``
-   - ``data_keys`` (for non-BGC)
-   - ``units`` (for non-BGC)
    - ``country``
    - ``data_center``
    - ``instrument``
    - ``pi_name``
    - ``platform``
    - ``platform_type``
-
-.. admonition:: Argo Keys and Units
-
-   Notice that Argo ``data_keys`` and ``units`` may be recorded in *either* the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure. Users should also note that this specifies the *backend* schema, as Argo data is stored in our database; our API will in fact place ``data_keys`` and ``units`` on the data document in all cases, to simplify consistency for users.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -252,13 +242,6 @@ The following fields extend the generic data record for Argo:
   - **required:** true
   - **type:** int
   - **description:** probe cycle index
-
-- ``data_keys_mode``
-
-  - **required:** false
-  - **type:** array of strings
-  - **description:** array of strings order-matched to the entries of ``data_keys``,  with values indicating the variable's data mode
-  - **current vocabulary:** ``R`` ealtime,  realtime ``A`` djusted,  or ``D`` elayed mode.
 
 - ``geolocation_argoqc``
 
@@ -341,8 +324,7 @@ CCHDO profiles divide the generic metadata fields between data and metadata reco
 
    - ``source``
    - ``data_warning``
-   - ``data_keys``
-   - ``units``
+   - ``data_info``
 
  - Metadata records:
 
@@ -414,19 +396,78 @@ Otherwise, drifter data records are exactly the generic data record specificatio
 Drifter-Specific Metadata Record Fields
 +++++++++++++++++++++++++++++++++++++++
 
-  - ``rowsize``
-  - ``WMO``
-  - ``expno``
-  - ``deploy_date``
-  - ``deploy_lon``
-  - ``deploy_lat``
-  - ``end_date``
-  - ``end_lon``
-  - ``end_lat``
-  - ``drogue_lost_date``
-  - ``typedeath``
-  - ``typebuoy``
-  - ``long_name``
+- ``rowsize``
+
+  - **required:** true
+  - **type:** int
+  - **description:** number of obs for this trajectory
+
+- ``WMO``
+
+  - **required:** true
+  - **type:** string
+  - **description:**  World Meteorological Organization buoy identification number
+
+- ``expno``
+
+  - **required:** true
+  - **type:** int
+  - **description:** experiment number 
+
+- ``deploy_date``
+
+  - **required:** true
+  - **type:** datetime
+  - **description:** Deployment date and time
+
+- ``deploy_lon``
+
+  - **required:** true
+  - **type:** float
+  - **description:** Deployment longitude 
+
+- ``deploy_lat``
+
+  - **required:** true
+  - **type:** float 
+  - **description:** Deployment latitude 
+
+- ``end_date``
+
+  - **required:** true
+  - **type:** datetime
+  - **description:**  End date and time
+
+- ``end_lon``
+
+  - **required:** true
+  - **type:** float 
+  - **description:** End longitude 
+
+- ``end_lat``
+
+  - **required:** true
+  - **type:** float
+  - **description:** End longitude 
+
+- ``drogue_lost_date``
+
+  - **required:** true
+  - **type:** datetime
+  - **description:** Date of drogue loss (Null=drogue still attached; "1970-01-01T00:00:00Z"=drogue status uncertain from beginning)
+
+- ``typedeath``
+
+  - **required:** true
+  - **type:** int
+  - **description:** Type of death (0=buoy still alive, 1=buoy ran aground, 2=picked up by vessel, 3=stop transmitting, 4=sporadic transmissions, 5=bad batteries, 6=inactive status) 
+
+- ``typebuoy``
+
+  - **required:** true
+  - **type:** string
+  - **description:** 'Buoy type (see https://www.aoml.noaa.gov/phod/dac/dirall.html)'
+
 
 Implementation
 ++++++++++++++
@@ -455,8 +496,8 @@ TC-Specific Data Record Fields
 
 Tropical cyclones treat ``timestamp`` and ``basin`` all as required items on the data document. Specific data record fields are as follows:
 
- - ``record_identifier``
  - ``class``
+ - ``record_identifier``
 
 TC-Specific Metadata Record Fields
 ++++++++++++++++++++++++++++++++++
@@ -480,7 +521,7 @@ Argovis includes the total temperature and salinity grids from `Roemmich-Gilson 
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-Gridded products place ``data_type``, ``date_updated_argovis``, and ``source`` in their metadata documents, while ``data_keys`` and ``units`` live in the grid data documents.
+Gridded products place ``data_type``, ``date_updated_argovis``, ``data_info``, and ``source`` in their metadata documents.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -494,15 +535,17 @@ Gridded products place ``data_type``, ``date_updated_argovis``, and ``source`` i
 Grid-Specific Data Record Fields
 ++++++++++++++++++++++++++++++++
 
-Gridded data does not define any new data record fields, but does treat ``metadata`` and ``data`` differently than the non gridded datasets:
+Gridded data does not define any new data record fields. Do note however that gridded data documents often contain more than one key in their ``metadata`` field. As noted above, these correspond in order to the different grids listed in ``data``.
 
- - ``metadata`` is an array rather than a single string, in the same order as ``data_keys``. This is required since all gridded products on the same latitude/longitude/timestamp lattice are placed in the same collection and data documents; therefore, a single data document can be synthesized from many grids, and may be updated with new grids in future.
- - ``data`` is effectively the transpose of the same key from the non-gridded products: ``data[i][j]`` is the jth level of the ith grid (where i runs over ``data_keys``). This is to accommodate factoring out levels from the data record into the metadata records, and accommodating the fact that different grids may use different things for levels (depth versus pressure, for example), while occupying the same temporospatial lattice and therefore the same data documents.
 
 Grid-Specific Metadata Record Fields
 ++++++++++++++++++++++++++++++++++++
 
- - ``levels``
+- ``levels``
+
+  - **required:** true
+  - **type:** array of floats
+  - **description:** Pressure or depth levels corresponding to each list of measurements in ``data``. Note the same spectrum of levels applies to all measurements in ``data``, as grids are required to have the same level spectrum in order to share a data document. 
 
 Implementation
 ++++++++++++++
@@ -511,4 +554,105 @@ Implementation
 
  - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
-*Last reviewed 2023-01-20*
+ARGONE Argo float forecast data
+-------------------------------
+
+Argovis includes a tabulation of forecasts of Argo float locations based on ARGONE (link / DOI forthcoming).
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the the argone metadata document.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records: ``<origin_lon>_<origin_lat>_<forecast_lon>_<forecast_lat>``
+ - Metadata records: there is only one for the entire dataset, ``argone``.
+
+ARGONE-specific data record fields
+++++++++++++++++++++++++++++++++++
+
+ - ``geolocation_forecast``
+
+  - **required:** true
+  - **type:** geojson Point 
+  - **description:** forecast location for this record
+
+ARGONE-specific metadata record fields
+++++++++++++++++++++++++++++++++++++++
+
+- ``levels``
+
+  - **required:** true
+  - **type:** array of floats
+  - **description:** a single entry, ``[0]``, indicating this is all surface data
+
+Also note ``data_info[0]`` for ARGONE data indicates forecast length in days; the first entry indicates the probability a float will move from ``geolocation`` to ``geolocation_forecast`` in 90 days, for example.
+
+Implementation
+++++++++++++++
+
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argone.py <https://github.com/argovis/db-schema/blob/main/argone.py>`_
+
+- Upload pipeline: `https://github.com/argovis/ARGONE <https://github.com/argovis/ARGONE>`_
+
+Argo trajectory data
+--------------------
+
+Argovis includes estimates of Argo float trajectories from `https://doi.org/10.6075/J0FQ9WS6 <https://doi.org/10.6075/J0FQ9WS6>`_.
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the the trajectories metadata documents.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records: ``<platform>_<cycle_number>``
+ - Metadata records: ``<platform>_m<metadata_number>``, analogos to Argo metadata
+
+Argo trajectory-specific data record fields
++++++++++++++++++++++++++++++++++++++++++++
+
+- ``cycle_number``
+
+  - **required:** true
+  - **type:** int
+  - **description:** probe cycle index
+
+The following ``geolocation_*`` and ``timestamp_*`` data fields are all required; all geolocations have type geojson Point, and all timestamps have type datetime.
+
+- ``geolocation_descending``
+- ``timestamp_descending``
+- ``geolocation_ascending``
+- ``timestamp_ascending``
+- ``geolocation_descending_transmitted``
+- ``timestamp_descending_transmitted``
+- ``geolocation_ascending_transmitted``
+- ``timestamp_ascending_transmitted``
+- ``geolocation_midpoint_transmitted``
+- ``timestamp_midpoint_transmitted``
+
+Note that Argovis' ``geolocation`` corresponds to the original files' ``LONGITUDE_`` and ``LATITUDE_MIDPOINT``, and ``timestamp`` corresponds to the upstream ``JULD_MIDPOINT``.
+
+Argo trajectory-specific metadata record fields
++++++++++++++++++++++++++++++++++++++++++++++++
+
+- ``platform``
+- ``positioning_system_flag``
+- ``sensor_type_flag``
+- ``mission_flag``
+- ``extrapolation_flag``
+- ``positioning_system``
+- ``platform_type``
+
+Implementation
+++++++++++++++
+
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/trajectories.py <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_
+
+- Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
+
+*Last reviewed 2023-02-27*

@@ -156,6 +156,22 @@
 <li class="toctree-l3"><a class="reference internal" href="#id14">Implementation</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argone-specific-data-record-fields">ARGONE-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argone-specific-metadata-record-fields">ARGONE-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-trajectory-data">Argo trajectory data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-specific-data-record-fields">Argo trajectory-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-specific-metadata-record-fields">Argo trajectory-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Implementation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="serving_a_new_dataset.html">Serving a new dataset</a></li>
@@ -290,8 +306,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> string or array</p></li>
-<li><p><strong>description:</strong> foreign key(s) that matches the <code class="docutils literal notranslate"><span class="pre">_id</span></code> of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID.</p></li>
+<li><p><strong>type:</strong> array</p></li>
+<li><p><strong>description:</strong> foreign key(s) that matches the <code class="docutils literal notranslate"><span class="pre">_id</span></code> of the corresponding metadata record. Preferentially chosen to encode something physically meaningful that corresponds to metadata groupings, like Argo platform ID. If array references exactly one metadata document, then that metadata doc applies to all values in <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> for this data document; if <code class="docutils literal notranslate"><span class="pre">metadata</span></code> lists more than one element, they are to be interpreted as per-item in <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> (ie, <code class="docutils literal notranslate"><span class="pre">metadata[i]</span></code> is the metadata corresponding to <code class="docutils literal notranslate"><span class="pre">data_info[0][i]</span></code>).</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p>
@@ -307,7 +323,7 @@
 <li><p><strong>required:</strong> case</p></li>
 <li><p><strong>type:</strong> int</p></li>
 <li><p><strong>description:</strong> integer index of basin.</p></li>
-<li><p><strong>fill value:</strong> -1,  used if reported lon/lat are on land.</p></li>
+<li><p><strong>fill value:</strong> -1,  used if reported lon/lat are not associated with a basin (possibly on land) according to our basin index raster.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p>
@@ -321,9 +337,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
-<li><p><strong>type:</strong> optional array of non-nested JSON documents, OR optional array of arrays of floats</p></li>
-<li><p><strong>description:</strong> in both formats, array indexes depth / altitude; array elements present the measurement values for that level, either as a dictionary with keys that match <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>, or as an array of floats in the same order as <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>.</p></li>
-<li><p><strong>current vocabulary:</strong> measurements defined per dataset; see dataset-specific extensions below.</p></li>
+<li><p><strong>type:</strong> array of arrays of floats, ints, strings and / or nulls</p></li>
+<li><p><strong>description:</strong> a matrix of per-level measurements and flags, where <code class="docutils literal notranslate"><span class="pre">data[i][j]</span></code> represents the ith variable as ordered by <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code>, at the jth depth or pressure level.</p></li>
 </ul>
 </li>
 </ul>
@@ -342,26 +357,25 @@
 </ul>
 <p>Besides the trivially required <code class="docutils literal notranslate"><span class="pre">_id</span></code> field, there are a set of generic metadata fields, presented in this section, that may, if required or desired, appear in the metadata or data schemas for a given dataset, depending on which choice provides the most efficient encoding for that dataset. Each dataset specified below includes the division of these fields between data and metadata.</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of arrays of floats, ints, strings and / or nulls</p></li>
+<li><p><strong>description:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code>: array of strings naming the measurements, estimates or flags, in order, found in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info[1]</span></code>: array of strings naming per-variable metadata items (commonly things like units or long descriptions)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info[2]</span></code>: matrix of per-variable metadata, with rows labeled by <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> and columns labeled by <code class="docutils literal notranslate"><span class="pre">data_info[1]</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
 <li><p><strong>type:</strong> string</p></li>
 <li><p><strong>description:</strong> token indicating the general class of data</p></li>
-<li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">oceanicProfile</span></code>,  <code class="docutils literal notranslate"><span class="pre">tropicalCyclone</span></code>, <code class="docutils literal notranslate"><span class="pre">drifter</span></code>, <code class="docutils literal notranslate"><span class="pre">grid</span></code></p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code></p>
-<ul>
-<li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> array of strings</p></li>
-<li><p><strong>description:</strong> a complete list of all the keys found in any element in the <code class="docutils literal notranslate"><span class="pre">data</span></code> object, ordered as the inner lists of <code class="docutils literal notranslate"><span class="pre">data</span></code> when <code class="docutils literal notranslate"><span class="pre">data</span></code> is presented as a list of lists of floats.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p>
-<ul>
-<li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> array of strings</p></li>
-<li><p><strong>description:</strong> strings describing the units of each measurement, in the same order as <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>.</p></li>
+<li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">oceanicProfile</span></code>,  <code class="docutils literal notranslate"><span class="pre">tropicalCyclone</span></code>, <code class="docutils literal notranslate"><span class="pre">drifter</span></code>, and <code class="docutils literal notranslate"><span class="pre">argo_trajectory</span></code> for point-like data, and <code class="docutils literal notranslate"><span class="pre">temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">salinity</span></code>, <code class="docutils literal notranslate"><span class="pre">ocean_heat_content</span></code> and <code class="docutils literal notranslate"><span class="pre">covariance</span></code> for grids.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p>
@@ -382,7 +396,7 @@
 <ul>
 <li><p><strong>required:</strong> true</p></li>
 <li><p><strong>type:</strong> array of strings</p></li>
-<li><p><strong>description:</strong> data origin, typically used to label major project subdivisions like <code class="docutils literal notranslate"><span class="pre">argo_core</span></code>, <code class="docutils literal notranslate"><span class="pre">argo_bgc</span></code> and <code class="docutils literal notranslate"><span class="pre">argo_deep</span></code></p></li>
+<li><p><strong>description:</strong> data origin, typically used to label major project subdivisions like <code class="docutils literal notranslate"><span class="pre">argo_core</span></code>, <code class="docutils literal notranslate"><span class="pre">argo_bgc</span></code> and <code class="docutils literal notranslate"><span class="pre">argo_deep</span></code>.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p>
@@ -403,7 +417,7 @@
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
-<li><p><strong>description:</strong> date and time the upstream source file for this record was last modified</p></li>
+<li><p><strong>description:</strong> date and time the upstream source file for this record was last modified.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p>
@@ -446,7 +460,7 @@
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> array of strings</p></li>
-<li><p><strong>description:</strong> name(s) of principle investigator(s)</p></li>
+<li><p><strong>description:</strong> name(s) of principle investigator(s).</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p>
@@ -479,15 +493,12 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code> (for BGC)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code> (for BGC)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 </ul>
 </li>
 <li><p>Metadata records:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code> (for non-BGC)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code> (for non-BGC)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p></li>
@@ -498,10 +509,6 @@
 </li>
 </ul>
 </div></blockquote>
-<div class="admonition-argo-keys-and-units admonition">
-<p class="admonition-title">Argo Keys and Units</p>
-<p>Notice that Argo <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> may be recorded in <em>either</em> the data or metadata record. This is to accommodate BGC floats, the measured variables of which may change frequently and thus be more appropriate on the data record, versus core floats which essentially never change what they measure. Users should also note that this specifies the <em>backend</em> schema, as Argo data is stored in our database; our API will in fact place <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> on the data document in all cases, to simplify consistency for users.</p>
-</div>
 </div>
 <div class="section" id="id-construction">
 <h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id-construction" title="Permalink to this headline">¶</a></h3>
@@ -522,14 +529,6 @@
 <li><p><strong>required:</strong> true</p></li>
 <li><p><strong>type:</strong> int</p></li>
 <li><p><strong>description:</strong> probe cycle index</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_keys_mode</span></code></p>
-<ul>
-<li><p><strong>required:</strong> false</p></li>
-<li><p><strong>type:</strong> array of strings</p></li>
-<li><p><strong>description:</strong> array of strings order-matched to the entries of <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>,  with values indicating the variable’s data mode</p></li>
-<li><p><strong>current vocabulary:</strong> <code class="docutils literal notranslate"><span class="pre">R</span></code> ealtime,  realtime <code class="docutils literal notranslate"><span class="pre">A</span></code> djusted,  or <code class="docutils literal notranslate"><span class="pre">D</span></code> elayed mode.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">geolocation_argoqc</span></code></p>
@@ -625,8 +624,7 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_keys</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 </ul>
 </li>
 <li><p>Metadata records:</p>
@@ -708,23 +706,92 @@
 </div>
 <div class="section" id="drifter-specific-metadata-record-fields">
 <h3>Drifter-Specific Metadata Record Fields<a class="headerlink" href="#drifter-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">rowsize</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WMO</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">expno</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">deploy_date</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">deploy_lon</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">deploy_lat</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">end_date</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">end_lon</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">end_lat</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">drogue_lost_date</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">typedeath</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">typebuoy</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">long_name</span></code></p></li>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rowsize</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> number of obs for this trajectory</p></li>
 </ul>
-</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WMO</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong>  World Meteorological Organization buoy identification number</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expno</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> experiment number</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy_date</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> datetime</p></li>
+<li><p><strong>description:</strong> Deployment date and time</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy_lon</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> Deployment longitude</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deploy_lat</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> Deployment latitude</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_date</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> datetime</p></li>
+<li><p><strong>description:</strong>  End date and time</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_lon</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> End longitude</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_lat</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> End longitude</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drogue_lost_date</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> datetime</p></li>
+<li><p><strong>description:</strong> Date of drogue loss (Null=drogue still attached; “1970-01-01T00:00:00Z”=drogue status uncertain from beginning)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedeath</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> Type of death (0=buoy still alive, 1=buoy ran aground, 2=picked up by vessel, 3=stop transmitting, 4=sporadic transmissions, 5=bad batteries, 6=inactive status)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typebuoy</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> ‘Buoy type (see <a class="reference external" href="https://www.aoml.noaa.gov/phod/dac/dirall.html">https://www.aoml.noaa.gov/phod/dac/dirall.html</a>)’</p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="id7">
 <h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
@@ -757,8 +824,8 @@
 <p>Tropical cyclones treat <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document. Specific data record fields are as follows:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -787,7 +854,7 @@
 <p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, and the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.</p>
 <div class="section" id="id12">
 <h3>Generic Metadata Division<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
-<p>Gridded products place <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> in their metadata documents, while <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> live in the grid data documents.</p>
+<p>Gridded products place <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> in their metadata documents.</p>
 </div>
 <div class="section" id="id13">
 <h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
@@ -805,21 +872,19 @@
 </div>
 <div class="section" id="grid-specific-data-record-fields">
 <h3>Grid-Specific Data Record Fields<a class="headerlink" href="#grid-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>Gridded data does not define any new data record fields, but does treat <code class="docutils literal notranslate"><span class="pre">metadata</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> differently than the non gridded datasets:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code> is an array rather than a single string, in the same order as <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>. This is required since all gridded products on the same latitude/longitude/timestamp lattice are placed in the same collection and data documents; therefore, a single data document can be synthesized from many grids, and may be updated with new grids in future.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> is effectively the transpose of the same key from the non-gridded products: <code class="docutils literal notranslate"><span class="pre">data[i][j]</span></code> is the jth level of the ith grid (where i runs over <code class="docutils literal notranslate"><span class="pre">data_keys</span></code>). This is to accommodate factoring out levels from the data record into the metadata records, and accommodating the fact that different grids may use different things for levels (depth versus pressure, for example), while occupying the same temporospatial lattice and therefore the same data documents.</p></li>
-</ul>
-</div></blockquote>
+<p>Gridded data does not define any new data record fields. Do note however that gridded data documents often contain more than one key in their <code class="docutils literal notranslate"><span class="pre">metadata</span></code> field. As noted above, these correspond in order to the different grids listed in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 </div>
 <div class="section" id="grid-specific-metadata-record-fields">
 <h3>Grid-Specific Metadata Record Fields<a class="headerlink" href="#grid-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of floats</p></li>
+<li><p><strong>description:</strong> Pressure or depth levels corresponding to each list of measurements in <code class="docutils literal notranslate"><span class="pre">data</span></code>. Note the same spectrum of levels applies to all measurements in <code class="docutils literal notranslate"><span class="pre">data</span></code>, as grids are required to have the same level spectrum in order to share a data document.</p></li>
 </ul>
-</div></blockquote>
+</li>
+</ul>
 </div>
 <div class="section" id="id14">
 <h3>Implementation<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
@@ -829,7 +894,121 @@
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2023-01-20</em></p>
+</div>
+</div>
+<div class="section" id="argone-argo-float-forecast-data">
+<h2>ARGONE Argo float forecast data<a class="headerlink" href="#argone-argo-float-forecast-data" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes a tabulation of forecasts of Argo float locations based on ARGONE (link / DOI forthcoming).</p>
+<div class="section" id="id15">
+<h3>Generic Metadata Division<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the the argone metadata document.</p>
+</div>
+<div class="section" id="id16">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;origin_lon&gt;_&lt;origin_lat&gt;_&lt;forecast_lon&gt;_&lt;forecast_lat&gt;</span></code></p></li>
+<li><p>Metadata records: there is only one for the entire dataset, <code class="docutils literal notranslate"><span class="pre">argone</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="argone-specific-data-record-fields">
+<h3>ARGONE-specific data record fields<a class="headerlink" href="#argone-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_forecast</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point</p></li>
+<li><p><strong>description:</strong> forecast location for this record</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="argone-specific-metadata-record-fields">
+<h3>ARGONE-specific metadata record fields<a class="headerlink" href="#argone-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of floats</p></li>
+<li><p><strong>description:</strong> a single entry, <code class="docutils literal notranslate"><span class="pre">[0]</span></code>, indicating this is all surface data</p></li>
+</ul>
+</li>
+</ul>
+<p>Also note <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> for ARGONE data indicates forecast length in days; the first entry indicates the probability a float will move from <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> to <code class="docutils literal notranslate"><span class="pre">geolocation_forecast</span></code> in 90 days, for example.</p>
+</div>
+<div class="section" id="id17">
+<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">https://github.com/argovis/db-schema/blob/main/argone.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ARGONE">https://github.com/argovis/ARGONE</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="argo-trajectory-data">
+<h2>Argo trajectory data<a class="headerlink" href="#argo-trajectory-data" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes estimates of Argo float trajectories from <a class="reference external" href="https://doi.org/10.6075/J0FQ9WS6">https://doi.org/10.6075/J0FQ9WS6</a>.</p>
+<div class="section" id="id18">
+<h3>Generic Metadata Division<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the the trajectories metadata documents.</p>
+</div>
+<div class="section" id="id19">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;cycle_number&gt;</span></code></p></li>
+<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_m&lt;metadata_number&gt;</span></code>, analogos to Argo metadata</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="argo-trajectory-specific-data-record-fields">
+<h3>Argo trajectory-specific data record fields<a class="headerlink" href="#argo-trajectory-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_number</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> probe cycle index</p></li>
+</ul>
+</li>
+</ul>
+<p>The following <code class="docutils literal notranslate"><span class="pre">geolocation_*</span></code> and <code class="docutils literal notranslate"><span class="pre">timestamp_*</span></code> data fields are all required; all geolocations have type geojson Point, and all timestamps have type datetime.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_ascending</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_ascending</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending_transmitted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending_transmitted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_ascending_transmitted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_ascending_transmitted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_midpoint_transmitted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_midpoint_transmitted</span></code></p></li>
+</ul>
+<p>Note that Argovis’ <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> corresponds to the original files’ <code class="docutils literal notranslate"><span class="pre">LONGITUDE_</span></code> and <code class="docutils literal notranslate"><span class="pre">LATITUDE_MIDPOINT</span></code>, and <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> corresponds to the upstream <code class="docutils literal notranslate"><span class="pre">JULD_MIDPOINT</span></code>.</p>
+</div>
+<div class="section" id="argo-trajectory-specific-metadata-record-fields">
+<h3>Argo trajectory-specific metadata record fields<a class="headerlink" href="#argo-trajectory-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system_flag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensor_type_flag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mission_flag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extrapolation_flag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h3>Implementation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/trajectories.py">https://github.com/argovis/db-schema/blob/main/trajectories.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/argo_trajectories">https://github.com/argovis/argo_trajectories</a></p></li>
+</ul>
+<p><em>Last reviewed 2023-02-27</em></p>
 </div>
 </div>
 </div>
