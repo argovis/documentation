@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Merging Argo Data &mdash; argovis  documentation</title>
+  <title>Managing Argo Data &mdash; argovis  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fast Angular Builds" href="../dev_tools/fast_development_builds.html" />
-    <link rel="prev" title="Serving a new dataset" href="serving_a_new_dataset.html" /> 
+    <link rel="next" title="Argovis Kubernetes Deployment" href="../ops/deployment.html" />
+    <link rel="prev" title="Database Resourcing &amp; Deployment" href="db_ops.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,11 +87,31 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started/api_development.html">API Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+              <p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Argo Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#opinionated-profiles">Opinionated profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#upstream-file-selection">Upstream file selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-extraction">Data extraction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#metadata-extraction">Metadata extraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#level-data-extraction">Level data extraction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-merging">Data merging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#metadata-merge">Metadata merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#level-data-merge">Level data merge</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database-considerations">Database considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-omissions">Known omissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nightly-updates-integrity-checking">Nightly updates &amp; integrity checking</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
 <ul>
@@ -101,40 +121,21 @@
 <p class="caption" role="heading"><span class="caption-text">Developer Playbooks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev/adding_query_parameter.html">Adding a query parameter to an API route</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/api_development.html">API Development</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serving_a_new_dataset.html">Serving a new dataset</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Merging Argo Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#upstream-file-selection">Upstream File Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-extraction">Data Extraction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#metadata-extraction">Metadata Extraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#level-data-extraction">Level Data Extraction</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#data-merging">Data Merging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#metadata-merge">Metadata Merge</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#level-data-merge">Level Data Merge</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#database-considerations">Database Considerations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#known-omissions">Known Omissions</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/serving_a_new_dataset.html">Serving a new dataset</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/rebuild_mongo_from_scratch.html">Rebuild Mongo from sctatch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_from_ami.html">Restore Argovis from an AMI on AWS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
@@ -189,13 +190,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Merging Argo Data</li>
+      <li>Managing Argo Data</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/data_management/argo_merge.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/database/argo.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -208,11 +209,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="merging-argo-data">
-<span id="argo-merge"></span><h1>Merging Argo Data<a class="headerlink" href="#merging-argo-data" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="managing-argo-data">
+<span id="argo-merge"></span><h1>Managing Argo Data<a class="headerlink" href="#managing-argo-data" title="Permalink to this headline">¶</a></h1>
+<p>Other than the <code class="docutils literal notranslate"><span class="pre">argo</span></code> collection, all other collections in Argovis are essentially <em>static</em>: the expectation is that they will be updated infrequently and ad-hoc, and the scripts linked above that translate from upstream formats to MongoDB documents are largely simple and unopinonated, mapping keys to keys.</p>
+<p>Argo data, on the other hand, is actively managed in two ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Argovis constructs a <em>simplified, opinionated profile</em> for each profile object, that imposes some expertise in interpreting Argo data correctly. This is intended to help downstream consumers who are not experts in Argo’s data collection patterns interpret data correctly, while removing as few useful options for them as possible.</p></li>
+<li><p>The Argo collections in MongoDB are automatically updated nightly, and actively monitored for corruption.</p></li>
+</ul>
+</div></blockquote>
+<p>Considerations around both these points are enumerated below.</p>
+<div class="section" id="opinionated-profiles">
+<h2>Opinionated profiles<a class="headerlink" href="#opinionated-profiles" title="Permalink to this headline">¶</a></h2>
 <p>A given Argo profile may contain two separate data objects: a core profile measuring pressure, temperature, and salinity; and a BGC profile measuring one or several of many biogeochemical properties. Furthermore, this data may be presented in one of several different modes reflecting the level of cleanup the data has undergone. Argovis seeks to create a single unified JSON document for each profile that merges the core and BGC information and makes good and consistent choices on what mode of data to present, simplifying the consumption of Argo data for users while still accommodating the majority of use cases. This document describes how we take upstream data, and compose it into a JSON document; it effectively describes the algorithm implemented in <a class="reference external" href="https://github.com/argovis/ifremer-sync">https://github.com/argovis/ifremer-sync</a>.</p>
 <div class="section" id="upstream-file-selection">
-<h2>Upstream File Selection<a class="headerlink" href="#upstream-file-selection" title="Permalink to this headline">¶</a></h2>
+<h3>Upstream file selection<a class="headerlink" href="#upstream-file-selection" title="Permalink to this headline">¶</a></h3>
 <p>For a given profile, first we choose which upstream netcdf files to consider. There are six possibilities: core, BGC, and synthetic files, each reflecting either realtime or delayed data. We choose at most two of these:</p>
 <blockquote>
 <div><ul class="simple">
@@ -223,10 +235,10 @@
 <p>Under no circumstances are standalone BGC files considered at this time.</p>
 </div>
 <div class="section" id="data-extraction">
-<h2>Data Extraction<a class="headerlink" href="#data-extraction" title="Permalink to this headline">¶</a></h2>
+<h3>Data extraction<a class="headerlink" href="#data-extraction" title="Permalink to this headline">¶</a></h3>
 <p>Once at most one core and at most one synthetic file are identified for a profile, we extract data from each separately as follows.</p>
 <div class="section" id="metadata-extraction">
-<h3>Metadata Extraction<a class="headerlink" href="#metadata-extraction" title="Permalink to this headline">¶</a></h3>
+<h4>Metadata extraction<a class="headerlink" href="#metadata-extraction" title="Permalink to this headline">¶</a></h4>
 <p>Some metadata variables undergo cleaning decisions at this step, as enumerated here:</p>
 <ul class="simple">
 <li><p><strong>Latitude and longitude</strong> are read from the Argo file’s LATITUDE and LONGITUDE variables. If either value is NaN or a fill value, they are set to longitude = 0, latitude = -90 and a <code class="docutils literal notranslate"><span class="pre">missing_location</span></code> warning is logged in the <code class="docutils literal notranslate"><span class="pre">data_warnings</span></code> record. If longitude is reported on [0,360], it is normalized to [-180,180].</p></li>
@@ -237,7 +249,7 @@
 <p>All other metadata variables are read directly from the corresponding netcdf variables, with minimal typecasting and cleanup.</p>
 </div>
 <div class="section" id="level-data-extraction">
-<h3>Level Data Extraction<a class="headerlink" href="#level-data-extraction" title="Permalink to this headline">¶</a></h3>
+<h4>Level data extraction<a class="headerlink" href="#level-data-extraction" title="Permalink to this headline">¶</a></h4>
 <p>Per-level data is extracted slightly differently for core versus BGC variables.</p>
 <ul class="simple">
 <li><p><strong>Core variables</strong> are read with the following considerations:</p>
@@ -261,10 +273,10 @@
 </div>
 </div>
 <div class="section" id="data-merging">
-<h2>Data Merging<a class="headerlink" href="#data-merging" title="Permalink to this headline">¶</a></h2>
+<h3>Data merging<a class="headerlink" href="#data-merging" title="Permalink to this headline">¶</a></h3>
 <p>At this stage, there may be as many as two metadata objects, and the same number of data objects for the profile in question. These are merged to a single record per the following.</p>
 <div class="section" id="metadata-merge">
-<h3>Metadata Merge<a class="headerlink" href="#metadata-merge" title="Permalink to this headline">¶</a></h3>
+<h4>Metadata merge<a class="headerlink" href="#metadata-merge" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>For mandatory keys that should be the same in both metadata objects (like <code class="docutils literal notranslate"><span class="pre">_id</span></code> and <code class="docutils literal notranslate"><span class="pre">geolocation</span></code>), the value from the first metadata record is accepted.</p></li>
 <li><p>For optional keys that should be the same in both metadata objects, the value from the first metadata object that reports that key is accepted.</p></li>
@@ -272,7 +284,7 @@
 </ul>
 </div>
 <div class="section" id="level-data-merge">
-<h3>Level Data Merge<a class="headerlink" href="#level-data-merge" title="Permalink to this headline">¶</a></h3>
+<h4>Level data merge<a class="headerlink" href="#level-data-merge" title="Permalink to this headline">¶</a></h4>
 <p>Per-level data is merged along a one-dimensional pressure axis with the following considerations:</p>
 <ul class="simple">
 <li><p>If an individual file’s data object carries a <code class="docutils literal notranslate"><span class="pre">degenerate_levels</span></code> warning, the per level data from that file is discarded.</p></li>
@@ -289,21 +301,35 @@
 </div>
 </div>
 <div class="section" id="database-considerations">
-<h2>Database Considerations<a class="headerlink" href="#database-considerations" title="Permalink to this headline">¶</a></h2>
+<h3>Database considerations<a class="headerlink" href="#database-considerations" title="Permalink to this headline">¶</a></h3>
 <p>At the end of the process described above, we have a single JSON document describing the profile of interest, to be written to MongoDB. Write considerations are as follows:</p>
 <ul class="simple">
 <li><p>MongoDB’s internal time bson type does not capture sub-millisecond precision; therefore, all times will be rounded off to the ms on write.</p></li>
 </ul>
 </div>
 <div class="section" id="known-omissions">
-<h2>Known Omissions<a class="headerlink" href="#known-omissions" title="Permalink to this headline">¶</a></h2>
+<h3>Known omissions<a class="headerlink" href="#known-omissions" title="Permalink to this headline">¶</a></h3>
 <p>Some pathologies in the original data files can cause a profile to fail to write to MongoDB. Observed such conditions are listed here:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Missing <code class="docutils literal notranslate"><span class="pre">PARAMETER_DATA_MODE</span></code>: Argovis has a firm expectation that all variables in a BGC file are reported as exactly one of real-time, adjusted or delayed; if a fill value is detected for any variable in a profile, the profile is omitted.</p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 22-10-05</em></p>
+</div>
+</div>
+<div class="section" id="nightly-updates-integrity-checking">
+<h2>Nightly updates &amp; integrity checking<a class="headerlink" href="#nightly-updates-integrity-checking" title="Permalink to this headline">¶</a></h2>
+<p>See our <a class="reference external" href="https://github.com/argovis/ifremer-sync/blob/main/ifremer-cron.yaml">Kubernetes cron job specification</a> for the orchestration and logic that govern nightly Argo collection updates. At high level:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rsync</span></code> downloads anything new since last time to Argovis’ local IFREMER mirror.</p></li>
+<li><p>A script parses the <code class="docutils literal notranslate"><span class="pre">rsync</span></code> logs and decides on CRUD operations to perform on the database.</p></li>
+<li><p>A python script performs the enumerated CRUD ops.</p></li>
+<li><p>A log is preserved for auditing purposes</p></li>
+</ul>
+</div></blockquote>
+<p>Integrity checking is described in detail in <a class="reference external" href="https://github.com/argovis/ifremer-sync#integrity-checking">these docs</a> and related scripts. It’s best practice for Argovis operators to review the logs of this auditing script periodically to ensure nothing unexpected is happening in the nightly updates.</p>
+<p><em>Last reviewed 23-03-06</em></p>
 </div>
 </div>
 
@@ -313,8 +339,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../dev_tools/fast_development_builds.html" class="btn btn-neutral float-right" title="Fast Angular Builds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="serving_a_new_dataset.html" class="btn btn-neutral float-left" title="Serving a new dataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ops/deployment.html" class="btn btn-neutral float-right" title="Argovis Kubernetes Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="db_ops.html" class="btn btn-neutral float-left" title="Database Resourcing &amp; Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

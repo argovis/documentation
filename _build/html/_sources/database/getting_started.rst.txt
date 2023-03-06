@@ -1,0 +1,38 @@
+.. _db_getting_started:
+
+Getting started with Argovis' data
+==================================
+
+Argovis represents and indexes numerous oceanographic datasets in a way that is meant to enhance their interoperability through a standardized schema. In this chapter, we'll present the rules and logic of this schema, as well as operational playbooks for how our database is set up, populated, and maintained.
+
+Basics
+------
+
+Argovis uses MongoDB as its database backend, currently operated as several stand-alone Mongo deployments, each with a single database, ``argo``. Each data product has its own collections in this database: one for its data, and one for its metadata. The generic structure of data and metadata collections is explained in the :ref:`schema`, and the specifics for each data product are linked below. Databases also include a ``summary`` collection, shared between all collections on the instance for pre-computed documents, and a ``user`` collection, containing API keys for users.
+
+List of datasets
+----------------
+
+Argovis serves the following datasets. See the **Schema** column for the schema validation rules for that dataset, and the **Population** column for code and instructions on how to rebuild that dataset's collection from scratch. The **Deployment** column indicates which instance of Argovis the collection lives in.
+
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| Dataset                                | Schema                                                                                                                                            | Population                                                                                                  | Deployment |
++========================================+===================================================================================================================================================+=============================================================================================================+============+
+| Argo                                   | `Argo <https://github.com/argovis/db-schema/blob/main/argo.py>`_                                                                                  | `ifremer-sync <https://github.com/argovis/ifremer-sync>`_                                                   | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| Argo trajectories                      | `Trajectories schema <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_                                                           | `trajectories <https://github.com/argovis/argo_trajectories>`_                                              | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| ARGONE float forecasts                 | `ARGONE schema <https://github.com/argovis/db-schema/blob/main/argone.py>`_                                                                       | `ARGONE <https://github.com/argovis/ARGONE>`_                                                               | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| CCHDO ship-based profiles              | `CCHDO <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_                                                                                | `argovis_convert_netcdf_to_json <https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2023Q1>`_ | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| Global drifter program                 | `Drifters <https://github.com/argovis/db-schema/blob/main/drifters.py>`_                                                                          | `drifter-sync <https://github.com/argovis/drifter-sync>`_                                                   | Drifters   |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| Kuusela-Giglio ocean heat content grid | `grids <https://github.com/argovis/db-schema/blob/main/grids.py>`_, `metadata <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_    | `grid-sync (kg) <https://github.com/argovis/grid-sync/blob/main/translate-ohc-grid.py>`_                    | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| Roemmich-Gilson Argo grids             | `grids <https://github.com/argovis/db-schema/blob/main/grids.py>`_, `metadata <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_    | `grid-sync (rg) <https://github.com/argovis/grid-sync/blob/main/translate-rg-grid.py>`_                     | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+| Tropical cyclones                      | `Cyclones <https://github.com/argovis/db-schema/blob/main/tc.py>`_                                                                                | `tc-sync <https://github.com/argovis/tc-sync>`_                                                             | Core       |
++----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+------------+
+
+*Last reviewed 2023-03-06*

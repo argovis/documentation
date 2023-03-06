@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Setting Up Argovis" href="getting_started/set_up_dev_environment.html" /> 
+    <link rel="next" title="Getting started with Argovis’ data" href="database/getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,11 +86,12 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/api_development.html">API Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/argo.html">Managing Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
 <ul>
@@ -100,25 +101,21 @@
 <p class="caption" role="heading"><span class="caption-text">Developer Playbooks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dev/adding_query_parameter.html">Adding a query parameter to an API route</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/api_development.html">API Development</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="data_management/api_usage.html">Argovis API Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/schema.html">Argovis data schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/serving_a_new_dataset.html">Serving a new dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/argo_merge.html">Merging Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/using_branches.html">Using Branches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="disaster_recovery/rebuild_mongo_from_scratch.html">Rebuild Mongo from sctatch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_from_ami.html">Restore Argovis from an AMI on AWS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
@@ -194,9 +191,24 @@
             
   <div class="section" id="argovis-documentation">
 <h1>Argovis Documentation<a class="headerlink" href="#argovis-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the documentation for the Argovis project!</p>
-<div class="section" id="conventions">
-<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<p>Welcome to the documentation for the Argovis project! These docs are meant to provide details and context for devops engineers maintaining and expanding Argovis. If you’re an enduser of Argovis, you will probably get more use out of our example notebooks at <a class="reference external" href="https://github.com/argovis/demo_notebooks">https://github.com/argovis/demo_notebooks</a>.</p>
+<p>Like Argovis, these docs contain three main sections, describing devops and disaster recovery for our database, API, and frontend respectively. Ops guidance is provided in the operations playbooks section, and in the appendix you’ll find some notes and Q&amp;A that we collected over time. <strong>A new Argovis engineer should read the numbered sections thoroughly.</strong> They are intended as a guide to convey the complete mental model of how the application is architected and how it is maintained.</p>
+<div class="section" id="argovis-engineering-at-a-glance">
+<h2>Argovis engineering at a glance<a class="headerlink" href="#argovis-engineering-at-a-glance" title="Permalink to this headline">¶</a></h2>
+<p>Argovis is architected as a three-tier web app:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>MongoDB</strong> serves our database.</p></li>
+<li><p>An <strong>OpenAPI</strong>-compliant description of <a class="reference external" href="https://github.com/argovis/argovis_api">our API</a> is used to generate and structure a <strong>NodeJS</strong>-based public API.</p></li>
+<li><p>A <a class="reference external" href="https://github.com/argovis/react">React app</a> consumes our public API to provide an <a class="reference external" href="https://argovis.colorado.edu/">interactive frontend</a>.</p></li>
+</ul>
+</div></blockquote>
+<p>Numerous other supporting components exist, but these three form the bulk of the business logic.</p>
+<p>All Argovis software is containerized, and orchestrated preferably on Kubernetes, or on Docker Swarm as a fallback. <a class="reference external" href="https://github.com/argovis/argovis_deployment">Deployment manifests</a> are avilable for both and will be discussed in detail in the relevant sections below.</p>
+<p>In addition to this software stack, Argovis also develops and maintains a generic schema for oceanographic data, described in the <a class="reference internal" href="database/schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>. This JSON representation is meant to provide a data format that can provide enough flexibility to represent a wide variety of oceanographic data while imposing as much standardization as makes sense, as well as to provide a data format that balances ease of use with efficiency of communication.</p>
+</div>
+<div class="section" id="documentation-conventions">
+<h2>Documentation conventions<a class="headerlink" href="#documentation-conventions" title="Permalink to this headline">¶</a></h2>
 <p>We follow the following conventions in these docs:</p>
 <div class="section" id="code-prompts">
 <h3>Code prompts<a class="headerlink" href="#code-prompts" title="Permalink to this headline">¶</a></h3>
@@ -253,22 +265,36 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li><p>From here, you’re set up and ready to start creating your documentation. When you’re done, commit your code, push it back to your fork on GitHub, and open a pull request.</p></li>
 </ol>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#quickstart-setup">Quickstart Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#loading-data">Loading Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#building-dev-versions">Building Dev Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/getting_started.html">Getting started with Argovis’ data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database/getting_started.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/getting_started.html#list-of-datasets">List of datasets</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/api_development.html">API Development</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#architecture">Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#setting-up-a-working-dev-environment">Setting Up a Working Dev Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#code-repository-structure-development-workflow">Code Repository Structure &amp; Development Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#loading-test-data">Loading Test Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/schema.html">Argovis data schema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#a-heritable-generic-schema">A heritable generic schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#generic-schema">Generic Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argo-schema-extension">Argo Schema Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#cchdo-schema-extension">CCHDO Schema Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#drifter-schema-extension">Drifter Schema Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argo-trajectory-data">Argo trajectory data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database/db_ops.html">Database Resourcing &amp; Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database/db_ops.html#deployment-topology">Deployment topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/db_ops.html#resourcing">Resourcing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/db_ops.html#disaster-recovery">Disaster Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database/argo.html">Managing Argo Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database/argo.html#opinionated-profiles">Opinionated profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/argo.html#nightly-updates-integrity-checking">Nightly updates &amp; integrity checking</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -296,6 +322,13 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li class="toctree-l2"><a class="reference internal" href="dev/adding_query_parameter.html#launch">Launch</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="dev/api_development.html">API Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/api_development.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/api_development.html#setting-up-a-working-dev-environment">Setting Up a Working Dev Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/api_development.html#code-repository-structure-development-workflow">Code Repository Structure &amp; Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/api_development.html#loading-test-data">Loading Test Data</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -306,18 +339,6 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li class="toctree-l2"><a class="reference internal" href="data_management/api_usage.html#constructing-queries">Constructing queries</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/schema.html">Argovis data schema</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#a-heritable-generic-schema">A heritable generic schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#generic-schema">Generic Schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#argo-schema-extension">Argo Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#cchdo-schema-extension">CCHDO Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#drifter-schema-extension">Drifter Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/schema.html#argo-trajectory-data">Argo trajectory data</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/serving_a_new_dataset.html">Serving a new dataset</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#define-the-data-and-metadata-schema">1. Define the data and metadata schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#populate-your-collections">2. Populate your collections</a></li>
@@ -325,20 +346,11 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li class="toctree-l2"><a class="reference internal" href="data_management/serving_a_new_dataset.html#documentation">4. Documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_management/argo_merge.html">Merging Argo Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management/argo_merge.html#upstream-file-selection">Upstream File Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/argo_merge.html#data-extraction">Data Extraction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/argo_merge.html#data-merging">Data Merging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/argo_merge.html#database-considerations">Database Considerations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/argo_merge.html#known-omissions">Known Omissions</a></li>
-</ul>
-</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev_tools/pull_requests_and_github.html#setting-up-for-the-first-time">Setting Up For The First Time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev_tools/pull_requests_and_github.html#daily-workflow">Daily Workflow</a></li>
@@ -359,18 +371,6 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="disaster_recovery/rebuild_mongo_from_scratch.html">Rebuild Mongo from sctatch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/rebuild_mongo_from_scratch.html#recreate-mongodb-container">Recreate MongoDB container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/rebuild_mongo_from_scratch.html#recreate-collections">Recreate collections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/rebuild_mongo_from_scratch.html#repopulate-collections">Repopulate collections</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html#local-database-restoration">Local Database Restoration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html#production-database-backup-restore-strategy-document-based">Production Database Backup &amp; Restore Strategy - document-based</a></li>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html#production-database-backup-resore-strategey-db-image">Production Database Backup &amp; Resore Strategey - DB image</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_from_ami.html">Restore Argovis from an AMI on AWS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_from_ami.html#launch-ec2-instance">Launch EC2 Instance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_from_ami.html#recreate-argovis">Recreate Argovis</a></li>
@@ -403,7 +403,7 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="getting_started/set_up_dev_environment.html" class="btn btn-neutral float-right" title="Setting Up Argovis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="database/getting_started.html" class="btn btn-neutral float-right" title="Getting started with Argovis’ data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

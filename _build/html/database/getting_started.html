@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Getting started with Argovis’ data &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Argovis data schema" href="schema.html" />
+    <link rel="prev" title="Argovis Documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with Argovis’ data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-datasets">List of datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argo.html">Managing Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/adding_query_parameter.html">Adding a query parameter to an API route</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/api_development.html">API Development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/serving_a_new_dataset.html">Serving a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_from_ami.html">Restore Argovis from an AMI on AWS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Getting started with Argovis’ data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/database/getting_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-argovis-data">
+<span id="db-getting-started"></span><h1>Getting started with Argovis’ data<a class="headerlink" href="#getting-started-with-argovis-data" title="Permalink to this headline">¶</a></h1>
+<p>Argovis represents and indexes numerous oceanographic datasets in a way that is meant to enhance their interoperability through a standardized schema. In this chapter, we’ll present the rules and logic of this schema, as well as operational playbooks for how our database is set up, populated, and maintained.</p>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p>Argovis uses MongoDB as its database backend, currently operated as several stand-alone Mongo deployments, each with a single database, <code class="docutils literal notranslate"><span class="pre">argo</span></code>. Each data product has its own collections in this database: one for its data, and one for its metadata. The generic structure of data and metadata collections is explained in the <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>, and the specifics for each data product are linked below. Databases also include a <code class="docutils literal notranslate"><span class="pre">summary</span></code> collection, shared between all collections on the instance for pre-computed documents, and a <code class="docutils literal notranslate"><span class="pre">user</span></code> collection, containing API keys for users.</p>
+</div>
+<div class="section" id="list-of-datasets">
+<h2>List of datasets<a class="headerlink" href="#list-of-datasets" title="Permalink to this headline">¶</a></h2>
+<p>Argovis serves the following datasets. See the <strong>Schema</strong> column for the schema validation rules for that dataset, and the <strong>Population</strong> column for code and instructions on how to rebuild that dataset’s collection from scratch. The <strong>Deployment</strong> column indicates which instance of Argovis the collection lives in.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 48%" />
+<col style="width: 35%" />
+<col style="width: 4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Schema</p></th>
+<th class="head"><p>Population</p></th>
+<th class="head"><p>Deployment</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Argo</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argo.py">Argo</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/ifremer-sync">ifremer-sync</a></p></td>
+<td><p>Core</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argo trajectories</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/trajectories.py">Trajectories schema</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/argo_trajectories">trajectories</a></p></td>
+<td><p>Core</p></td>
+</tr>
+<tr class="row-even"><td><p>ARGONE float forecasts</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">ARGONE schema</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/ARGONE">ARGONE</a></p></td>
+<td><p>Core</p></td>
+</tr>
+<tr class="row-odd"><td><p>CCHDO ship-based profiles</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/cchdo.py">CCHDO</a></p></td>
+<td><p><a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2023Q1">argovis_convert_netcdf_to_json</a></p></td>
+<td><p>Core</p></td>
+</tr>
+<tr class="row-even"><td><p>Global drifter program</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/drifters.py">Drifters</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/drifter-sync">drifter-sync</a></p></td>
+<td><p>Drifters</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kuusela-Giglio ocean heat content grid</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">grids</a>, <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">metadata</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/grid-sync/blob/main/translate-ohc-grid.py">grid-sync (kg)</a></p></td>
+<td><p>Core</p></td>
+</tr>
+<tr class="row-even"><td><p>Roemmich-Gilson Argo grids</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">grids</a>, <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">metadata</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/grid-sync/blob/main/translate-rg-grid.py">grid-sync (rg)</a></p></td>
+<td><p>Core</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tropical cyclones</p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">Cyclones</a></p></td>
+<td><p><a class="reference external" href="https://github.com/argovis/tc-sync">tc-sync</a></p></td>
+<td><p>Core</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Last reviewed 2023-03-06</em></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="schema.html" class="btn btn-neutral float-right" title="Argovis data schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Argovis Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

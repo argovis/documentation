@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Restore Argovis from an AMI on AWS &mdash; argovis  documentation</title>
+  <title>Database Resourcing &amp; Deployment &mdash; argovis  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Connecting to the Container Network" href="../special_topics/connecting_to_the_container_network.html" />
-    <link rel="prev" title="Using Branches" href="../dev_tools/using_branches.html" /> 
+    <link rel="next" title="Managing Argo Data" href="argo.html" />
+    <link rel="prev" title="Argovis data schema" href="schema.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,11 +88,16 @@
             
             
               <p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Database Resourcing &amp; Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-topology">Deployment topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resourcing">Resourcing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disaster-recovery">Disaster Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="argo.html">Managing Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
 <ul>
@@ -116,14 +121,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Restore Argovis from an AMI on AWS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#launch-ec2-instance">Launch EC2 Instance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#recreate-argovis">Recreate Argovis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#proxy-config">Proxy Config</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#acceptance-testing">Acceptance Testing</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_from_ami.html">Restore Argovis from an AMI on AWS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
 <ul>
@@ -177,13 +176,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Restore Argovis from an AMI on AWS</li>
+      <li>Database Resourcing &amp; Deployment</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/disaster_recovery/restore_from_ami.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/database/db_ops.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -196,48 +195,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="restore-argovis-from-an-ami-on-aws">
-<span id="from-ami"></span><h1>Restore Argovis from an AMI on AWS<a class="headerlink" href="#restore-argovis-from-an-ami-on-aws" title="Permalink to this headline">¶</a></h1>
-<p>In the event of an EC2 instance failure or migration, Argovis can be restored from a backup AMI by the following procedure.</p>
-<div class="section" id="launch-ec2-instance">
-<h2>Launch EC2 Instance<a class="headerlink" href="#launch-ec2-instance" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="database-resourcing-deployment">
+<span id="db-ops"></span><h1>Database Resourcing &amp; Deployment<a class="headerlink" href="#database-resourcing-deployment" title="Permalink to this headline">¶</a></h1>
+<p>Enumerated below are some basic considerations for deploying and operating MongoDB for Argovis.</p>
+<div class="section" id="deployment-topology">
+<h2>Deployment topology<a class="headerlink" href="#deployment-topology" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li><p>From the AWS console, navigate to EC2 -&gt; AMIs, find the AMI you want to base your deployment on (backup AMI or a recent vanilla Ubuntu LTS AMI), and launch.</p></li>
-<li><p>Fill out the config form for the instance. Some key points:</p>
-<ul>
-<li><p>Make sure to choose an appropriate instance type; at time of writing, an i3en.xlarge is suitable.</p></li>
-<li><p>In the networking section, make sure to choose a VPC and subnet in an availabiity zone that supports the instance type you chose above. Also, make sure automatic assignment of public IPV4 is enabled.</p></li>
-<li><p>If launching from a backup AMI, keep the default disk size, or bigger; if launching from an off-the-shelf Ubuntu AMI, make sure to provision enough disk (at least 2 TB SSD).</p></li>
-</ul>
-</li>
-<li><p>Launch and wait for the instance to start up.</p></li>
-<li><p>If launching from a generic AMI, copy over disk backups from S3.</p></li>
-<li><p>Open instance’s security group to all traffic from the IP of your proxy host (atoc02 at time of writing).</p></li>
+<li><p>As noted above, each instance of Argovis (Core and all satellite deployments) each run their own instance of stand-alone MongoDB, currently 5.09.</p></li>
+<li><p>As all Argovis software is always containerized, ensure appropriate networking tools are in place when deploying MongoDB so that other containers can reach it; this means an attachable overlay network in Swarm, or an appropriate clusterIP object in Kubernetes. Other components will attempt to resolve MongoDB at the in-cluster DNS name <code class="docutils literal notranslate"><span class="pre">database</span></code>.</p></li>
+<li><p>MongoDB by default writes all data to <code class="docutils literal notranslate"><span class="pre">/data/db</span></code> inside its container. Make sure sufficient storage is mounted there, and that it is backed up regularly.</p></li>
+<li><p>In Kubernetes, impose a memory and cpu request if quota is available, to discourage rescheduling of MongoDB.</p></li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="recreate-argovis">
-<h2>Recreate Argovis<a class="headerlink" href="#recreate-argovis" title="Permalink to this headline">¶</a></h2>
-<p>Once the server is up and its filesystem is in place, it’s time to re-stand-up Argovis:</p>
+<div class="section" id="resourcing">
+<h2>Resourcing<a class="headerlink" href="#resourcing" title="Permalink to this headline">¶</a></h2>
+<p>Ideally, MongoDB should be provisioned with enough RAM to hold the entire working set and all indexes for all collections in memory. Since as with most scientific datasets there is no way to define a subset of general interest or priority, this means enough RAM to hold <em>everything</em>, indexes as well as complete collections. Since this is often unrealistic, an adequate compromise is to provision enough RAM for your indexes, and enough fast disk for everything else; these disks <em>must</em> be SSD and <em>must</em> be either physically mounted in the same server as the container host or connected to it by very fast intra-datacenter networking. HDDs over NFS will not be adequate.</p>
+<p>One dedicated current-gen CPU per MongoDB instance should be plenty.</p>
+</div>
+<div class="section" id="disaster-recovery">
+<h2>Disaster Recovery<a class="headerlink" href="#disaster-recovery" title="Permalink to this headline">¶</a></h2>
+<p>In the event of a catastrophic failure of MongoDB, you may need to restore from an image of the storage mounted to <code class="docutils literal notranslate"><span class="pre">/data/db</span></code> inside your MongoDB container. Note that this is the only place Argovis persists critical information on disk; all other components are stateless and can be safely destroyed and recreated as needed. Ideally, MongoDB should be cleanly stopped before creating this backup, but this is in practice difficult to coordinate with storage teams. In the event that the database must be restored from a hot storage backup, consider a couple of increasingly dire mitigations:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Have a look at <a class="reference external" href="https://github.com/argovis/argovis_deployment/blob/main/swarm-deploy.sh">https://github.com/argovis/argovis_deployment/blob/main/swarm-deploy.sh</a>. This scrips stands up the correct Docker Swarm assets for an Argovis deployment.</p></li>
-<li><p>SSH to your EC2 instance, copy over that script, and make any config adjustments needed (mounts, image tags, environment variables).</p></li>
-<li><p>Run the script to launch all assets.</p></li>
-<li><p>Make sure the crontab has an entry like <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">7</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">bash</span> <span class="pre">/home/ubuntu/src/ifremer-sync/ifremer-cron.sh</span></code> (path might be different, wherever the nightly IFREMER sync script lives)</p></li>
-<li><p>Kick off an immediate resync with the same script mentioned in the crontab.</p></li>
+<li><p>If we’re lucky, simply copying or re-mounting the complete set of database image files from the backup location to <code class="docutils literal notranslate"><span class="pre">/data/db</span></code> might work.</p></li>
+<li><p>If mongo continues to refuse to start, try starting it with the <code class="docutils literal notranslate"><span class="pre">--repair</span></code> flag, as presented <a class="reference external" href="https://www.mongodb.com/docs/manual/tutorial/recover-data-following-unexpected-shutdown/">here</a>.</p></li>
+<li><p>If mongo repair fails, try removing the journal and <code class="docutils literal notranslate"><span class="pre">mongo.lock</span></code> files from <code class="docutils literal notranslate"><span class="pre">/data/db</span></code> (while of course being careful to keep a backup of them), and starting with <code class="docutils literal notranslate"><span class="pre">--repair</span></code> again; this is an extreme measure that should be avoided, but has saved our database in the past.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="proxy-config">
-<h2>Proxy Config<a class="headerlink" href="#proxy-config" title="Permalink to this headline">¶</a></h2>
-<p>Remember to reconfigure any proxies or load balancers to your new deployment. For CU’s deployment, see <a class="reference external" href="https://github.com/argovis/proxy">https://github.com/argovis/proxy</a>.</p>
-</div>
-<div class="section" id="acceptance-testing">
-<h2>Acceptance Testing<a class="headerlink" href="#acceptance-testing" title="Permalink to this headline">¶</a></h2>
-<p>At this point, everything should be back up; visit the frontend, key generator, API docs and hit an API endpoint directly for a quick sanity check. In principle, once the IFREMER resync completes, all data save any API keys generated since the last user table backup should be recovered.</p>
-<p><em>Last reviewed 22-12-19</em></p>
+<p><em>Last reviewed 2023-03-06</em></p>
 </div>
 </div>
 
@@ -247,8 +234,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../special_topics/connecting_to_the_container_network.html" class="btn btn-neutral float-right" title="Connecting to the Container Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../dev_tools/using_branches.html" class="btn btn-neutral float-left" title="Using Branches" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="argo.html" class="btn btn-neutral float-right" title="Managing Argo Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="schema.html" class="btn btn-neutral float-left" title="Argovis data schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -6,10 +6,27 @@
 Argovis Documentation
 =====================
 
-Welcome to the documentation for the Argovis project!
+Welcome to the documentation for the Argovis project! These docs are meant to provide details and context for devops engineers maintaining and expanding Argovis. If you're an enduser of Argovis, you will probably get more use out of our example notebooks at `https://github.com/argovis/demo_notebooks <https://github.com/argovis/demo_notebooks>`_.
 
-Conventions
------------
+Like Argovis, these docs contain three main sections, describing devops and disaster recovery for our database, API, and frontend respectively. Ops guidance is provided in the operations playbooks section, and in the appendix you'll find some notes and Q&A that we collected over time. **A new Argovis engineer should read the numbered sections thoroughly.** They are intended as a guide to convey the complete mental model of how the application is architected and how it is maintained.
+
+Argovis engineering at a glance
+-------------------------------
+
+Argovis is architected as a three-tier web app:
+
+ - **MongoDB** serves our database.
+ - An **OpenAPI**-compliant description of `our API <https://github.com/argovis/argovis_api>`_ is used to generate and structure a **NodeJS**-based public API.
+ - A `React app <https://github.com/argovis/react>`_ consumes our public API to provide an `interactive frontend <https://argovis.colorado.edu/>`_.
+
+Numerous other supporting components exist, but these three form the bulk of the business logic.
+
+All Argovis software is containerized, and orchestrated preferably on Kubernetes, or on Docker Swarm as a fallback. `Deployment manifests <https://github.com/argovis/argovis_deployment>`_ are avilable for both and will be discussed in detail in the relevant sections below.
+
+In addition to this software stack, Argovis also develops and maintains a generic schema for oceanographic data, described in the :ref:`schema`. This JSON representation is meant to provide a data format that can provide enough flexibility to represent a wide variety of oceanographic data while imposing as much standardization as makes sense, as well as to provide a data format that balances ease of use with efficiency of communication.
+
+Documentation conventions
+-------------------------
 
 We follow the following conventions in these docs:
 
@@ -79,11 +96,12 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started
+   :caption: 1. Data & Database
 
-   getting_started/set_up_dev_environment
-   getting_started/api_development
-   getting_started/custom_angular_components
+   database/getting_started
+   database/schema
+   database/db_ops
+   database/argo
 
 .. toctree::
    :maxdepth: 2
@@ -97,21 +115,19 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :caption: Developer Playbooks
 
    dev/adding_query_parameter
+   dev/api_development
 
 .. toctree::
    :maxdepth: 2
    :caption: Data Management
 
    data_management/api_usage
-   data_management/schema
    data_management/serving_a_new_dataset
-   data_management/argo_merge
 
 .. toctree::
    :maxdepth: 2
    :caption: Developer Tools & Techniques
 
-   dev_tools/fast_development_builds
    dev_tools/pull_requests_and_github
    dev_tools/merge_conflicts
    dev_tools/using_branches
@@ -120,8 +136,6 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :maxdepth: 2
    :caption: Disaster Recovery
 
-   disaster_recovery/rebuild_mongo_from_scratch
-   disaster_recovery/restore_a_mongo_collection
    disaster_recovery/restore_from_ami
 
 .. toctree::

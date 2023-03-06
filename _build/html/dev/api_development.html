@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Creating Custom Angular Components" href="custom_angular_components.html" />
-    <link rel="prev" title="Setting Up Argovis" href="set_up_dev_environment.html" /> 
+    <link rel="next" title="Argovis API Usage" href="../data_management/api_usage.html" />
+    <link rel="prev" title="Adding a query parameter to an API route" href="adding_query_parameter.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,9 +87,21 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Playbooks</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="set_up_dev_environment.html">Setting Up Argovis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding_query_parameter.html">Adding a query parameter to an API route</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-a-working-dev-environment">Setting Up a Working Dev Environment</a><ul>
@@ -109,35 +121,20 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="custom_angular_components.html">Creating Custom Angular Components</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Developer Playbooks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../dev/adding_query_parameter.html">Adding a query parameter to an API route</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../data_management/api_usage.html">Argovis API Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../data_management/schema.html">Argovis data schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_management/serving_a_new_dataset.html">Serving a new dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../data_management/argo_merge.html">Merging Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/rebuild_mongo_from_scratch.html">Rebuild Mongo from sctatch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_from_ami.html">Restore Argovis from an AMI on AWS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
@@ -198,7 +195,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/getting_started/api_development.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/dev/api_development.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -424,7 +421,7 @@ argovis_api $ git merge templates
 <p>In order to get interesting results back from the API in development, you’ll need to load some data into your mongodb instance. Choose the section below that’s most relevant to the section of the API you’re working on.</p>
 <div class="section" id="profile-data">
 <h3>Profile Data<a class="headerlink" href="#profile-data" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference internal" href="set_up_dev_environment.html#startup-load-test-data"><span class="std std-ref">Loading Data</span></a>.</p>
+<p>See <a class="reference internal" href="../getting_started/toy_environment.html#startup-load-test-data"><span class="std std-ref">Loading Data</span></a>.</p>
 </div>
 <div class="section" id="gridded-data">
 <h3>Gridded Data<a class="headerlink" href="#gridded-data" title="Permalink to this headline">¶</a></h3>
@@ -475,8 +472,8 @@ apidev $ docker container run --name loadrg --network apinet -d -v &lt;absolute 
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="custom_angular_components.html" class="btn btn-neutral float-right" title="Creating Custom Angular Components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="set_up_dev_environment.html" class="btn btn-neutral float-left" title="Setting Up Argovis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../data_management/api_usage.html" class="btn btn-neutral float-right" title="Argovis API Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="adding_query_parameter.html" class="btn btn-neutral float-left" title="Adding a query parameter to an API route" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
