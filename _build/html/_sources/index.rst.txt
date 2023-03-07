@@ -101,7 +101,16 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    database/getting_started
    database/schema
    database/db_ops
+   database/adding_new_data
    database/argo
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 2. API
+
+   api/getting_started
+   api/adding_new_endpoints
+   api/rate_limitation
 
 .. toctree::
    :maxdepth: 2
