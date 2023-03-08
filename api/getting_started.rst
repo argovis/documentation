@@ -17,5 +17,8 @@ One of Argovis' core features is its API, designed to support detailed indexing 
 
  - In addition, custom routes may optionally be defined per dataset that offer specialized results for that product, typically pulling summary documents from the ``summaries`` collection, for example ``/argo/bgc``.
  - For datasets that don't naturally fit Argovis' point-and-lattice centric schema standards, more freeform (though still OpenAPI compliant) routes can be defined if marked ``experimental`` in their API spec tags. An example of this is extended objects, like atmospheric rivers.
+ - All user requests to Argovis' API are subject to rate limitation, accomplished by providing an API key in headers which is used to allocate a limited rate of requests per user by a token bucket algorithm.
+
+Further sections in this chapter detail how these components work and how to update them.
 
 *Last reviewed 23-03-07*

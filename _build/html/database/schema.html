@@ -165,6 +165,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">2. API</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/getting_started.html">Getting started with Argovis API development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/adding_new_endpoints.html">Adding new API routes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
@@ -288,7 +289,7 @@
 </div>
 <div class="section" id="schema-enforcement-population">
 <h3>Schema enforcement &amp; population<a class="headerlink" href="#schema-enforcement-population" title="Permalink to this headline">¶</a></h3>
-<p>Argovis uses Mongodb as its backend. All datasets have their data and metadata schema defined in <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a>, which includes enforcement of these schema when uploaded to mongodb; therefore, the schema implementation in that code should be considered the most reliable document of our schema.</p>
+<p>Argovis uses MongoDB as its backend. All datasets have their data and metadata schema defined in <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a>, which includes enforcement of these schema when uploaded to mongodb; therefore, the schema implementation in that code should be considered the most reliable document of our schema.</p>
 </div>
 </div>
 <div class="section" id="generic-schema">
@@ -338,7 +339,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p>
 <ul>
-<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>required:</strong> true in MongoDB; may be filtered out in API.</p></li>
 <li><p><strong>type:</strong> array of arrays of floats, ints, strings and / or nulls</p></li>
 <li><p><strong>description:</strong> a matrix of per-level measurements and flags, where <code class="docutils literal notranslate"><span class="pre">data[i][j]</span></code> represents the ith variable as ordered by <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code>, at the jth depth or pressure level.</p></li>
 </ul>

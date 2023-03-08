@@ -31,7 +31,7 @@ Each entry in the schema fragments below contain a few keys:
 Schema enforcement & population
 +++++++++++++++++++++++++++++++
 
-Argovis uses Mongodb as its backend. All datasets have their data and metadata schema defined in `https://github.com/argovis/db-schema <https://github.com/argovis/db-schema>`_, which includes enforcement of these schema when uploaded to mongodb; therefore, the schema implementation in that code should be considered the most reliable document of our schema.
+Argovis uses MongoDB as its backend. All datasets have their data and metadata schema defined in `https://github.com/argovis/db-schema <https://github.com/argovis/db-schema>`_, which includes enforcement of these schema when uploaded to mongodb; therefore, the schema implementation in that code should be considered the most reliable document of our schema.
 
 Generic Schema
 --------------
@@ -79,7 +79,7 @@ In general, data records are intended to represent data that is unique or freque
 
 - ``data``
 
-  - **required:** false
+  - **required:** true in MongoDB; may be filtered out in API.
   - **type:** array of arrays of floats, ints, strings and / or nulls
   - **description:** a matrix of per-level measurements and flags, where ``data[i][j]`` represents the ith variable as ordered by ``data_info[0]``, at the jth depth or pressure level.
 

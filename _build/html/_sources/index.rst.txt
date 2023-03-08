@@ -111,6 +111,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    api/getting_started
    api/adding_new_endpoints
    api/rate_limitation
+   api/ops_config
 
 .. toctree::
    :maxdepth: 2
