@@ -94,6 +94,15 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
 5. From here, you're set up and ready to start creating your documentation. When you're done, commit your code, push it back to your fork on GitHub, and open a pull request.
 
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 0. Welcome
+
+   index.rst
+
 .. toctree::
    :maxdepth: 2
    :caption: 1. Data & Database
@@ -115,42 +124,24 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
 .. toctree::
    :maxdepth: 2
-   :caption: Operations Playbooks
+   :caption: 3. Frontend
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 4. Deployment & operations
 
    ops/deployment
-   ops/performance_testing
+   ops/drifters-aws
 
 .. toctree::
    :maxdepth: 2
-   :caption: Developer Playbooks
+   :caption: Appendix: Archival Notes
 
-   dev/adding_query_parameter
-   dev/api_development
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Data Management
-
-   data_management/api_usage
-   data_management/serving_a_new_dataset
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Developer Tools & Techniques
-
-   dev_tools/pull_requests_and_github
-   dev_tools/merge_conflicts
-   dev_tools/using_branches
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Disaster Recovery
-
-   disaster_recovery/restore_from_ami
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Special Topics
-
+   special_topics/intro
+   special_topics/pull_requests_and_github
+   special_topics/merge_conflicts
+   special_topics/using_branches
    special_topics/connecting_to_the_container_network
    special_topics/goship-demo
+   special_topics/api_usage
+   special_topics/performance_testing
