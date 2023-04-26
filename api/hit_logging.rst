@@ -28,6 +28,6 @@ The ``metadata`` key in this collection contains the route, while the ``query`` 
 Visualizing API hits
 --------------------
 
-Code to produce an extremely bare bones visualization of this data lives at `<https://github.com/argovis/apihits> https://github.com/argovis/apihits`_.
+Code to produce an extremely bare bones visualization of this data lives at `https://github.com/argovis/apihits <https://github.com/argovis/apihits>`_.
 
 *Last reviewed 23-04-26*
