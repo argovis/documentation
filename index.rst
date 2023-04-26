@@ -121,6 +121,7 @@ Table of contents
    api/adding_new_endpoints
    api/rate_limitation
    api/ops_config
+   api/hit_logging
 
 .. toctree::
    :maxdepth: 2

@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Adding new API routes &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API rate limitation" href="rate_limitation.html" />
+    <link rel="prev" title="Getting started with Argovis API development" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">0. Welcome</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Argovis Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#argovis-engineering-at-a-glance">Argovis engineering at a glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#documentation-conventions">Documentation conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#table-of-contents">Table of contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Adding new API routes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#updating-the-openapi-spec">Updating the OpenAPI spec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-server-logic">Updating server logic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-release">Build &amp; release</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argovis-helpers">Argovis helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">2. API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adding new API routes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#updating-the-openapi-spec">Updating the OpenAPI spec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-server-logic">Updating server logic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controller-logic">Controller logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongoose-model">Mongoose model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#service-logic">Service logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#token-bucket-logic">Token bucket logic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mock-database-update">Mock database update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-cases">Test cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local-testing">Local testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#build-release">Build &amp; release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#argovis-helpers">Argovis helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">4. Deployment &amp; operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Archival Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Adding new API routes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/adding_new_endpoints.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adding-new-api-routes">
+<span id="adding-new-routes"></span><h1>Adding new API routes<a class="headerlink" href="#adding-new-api-routes" title="Permalink to this headline">¶</a></h1>
+<p>Due to the heavy standardization of Argovis’ schema and API endpoints, creating the endpoints for a new dataset is a mostly wrote procedure. This document enumerates the steps to add the standard routes in front of the new data and metadata collections you created by following the procedures outlined in <a class="reference internal" href="../database/adding_new_data.html#adding-new-data"><span class="std std-ref">Adding a new dataset</span></a>.</p>
+<div class="section" id="updating-the-openapi-spec">
+<h2>Updating the OpenAPI spec<a class="headerlink" href="#updating-the-openapi-spec" title="Permalink to this headline">¶</a></h2>
+<p>Argovis API code is maintained in <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a> on two branches:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">templates</span></code>, which contains the OpenAPI specifications in <code class="docutils literal notranslate"><span class="pre">*-spec.json</span></code>, and all the auto-generated boilerplate code for the NodeJS implementation of each route</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server</span></code>, which modifies the autogenerated code with bespoke business logic for Argovis.</p></li>
+</ul>
+</div></blockquote>
+<p>Our first step is to update the appropriate <code class="docutils literal notranslate"><span class="pre">*-spec.json</span></code> on the <code class="docutils literal notranslate"><span class="pre">templates</span></code> branch. <strong>Specification JSONs should only be modified on the templates branch, and only specification JSONs should be modified by hand on the templates branch</strong>. All other files on this branch are auto-generated.</p>
+<p>Look in <code class="docutils literal notranslate"><span class="pre">core-spec.json</span></code> for the three routes <code class="docutils literal notranslate"><span class="pre">/tc</span></code>, <code class="docutils literal notranslate"><span class="pre">/tc/meta</span></code> and <code class="docutils literal notranslate"><span class="pre">/tc/vocabulary</span></code>; these provide good first examples of minimal mandatory routes. The following parameters are mandatory for all data routes: <code class="docutils literal notranslate"><span class="pre">genericID</span></code>, <code class="docutils literal notranslate"><span class="pre">startDate</span></code>, <code class="docutils literal notranslate"><span class="pre">endDate</span></code>, <code class="docutils literal notranslate"><span class="pre">polygon</span></code>, <code class="docutils literal notranslate"><span class="pre">multipolygon</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">radius</span></code>, <code class="docutils literal notranslate"><span class="pre">metadata</span></code>, <code class="docutils literal notranslate"><span class="pre">mostrecent</span></code> and <code class="docutils literal notranslate"><span class="pre">compression</span></code>; these provide generic temporospatial, metadata and representation search and transform options that will be provided by generic helper functions when we get to the business logic in a later step; feel free to add any other query string parameters you want to let users seatch by, that correspond to things you indexed when you defined your collection schema. Similarly, <code class="docutils literal notranslate"><span class="pre">meta</span></code> routes must at a minimum have the <code class="docutils literal notranslate"><span class="pre">genericID</span></code> query string parameter, and <code class="docutils literal notranslate"><span class="pre">vocabulary</span></code> routes must have the <code class="docutils literal notranslate"><span class="pre">parameter</span></code> query string parameter.</p>
+<p>Also see examples of custom routes like <code class="docutils literal notranslate"><span class="pre">/argo/bgc</span></code>, which may optionally be defined in addition to the conventional routes. These are more freeform and case-by-case routes, often used to return documents from the <code class="docutils literal notranslate"><span class="pre">summaries</span></code> collection.</p>
+<p>Note that near the top of this specification, there is a <code class="docutils literal notranslate"><span class="pre">tags</span></code> section. Add a tag here that labels your new dataset, if necessary, and use it to group your API endpoints together; this will affect how they are listed in the auto-generated Swagger documentation. Those tags are where to add the <code class="docutils literal notranslate"><span class="pre">(experimental)</span></code> note if you’re writing API endpoints outside the usual structure of standard Argovis routes.</p>
+<p>Once you’ve written your JSON description of your new routes and return schemas, look in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file in the API repo for build instructions for the <code class="docutils literal notranslate"><span class="pre">templates</span></code> branch. Build the boilerplate with the conventions you find there, make a new templates development branch (perhaps <code class="docutils literal notranslate"><span class="pre">templates-dev</span></code>, or something more specific), and add and commit your new files to this branch.</p>
+</div>
+<div class="section" id="updating-server-logic">
+<h2>Updating server logic<a class="headerlink" href="#updating-server-logic" title="Permalink to this headline">¶</a></h2>
+<p>At this point, you’ve updated the specification for your API manually and boilerplate automatically; now it’s time to write the Argovis-specific logic. This logic lives on the <code class="docutils literal notranslate"><span class="pre">server</span></code> branch. Check this branch out, make a new dev branch (perhaps <code class="docutils literal notranslate"><span class="pre">server-dev</span></code>, or something more specific), and merge in your <code class="docutils literal notranslate"><span class="pre">templates-dev</span></code> to get started.</p>
+<div class="section" id="controller-logic">
+<h3>Controller logic<a class="headerlink" href="#controller-logic" title="Permalink to this headline">¶</a></h3>
+<p>Have a look in <code class="docutils literal notranslate"><span class="pre">nodejs-server/controllers</span></code>. The build process from the templates creates a controller for each tag listed above. Again, look at the tropical cyclone example <code class="docutils literal notranslate"><span class="pre">Tc.js</span></code> for a simple example. The controller logic for data, metadata and vocab routes is very generic and handled by the helper functions you see called there; include the helper script in your new controller and update the boilerplate for these three route controllers in close analogy to the tropical cyclone example.</p>
+</div>
+<div class="section" id="mongoose-model">
+<h3>Mongoose model<a class="headerlink" href="#mongoose-model" title="Permalink to this headline">¶</a></h3>
+<p>Next, we need to define a model for our data that mongoose, our nodeJS MongoDB interface, can parse, for both data and metadata objects, in <code class="docutils literal notranslate"><span class="pre">nodejs-server/models</span></code>. This should be similar to the schema you described when defining your collection, though note the <code class="docutils literal notranslate"><span class="pre">data</span></code> key on data documents is always optional at the API level; Argovis allows returning everything <em>but</em> the data key from a data document for mapping and metadata analysis purposes. Again, the tropical cyclone example provides a good simple example you can modify to meet your needs.</p>
+</div>
+<div class="section" id="service-logic">
+<h3>Service logic<a class="headerlink" href="#service-logic" title="Permalink to this headline">¶</a></h3>
+<p>The most complex API logic lives in the service definitions under <code class="docutils literal notranslate"><span class="pre">nodejs-server/service</span></code>; again, there will be one boilerplate file generated per API tag, and also once again the tropical cyclone service provides a good starting point for the custom logic. Copy the guts of the <code class="docutils literal notranslate"><span class="pre">findTC</span></code> and <code class="docutils literal notranslate"><span class="pre">findTCmeta</span></code> functions into the data and metadata service functions for your new dataset, and look out for the following customizations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>In the ‘local filter’ section, you’ll add keys to filter data docs other than temporospatial ones by. If you added custom query parameters to your data route that filter on data document values, this is where they get consumed and turned into a database search.</p></li>
+<li><p>The ‘metadata table filter’ section similarly facilitates filtering down on parameters found in the metadata documents.</p></li>
+<li><p>Be sure to import the appropriate mongoose model, and search the correct collection, following the cyclone example.</p></li>
+<li><p>You may write a custom <code class="docutils literal notranslate"><span class="pre">stub</span></code> function in the callback to the database query. This should be a function that translates data and metadata document pairs into a <em>very</em> minimal stub, including geolocation, timestamp and ID, and not much else - typically just what is absolutely needed for mapping purposes.</p></li>
+</ul>
+</div></blockquote>
+<p>Metadata and vocabulary service functions are much simpler; respectively, they in most cases do a simple match on an indexed metadata key, or return a single summary document prepared beforehand in the database creation step.</p>
+</div>
+<div class="section" id="token-bucket-logic">
+<h3>Token bucket logic<a class="headerlink" href="#token-bucket-logic" title="Permalink to this headline">¶</a></h3>
+<p>As discussed further in <a class="reference internal" href="rate_limitation.html#api-rate-limit"><span class="std std-ref">API rate limitation</span></a>, user requests to many of Argovis’ API endpoints are capped by a token bucket algorithm. When implementing new routes, consider the potential for large or cumbersome requests: any collection with global coverage and / or long chronological extent, at a minimum, needs to be included in the standard rate limiting logic, which can be done by modifying the <code class="docutils literal notranslate"><span class="pre">cost</span></code> function in <code class="docutils literal notranslate"><span class="pre">nodejs-server/helpers/helpers.js</span></code>. For a new dataset, at least:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">earliest_records</span></code> and <code class="docutils literal notranslate"><span class="pre">final_records</span></code> with the first and last <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> found on documents in your data collection.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">standard_routes</span></code> with the first path component of your new routes.</p></li>
+</ul>
+</div></blockquote>
+<p>Think carefully at this step about the queries you have allowed via your indexes and query string parameters: are there any that could trigger unindexed lookups, or which could return many (&gt; 1000) documents? You may wish to reconsider allowing these at all, but if you must allow them, at least apply a high token cost to the requests so that they can’t be made very rapidly.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Once server API logic is complete, the last code to develop is a suite of unit tests for your new dataset and endpoints. Have a look in <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> for the test procedure, and under <code class="docutils literal notranslate"><span class="pre">tests/tests</span></code> for example test logic.</p>
+<div class="section" id="mock-database-update">
+<h3>Mock database update<a class="headerlink" href="#mock-database-update" title="Permalink to this headline">¶</a></h3>
+<p>API unit tests run against a mock database, which is a MongoDB instance with a few documents from each collection hard-coded into the database container. Have a look at <a class="reference external" href="https://github.com/argovis/testdb">https://github.com/argovis/testdb</a> for the source for the test database; add a few data documents from your new collection along with their corresponding metadata documents, and build and push a container that increments the <code class="docutils literal notranslate"><span class="pre">argovis/testdb</span></code> image tag.</p>
+</div>
+<div class="section" id="test-cases">
+<h3>Test cases<a class="headerlink" href="#test-cases" title="Permalink to this headline">¶</a></h3>
+<p>Create a new file in the appropriate sub-folder of <code class="docutils literal notranslate"><span class="pre">tests/tests</span></code> for your test cases, copying the tropical cyclone example as a starting place. Write tests that cover the following cases:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Make sure all individual query string parameters return what they’re supposed to.</p></li>
+<li><p>Check a few combinations of query string parameters that influence each other - for example, if you use a <code class="docutils literal notranslate"><span class="pre">data</span></code> filter, do the right keys appear in <code class="docutils literal notranslate"><span class="pre">data_info</span></code>? This is especially important if any of your dataset-specific query string parameters have interactions of this nature.</p></li>
+<li><p>Check that returned documents match the schema you specified in your JSON specifications.</p></li>
+</ul>
+</div></blockquote>
+<p>As well, of course, as any other behavior you expect to be complex or generate edge cases. As with any software project, if bugs are identified in future, this test suite should be expanded with unit tests that demonstrate the bug and check for its regression in future.</p>
+</div>
+<div class="section" id="local-testing">
+<h3>Local testing<a class="headerlink" href="#local-testing" title="Permalink to this headline">¶</a></h3>
+<p>The test procedure described in <code class="docutils literal notranslate"><span class="pre">travis.yml</span></code> is simple enough that you can run it locally with Docker installed on your development laptop. Do so now, and ensure tests are passing before pushing your <code class="docutils literal notranslate"><span class="pre">server-dev</span></code> and <code class="docutils literal notranslate"><span class="pre">templates-dev</span></code> branches (or equivalent) to GitHub.</p>
+</div>
+</div>
+<div class="section" id="build-release">
+<h2>Build &amp; release<a class="headerlink" href="#build-release" title="Permalink to this headline">¶</a></h2>
+<p>Once you believe development is complete and tests are passing locally, it’s time to set up pull requests and organize a new release of Argovis’ API.</p>
+<ol class="arabic simple">
+<li><p><strong>Pull requests:</strong> set up PRs from your <code class="docutils literal notranslate"><span class="pre">templates-dev</span></code> branch to <code class="docutils literal notranslate"><span class="pre">templates</span></code>, and from your <code class="docutils literal notranslate"><span class="pre">server-dev</span></code> branch to <code class="docutils literal notranslate"><span class="pre">server</span></code>. Merge only when travis signs off on all tests passing on the server branch.</p></li>
+<li><p><strong>Code release:</strong> create a new release of the API repository from the <code class="docutils literal notranslate"><span class="pre">server</span></code> branch. Tag it with a semantic version number, and include in the release notes a changelog listing the PRs and changes since the previous release.</p></li>
+<li><p><strong>Container release:</strong> build a container from the newly-released <code class="docutils literal notranslate"><span class="pre">server</span></code> branch code, tagged as <code class="docutils literal notranslate"><span class="pre">argovis/api:major.minor.patch</span></code> to match the release tag, and push to Docker Hub.</p></li>
+<li><p><strong>Production release:</strong> update production deployments to use the latest API image. See <a class="reference external" href="https://github.com/argovis/argovis_deployment">https://github.com/argovis/argovis_deployment</a> for Helm chart and Docker Swarm deployment manifests to update and run.</p></li>
+<li><p><strong>Acknowledgements:</strong> once your new dataset and API are live in production, make sure to add an acknowledgement to <a class="reference external" href="https://github.com/argovis/react/blob/main/argovis/src/pages/about.jsx">https://github.com/argovis/react/blob/main/argovis/src/pages/about.jsx</a>, including DOIs and citations as appropriate.</p></li>
+</ol>
+</div>
+<div class="section" id="argovis-helpers">
+<h2>Argovis helpers<a class="headerlink" href="#argovis-helpers" title="Permalink to this headline">¶</a></h2>
+<p>Once API launch is complete, consider the necessity to update <a class="reference external" href="https://github.com/argovis/argovis_helpers">https://github.com/argovis/argovis_helpers</a>, the pythonic helper package for Argovis. At a minimum, you’ll want to tell that package to slice up temporospatially large requests for your new collection in its <code class="docutils literal notranslate"><span class="pre">query</span></code> function; consider possible advantages of adding or updating other helpers simultaneously.</p>
+<p><em>Last reviewed 23-03-07</em></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rate_limitation.html" class="btn btn-neutral float-right" title="API rate limitation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting started with Argovis API development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

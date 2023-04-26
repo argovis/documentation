@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Getting started with Argovis’ data &mdash; argovis  documentation</title>
+  <title>Adding a new dataset &mdash; argovis  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Argovis data schema" href="schema.html" />
-    <link rel="prev" title="Argovis Documentation" href="../index.html" /> 
+    <link rel="next" title="Managing Argo Data" href="argo.html" />
+    <link rel="prev" title="Database Resourcing &amp; Deployment" href="db_ops.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,14 +94,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#documentation-conventions">Documentation conventions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#table-of-contents">Table of contents</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting started with Argovis’ data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#basics">Basics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#list-of-datasets">List of datasets</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting started with Argovis’ data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
 <li class="toctree-l3"><a class="reference internal" href="db_ops.html">Database Resourcing &amp; Deployment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Adding a new dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#schema-development">Schema development</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database-population">Database population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="argo.html">Managing Argo Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/getting_started.html">Getting started with Argovis API development</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/adding_new_endpoints.html">Adding new API routes</a></li>
@@ -125,14 +126,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with Argovis’ data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#list-of-datasets">List of datasets</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started with Argovis’ data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="schema.html">Argovis data schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="db_ops.html">Database Resourcing &amp; Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adding a new dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#schema-development">Schema development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#database-population">Database population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="argo.html">Managing Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">2. API</span></p>
@@ -206,13 +208,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Getting started with Argovis’ data</li>
+      <li>Adding a new dataset</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/database/getting_started.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/database/adding_new_data.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -225,74 +227,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started-with-argovis-data">
-<span id="db-getting-started"></span><h1>Getting started with Argovis’ data<a class="headerlink" href="#getting-started-with-argovis-data" title="Permalink to this headline">¶</a></h1>
-<p>Argovis represents and indexes numerous oceanographic datasets in a way that is meant to enhance their interoperability through a standardized schema. In this chapter, we’ll present the rules and logic of this schema, as well as operational playbooks for how our database is set up, populated, and maintained.</p>
-<div class="section" id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
-<p>Argovis uses MongoDB as its database backend, currently operated as several stand-alone Mongo deployments, each with a single database, <code class="docutils literal notranslate"><span class="pre">argo</span></code>. Each data product has its own collections in this database: one for its data, and one for its metadata. The generic structure of data and metadata collections is explained in the <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>, and the specifics for each data product are linked below. Databases also include a <code class="docutils literal notranslate"><span class="pre">summary</span></code> collection, shared between all collections on the instance for pre-computed documents, and a <code class="docutils literal notranslate"><span class="pre">user</span></code> collection, containing API keys for users.</p>
+  <div class="section" id="adding-a-new-dataset">
+<span id="adding-new-data"></span><h1>Adding a new dataset<a class="headerlink" href="#adding-a-new-dataset" title="Permalink to this headline">¶</a></h1>
+<p>In order to add a new data product to Argovis, there are several planning and prepatory steps outlined in this document.</p>
+<div class="section" id="schema-development">
+<h2>Schema development<a class="headerlink" href="#schema-development" title="Permalink to this headline">¶</a></h2>
+<p>Our first step is to plan an appropriate schema for the new data and metadata collections that will be populated by this new dataset. This schema <em>must</em> obey the standards outlined in <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>, or otherwise must be marked experimental in the API (see <a class="reference internal" href="../api/adding_new_endpoints.html#adding-new-routes"><span class="std std-ref">Adding new API routes</span></a>, later in the development cycle).</p>
+<p>Some considerations at this stage:</p>
+<blockquote>
+<div><ul>
+<li><p>Plan at least one consulting meeting with a subject matter expert on the dataset to discuss how this data is used. Explore topics like:</p>
+<ul class="simple">
+<li><p>what sort of questions do you commonly ask of this dataset?</p></li>
+<li><p>what sort of problems or challenges have you had in the past with this dataset?</p></li>
+<li><p>what sort of things would you like to search this dataset for?</p></li>
+<li><p>how do you anticipate this dataset changing or growing in the future?</p></li>
+</ul>
+<p>All these questions may give you ideas on how to organize the data in a way that is useful and familiar to its users, and future proof it for updates.</p>
+</li>
+<li><p>Where schema rules allow it, change variable names from upstream documents as little as possible to promote familiarity with people already using the upstream data.</p></li>
+<li><p>Try to identify a physically meaningful way to divide information between data and metadata documents. For example, Argo metadata documents correspond to information about the float, while data documents each correspond to a single cycle. In general, metadata documents should factor out data that doesn’t change often between temporospatial points, while data documents should capture information unique to a single temporospatial point.</p></li>
+<li><p>At the database level, prioritize efficiency: choose arrays of floats rather than bloated dictionaries, for example. Helper functions can be provided to users downstream to help them interpret these documents, but at this level we want documents that are easy to store and fast to transmit.</p></li>
+</ul>
+</div></blockquote>
+<p>Once a plan has been developed and reviewed by a data subject matter expert, add a schema definition script to <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a>. Some considerations for this script:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data and metadata collections for should be named <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">xMeta</span></code>, respectively, where <code class="docutils literal notranslate"><span class="pre">x</span></code> is a short but meaningful label for the dataset, like <code class="docutils literal notranslate"><span class="pre">argo</span></code> or <code class="docutils literal notranslate"><span class="pre">cchdo</span></code>.</p></li>
+<li><p>You should have learned in consultation with subject matter experts how they plan on searching this data, which informs the indexes you’ll want to specify in this step. Note that the indexes defined for the data collection in <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">https://github.com/argovis/db-schema/blob/main/tc.py</a> are mandatory for all data collections, but more can be added as needed on a case-by-case basis.</p></li>
+</ul>
+</div></blockquote>
+<p>Once complete, run your script and ensure that you have appropriate empty collections with schema and indexes defined in MongoDB.</p>
 </div>
-<div class="section" id="list-of-datasets">
-<h2>List of datasets<a class="headerlink" href="#list-of-datasets" title="Permalink to this headline">¶</a></h2>
-<p>Argovis serves the following datasets. See the <strong>Schema</strong> column for the schema validation rules for that dataset, and the <strong>Population</strong> column for code and instructions on how to rebuild that dataset’s collection from scratch. The <strong>Deployment</strong> column indicates which instance of Argovis the collection lives in.</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 48%" />
-<col style="width: 35%" />
-<col style="width: 4%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Dataset</p></th>
-<th class="head"><p>Schema</p></th>
-<th class="head"><p>Population</p></th>
-<th class="head"><p>Deployment</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Argo</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argo.py">Argo</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/ifremer-sync">ifremer-sync</a></p></td>
-<td><p>Core</p></td>
-</tr>
-<tr class="row-odd"><td><p>Argo trajectories</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/trajectories.py">Trajectories schema</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/argo_trajectories">trajectories</a></p></td>
-<td><p>Core</p></td>
-</tr>
-<tr class="row-even"><td><p>ARGONE float forecasts</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">ARGONE schema</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/ARGONE">ARGONE</a></p></td>
-<td><p>Core</p></td>
-</tr>
-<tr class="row-odd"><td><p>CCHDO ship-based profiles</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/cchdo.py">CCHDO</a></p></td>
-<td><p><a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2023Q1">argovis_convert_netcdf_to_json</a></p></td>
-<td><p>Core</p></td>
-</tr>
-<tr class="row-even"><td><p>Global drifter program</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/drifters.py">Drifters</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/drifter-sync">drifter-sync</a></p></td>
-<td><p>Drifters</p></td>
-</tr>
-<tr class="row-odd"><td><p>Kuusela-Giglio ocean heat content grid</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">grids</a>, <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">metadata</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/grid-sync/blob/main/translate-ohc-grid.py">grid-sync (kg)</a></p></td>
-<td><p>Core</p></td>
-</tr>
-<tr class="row-even"><td><p>Roemmich-Gilson Argo grids</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">grids</a>, <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">metadata</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/grid-sync/blob/main/translate-rg-grid.py">grid-sync (rg)</a></p></td>
-<td><p>Core</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tropical cyclones</p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">Cyclones</a></p></td>
-<td><p><a class="reference external" href="https://github.com/argovis/tc-sync">tc-sync</a></p></td>
-<td><p>Core</p></td>
-</tr>
-</tbody>
-</table>
-<p><em>Last reviewed 2023-03-06</em></p>
+<div class="section" id="database-population">
+<h2>Database population<a class="headerlink" href="#database-population" title="Permalink to this headline">¶</a></h2>
+<p>At this point, it’s time to start populating your new collections. <a class="reference external" href="https://github.com/argovis/tc-sync">https://github.com/argovis/tc-sync</a> provides a complete but relatively simple example of what you need to produce:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/argovis/tc-sync/blob/main/tcload.py">https://github.com/argovis/tc-sync/blob/main/tcload.py</a> translates upstream data into JSON data and metadata documents, and pushes those to MongoDB. The schema enforcement rules you defined above should guarantee that no malformed documents are pushed to the collection, helping you debug this script.</p></li>
+<li><p><a class="reference external" href="https://github.com/argovis/tc-sync/blob/main/summary-computation.py">https://github.com/argovis/tc-sync/blob/main/summary-computation.py</a> is an optional step to prepare summary documents for inclusion in the <code class="docutils literal notranslate"><span class="pre">summaries</span></code> collection. Consider this option as an opportunity to pre-compute summary statistics and descriptions, lightening load and speeding up performance for users.</p></li>
+<li><p><a class="reference external" href="https://github.com/argovis/tc-sync/blob/main/roundtrip.py">https://github.com/argovis/tc-sync/blob/main/roundtrip.py</a> is a proofreading script, intended to be run after collection population is complete, to double check that the data in MongoDB correctly matches upstream data products. Please note that <strong>it is not sufficient to run the same translation algorithm as originally populated the collections</strong>. The proofreading script should convert and compare between data formats using at least a slightly different procedure, to ensure that we get the same answer in two meaningfully different cases.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>At this point, you have enough information to update the docs at <a class="reference internal" href="getting_started.html#db-getting-started"><span class="std std-ref">Getting started with Argovis’ data</span></a> and <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>.</p>
+<p><em>Last reviewed 23-03-07</em></p>
 </div>
 </div>
 
@@ -302,8 +283,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="schema.html" class="btn btn-neutral float-right" title="Argovis data schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="Argovis Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="argo.html" class="btn btn-neutral float-right" title="Managing Argo Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="db_ops.html" class="btn btn-neutral float-left" title="Database Resourcing &amp; Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

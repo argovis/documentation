@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Goship Demo Rebuild &mdash; argovis  documentation</title>
+  <title>Dealing With Merge Conflicts &mdash; argovis  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Argovis API Usage" href="api_usage.html" />
-    <link rel="prev" title="Connecting to the Container Network" href="connecting_to_the_container_network.html" /> 
+    <link rel="next" title="Using Branches" href="using_branches.html" />
+    <link rel="prev" title="Pull Requests, Git &amp; GitHub" href="pull_requests_and_github.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -108,14 +108,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="intro.html">Appendix: Archival Notes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="merge_conflicts.html">Dealing With Merge Conflicts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
-<li class="toctree-l3"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Goship Demo Rebuild</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#instance-setup">Instance Setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database-restore">Database Restore</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Dealing With Merge Conflicts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#merge-conflicts-on-your-machine">Merge Conflicts on Your Machine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#merge-conflicts-on-github">Merge Conflicts on GitHub</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goship-demo.html">Goship Demo Rebuild</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="performance_testing.html">Performance Testing</a></li>
 </ul>
@@ -148,14 +148,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Appendix: Archival Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
-<li class="toctree-l1"><a class="reference internal" href="merge_conflicts.html">Dealing With Merge Conflicts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Goship Demo Rebuild</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#instance-setup">Instance Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#database-restore">Database Restore</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dealing With Merge Conflicts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#merge-conflicts-on-your-machine">Merge Conflicts on Your Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merge-conflicts-on-github">Merge Conflicts on GitHub</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goship-demo.html">Goship Demo Rebuild</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performance_testing.html">Performance Testing</a></li>
 </ul>
@@ -206,13 +206,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Goship Demo Rebuild</li>
+      <li>Dealing With Merge Conflicts</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/special_topics/goship-demo.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/special_topics/merge_conflicts.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -225,89 +225,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="goship-demo-rebuild">
-<h1>Goship Demo Rebuild<a class="headerlink" href="#goship-demo-rebuild" title="Permalink to this headline">¶</a></h1>
-<p>Instructions to rebuild the temp goship demo on Digital Ocean.</p>
-<div class="section" id="instance-setup">
-<h2>Instance Setup<a class="headerlink" href="#instance-setup" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="dealing-with-merge-conflicts">
+<span id="merge-conflict"></span><h1>Dealing With Merge Conflicts<a class="headerlink" href="#dealing-with-merge-conflicts" title="Permalink to this headline">¶</a></h1>
+<p>When working with Git and GitHub, sooner or later you’re going to get a <em>merge conflict</em> - this arises when you and a collaborator want to make different, contradictory changes to the same piece of code, and git’s algorithm can’t figure out how to sort things out. In this case, a human - you  - need to solve the problem.</p>
+<p>To follow this tutorial, it’s best to actually have a merge conflict in progress you need to debug. The most common time this happens is after doing a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> to fetch new code from an upstream repository.</p>
+<div class="section" id="merge-conflicts-on-your-machine">
+<h2>Merge Conflicts on Your Machine<a class="headerlink" href="#merge-conflicts-on-your-machine" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p>Create a basic-tier droplet with 4 GB RAM, should be the $24/mo option.</p></li>
-<li><p>Connect to the instance and install docker and docker-compose:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ curl -fsSL https://get.docker.com -o get-docker.sh
-~ $ sh get-docker.sh
-~ $ sudo curl -L <span class="s2">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-</span><span class="k">$(</span>uname -s<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname -m<span class="k">)</span><span class="s2">&quot;</span> -o /usr/local/bin/docker-compose
-~ $ sudo chmod +x /usr/local/bin/docker-compose
-</pre></div>
-</div>
-</li>
-<li><p>Make the appropriate directory structure, and put the code in place:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ mkdir -p ~/argovis/data/goship
-~ $ <span class="nb">cd</span> ~/argovis
-~ $ git clone -b dev https://github.com/argovis/argovisNg
-~ $ <span class="nb">cd</span> argovisNg
-</pre></div>
-</div>
-</li>
-<li><p>Replace <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> with the following:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">argo-express</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">argovis/argo-express:dev</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">ports</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="s">&#39;3000:3000&#39;</span> <span class="c1"># specify port forwarding</span>
-    <span class="nt">links</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
-  <span class="nt">goship-demo</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">argovis/argo-express:goship-demo</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">ports</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="s">&#39;3001:3001&#39;</span> <span class="c1"># specify port forwarding</span>
-  <span class="nt">database</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mongo:4.2.3</span>  <span class="c1"># specify image to build container from</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">ports</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;127.0.0.1:27017:27017&#39;</span> <span class="c1"># include localhost ip to restrict access to localhost</span>
-    <span class="nt">volumes</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/root/argovis/data:/data/db:Z</span> <span class="c1"># development</span>
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-<div class="section" id="database-restore">
-<h2>Database Restore<a class="headerlink" href="#database-restore" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic" start="5">
-<li><p>Copy the goship mongo backup (consisting of <code class="docutils literal notranslate"><span class="pre">profiles.bson</span></code> and <code class="docutils literal notranslate"><span class="pre">profiles.metadata.json</span></code>) into position at <code class="docutils literal notranslate"><span class="pre">~/argovis/data/goship</span></code>.</p></li>
-<li><p>Start the app:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> ~/argovis/argovisNg
-argovisNg $ docker-compose up -d
-</pre></div>
-</div>
-</li>
-<li><p>List containers and identify the container ID of the database container, <code class="docutils literal notranslate"><span class="pre">a5bd1055a06d</span></code> in the example below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container ls
+<li><p>As noted, you’ll probably encounter this problem when pulling code from GitHub that someone else has changed recently:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ git pull upstream main
 
-CONTAINER ID   IMAGE                                ...
-d7f0f8ab7803   argovis/argo-express:dev             ...
-a5bd1055a06d   mongo:4.2.3                          ...
-fd61f54bd821   argovis/argo-express:goship-demo     ...
+    From https://github.com/BillMills/demo
+     * branch            main     -&gt; FETCH_HEAD
+    Auto-merging demo.js
+    CONFLICT <span class="o">(</span>content<span class="o">)</span>: Merge conflict <span class="k">in</span> demo.js
+    Automatic merge failed<span class="p">;</span> fix conflicts and <span class="k">then</span> commit the result.
+</pre></div>
+</div>
+<p>Git is trying to be helpful with this output:</p>
+<ul class="simple">
+<li><p>every line marked <code class="docutils literal notranslate"><span class="pre">CONFLICT</span></code> indicates a file that has a contradiction in it; in this case, there’s just one: <code class="docutils literal notranslate"><span class="pre">demo.js</span></code>.</p></li>
+<li><p>git is reminding you of what to do in the last line: fix things by hand, and commit.</p></li>
+</ul>
+</li>
+<li><p>For every file with a reported <code class="docutils literal notranslate"><span class="pre">CONFLICT</span></code>, open it up in your text editor; you’ll see constructions like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt; HEAD
+var <span class="nv">index</span> <span class="o">=</span> <span class="nv">42</span>
+<span class="o">=======</span>
+var <span class="nv">index</span> <span class="o">=</span> <span class="m">1337</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 75fa902451bda65e819278ce9edca24b6072328e
+</pre></div>
+</div>
+<p>This is git’s way of indicating what the conflict is. The code between <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> and <code class="docutils literal notranslate"><span class="pre">=======</span></code> is one person’s opinion of what the code should be; the code between <code class="docutils literal notranslate"><span class="pre">=======</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="pre">75fa902451bda65e819278ce9edca24b6072328e</span></code> is the other person’s opinion. Git tries to merge code automatically and usually succeeds, but it looks like in this case there’s a disagreement in what <code class="docutils literal notranslate"><span class="pre">index</span></code> should be set to; there’s no way git can know the right answer on its own, so you need to help it out. Choose what you think the right version of the code is, delete the wrong or out of date version, and delete the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">====</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;</span></code> lines in the code.</p>
+<p>Note that there may be multiple conflicts per file; search for the string <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;</span></code> to make sure you catch them all.</p>
+<p>Repeat this process for every file git mentioned a <code class="docutils literal notranslate"><span class="pre">CONFLICT</span></code> for in the first step.</p>
+</li>
+<li><p>Once you’ve resolved all conflicts, commit the resolution:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ git commit -a -m <span class="s1">&#39;fixed conflicts&#39;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Reload the goship db, making sure to sub in the container ID you just found above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container <span class="nb">exec</span> &lt;database container ID&gt; mongorestore --batchSize<span class="o">=</span><span class="m">64</span> --db<span class="o">=</span>goship --collection<span class="o">=</span>profiles /data/db/goship/profiles.bson
-</pre></div>
-</div>
-</li>
-<li><p>Force-free memory by cycling the app:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker-compose down
-argovisNg $ docker-compose up -d
-</pre></div>
-</div>
-</li>
-<li><p>Check for a sensible response at <code class="docutils literal notranslate"><span class="pre">&lt;public</span> <span class="pre">IP&gt;:3001/catalog/profiles/6657884888673.952_111/page</span></code></p></li>
 </ol>
+</div>
+<div class="section" id="merge-conflicts-on-github">
+<h2>Merge Conflicts on GitHub<a class="headerlink" href="#merge-conflicts-on-github" title="Permalink to this headline">¶</a></h2>
+<p>The other place you may hit merge conflicts is when setting up a PR on GitHub, which will block the merge of the PR. In this case, the easiest fix is to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> the branch from the upstream repository into the branch you’re working on on your own machine. Then you’ll get the error message noted above, and can follow the same steps. Once done, commit the fix, and push to your PR on GitHub. If done correctly, the merge conflict will be resolved and the PR will be unblocked.</p>
 <p><em>Last reviewed –</em></p>
 </div>
 </div>
@@ -318,8 +280,8 @@ argovisNg $ docker-compose up -d
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_usage.html" class="btn btn-neutral float-right" title="Argovis API Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="connecting_to_the_container_network.html" class="btn btn-neutral float-left" title="Connecting to the Container Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="using_branches.html" class="btn btn-neutral float-right" title="Using Branches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pull_requests_and_github.html" class="btn btn-neutral float-left" title="Pull Requests, Git &amp; GitHub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

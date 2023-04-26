@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Goship Demo Rebuild &mdash; argovis  documentation</title>
+  <title>Using Branches &mdash; argovis  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Argovis API Usage" href="api_usage.html" />
-    <link rel="prev" title="Connecting to the Container Network" href="connecting_to_the_container_network.html" /> 
+    <link rel="next" title="Connecting to the Container Network" href="connecting_to_the_container_network.html" />
+    <link rel="prev" title="Dealing With Merge Conflicts" href="merge_conflicts.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -109,13 +109,12 @@
 <li class="toctree-l3"><a class="reference internal" href="intro.html">Appendix: Archival Notes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="merge_conflicts.html">Dealing With Merge Conflicts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
-<li class="toctree-l3"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Goship Demo Rebuild</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#instance-setup">Instance Setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database-restore">Database Restore</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using Branches</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-and-managing-branches">Creating and Managing Branches</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goship-demo.html">Goship Demo Rebuild</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="performance_testing.html">Performance Testing</a></li>
 </ul>
@@ -149,13 +148,12 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Appendix: Archival Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="merge_conflicts.html">Dealing With Merge Conflicts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Goship Demo Rebuild</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#instance-setup">Instance Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#database-restore">Database Restore</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using Branches</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-managing-branches">Creating and Managing Branches</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goship-demo.html">Goship Demo Rebuild</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_usage.html">Argovis API Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performance_testing.html">Performance Testing</a></li>
 </ul>
@@ -206,13 +204,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Goship Demo Rebuild</li>
+      <li>Using Branches</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/special_topics/goship-demo.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/special_topics/using_branches.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -225,89 +223,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="goship-demo-rebuild">
-<h1>Goship Demo Rebuild<a class="headerlink" href="#goship-demo-rebuild" title="Permalink to this headline">¶</a></h1>
-<p>Instructions to rebuild the temp goship demo on Digital Ocean.</p>
-<div class="section" id="instance-setup">
-<h2>Instance Setup<a class="headerlink" href="#instance-setup" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="using-branches">
+<span id="branches"></span><h1>Using Branches<a class="headerlink" href="#using-branches" title="Permalink to this headline">¶</a></h1>
+<p>In our discussion about collaborating on code in <a class="reference internal" href="pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>, we just stuck to the default <em>branches</em> in our repos for simplicity. This is fine if you’re working on just one thing at a time - but what if you have more than one idea you’re pursuing at once? This is what <em>branching</em> is meant to accommodate in git.</p>
+<p>To follow this tutorial, you should be comfortable with everything we did in <a class="reference internal" href="pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>.</p>
+<div class="section" id="creating-and-managing-branches">
+<h2>Creating and Managing Branches<a class="headerlink" href="#creating-and-managing-branches" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you’re working on some API improvements, but it’s a big project and you expect you’ll have to work on something else before you’re completely done. You’re going to want to be able to switch between these trains of thought, so each will need its own branch; start by setting one up for your API work:</p>
 <ol class="arabic">
-<li><p>Create a basic-tier droplet with 4 GB RAM, should be the $24/mo option.</p></li>
-<li><p>Connect to the instance and install docker and docker-compose:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ curl -fsSL https://get.docker.com -o get-docker.sh
-~ $ sh get-docker.sh
-~ $ sudo curl -L <span class="s2">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-</span><span class="k">$(</span>uname -s<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname -m<span class="k">)</span><span class="s2">&quot;</span> -o /usr/local/bin/docker-compose
-~ $ sudo chmod +x /usr/local/bin/docker-compose
+<li><p>From your project directory on your machine, go back to the main branch of the project, called <code class="docutils literal notranslate"><span class="pre">main</span></code> in most Argovis projects, and make sure you’re up to date with the upstream repos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git checkout main
+argovisNg $ git pull upstream main
 </pre></div>
 </div>
 </li>
-<li><p>Make the appropriate directory structure, and put the code in place:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ mkdir -p ~/argovis/data/goship
-~ $ <span class="nb">cd</span> ~/argovis
-~ $ git clone -b dev https://github.com/argovis/argovisNg
-~ $ <span class="nb">cd</span> argovisNg
+<li><p>Make a branch named <code class="docutils literal notranslate"><span class="pre">api</span></code> for your API feature work:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git checkout -b api
 </pre></div>
 </div>
+<p>From this point, you are on the <code class="docutils literal notranslate"><span class="pre">api</span></code> branch. Doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> will add commits to this branch instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>. To set up pull requests, do exactly what you did in <a class="reference internal" href="pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>, but using <code class="docutils literal notranslate"><span class="pre">api</span></code> (or whatever you named your branch) instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>. So for example, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">api</span></code> will send your <code class="docutils literal notranslate"><span class="pre">api</span></code> branch up to GitHub, and when clicking through setting up your pull request, you’ll want to select <code class="docutils literal notranslate"><span class="pre">api</span></code> as the originating branch from your repo, and <code class="docutils literal notranslate"><span class="pre">main</span></code> as the target branch in the upstream repo.</p>
 </li>
-<li><p>Replace <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> with the following:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">argo-express</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">argovis/argo-express:dev</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">ports</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="s">&#39;3000:3000&#39;</span> <span class="c1"># specify port forwarding</span>
-    <span class="nt">links</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
-  <span class="nt">goship-demo</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">argovis/argo-express:goship-demo</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">ports</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="s">&#39;3001:3001&#39;</span> <span class="c1"># specify port forwarding</span>
-  <span class="nt">database</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mongo:4.2.3</span>  <span class="c1"># specify image to build container from</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">ports</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;127.0.0.1:27017:27017&#39;</span> <span class="c1"># include localhost ip to restrict access to localhost</span>
-    <span class="nt">volumes</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/root/argovis/data:/data/db:Z</span> <span class="c1"># development</span>
+<li><p>Now suppose you’re half way through your API work, when someone reports a critical bug somewhere else in the same repo! You need to drop what you’re doing and fix the bug, but you don’t want your API work and the bugfix to get tied up together; remember from <a class="reference internal" href="pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>, you want each of your PRs to focus on only one thing, so you’ll have to make a new branch for your bugfix.</p>
+<p>ALWAYS start by going back to the main branch first! It is almost never a good idea to make a feature branch off of another feature branch; this leads to confusion and misery.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git checkout main
+argovisNg $ git pull upstream main
+argovisNg $ git checkout -b bugfix
 </pre></div>
 </div>
+<p>We now have (at least) three branches: the <code class="docutils literal notranslate"><span class="pre">main</span></code> version of the code, our API work on the <code class="docutils literal notranslate"><span class="pre">api</span></code> branch, and an new branch <code class="docutils literal notranslate"><span class="pre">bugfix</span></code> where we’ll add commits fixing the bug. If you’re ever confused, do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> with no arguments, and git will list branches and indicate which one you’re currently on. You can switch between existing branches with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;branchname&gt;</span></code>.</p>
 </li>
 </ol>
+<div class="admonition-seriously admonition">
+<p class="admonition-title">Seriously</p>
+<p>Seriously - don’t forget to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code> right before making a new branch with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span></code>. Git will happily let you make a branch from whatever branch you want since it isn’t technically wrong and there are some extremely rare cases where you might want to, but almost always this is not what you want and will lead to problems.</p>
 </div>
-<div class="section" id="database-restore">
-<h2>Database Restore<a class="headerlink" href="#database-restore" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic" start="5">
-<li><p>Copy the goship mongo backup (consisting of <code class="docutils literal notranslate"><span class="pre">profiles.bson</span></code> and <code class="docutils literal notranslate"><span class="pre">profiles.metadata.json</span></code>) into position at <code class="docutils literal notranslate"><span class="pre">~/argovis/data/goship</span></code>.</p></li>
-<li><p>Start the app:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> ~/argovis/argovisNg
-argovisNg $ docker-compose up -d
-</pre></div>
-</div>
-</li>
-<li><p>List containers and identify the container ID of the database container, <code class="docutils literal notranslate"><span class="pre">a5bd1055a06d</span></code> in the example below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container ls
-
-CONTAINER ID   IMAGE                                ...
-d7f0f8ab7803   argovis/argo-express:dev             ...
-a5bd1055a06d   mongo:4.2.3                          ...
-fd61f54bd821   argovis/argo-express:goship-demo     ...
-</pre></div>
-</div>
-</li>
-<li><p>Reload the goship db, making sure to sub in the container ID you just found above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container <span class="nb">exec</span> &lt;database container ID&gt; mongorestore --batchSize<span class="o">=</span><span class="m">64</span> --db<span class="o">=</span>goship --collection<span class="o">=</span>profiles /data/db/goship/profiles.bson
-</pre></div>
-</div>
-</li>
-<li><p>Force-free memory by cycling the app:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker-compose down
-argovisNg $ docker-compose up -d
-</pre></div>
-</div>
-</li>
-<li><p>Check for a sensible response at <code class="docutils literal notranslate"><span class="pre">&lt;public</span> <span class="pre">IP&gt;:3001/catalog/profiles/6657884888673.952_111/page</span></code></p></li>
-</ol>
 <p><em>Last reviewed –</em></p>
 </div>
 </div>
@@ -318,8 +267,8 @@ argovisNg $ docker-compose up -d
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_usage.html" class="btn btn-neutral float-right" title="Argovis API Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="connecting_to_the_container_network.html" class="btn btn-neutral float-left" title="Connecting to the Container Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="connecting_to_the_container_network.html" class="btn btn-neutral float-right" title="Connecting to the Container Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="merge_conflicts.html" class="btn btn-neutral float-left" title="Dealing With Merge Conflicts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Argovis Deployment Architecture &mdash; argovis  documentation</title>
+  <title>Getting started with Argovis API development &mdash; argovis  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Deploy Global Drifter Program database on AWS" href="drifters-aws.html" />
-    <link rel="prev" title="API hit logging" href="../api/hit_logging.html" /> 
+    <link rel="next" title="Adding new API routes" href="adding_new_endpoints.html" />
+    <link rel="prev" title="Managing Argo Data" href="../database/argo.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,16 +99,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/getting_started.html">Getting started with Argovis API development</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/adding_new_endpoints.html">Adding new API routes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/rate_limitation.html">API rate limitation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/ops_config.html">API deployment configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/hit_logging.html">API hit logging</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Argovis Deployment Architecture</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#application-architecture">Application Architecture</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting started with Argovis API development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
@@ -131,20 +128,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">2. API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/getting_started.html">Getting started with Argovis API development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/adding_new_endpoints.html">Adding new API routes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/rate_limitation.html">API rate limitation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/ops_config.html">API deployment configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/hit_logging.html">API hit logging</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with Argovis API development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">4. Deployment &amp; operations</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Argovis Deployment Architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#application-architecture">Application Architecture</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix: Archival Notes</span></p>
 <ul>
@@ -204,13 +198,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Argovis Deployment Architecture</li>
+      <li>Getting started with Argovis API development</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/ops/deployment.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/getting_started.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -223,24 +217,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="argovis-deployment-architecture">
-<span id="deployment"></span><h1>Argovis Deployment Architecture<a class="headerlink" href="#argovis-deployment-architecture" title="Permalink to this headline">¶</a></h1>
-<p>Argovis is architected as a Kubernetes application, to take advantage of that platform’s scalability, security and orchestration features. We also offer a Docker Swarm deployment model to leverage environment where a managed Kubernetes deployment is unavailable or impractical.</p>
-<div class="section" id="application-architecture">
-<h2>Application Architecture<a class="headerlink" href="#application-architecture" title="Permalink to this headline">¶</a></h2>
-<p>Argovis is orchestrated per the following diagram:</p>
-<img alt="../_images/argovisApplicationArch.png" src="../_images/argovisApplicationArch.png" />
-<p>Refer to <a class="reference external" href="https://github.com/argovis/argovis_deployment">https://github.com/argovis/argovis_deployment</a> for exact details of how this is implemented, in the Helm chart in that repo for Kubernetes, or the startup script provided for Docker Swarm. Some high-level considerations if planning to deploy to another environment:</p>
+  <div class="section" id="getting-started-with-argovis-api-development">
+<span id="api-getting-started"></span><h1>Getting started with Argovis API development<a class="headerlink" href="#getting-started-with-argovis-api-development" title="Permalink to this headline">¶</a></h1>
+<p>One of Argovis’ core features is its API, designed to support detailed indexing and cross-referencing of a variety of oceanographic data. Some considerations to begin with when thinking about updating our API:</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>Ideally, MongoDB should be running sharded across a cluster, with significant (64 GB RAM or more) allocated to each shard. As this is usually impractical, make sure the storage mounted to <code class="docutils literal notranslate"><span class="pre">/data/db</span></code> is a local SSD, preferably regularly backed up.</p></li>
-<li><p>MongoDB getting rescheduled is disruptive; use your orchestator to reserve compute resources to prevent it from getting evicted.</p></li>
-<li><p>Consider using anti-affinity rules where available to make sure API and database containers are as spread out across your cluster as possib;e.</p></li>
-<li><p>You may optionally consider putting a reverse proxy between the web and the public facing components; see a simple example of an nginx configuration that accomplishes this at <a class="reference external" href="https://github.com/argovis/proxy">https://github.com/argovis/proxy</a>. Alternatively, some managed orchestration platforms (like Openshift at CU) provide public URLs and certificates that may be consumed directly.</p></li>
+<div><ul>
+<li><p>API code lives in <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a>.</p></li>
+<li><p>Our API is strictly <a class="reference external" href="https://spec.openapis.org/oas/v3.0.3">openAPI 3.0.3 compliant</a>, and built as a NodeJS container.</p></li>
+<li><p>Routes and query parameters are heavily standardized between collections. All non-experimental collections have the following minimal set of routes and query string filters:</p>
+<ul class="simple">
+<li><p>A route to search data documents, such as <code class="docutils literal notranslate"><span class="pre">/argo</span></code>. Data documents are at a minimum filterable by id, geolocation, timestamp and metadata key.</p></li>
+<li><p>A route to seatch metadata documents, such as <code class="docutils literal notranslate"><span class="pre">/argo/meta</span></code>. Metadata documents are at a minimum filterable by id.</p></li>
+<li><p>A vocabulary route to request enumerations of categorical search parameters, such as <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary</span></code>. Vocabulary routes always have exactly one query string parameter, called <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, to specify the possible values for other query string parameters. For example, both Argo data and metadata are searchable by platform WMO number; <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary?parameter=platform</span></code> returns a list of all possible platform identifiers.</p></li>
+</ul>
+<p>Respect this standardization. It helps our users interoperate across datasets by defining a core logic common to them all.</p>
+</li>
+<li><p>In addition, custom routes may optionally be defined per dataset that offer specialized results for that product, typically pulling summary documents from the <code class="docutils literal notranslate"><span class="pre">summaries</span></code> collection, for example <code class="docutils literal notranslate"><span class="pre">/argo/bgc</span></code>.</p></li>
+<li><p>For datasets that don’t naturally fit Argovis’ point-and-lattice centric schema standards, more freeform (though still OpenAPI compliant) routes can be defined if marked <code class="docutils literal notranslate"><span class="pre">experimental</span></code> in their API spec tags. An example of this is extended objects, like atmospheric rivers.</p></li>
+<li><p>All user requests to Argovis’ API are subject to rate limitation, accomplished by providing an API key in headers which is used to allocate a limited rate of requests per user by a token bucket algorithm.</p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2023-03-09</em></p>
-</div>
+<p>Further sections in this chapter detail how these components work and how to update them.</p>
+<p><em>Last reviewed 23-03-07</em></p>
 </div>
 
 
@@ -249,8 +247,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="drifters-aws.html" class="btn btn-neutral float-right" title="Deploy Global Drifter Program database on AWS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../api/hit_logging.html" class="btn btn-neutral float-left" title="API hit logging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="adding_new_endpoints.html" class="btn btn-neutral float-right" title="Adding new API routes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../database/argo.html" class="btn btn-neutral float-left" title="Managing Argo Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
