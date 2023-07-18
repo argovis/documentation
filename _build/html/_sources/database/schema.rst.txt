@@ -33,10 +33,10 @@ Schema enforcement & population
 
 Argovis uses MongoDB as its backend. All datasets have their data and metadata schema defined in `https://github.com/argovis/db-schema <https://github.com/argovis/db-schema>`_, which includes enforcement of these schema when uploaded to mongodb; therefore, the schema implementation in that code should be considered the most reliable document of our schema.
 
-Generic Schema
---------------
+Generic Point Schema
+--------------------
 
-As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema. Subsequent sections describe how specific datasets extend and implement these core definitions.
+As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema for our point-like datasets. Subsequent sections describe how specific datasets extend and implement these core definitions.
 
 Generic Data Schema
 +++++++++++++++++++
@@ -655,4 +655,81 @@ Implementation
 
 - Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
 
-*Last reviewed 2023-02-27*
+Generic Timeseries Schema
+-------------------------
+
+The generic point schema described above and its specific instances works well for data that can be feasilby captured as documents with unique latitude, longitude, and timestamps. However, when considering higher-resolution datasets, indexing independent documents for each such coordinate triple can dramatically exceed the scale of computing resources the point data above requires; for example, while Argo has roughly 3 million such documents to consider at the time of writing, a global, quarter-degree grid measured daily for 30 years (a typical scale for satellite products) would have on the order of *10 billion* such documents. In order to represent, index and serve such high-resolution grids on similar compute infrastructure to the point data, we make a minor modification to the generic point schema to form the *generic timeseries schema*:
+
+ - Vectors in the ``data`` object represent surface measurements, estimates or flags as an ordered timeseries.
+ - The ``data`` document no longer has a single ``timestamp`` key, as the data within corresponds to many timestamps.
+ - The ``metadata`` or ``data`` document must bear a ``timeseries`` key, which is an ordered list of timestamps corresponding to the times associated with each element in the ``data`` vectors.
+
+The observant reader will notice that this is very similar to the gridded products which have a ``levels`` key indicating the model depths for each entry in their ``data`` vectors. All other aspects of the generic schema remain consistent between point and timeseries datasets.
+
+NOAA sea surface temperature timeseries
+---------------------------------------
+
+Argovis represents the satellite grid of sea surface temperatures from `https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html <https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html>`_ as a timeseries dataset.
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the the SST metadata documents.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records: ``<longitude>_<latitude>``
+ - Metadata records: ``noaa-oi-sst-v2`` is the sole metadata document for this collection.
+
+NOAA sst-specific data record fields
+++++++++++++++++++++++++++++++++++++
+
+None.
+
+NOAA sst-specific metadata record fields
+++++++++++++++++++++++++++++++++++++++++
+
+None.
+
+Implementation
+++++++++++++++
+
+ - Schema: `https://github.com/argovis/db-schema/blob/main/sst-noaa-oi.py <https://github.com/argovis/db-schema/blob/main/sst-noaa-oi.py>`_
+
+ - Upload pipeline: `https://github.com/argovis/noaa-sst <https://github.com/argovis/noaa-sst>`_
+
+Copernicus sea level anomaly timeseries
+---------------------------------------
+
+Argovis represents the satellite grid of sea level anomaly from `https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global <https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global>`_ as a timeseries dataset.
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the the SLA metadata documents.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records: ``<longitude>_<latitude>``
+ - Metadata records: ``copernicusSLA`` is the sole metadata document for this collection.
+
+Copernicus sla-specific data record fields
+++++++++++++++++++++++++++++++++++++++++++
+
+None.
+
+Copernicus sla-specific metadata record fields
+++++++++++++++++++++++++++++++++++++++++++++++
+
+None.
+
+Implementation
+++++++++++++++
+
+ - Schema: `https://github.com/argovis/db-schema/blob/main/copernicus-sla.py <https://github.com/argovis/db-schema/blob/main/copernicus-sla.py>`_
+
+ - Upload pipeline: `https://github.com/argovis/copernicus-ssh <https://github.com/argovis/copernicus-ssh>`_
+
+*Last reviewed 2023-07-18*

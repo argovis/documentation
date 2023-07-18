@@ -289,7 +289,7 @@
 <p>As discussed further in <a class="reference internal" href="rate_limitation.html#api-rate-limit"><span class="std std-ref">API rate limitation</span></a>, user requests to many of Argovis’ API endpoints are capped by a token bucket algorithm. When implementing new routes, consider the potential for large or cumbersome requests: any collection with global coverage and / or long chronological extent, at a minimum, needs to be included in the standard rate limiting logic, which can be done by modifying the <code class="docutils literal notranslate"><span class="pre">cost</span></code> function in <code class="docutils literal notranslate"><span class="pre">nodejs-server/helpers/helpers.js</span></code>. For a new dataset, at least:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Update <code class="docutils literal notranslate"><span class="pre">earliest_records</span></code> and <code class="docutils literal notranslate"><span class="pre">final_records</span></code> with the first and last <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> found on documents in your data collection.</p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">earliest_records</span></code> and <code class="docutils literal notranslate"><span class="pre">final_records</span></code> functions with the first and last <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> found on documents in your data collection.</p></li>
 <li><p>Update <code class="docutils literal notranslate"><span class="pre">standard_routes</span></code> with the first path component of your new routes.</p></li>
 </ul>
 </div></blockquote>

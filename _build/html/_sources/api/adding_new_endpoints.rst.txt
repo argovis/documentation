@@ -55,7 +55,7 @@ Token bucket logic
 
 As discussed further in :ref:`api_rate_limit`, user requests to many of Argovis' API endpoints are capped by a token bucket algorithm. When implementing new routes, consider the potential for large or cumbersome requests: any collection with global coverage and / or long chronological extent, at a minimum, needs to be included in the standard rate limiting logic, which can be done by modifying the ``cost`` function in ``nodejs-server/helpers/helpers.js``. For a new dataset, at least:
 
- - Update ``earliest_records`` and ``final_records`` with the first and last ``timestamp`` found on documents in your data collection.
+ - Update the ``earliest_records`` and ``final_records`` functions with the first and last ``timestamp`` found on documents in your data collection.
  - Update ``standard_routes`` with the first path component of your new routes.
 
 Think carefully at this step about the queries you have allowed via your indexes and query string parameters: are there any that could trigger unindexed lookups, or which could return many (> 1000) documents? You may wish to reconsider allowing these at all, but if you must allow them, at least apply a high token cost to the requests so that they can't be made very rapidly.
