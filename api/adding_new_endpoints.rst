@@ -100,6 +100,6 @@ Once you believe development is complete and tests are passing locally, it's tim
 Argovis helpers
 ---------------
 
-Once API launch is complete, consider the necessity to update `https://github.com/argovis/argovis_helpers <https://github.com/argovis/argovis_helpers>`_, the pythonic helper package for Argovis. At a minimum, you'll want to tell that package to slice up temporospatially large requests for your new collection in its ``query`` function; consider possible advantages of adding or updating other helpers simultaneously.
+Once API launch is complete, consider the necessity to update `https://github.com/argovis/argovis_helpers <https://github.com/argovis/argovis_helpers>`_, the pythonic helper package for Argovis. At a minimum, you'll want to tell that package to slice up temporospatially large requests for your new collection in its ``query`` function; consider possible advantages of adding or updating other helpers simultaneously. Also, consider if these new helpers or API endpoints would do well to be illustrated in a demo in Argovis' collection of `jupyter notebooks <https://github.com/argovis/demo_notebooks>`_.
 
 *Last reviewed 23-03-07*
