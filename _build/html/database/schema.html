@@ -906,7 +906,7 @@
 </div>
 <div class="section" id="gridded-product-schema-extension">
 <h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, and the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.</p>
+<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>, and the <a class="reference external" href="https://glodap.info/index.php/mapped-data-product/">GLODAP v2.2016b mapped data product</a>. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.</p>
 <div class="section" id="id12">
 <h3>Generic Metadata Division<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>Gridded products place <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> in their metadata documents.</p>
@@ -937,6 +937,20 @@
 <li><p><strong>required:</strong> true</p></li>
 <li><p><strong>type:</strong> array of floats</p></li>
 <li><p><strong>description:</strong> Pressure or depth levels corresponding to each list of measurements in <code class="docutils literal notranslate"><span class="pre">data</span></code>. Note the same spectrum of levels applies to all measurements in <code class="docutils literal notranslate"><span class="pre">data</span></code>, as grids are required to have the same level spectrum in order to share a data document.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snr</span></code> (GLODAP only)</p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> JSON object keyed by GLODAP variable</p></li>
+<li><p><strong>description:</strong> Signal to noise ratio reported for this variable.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cl</span></code> (GLODAP only)</p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> JSON object keyed by GLODAP variable</p></li>
+<li><p><strong>description:</strong> Correlation length, units of degrees north. Comment from the GLODAP upstream data: “Note that the [sic]correlation length is scaled to be 2x this number in the zonal direction, in order to account for the typically stronger flow zonally than meridionally in the world oceans.”</p></li>
 </ul>
 </li>
 </ul>

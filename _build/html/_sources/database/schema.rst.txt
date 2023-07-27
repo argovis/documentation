@@ -516,7 +516,7 @@ Implementation of tropical cyclone schema and pipelines to load the data from so
 Gridded Product Schema Extension
 --------------------------------
 
-Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, and the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.
+Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_, and the `GLODAP v2.2016b mapped data product <https://glodap.info/index.php/mapped-data-product/>`_. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
@@ -546,6 +546,18 @@ Grid-Specific Metadata Record Fields
   - **required:** true
   - **type:** array of floats
   - **description:** Pressure or depth levels corresponding to each list of measurements in ``data``. Note the same spectrum of levels applies to all measurements in ``data``, as grids are required to have the same level spectrum in order to share a data document. 
+
+- ``snr`` (GLODAP only)
+
+  - **required:** false
+  - **type:** JSON object keyed by GLODAP variable
+  - **description:** Signal to noise ratio reported for this variable.
+
+- ``cl`` (GLODAP only)
+
+  - **required:** false
+  - **type:** JSON object keyed by GLODAP variable
+  - **description:** Correlation length, units of degrees north. Comment from the GLODAP upstream data: "Note that the [sic]correlation length is scaled to be 2x this number in the zonal direction, in order to account for the typically stronger flow zonally than meridionally in the world oceans."
 
 Implementation
 ++++++++++++++
