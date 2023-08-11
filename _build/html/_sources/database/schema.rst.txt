@@ -707,14 +707,14 @@ None.
 Implementation
 ++++++++++++++
 
- - Schema: `https://github.com/argovis/db-schema/blob/main/sst-noaa-oi.py <https://github.com/argovis/db-schema/blob/main/sst-noaa-oi.py>`_
+ - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
 
  - Upload pipeline: `https://github.com/argovis/noaa-sst <https://github.com/argovis/noaa-sst>`_
 
 Copernicus sea level anomaly timeseries
 ---------------------------------------
 
-Argovis represents the satellite grid of sea level anomaly from `https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global <https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global>`_ as a timeseries dataset.
+Argovis represents the satellite grid of sea level anomaly from `https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global <https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global>`_ as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.
 
 Generic Metadata Division
 +++++++++++++++++++++++++
@@ -740,8 +740,41 @@ None.
 Implementation
 ++++++++++++++
 
- - Schema: `https://github.com/argovis/db-schema/blob/main/copernicus-sla.py <https://github.com/argovis/db-schema/blob/main/copernicus-sla.py>`_
+ - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
 
  - Upload pipeline: `https://github.com/argovis/copernicus-ssh <https://github.com/argovis/copernicus-ssh>`_
 
-*Last reviewed 2023-07-18*
+REMSS CCMP wind vector timeseries
+---------------------------------
+
+Argovis represents the satellite grid of wind vector data from `https://www.remss.com/measurements/ccmp/ <https://www.remss.com/measurements/ccmp/>`_ as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the the ccmp wind metadata documents.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records: ``<longitude>_<latitude>``
+ - Metadata records: ``ccmpwind`` is the sole metadata document for this collection.
+
+CCMP wind-specific data record fields
++++++++++++++++++++++++++++++++++++++
+
+None.
+
+CCMP wind-specific metadata record fields
++++++++++++++++++++++++++++++++++++++++++
+
+None.
+
+Implementation
+++++++++++++++
+
+ - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
+
+ - Upload pipeline: `https://github.com/argovis/ccmp_parse <https://github.com/argovis/ccmp_parse>`_
+
+*Last reviewed 2023-08-11*

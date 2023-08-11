@@ -108,6 +108,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="db_ops.html">Database Resourcing &amp; Deployment</a></li>
@@ -218,6 +219,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-data-record-fields">Copernicus sla-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-metadata-record-fields">Copernicus sla-specific metadata record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id26">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-data-record-fields">CCMP wind-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-metadata-record-fields">CCMP wind-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -1119,7 +1128,7 @@
 <h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/sst-noaa-oi.py">https://github.com/argovis/db-schema/blob/main/sst-noaa-oi.py</a></p></li>
+<li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/noaa-sst">https://github.com/argovis/noaa-sst</a></p></li>
 </ul>
 </div></blockquote>
@@ -1127,7 +1136,7 @@
 </div>
 <div class="section" id="copernicus-sea-level-anomaly-timeseries">
 <h2>Copernicus sea level anomaly timeseries<a class="headerlink" href="#copernicus-sea-level-anomaly-timeseries" title="Permalink to this headline">¶</a></h2>
-<p>Argovis represents the satellite grid of sea level anomaly from <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global">https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global</a> as a timeseries dataset.</p>
+<p>Argovis represents the satellite grid of sea level anomaly from <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global">https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
 <div class="section" id="id24">
 <h3>Generic Metadata Division<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the the SLA metadata documents.</p>
@@ -1153,11 +1162,45 @@
 <h3>Implementation<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/copernicus-sla.py">https://github.com/argovis/db-schema/blob/main/copernicus-sla.py</a></p></li>
+<li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
 </ul>
 </div></blockquote>
-<p><em>Last reviewed 2023-07-18</em></p>
+</div>
+</div>
+<div class="section" id="remss-ccmp-wind-vector-timeseries">
+<h2>REMSS CCMP wind vector timeseries<a class="headerlink" href="#remss-ccmp-wind-vector-timeseries" title="Permalink to this headline">¶</a></h2>
+<p>Argovis represents the satellite grid of wind vector data from <a class="reference external" href="https://www.remss.com/measurements/ccmp/">https://www.remss.com/measurements/ccmp/</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
+<div class="section" id="id28">
+<h3>Generic Metadata Division<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the the ccmp wind metadata documents.</p>
+</div>
+<div class="section" id="id29">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">ccmpwind</span></code> is the sole metadata document for this collection.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ccmp-wind-specific-data-record-fields">
+<h3>CCMP wind-specific data record fields<a class="headerlink" href="#ccmp-wind-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
+</div>
+<div class="section" id="ccmp-wind-specific-metadata-record-fields">
+<h3>CCMP wind-specific metadata record fields<a class="headerlink" href="#ccmp-wind-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
+</div>
+<div class="section" id="id30">
+<h3>Implementation<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
+</ul>
+</div></blockquote>
+<p><em>Last reviewed 2023-08-11</em></p>
 </div>
 </div>
 </div>
