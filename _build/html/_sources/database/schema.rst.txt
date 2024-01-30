@@ -307,8 +307,8 @@ Implementation
 
 Implementation of Argo's schema and pipelines to load the data from ifremer can be found at the following links.
 
- - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
- - Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
+- Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
 
 CCHDO Schema Extension
 ------------------------
@@ -365,8 +365,8 @@ Implementation
 
 Implementation of CCHDO's schema and pipelines to load the data from CCHDO can be found at the following links.
 
- - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/cchdo.py <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_
- - Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3 <https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3>`_ for schema compliance and mongo upload.
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/cchdo.py <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_
+- Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3 <https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3>`_ for schema compliance and mongo upload.
 
 Drifter Schema Extension
 ------------------------
@@ -417,7 +417,7 @@ Drifter-Specific Metadata Record Fields
 - ``deploy_date``
 
   - **required:** true
-  - **type:** datetime
+  - **type:** ISO 8601 UTC datestring
   - **description:** Deployment date and time
 
 - ``deploy_lon``
@@ -435,7 +435,7 @@ Drifter-Specific Metadata Record Fields
 - ``end_date``
 
   - **required:** true
-  - **type:** datetime
+  - **type:** ISO 8601 UTC datestring
   - **description:**  End date and time
 
 - ``end_lon``
@@ -453,7 +453,7 @@ Drifter-Specific Metadata Record Fields
 - ``drogue_lost_date``
 
   - **required:** true
-  - **type:** datetime
+  - **type:** ISO 8601 UTC datestring
   - **description:** Date of drogue loss (Null=drogue still attached; "1970-01-01T00:00:00Z"=drogue status uncertain from beginning)
 
 - ``typedeath``
@@ -472,8 +472,8 @@ Drifter-Specific Metadata Record Fields
 Implementation
 ++++++++++++++
 
- - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/drifters.py <https://github.com/argovis/db-schema/blob/main/drifters.py>`_
- - Upload pipeline: `https://github.com/argovis/drifter-sync <https://github.com/argovis/drifter-sync>`_
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/drifters.py <https://github.com/argovis/db-schema/blob/main/drifters.py>`_
+- Upload pipeline: `https://github.com/argovis/drifter-sync <https://github.com/argovis/drifter-sync>`_
 
 Tropical Cyclone Schema Extension
 ---------------------------------
@@ -510,13 +510,13 @@ Implementation
 
 Implementation of tropical cyclone schema and pipelines to load the data from source CSVs can be found at the following links.
 
- - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/tc.py <https://github.com/argovis/db-schema/blob/main/tc.py>`_
- - Upload pipeline: `https://github.com/argovis/tc-sync <https://github.com/argovis/tc-sync>`_
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/tc.py <https://github.com/argovis/db-schema/blob/main/tc.py>`_
+- Upload pipeline: `https://github.com/argovis/tc-sync <https://github.com/argovis/tc-sync>`_
 
 Gridded Product Schema Extension
 --------------------------------
 
-Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_, and the `GLODAP v2.2016b mapped data product <https://glodap.info/index.php/mapped-data-product/>`_. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.
+Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_, and the `GLODAP v2.2016b mapped data product <https://glodap.info/index.php/mapped-data-product/>`_. These gridded product data and metadata collections extend, implement and modify the generic schema as follows (see below for other, bespoke grids).
 
 Generic Metadata Division
 +++++++++++++++++++++++++
@@ -531,6 +531,7 @@ Gridded products place ``data_type``, ``date_updated_argovis``, ``data_info``, a
 
    - For RG: ``rg09_<temperature | salinity>_<yyymm of originating file>_Total``
    - For KG: ``kg21_ohc15to300``
+   - For GLODAP: ``glodapv2.2016b``
 
 Grid-Specific Data Record Fields
 ++++++++++++++++++++++++++++++++
@@ -562,9 +563,117 @@ Grid-Specific Metadata Record Fields
 Implementation
 ++++++++++++++
 
- - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_
+- Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
- - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
+Easy Ocean Gridded Schema Extension
+-----------------------------------
+
+The Easy Ocean grid is indexed by Argovis; Easy Ocean data and metadata collections extend and implement the generic schema as follows.
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+Easy Ocean places all generic metadata on the data document, save ``date_updated_argovis``, and ``country``, which is replaced by ``section_countries`` on the data document.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records ``_id``: ``woce_<WOCE_line>_date_<YYYYMMDD>_lat_<lat>_lon_<lon>``, where decimals in lat and lon are hyphenated, ie 54.3 is written as 54-3 in the id.
+ - Metadata records ``_id``: ``<WOCE line>``
+
+Easy Ocean-Specific Data Record Fields
+++++++++++++++++++++++++++++++++++++++
+
+- ``section_expocodes``
+
+  - **required:** false
+  - **type:** array of strings
+  - **description:** Expocodes of contributing sections.
+
+- ``section_start_date``
+
+  - **required:** false
+  - **type:** ISO 8601 UTC datestring
+  - **description:** date this section began
+
+- ``section_end_date``
+
+  - **required:** false
+  - **type:** ISO 8601 UTC datestring
+  - **description:** date this section concluded
+
+- ``woce_lines``
+
+  - **required:** false
+  - **type:** array of strings
+  - **description:** WOCE lines present
+
+- ``references``
+
+  - **required:** false
+  - **type:** string
+  - **description:** reference for this data
+
+- ``dataset_created``
+
+  - **required:** false
+  - **type:** ISO 8601 UTC datestring
+  - **description:**
+
+- ``section_countries``
+
+  - **required:** false
+  - **type:** array of strings
+  - **description:** country codes for contributing countries
+
+- ``positioning_system``
+
+  - **required:** false
+  - **type:** string
+  - **description:** positioning system used for this section
+
+Easy Ocean-Specific Metadata Record Fields
+++++++++++++++++++++++++++++++++++++++++++
+
+- ``occupancies``
+
+  - **required:** true
+  - **type:** array of objects
+  - **description:** array of data objects describing each occupancy of the WOCE line.
+
+- ``occupancies[x].varying_direction``
+
+  - **required:** true
+  - **type:** string
+  - **description:** which direction, lat or lon, is varying in this Easy Ocean entry
+
+- ``occupancies[x].static_direction``
+
+  - **required:** true
+  - **type:** string
+  - **description:** which direction, lat or lon, is interpolated to constant in this Easy Ocean entry
+
+- ``occupancies[x].expocodes``
+
+  - **required:** true
+  - **type:** array of strings
+  - **description:** expocodes for this occupancy
+
+- ``occupancies[x].time_boundaries``
+
+  - **required:** true
+  - **type:** array of two ISO 8601 UTC datestrings
+  - **description:** start and end times for this occupancy.
+
+Implementation
+++++++++++++++
+
+Implementation of Easy Ocean schema and pipelines to load the data from source CSVs can be found at the following links.
+
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/easyocean.py <https://github.com/argovis/db-schema/blob/main/easyocean.py>`_
+- Upload pipeline: `https://github.com/argovis/convert_easy_ocean <https://github.com/argovis/convert_easy_ocean>`_
+
 
 ARGONE Argo float forecast data
 -------------------------------
@@ -574,7 +683,7 @@ Argovis includes a tabulation of forecasts of Argo float locations based on ARGO
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the the argone metadata document.
+``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the argone metadata document.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -606,7 +715,6 @@ Implementation
 ++++++++++++++
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argone.py <https://github.com/argovis/db-schema/blob/main/argone.py>`_
-
 - Upload pipeline: `https://github.com/argovis/ARGONE <https://github.com/argovis/ARGONE>`_
 
 Argo trajectory data
@@ -617,7 +725,7 @@ Argovis includes estimates of Argo float trajectories from `https://doi.org/10.6
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the the trajectories metadata documents.
+``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the trajectories metadata documents.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -664,7 +772,6 @@ Implementation
 ++++++++++++++
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/trajectories.py <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_
-
 - Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
 
 Generic Timeseries Schema
@@ -686,7 +793,7 @@ Argovis represents the satellite grid of sea surface temperatures from `https://
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the the SST metadata documents.
+``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the SST metadata documents.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -707,9 +814,8 @@ None.
 Implementation
 ++++++++++++++
 
- - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
-
- - Upload pipeline: `https://github.com/argovis/noaa-sst <https://github.com/argovis/noaa-sst>`_
+- Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
+- Upload pipeline: `https://github.com/argovis/noaa-sst <https://github.com/argovis/noaa-sst>`_
 
 Copernicus sea level anomaly timeseries
 ---------------------------------------
@@ -719,7 +825,7 @@ Argovis represents the satellite grid of sea level anomaly from `https://cds.cli
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the the SLA metadata documents.
+``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the SLA metadata documents.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -740,9 +846,8 @@ None.
 Implementation
 ++++++++++++++
 
- - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
-
- - Upload pipeline: `https://github.com/argovis/copernicus-ssh <https://github.com/argovis/copernicus-ssh>`_
+- Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
+- Upload pipeline: `https://github.com/argovis/copernicus-ssh <https://github.com/argovis/copernicus-ssh>`_
 
 REMSS CCMP wind vector timeseries
 ---------------------------------
@@ -752,7 +857,7 @@ Argovis represents the satellite grid of wind vector data from `https://www.rems
 Generic Metadata Division
 +++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the the ccmp wind metadata documents.
+``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the CCMP wind metadata documents.
 
 ``_id`` construction
 ++++++++++++++++++++
@@ -773,8 +878,66 @@ None.
 Implementation
 ++++++++++++++
 
- - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
+- Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
+- Upload pipeline: `https://github.com/argovis/ccmp_parse <https://github.com/argovis/ccmp_parse>`_
 
- - Upload pipeline: `https://github.com/argovis/ccmp_parse <https://github.com/argovis/ccmp_parse>`_
+Generic Extended Objects Schema
+-------------------------------
 
-*Last reviewed 2023-08-11*
+The generic point schema described above and its specific instances works well for data localized to a specific latitude and longitude as well as timestamp. However, when considering phenomena with large spatial extent like weather events, a point-based schema can't on its own capture these regions. In order to represent, index and serve data with large phenomenological extent, we make a minor modification to the generic point schema to form the *generic extended objects schema*:
+
+ - ``geolocation`` in the ``data`` documents is a geoJSON MultiPolygon object that represents the boundaries of the phenomenon, rather than a single geoJSON Point object.
+ - In order to preserve per-point information in the interior (boundaries included) of the extended object, the ``data`` property on the ``data`` documents is replaced by a ``raster`` property, which always take the form ``[longitude, latitude, [vector of data objects associated with this point]]``. The vector of data objects can be interpreted similarly to the ``data`` property on other schema, where ``data_info`` labels the measurements and per-measurement metadata in order.
+ - ``basin`` is replaced with ``basins``, defined similarly but as a list of such tags, in order to accommodate objects that extend to more than one ocean basin.
+
+Atmospheric river extended objects
+----------------------------------
+
+Argovis represents the atmospheric river (AR) climatology presented in `https://doi.org/10.1175/MWR-D-13-00168.1 <https://doi.org/10.1175/MWR-D-13-00168.1>`_ as an extended object dataset.
+
+Generic Metadata Division
++++++++++++++++++++++++++
+
+``data_type``, ``data_info``, ``date_updated_argovis`` and ``source``  all live on the AR metadata documents.
+
+``_id`` construction
+++++++++++++++++++++
+
+ - Data records: ``<YYYY><MM><DD><decimal hour>_<index of phenomenon at this timestep>``
+ - Metadata records: ``ar`` is the sole metadata document for this collection.
+
+AR-specific data record fields
+++++++++++++++++++++++++++++++
+
+- ``flags``
+
+  - **required:** false
+  - **type:** array of strings
+  - **description:** flags of possible pathologies from phenomenological boundaty construction
+  - **current vocabulary:**
+  
+    - ``annulus``: this shape wraps around the entire globe.
+    - ``dateline``: this shape crosses the dateline.
+    - ``holes``: this shape has interior holes.
+    - ``north_pole`` and ``south_pole``: this shape covers the respective pole.
+    - ``noise_added``: in rare cases, a MultiPolygon will fail to index in mongodb due to the database bug `https://jira.mongodb.org/browse/SERVER-52928 <https://jira.mongodb.org/browse/SERVER-52928>`_. In this case, the shape is randomly shifted by much less than the resolution of the original climatology.
+    - ``manually_corrected``: in cases of very large ARs, typically annular ARs wrapping the planet near the equator, it can be difficult to correctly define the interior of such a region in MongoDB. In these cases, we place an artificial 'seam' in the annulus that is much smaller than the resolution of the original grid and therefore won't affect geolocation searches, but which makes it easier to describe and index these phenomenological boundaries.
+
+- ``true_geolocation``
+
+  - **required:** false
+  - **type:** geojson MultiPolygon
+  - **description:** the phenomenological boundary automatically generated by the boundary detection algorithm in `https://github.com/argovis/argovis_helpers <https://github.com/argovis/argovis_helpers>`_; added when ``noise_added`` or ``manually_corrected`` flags are present to provide the unmodified geolocation.
+
+AR-specific metadata record fields
+++++++++++++++++++++++++++++++++++
+
+None.
+
+Implementation
+++++++++++++++
+
+- Schema: `https://github.com/argovis/db-schema/blob/main/extended.py <https://github.com/argovis/db-schema/blob/main/extended.py>`_
+- Upload pipeline: `https://github.com/argovis/arShapes <https://github.com/argovis/arShapes>`_
+
+*Last reviewed 2024-01-30*

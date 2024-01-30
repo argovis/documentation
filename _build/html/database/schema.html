@@ -103,12 +103,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#drifter-schema-extension">Drifter Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argo-trajectory-data">Argo trajectory data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="db_ops.html">Database Resourcing &amp; Deployment</a></li>
@@ -188,45 +191,62 @@
 <li class="toctree-l3"><a class="reference internal" href="#id14">Implementation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id15">Generic Metadata Division</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#argone-specific-data-record-fields">ARGONE-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#argone-specific-metadata-record-fields">ARGONE-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#easy-ocean-specific-data-record-fields">Easy Ocean-Specific Data Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#easy-ocean-specific-metadata-record-fields">Easy Ocean-Specific Metadata Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id17">Implementation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#argo-trajectory-data">Argo trajectory data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id18">Generic Metadata Division</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argone-specific-data-record-fields">ARGONE-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argone-specific-metadata-record-fields">ARGONE-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-trajectory-data">Argo trajectory data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-specific-data-record-fields">Argo trajectory-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-specific-metadata-record-fields">Argo trajectory-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id21">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-data-record-fields">NOAA sst-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-metadata-record-fields">NOAA sst-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id24">Generic Metadata Division</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id25"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-data-record-fields">Copernicus sla-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-metadata-record-fields">Copernicus sla-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-data-record-fields">NOAA sst-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-metadata-record-fields">NOAA sst-specific metadata record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id26">Implementation</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-data-record-fields">Copernicus sla-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-metadata-record-fields">Copernicus sla-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id28">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id29"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-data-record-fields">CCMP wind-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-metadata-record-fields">CCMP wind-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id30">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ar-specific-data-record-fields">AR-specific data record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ar-specific-metadata-record-fields">AR-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -668,12 +688,10 @@
 <div class="section" id="implementation">
 <h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of Argo’s schema and pipelines to load the data from ifremer can be found at the following links.</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argo.py">https://github.com/argovis/db-schema/blob/main/argo.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ifremer-sync">https://github.com/argovis/ifremer-sync</a></p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="cchdo-schema-extension">
@@ -738,12 +756,10 @@
 <div class="section" id="id4">
 <h3>Implementation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of CCHDO’s schema and pipelines to load the data from CCHDO can be found at the following links.</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/cchdo.py">https://github.com/argovis/db-schema/blob/main/cchdo.py</a></p></li>
 <li><p>Upload pipeline: original from CCHDO: <a class="reference external" href="https://github.com/cchdo/argovis_convert_netcdf_to_json">https://github.com/cchdo/argovis_convert_netcdf_to_json</a>; also see fork and branch <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3">https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3</a> for schema compliance and mongo upload.</p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="drifter-schema-extension">
@@ -795,7 +811,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">deploy_date</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> datetime</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
 <li><p><strong>description:</strong> Deployment date and time</p></li>
 </ul>
 </li>
@@ -816,7 +832,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">end_date</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> datetime</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
 <li><p><strong>description:</strong>  End date and time</p></li>
 </ul>
 </li>
@@ -837,7 +853,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">drogue_lost_date</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> datetime</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
 <li><p><strong>description:</strong> Date of drogue loss (Null=drogue still attached; “1970-01-01T00:00:00Z”=drogue status uncertain from beginning)</p></li>
 </ul>
 </li>
@@ -859,12 +875,10 @@
 </div>
 <div class="section" id="id7">
 <h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/drifters.py">https://github.com/argovis/db-schema/blob/main/drifters.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/drifter-sync">https://github.com/argovis/drifter-sync</a></p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="tropical-cyclone-schema-extension">
@@ -905,17 +919,15 @@
 <div class="section" id="id11">
 <h3>Implementation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of tropical cyclone schema and pipelines to load the data from source CSVs can be found at the following links.</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">https://github.com/argovis/db-schema/blob/main/tc.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/tc-sync">https://github.com/argovis/tc-sync</a></p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="gridded-product-schema-extension">
 <h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>, and the <a class="reference external" href="https://glodap.info/index.php/mapped-data-product/">GLODAP v2.2016b mapped data product</a>. Gridded product data and metadata collections extend, implement and modify the generic schema as follows.</p>
+<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>, and the <a class="reference external" href="https://glodap.info/index.php/mapped-data-product/">GLODAP v2.2016b mapped data product</a>. These gridded product data and metadata collections extend, implement and modify the generic schema as follows (see below for other, bespoke grids).</p>
 <div class="section" id="id12">
 <h3>Generic Metadata Division<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>Gridded products place <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> in their metadata documents.</p>
@@ -929,6 +941,7 @@
 <ul>
 <li><p>For RG: <code class="docutils literal notranslate"><span class="pre">rg09_&lt;temperature</span> <span class="pre">|</span> <span class="pre">salinity&gt;_&lt;yyymm</span> <span class="pre">of</span> <span class="pre">originating</span> <span class="pre">file&gt;_Total</span></code></p></li>
 <li><p>For KG: <code class="docutils literal notranslate"><span class="pre">kg21_ohc15to300</span></code></p></li>
+<li><p>For GLODAP: <code class="docutils literal notranslate"><span class="pre">glodapv2.2016b</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -966,23 +979,147 @@
 </div>
 <div class="section" id="id14">
 <h3>Implementation<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
 </ul>
+</div>
+</div>
+<div class="section" id="easy-ocean-gridded-schema-extension">
+<h2>Easy Ocean Gridded Schema Extension<a class="headerlink" href="#easy-ocean-gridded-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>The Easy Ocean grid is indexed by Argovis; Easy Ocean data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="id15">
+<h3>Generic Metadata Division<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>Easy Ocean places all generic metadata on the data document, save <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">country</span></code>, which is replaced by <code class="docutils literal notranslate"><span class="pre">section_countries</span></code> on the data document.</p>
+</div>
+<div class="section" id="id16">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">woce_&lt;WOCE_line&gt;_date_&lt;YYYYMMDD&gt;_lat_&lt;lat&gt;_lon_&lt;lon&gt;</span></code>, where decimals in lat and lon are hyphenated, ie 54.3 is written as 54-3 in the id.</p></li>
+<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;WOCE</span> <span class="pre">line&gt;</span></code></p></li>
+</ul>
 </div></blockquote>
+</div>
+<div class="section" id="easy-ocean-specific-data-record-fields">
+<h3>Easy Ocean-Specific Data Record Fields<a class="headerlink" href="#easy-ocean-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">section_expocodes</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> Expocodes of contributing sections.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">section_start_date</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> date this section began</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">section_end_date</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> date this section concluded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">woce_lines</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> WOCE lines present</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">references</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> reference for this data</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_created</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">section_countries</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> country codes for contributing countries</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> positioning system used for this section</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="easy-ocean-specific-metadata-record-fields">
+<h3>Easy Ocean-Specific Metadata Record Fields<a class="headerlink" href="#easy-ocean-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">occupancies</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of objects</p></li>
+<li><p><strong>description:</strong> array of data objects describing each occupancy of the WOCE line.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occupancies[x].varying_direction</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> which direction, lat or lon, is varying in this Easy Ocean entry</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occupancies[x].static_direction</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> which direction, lat or lon, is interpolated to constant in this Easy Ocean entry</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occupancies[x].expocodes</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> expocodes for this occupancy</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occupancies[x].time_boundaries</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of two ISO 8601 UTC datestrings</p></li>
+<li><p><strong>description:</strong> start and end times for this occupancy.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>Implementation of Easy Ocean schema and pipelines to load the data from source CSVs can be found at the following links.</p>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/easyocean.py">https://github.com/argovis/db-schema/blob/main/easyocean.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/convert_easy_ocean">https://github.com/argovis/convert_easy_ocean</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="argone-argo-float-forecast-data">
 <h2>ARGONE Argo float forecast data<a class="headerlink" href="#argone-argo-float-forecast-data" title="Permalink to this headline">¶</a></h2>
 <p>Argovis includes a tabulation of forecasts of Argo float locations based on ARGONE (link / DOI forthcoming).</p>
-<div class="section" id="id15">
-<h3>Generic Metadata Division<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the the argone metadata document.</p>
+<div class="section" id="id18">
+<h3>Generic Metadata Division<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the argone metadata document.</p>
 </div>
-<div class="section" id="id16">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;origin_lon&gt;_&lt;origin_lat&gt;_&lt;forecast_lon&gt;_&lt;forecast_lat&gt;</span></code></p></li>
@@ -1018,8 +1155,8 @@
 </ul>
 <p>Also note <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> for ARGONE data indicates forecast length in days; the first entry indicates the probability a float will move from <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> to <code class="docutils literal notranslate"><span class="pre">geolocation_forecast</span></code> in 90 days, for example.</p>
 </div>
-<div class="section" id="id17">
-<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>Implementation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">https://github.com/argovis/db-schema/blob/main/argone.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ARGONE">https://github.com/argovis/ARGONE</a></p></li>
@@ -1029,12 +1166,12 @@
 <div class="section" id="argo-trajectory-data">
 <h2>Argo trajectory data<a class="headerlink" href="#argo-trajectory-data" title="Permalink to this headline">¶</a></h2>
 <p>Argovis includes estimates of Argo float trajectories from <a class="reference external" href="https://doi.org/10.6075/J0FQ9WS6">https://doi.org/10.6075/J0FQ9WS6</a>.</p>
-<div class="section" id="id18">
-<h3>Generic Metadata Division<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the the trajectories metadata documents.</p>
+<div class="section" id="id21">
+<h3>Generic Metadata Division<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the trajectories metadata documents.</p>
 </div>
-<div class="section" id="id19">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;cycle_number&gt;</span></code></p></li>
@@ -1080,8 +1217,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id20">
-<h3>Implementation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/trajectories.py">https://github.com/argovis/db-schema/blob/main/trajectories.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/argo_trajectories">https://github.com/argovis/argo_trajectories</a></p></li>
@@ -1103,12 +1240,12 @@
 <div class="section" id="noaa-sea-surface-temperature-timeseries">
 <h2>NOAA sea surface temperature timeseries<a class="headerlink" href="#noaa-sea-surface-temperature-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea surface temperatures from <a class="reference external" href="https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html">https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html</a> as a timeseries dataset.</p>
-<div class="section" id="id21">
-<h3>Generic Metadata Division<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the the SST metadata documents.</p>
+<div class="section" id="id24">
+<h3>Generic Metadata Division<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SST metadata documents.</p>
 </div>
-<div class="section" id="id22">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id25">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -1124,25 +1261,23 @@
 <h3>NOAA sst-specific metadata record fields<a class="headerlink" href="#noaa-sst-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id23">
-<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<div class="section" id="id26">
+<h3>Implementation<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/noaa-sst">https://github.com/argovis/noaa-sst</a></p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="copernicus-sea-level-anomaly-timeseries">
 <h2>Copernicus sea level anomaly timeseries<a class="headerlink" href="#copernicus-sea-level-anomaly-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea level anomaly from <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global">https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id24">
-<h3>Generic Metadata Division<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the the SLA metadata documents.</p>
+<div class="section" id="id27">
+<h3>Generic Metadata Division<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SLA metadata documents.</p>
 </div>
-<div class="section" id="id25">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -1158,25 +1293,23 @@
 <h3>Copernicus sla-specific metadata record fields<a class="headerlink" href="#copernicus-sla-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id26">
-<h3>Implementation<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<div class="section" id="id29">
+<h3>Implementation<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="remss-ccmp-wind-vector-timeseries">
 <h2>REMSS CCMP wind vector timeseries<a class="headerlink" href="#remss-ccmp-wind-vector-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of wind vector data from <a class="reference external" href="https://www.remss.com/measurements/ccmp/">https://www.remss.com/measurements/ccmp/</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id28">
-<h3>Generic Metadata Division<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the the ccmp wind metadata documents.</p>
+<div class="section" id="id31">
+<h3>Generic Metadata Division<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the CCMP wind metadata documents.</p>
 </div>
-<div class="section" id="id29">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id32">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -1192,15 +1325,81 @@
 <h3>CCMP wind-specific metadata record fields<a class="headerlink" href="#ccmp-wind-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id30">
-<h3>Implementation<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<div class="section" id="id33">
+<h3>Implementation<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
 </ul>
+</div>
+</div>
+<div class="section" id="generic-extended-objects-schema">
+<h2>Generic Extended Objects Schema<a class="headerlink" href="#generic-extended-objects-schema" title="Permalink to this headline">¶</a></h2>
+<p>The generic point schema described above and its specific instances works well for data localized to a specific latitude and longitude as well as timestamp. However, when considering phenomena with large spatial extent like weather events, a point-based schema can’t on its own capture these regions. In order to represent, index and serve data with large phenomenological extent, we make a minor modification to the generic point schema to form the <em>generic extended objects schema</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code> in the <code class="docutils literal notranslate"><span class="pre">data</span></code> documents is a geoJSON MultiPolygon object that represents the boundaries of the phenomenon, rather than a single geoJSON Point object.</p></li>
+<li><p>In order to preserve per-point information in the interior (boundaries included) of the extended object, the <code class="docutils literal notranslate"><span class="pre">data</span></code> property on the <code class="docutils literal notranslate"><span class="pre">data</span></code> documents is replaced by a <code class="docutils literal notranslate"><span class="pre">raster</span></code> property, which always take the form <code class="docutils literal notranslate"><span class="pre">[longitude,</span> <span class="pre">latitude,</span> <span class="pre">[vector</span> <span class="pre">of</span> <span class="pre">data</span> <span class="pre">objects</span> <span class="pre">associated</span> <span class="pre">with</span> <span class="pre">this</span> <span class="pre">point]]</span></code>. The vector of data objects can be interpreted similarly to the <code class="docutils literal notranslate"><span class="pre">data</span></code> property on other schema, where <code class="docutils literal notranslate"><span class="pre">data_info</span></code> labels the measurements and per-measurement metadata in order.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code> is replaced with <code class="docutils literal notranslate"><span class="pre">basins</span></code>, defined similarly but as a list of such tags, in order to accommodate objects that extend to more than one ocean basin.</p></li>
+</ul>
 </div></blockquote>
-<p><em>Last reviewed 2023-08-11</em></p>
+</div>
+<div class="section" id="atmospheric-river-extended-objects">
+<h2>Atmospheric river extended objects<a class="headerlink" href="#atmospheric-river-extended-objects" title="Permalink to this headline">¶</a></h2>
+<p>Argovis represents the atmospheric river (AR) climatology presented in <a class="reference external" href="https://doi.org/10.1175/MWR-D-13-00168.1">https://doi.org/10.1175/MWR-D-13-00168.1</a> as an extended object dataset.</p>
+<div class="section" id="id35">
+<h3>Generic Metadata Division<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span></code>  all live on the AR metadata documents.</p>
+</div>
+<div class="section" id="id36">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;decimal</span> <span class="pre">hour&gt;_&lt;index</span> <span class="pre">of</span> <span class="pre">phenomenon</span> <span class="pre">at</span> <span class="pre">this</span> <span class="pre">timestep&gt;</span></code></p></li>
+<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">ar</span></code> is the sole metadata document for this collection.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ar-specific-data-record-fields">
+<h3>AR-specific data record fields<a class="headerlink" href="#ar-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of strings</p></li>
+<li><p><strong>description:</strong> flags of possible pathologies from phenomenological boundaty construction</p></li>
+<li><p><strong>current vocabulary:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">annulus</span></code>: this shape wraps around the entire globe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dateline</span></code>: this shape crosses the dateline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">holes</span></code>: this shape has interior holes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">north_pole</span></code> and <code class="docutils literal notranslate"><span class="pre">south_pole</span></code>: this shape covers the respective pole.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noise_added</span></code>: in rare cases, a MultiPolygon will fail to index in mongodb due to the database bug <a class="reference external" href="https://jira.mongodb.org/browse/SERVER-52928">https://jira.mongodb.org/browse/SERVER-52928</a>. In this case, the shape is randomly shifted by much less than the resolution of the original climatology.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manually_corrected</span></code>: in cases of very large ARs, typically annular ARs wrapping the planet near the equator, it can be difficult to correctly define the interior of such a region in MongoDB. In these cases, we place an artificial ‘seam’ in the annulus that is much smaller than the resolution of the original grid and therefore won’t affect geolocation searches, but which makes it easier to describe and index these phenomenological boundaries.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">true_geolocation</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> geojson MultiPolygon</p></li>
+<li><p><strong>description:</strong> the phenomenological boundary automatically generated by the boundary detection algorithm in <a class="reference external" href="https://github.com/argovis/argovis_helpers">https://github.com/argovis/argovis_helpers</a>; added when <code class="docutils literal notranslate"><span class="pre">noise_added</span></code> or <code class="docutils literal notranslate"><span class="pre">manually_corrected</span></code> flags are present to provide the unmodified geolocation.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ar-specific-metadata-record-fields">
+<h3>AR-specific metadata record fields<a class="headerlink" href="#ar-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
+</div>
+<div class="section" id="id37">
+<h3>Implementation<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>
+</ul>
+<p><em>Last reviewed 2024-01-30</em></p>
 </div>
 </div>
 </div>
@@ -1219,7 +1418,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2023, Argovis Collaboration.
+        &#169; Copyright 2024, Argovis Collaboration.
 
     </p>
   </div>
