@@ -548,6 +548,12 @@ Grid-Specific Metadata Record Fields
   - **type:** array of floats
   - **description:** Pressure or depth levels corresponding to each list of measurements in ``data``. Note the same spectrum of levels applies to all measurements in ``data``, as grids are required to have the same level spectrum in order to share a data document. 
 
+- ``level_units``
+
+  - **required:** true
+  - **type:** string
+  - **description:** units associated with the values in the ``levels`` array, typically dbar or m.
+
 - ``snr`` (GLODAP only)
 
   - **required:** false
