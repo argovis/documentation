@@ -133,6 +133,7 @@ Table of contents
 
    ops/deployment
    ops/drifters-aws
+   ops/openshift-ssl
 
 .. toctree::
    :maxdepth: 2
