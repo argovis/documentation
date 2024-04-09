@@ -893,8 +893,9 @@ Generic Extended Objects Schema
 The generic point schema described above and its specific instances works well for data localized to a specific latitude and longitude as well as timestamp. However, when considering phenomena with large spatial extent like weather events, a point-based schema can't on its own capture these regions. In order to represent, index and serve data with large phenomenological extent, we make a minor modification to the generic point schema to form the *generic extended objects schema*:
 
  - ``geolocation`` in the ``data`` documents is a geoJSON MultiPolygon object that represents the boundaries of the phenomenon, rather than a single geoJSON Point object.
- - In order to preserve per-point information in the interior (boundaries included) of the extended object, the ``data`` property on the ``data`` documents is replaced by a ``raster`` property, which always take the form ``[longitude, latitude, [vector of data objects associated with this point]]``. The vector of data objects can be interpreted similarly to the ``data`` property on other schema, where ``data_info`` labels the measurements and per-measurement metadata in order.
  - ``basin`` is replaced with ``basins``, defined similarly but as a list of such tags, in order to accommodate objects that extend to more than one ocean basin.
+
+ Note that the ``data`` key in the ``data`` documents for extended objects works exactly the same as it does for other datasets, but will always include longitude and latitude measurements; these values and the measurement values associated by index with them from the other data vectors capture localized data in the interior of the phenomenological boundary, such as integrated water vapor transport at specific locations inside an atmospheric river.
 
 Atmospheric river extended objects
 ----------------------------------
