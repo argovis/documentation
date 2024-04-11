@@ -970,6 +970,31 @@
 <li><p><strong>description:</strong> units associated with the values in the <code class="docutils literal notranslate"><span class="pre">levels</span></code> array, typically dbar or m.</p></li>
 </ul>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> object</p></li>
+<li><p><strong>description:</strong> describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.center</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of two floats</p></li>
+<li><p><strong>description:</strong> [longitude, latitude] of a point on the grid close to [0,0].</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.spacing</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of two floats</p></li>
+<li><p><strong>description:</strong> [longitude stride, latitude stride] between points on the grid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">/</span> <span class="pre">max](Lon</span> <span class="pre">/</span> <span class="pre">Lat)</span></code></p>
+<ul>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> [minimum / maximum] (longitude / latitude) seen in the dataset</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">snr</span></code> (GLODAP only)</p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
@@ -1244,7 +1269,7 @@
 <li><p>The <code class="docutils literal notranslate"><span class="pre">metadata</span></code> or <code class="docutils literal notranslate"><span class="pre">data</span></code> document must bear a <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> key, which is an ordered list of timestamps corresponding to the times associated with each element in the <code class="docutils literal notranslate"><span class="pre">data</span></code> vectors.</p></li>
 </ul>
 </div></blockquote>
-<p>The observant reader will notice that this is very similar to the gridded products which have a <code class="docutils literal notranslate"><span class="pre">levels</span></code> key indicating the model depths for each entry in their <code class="docutils literal notranslate"><span class="pre">data</span></code> vectors. All other aspects of the generic schema remain consistent between point and timeseries datasets.</p>
+<p>The observant reader will notice that this is very similar to the gridded products which have a <code class="docutils literal notranslate"><span class="pre">levels</span></code> key indicating the model depths for each entry in their <code class="docutils literal notranslate"><span class="pre">data</span></code> vectors. All timeseries metadata documents also include a <code class="docutils literal notranslate"><span class="pre">lattice</span></code> key that is interepreted identically to the lattice metadata for gridded products. All other aspects of the generic schema remain consistent between point and timeseries datasets.</p>
 </div>
 <div class="section" id="noaa-sea-surface-temperature-timeseries">
 <h2>NOAA sea surface temperature timeseries<a class="headerlink" href="#noaa-sea-surface-temperature-timeseries" title="Permalink to this headline">¶</a></h2>
@@ -1400,7 +1425,33 @@
 </div>
 <div class="section" id="ar-specific-metadata-record-fields">
 <h3>AR-specific metadata record fields<a class="headerlink" href="#ar-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> object</p></li>
+<li><p><strong>description:</strong> describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.center</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of two floats</p></li>
+<li><p><strong>description:</strong> [longitude, latitude] of a point on the grid close to [0,0].</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.spacing</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of two floats</p></li>
+<li><p><strong>description:</strong> [longitude stride, latitude stride] between points on the grid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">/</span> <span class="pre">max](Lon</span> <span class="pre">/</span> <span class="pre">Lat)</span></code></p>
+<ul>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> [minimum / maximum] (longitude / latitude) seen in the dataset</p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="id37">
 <h3>Implementation<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
@@ -1408,7 +1459,7 @@
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>
 </ul>
-<p><em>Last reviewed 2024-01-30</em></p>
+<p><em>Last reviewed 2024-04-11</em></p>
 </div>
 </div>
 </div>

@@ -554,6 +554,27 @@ Grid-Specific Metadata Record Fields
   - **type:** string
   - **description:** units associated with the values in the ``levels`` array, typically dbar or m.
 
+- ``lattice``
+
+  - **required:** true
+  - **type:** object
+  - **description:** describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required.
+
+- ``lattice.center``
+
+  - **type:** array of two floats
+  - **description:** [longitude, latitude] of a point on the grid close to [0,0].
+
+- ``lattice.spacing``
+
+  - **type:** array of two floats
+  - **description:** [longitude stride, latitude stride] between points on the grid
+
+- ``[min / max](Lon / Lat)``
+
+  - **type:** float
+  - **description:** [minimum / maximum] (longitude / latitude) seen in the dataset 
+
 - ``snr`` (GLODAP only)
 
   - **required:** false
@@ -789,7 +810,7 @@ The generic point schema described above and its specific instances works well f
  - The ``data`` document no longer has a single ``timestamp`` key, as the data within corresponds to many timestamps.
  - The ``metadata`` or ``data`` document must bear a ``timeseries`` key, which is an ordered list of timestamps corresponding to the times associated with each element in the ``data`` vectors.
 
-The observant reader will notice that this is very similar to the gridded products which have a ``levels`` key indicating the model depths for each entry in their ``data`` vectors. All other aspects of the generic schema remain consistent between point and timeseries datasets.
+The observant reader will notice that this is very similar to the gridded products which have a ``levels`` key indicating the model depths for each entry in their ``data`` vectors. All timeseries metadata documents also include a ``lattice`` key that is interepreted identically to the lattice metadata for gridded products. All other aspects of the generic schema remain consistent between point and timeseries datasets.
 
 NOAA sea surface temperature timeseries
 ---------------------------------------
@@ -939,7 +960,26 @@ AR-specific data record fields
 AR-specific metadata record fields
 ++++++++++++++++++++++++++++++++++
 
-None.
+- ``lattice``
+
+  - **required:** true
+  - **type:** object
+  - **description:** describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required.
+
+- ``lattice.center``
+
+  - **type:** array of two floats
+  - **description:** [longitude, latitude] of a point on the grid close to [0,0].
+
+- ``lattice.spacing``
+
+  - **type:** array of two floats
+  - **description:** [longitude stride, latitude stride] between points on the grid
+
+- ``[min / max](Lon / Lat)``
+
+  - **type:** float
+  - **description:** [minimum / maximum] (longitude / latitude) seen in the dataset 
 
 Implementation
 ++++++++++++++
@@ -947,4 +987,4 @@ Implementation
 - Schema: `https://github.com/argovis/db-schema/blob/main/extended.py <https://github.com/argovis/db-schema/blob/main/extended.py>`_
 - Upload pipeline: `https://github.com/argovis/arShapes <https://github.com/argovis/arShapes>`_
 
-*Last reviewed 2024-01-30*
+*Last reviewed 2024-04-11*
