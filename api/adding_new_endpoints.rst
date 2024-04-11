@@ -19,6 +19,8 @@ Look in ``core-spec.json`` for the three routes ``/tc``, ``/tc/meta`` and ``/tc/
 
 Also see examples of custom routes like ``/argo/bgc``, which may optionally be defined in addition to the conventional routes. These are more freeform and case-by-case routes, often used to return documents from the ``summaries`` collection.
 
+Note that at the time of writing, highly regularized collections like timeseries and extended objects all have exactly one metadata document per collection, and that metadata document has ``_id`` property identical to the route name; you'll need to consider this when specifying your routes.
+
 Note that near the top of this specification, there is a ``tags`` section. Add a tag here that labels your new dataset, if necessary, and use it to group your API endpoints together; this will affect how they are listed in the auto-generated Swagger documentation. Those tags are where to add the ``(experimental)`` note if you're writing API endpoints outside the usual structure of standard Argovis routes.
 
 Once you've written your JSON description of your new routes and return schemas, look in the ``README.md`` file in the API repo for build instructions for the ``templates`` branch. Build the boilerplate with the conventions you find there, make a new templates development branch (perhaps ``templates-dev``, or something more specific), and add and commit your new files to this branch.
@@ -59,6 +61,15 @@ As discussed further in :ref:`api_rate_limit`, user requests to many of Argovis'
  - Update ``standard_routes`` with the first path component of your new routes.
 
 Think carefully at this step about the queries you have allowed via your indexes and query string parameters: are there any that could trigger unindexed lookups, or which could return many (> 1000) documents? You may wish to reconsider allowing these at all, but if you must allow them, at least apply a high token cost to the requests so that they can't be made very rapidly.
+
+Special cases
++++++++++++++
+
+There are a few special cases to tend to, especially around grid and timeseries:
+
+ - For timeseries, don't miss indicating which collections are timeseries in the ``helpers.datatable_stream`` function, as these are handled a little differently due to their schema differences.
+ - Also for timeseries, don't miss updating the collection dictionary in the vocab route logic.
+ - For grids managed by the ``grids/`` routes, don't miss updating ``helpers.find_grid_collection``.
 
 Testing
 -------
@@ -102,4 +113,4 @@ Argovis helpers
 
 Once API launch is complete, consider the necessity to update `https://github.com/argovis/argovis_helpers <https://github.com/argovis/argovis_helpers>`_, the pythonic helper package for Argovis. At a minimum, you'll want to tell that package to slice up temporospatially large requests for your new collection in its ``query`` function; consider possible advantages of adding or updating other helpers simultaneously. Also, consider if these new helpers or API endpoints would do well to be illustrated in a demo in Argovis' collection of `jupyter notebooks <https://github.com/argovis/demo_notebooks>`_.
 
-*Last reviewed 23-03-07*
+*Last reviewed 24-04-11*

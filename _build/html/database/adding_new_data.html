@@ -255,7 +255,7 @@
 <p>Once a plan has been developed and reviewed by a data subject matter expert, add a schema definition script to <a class="reference external" href="https://github.com/argovis/db-schema">https://github.com/argovis/db-schema</a>. Some considerations for this script:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Data and metadata collections for should be named <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">xMeta</span></code>, respectively, where <code class="docutils literal notranslate"><span class="pre">x</span></code> is a short but meaningful label for the dataset, like <code class="docutils literal notranslate"><span class="pre">argo</span></code> or <code class="docutils literal notranslate"><span class="pre">cchdo</span></code>.</p></li>
+<li><p>Data and metadata collections are typically named <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">xMeta</span></code>, respectively, where <code class="docutils literal notranslate"><span class="pre">x</span></code> is a short but meaningful label for the dataset, like <code class="docutils literal notranslate"><span class="pre">argo</span></code> or <code class="docutils literal notranslate"><span class="pre">cchdo</span></code>. In the case of highly regular classes of data which have very few metadata records, like extended objects and timeseries, metadata documents may be lumped together in collections like <code class="docutils literal notranslate"><span class="pre">timeseriesMeta</span></code> and <code class="docutils literal notranslate"><span class="pre">extendedMeta</span></code>.</p></li>
 <li><p>You should have learned in consultation with subject matter experts how they plan on searching this data, which informs the indexes you’ll want to specify in this step. Note that the indexes defined for the data collection in <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">https://github.com/argovis/db-schema/blob/main/tc.py</a> are mandatory for all data collections, but more can be added as needed on a case-by-case basis.</p></li>
 </ul>
 </div></blockquote>
@@ -275,7 +275,7 @@
 <div class="section" id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>At this point, you have enough information to update the docs at <a class="reference internal" href="getting_started.html#db-getting-started"><span class="std std-ref">Getting started with Argovis’ data</span></a> and <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Argovis data schema</span></a>.</p>
-<p><em>Last reviewed 23-03-07</em></p>
+<p><em>Last reviewed 24-04-11</em></p>
 </div>
 </div>
 

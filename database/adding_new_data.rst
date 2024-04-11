@@ -26,7 +26,7 @@ Some considerations at this stage:
 
 Once a plan has been developed and reviewed by a data subject matter expert, add a schema definition script to `https://github.com/argovis/db-schema <https://github.com/argovis/db-schema>`_. Some considerations for this script:
 
- - Data and metadata collections for should be named ``x`` and ``xMeta``, respectively, where ``x`` is a short but meaningful label for the dataset, like ``argo`` or ``cchdo``.
+ - Data and metadata collections are typically named ``x`` and ``xMeta``, respectively, where ``x`` is a short but meaningful label for the dataset, like ``argo`` or ``cchdo``. In the case of highly regular classes of data which have very few metadata records, like extended objects and timeseries, metadata documents may be lumped together in collections like ``timeseriesMeta`` and ``extendedMeta``.
  - You should have learned in consultation with subject matter experts how they plan on searching this data, which informs the indexes you'll want to specify in this step. Note that the indexes defined for the data collection in `https://github.com/argovis/db-schema/blob/main/tc.py <https://github.com/argovis/db-schema/blob/main/tc.py>`_ are mandatory for all data collections, but more can be added as needed on a case-by-case basis.
 
 Once complete, run your script and ensure that you have appropriate empty collections with schema and indexes defined in MongoDB.
@@ -45,4 +45,4 @@ Documentation
 
 At this point, you have enough information to update the docs at :ref:`db_getting_started` and :ref:`schema`.
 
-*Last reviewed 23-03-07*
+*Last reviewed 24-04-11*
