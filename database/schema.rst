@@ -488,22 +488,30 @@ Tropical cyclone records place all generic metadata fields in their metadata rec
 ``_id`` construction
 ++++++++++++++++++++
 
- - Data records ``_id``: ``<TCID>_<YYYY><MM><DD><HH><MM><SS>``, where ``<TCID>`` is the ID of the cyclone measurement from the upstream data source.
- - Metadata records ``_id``: ``<TCID>``
+- Data records ``_id``: ``<TCID>_<YYYY><MM><DD><HH><MM><SS>``, where ``<TCID>`` is the ID of the cyclone measurement from the upstream data source.
+- Metadata records ``_id``: ``<TCID>``
 
 TC-Specific Data Record Fields
 ++++++++++++++++++++++++++++++
 
 Tropical cyclones treat ``timestamp`` and ``basin`` all as required items on the data document. Specific data record fields are as follows:
 
- - ``class``
- - ``record_identifier``
+- ``class`` 
+- ``record_identifier``
+- ``data_warning``
+
+  - **required:** false
+  - **type:** object
+  - **description:** key-value pairs indicating warnings (keys) and further information about each (values)
+  - **current vocabulary (keys):**
+
+    - ``duplicate``: multiple records with the same basin, cyclone number, and timestamp were found in the upstream data. In these cases, the first such record is populated in Argovis and the rest are discarded; this key lists links to the upstream files that contain the discarded duplicates.
 
 TC-Specific Metadata Record Fields
 ++++++++++++++++++++++++++++++++++
 
- - ``name``
- - ``num``
+- ``name``
+- ``num``
 
 Implementation
 ++++++++++++++

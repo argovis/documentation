@@ -892,31 +892,37 @@
 </div>
 <div class="section" id="id10">
 <h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;_&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;HH&gt;&lt;MM&gt;&lt;SS&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code> is the ID of the cyclone measurement from the upstream data source.</p></li>
 <li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code></p></li>
 </ul>
-</div></blockquote>
 </div>
 <div class="section" id="tc-specific-data-record-fields">
 <h3>TC-Specific Data Record Fields<a class="headerlink" href="#tc-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>Tropical cyclones treat <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document. Specific data record fields are as follows:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> object</p></li>
+<li><p><strong>description:</strong> key-value pairs indicating warnings (keys) and further information about each (values)</p></li>
+<li><p><strong>current vocabulary (keys):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">duplicate</span></code>: multiple records with the same basin, cyclone number, and timestamp were found in the upstream data. In these cases, the first such record is populated in Argovis and the rest are discarded; this key lists links to the upstream files that contain the discarded duplicates.</p></li>
 </ul>
-</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="tc-specific-metadata-record-fields">
 <h3>TC-Specific Metadata Record Fields<a class="headerlink" href="#tc-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num</span></code></p></li>
 </ul>
-</div></blockquote>
 </div>
 <div class="section" id="id11">
 <h3>Implementation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
