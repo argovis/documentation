@@ -134,6 +134,7 @@ Table of contents
    ops/deployment
    ops/drifters-aws
    ops/openshift-ssl
+   ops/prometheus
 
 .. toctree::
    :maxdepth: 2
