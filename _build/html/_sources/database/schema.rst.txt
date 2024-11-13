@@ -202,41 +202,82 @@ Argo Schema Extension
 
 Argovis maintains and indexes a full sync of ifremer's argo data, updated nightly. The Argo data and metadata collections extend and implement the generic schema as follows.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+Argo metadata documents
++++++++++++++++++++++++
 
-Argo profiles divide the generic metadata fields between data and metadata records per the following. In general, Argo metadata records describe things that are consistent or slowly changing for a particular physical float, while a data record represents an individual profile.
+Argo metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
- - Data records:
+- ``_id``, constructed as ``<platform>_m<metadata_number>``, where ``<metadata_number>`` counts from 0 and is prefixed with ``m`` to easily distinguish it from cycle number; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the float.
+- ``data_type``
+- ``data_center``
+- ``instrument``
+- ``pi_name``
+- ``platform``
+- ``platform_type``
+- ``fleetmonitoring``
 
-   - ``date_updated_argovis``
-   - ``source``
-   - ``data_warning``
-   - ``data_info``
+  - **required:** false
+  - **type:** string
+  - **description:** URL for this float at https://fleetmonitoring.euro-argo.eu/float/
 
- - Metadata records:
+- ``oceanops``
 
-   - ``data_type``
-   - ``country``
-   - ``data_center``
-   - ``instrument``
-   - ``pi_name``
-   - ``platform``
-   - ``platform_type``
+  - **required:** false
+  - **type:** string
+  - **description:** URL for this float at https://www.ocean-ops.org/board/wa/Platform
 
-``_id`` construction
-++++++++++++++++++++
+- ``positioning_system``
 
- - Data records  ``_id``: ``<platform>_<cycle_number>``
- - Metadata records ``_id``: ``<platform>_m<metadata_number>``, where ``<metadata_number>`` counts from 0 and is prefixed with ``m`` to easily distinguish it from cycle number; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the float.
+  - **required:** false
+  - **type:** string
+  - **description:** positioning system for this float.
+  - **current vocabulary**: see Argo ref table 9
 
-Argo-Specific Data Record Fields
-++++++++++++++++++++++++++++++++
+- ``wmo_inst_type``
 
-Argo treats ``timestamp`` and ``basin`` all as required items on the data document.
+  - **required:** false
+  - **type**: string
+  - **description:** instrument type as indexed by Argo.
+  - **current vocabulary:** see Argo ref table 8
 
-The following fields extend the generic data record for Argo:
+Argo metadata example::
 
+  [
+    {
+      "_id": "3901306_m0",
+      "data_type": "oceanicProfile",
+      "data_center": "AO",
+      "instrument": "profiling_float",
+      "pi_name": [
+        "GREGORY C. JOHNSON"
+      ],
+      "platform": "3901306",
+      "platform_type": "NAVIS_A",
+      "fleetmonitoring": "https://fleetmonitoring.euro-argo.eu/float/3901306",
+      "oceanops": "https://www.ocean-ops.org/board/wa/Platform?ref=3901306",
+      "positioning_system": "GPS",
+      "wmo_inst_type": "863"
+    }
+  ]
+
+Argo data documents
++++++++++++++++++++
+
+Argo data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<platform>_<cycle_number>``
+- ``metadata``
+- ``geolocation``
+- ``basin``, required for Argo
+- ``timestamp``, required for Argo
+- ``data``
+- ``data_info``
+- ``data_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.date_updated``
+- ``data_warning``
 - ``cycle_number``
 
   - **required:** true
@@ -271,44 +312,140 @@ The following fields extend the generic data record for Argo:
   - **description:** sampling scheme for this profile.
   - **current vocabulary:** see Argo ref table 16
 
-Argo-Specific Metadata Record Fields
-++++++++++++++++++++++++++++++++++++
+Argo data schema example::
 
-The following fields extend the generic metadata records for Argo:
+  [
+    {
+      "_id": "3901306_196",
+      "geolocation": {
+        "type": "Point",
+        "coordinates": [
+          -128.3021,
+          0.4438
+        ]
+      },
+      "basin": 2,
+      "timestamp": "2024-11-03T05:32:52.000Z",
+      "date_updated_argovis": "2024-11-04T06:35:09.597Z",
+      "source": [
+        {
+          "source": [
+            "argo_core"
+          ],
+          "url": "ftp://ftp.ifremer.fr/ifremer/argo/dac/aoml/3901306/profiles/R3901306_196.nc",
+          "date_updated": "2024-11-03T08:01:15.000Z"
+        }
+      ],
+      "cycle_number": 196,
+      "geolocation_argoqc": 1,
+      "profile_direction": "A",
+      "timestamp_argoqc": 1,
+      "vertical_sampling_scheme": "Primary sampling: averaged",
+      "data": [
+        [
+          4.27,
+          6.07,
+          ...
+          1898.159912,
+          1948.329956
+        ],
+        [
+          1,
+          1,
+          ...
+          1,
+          1
+        ],
+        [
+          33.792,
+          33.764999,
+          ...
+          35.596699,
+          35.589199
+        ],
+        [
+          3,
+          3,
+          ...
+          3,
+          3
+        ],
+        [
+          23.306,
+          23.229,
+          ...
+          2.4614,
+          2.3181
+        ],
+        [
+          1,
+          1,
+          ...
+          1,
+          1
+        ]
+      ],
+      "data_info": [
+        [
+          "pressure",
+          "pressure_argoqc",
+          "salinity",
+          "salinity_argoqc",
+          "temperature",
+          "temperature_argoqc"
+        ],
+        [
+          "units",
+          "data_keys_mode"
+        ],
+        [
+          [
+            "decibar",
+            "A"
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            "psu",
+            "A"
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            "degree_Celsius",
+            "A"
+          ],
+          [
+            null,
+            null
+          ]
+        ]
+      ],
+      "metadata": [
+        "3901306_m0"
+      ]
+    }
+  ]
 
-- ``fleetmonitoring``
 
-  - **required:** false
-  - **type:** string
-  - **description:** URL for this float at https://fleetmonitoring.euro-argo.eu/float/
 
-- ``oceanops``
 
-  - **required:** false
-  - **type:** string
-  - **description:** URL for this float at https://www.ocean-ops.org/board/wa/Platform
 
-- ``positioning_system``
 
-  - **required:** false
-  - **type:** string
-  - **description:** positioning system for this float.
-  - **current vocabulary**: see Argo ref table 9
 
-- ``wmo_inst_type``
 
-  - **required:** false
-  - **type**: string
-  - **description:** instrument type as indexed by Argo.
-  - **current vocabulary:** see Argo ref table 8
 
-Implementation
-++++++++++++++
 
-Implementation of Argo's schema and pipelines to load the data from ifremer can be found at the following links.
 
-- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
-- Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
+
+
+
+
+
 
 CCHDO Schema Extension
 ------------------------
