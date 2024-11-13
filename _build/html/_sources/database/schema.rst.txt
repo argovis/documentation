@@ -79,7 +79,7 @@ In general, data records are intended to represent data that is unique or freque
 
 - ``data``
 
-  - **required:** true in MongoDB; may be filtered out in API.
+  - **required:** true in MongoDB; may be filtered out in API on request.
   - **type:** array of arrays of floats, ints, strings and / or nulls
   - **description:** a matrix of per-level measurements and flags, where ``data[i][j]`` represents the ith variable as ordered by ``data_info[0]``, at the jth depth or pressure level.
 
@@ -431,71 +431,619 @@ Argo data schema example::
     }
   ]
 
+Implementation
+++++++++++++++
 
+Implementation of Argo's schema and pipelines to load the data from ifremer can be found at the following links.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
+- Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
 
 CCHDO Schema Extension
-------------------------
+----------------------
 
 Argovis serves a selection of ship-based profiles curated by our colleagues at CCHDO. The CCHDO data and metadata collections extend and implement the generic schema as follows.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+CCHDO metadata documents
+++++++++++++++++++++++++
 
-CCHDO profiles divide the generic metadata fields between data and metadata records per the following. In general, CCHDO metadata records describe things that are consistent or slowly changing for a particular CCHDO cruise, while a data record represents a single profile.
+CCHDO metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
- - Data records:
+- ``_id``, constructed as ``<cchdo_cruise_id>_m<metadata_number>``,  where ``<metadata_number>``` counts from 0 and is prefixed with ``m`` similar to Argo; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the cruise.
+- ``date_updated_argovis``
+- ``data_type``
+- ``country``
+- ``data_center``
+- ``instrument``
+- ``pi_name``
+- ``expocode``
 
-   - ``source``
-   - ``data_warning``
-   - ``data_info``
+  - **required:** true
+  - **type:** string
+  - **description:** NODC expedition code
 
- - Metadata records:
+- ``file_expocode``
 
-   - ``date_updated_argovis``  
-   - ``data_type``
-   - ``country``
-   - ``data_center``
-   - ``instrument``
-   - ``pi_name``
+  - **required:** false
+  - **type:** string
+  - **description:** TBD
 
-``_id`` construction
+- ``cchdo_cruise_id``
+
+  - **required:** true
+  - **type:** int
+  - **description:** CCHDO cruise identifier
+
+- ``woce_lines``
+
+  - **required:** true
+  - **type:** array of strings
+  - **description:** World Ocean Circulation Experiment line identifiers
+
+- ``positioning_system``
+
+  - **required:** false
+  - **type:** string
+  - **description:** Profile positioning system used to fix geolocation.
+
+CCHDO metadata example::
+
+  [
+    {
+      "_id": "2366_m0",
+      "date_updated_argovis": "2024-08-16T21:29:31.526Z",
+      "data_type": "oceanicProfile",
+      "country": "45",
+      "data_center": "CCHDO",
+      "instrument": "ship_btl",
+      "pi_name": [
+        "Peter Croot"
+      ],
+      "expocode": "45CE20170427",
+      "file_expocode": "74CE17007",
+      "woce_lines": [
+        "A02"
+      ],
+      "cchdo_cruise_id": 2366,
+      "positioning_system": "GPS"
+    }
+  ]
+
+
+CCHDO data documents
 ++++++++++++++++++++
 
- - Data records ``_id``: ``expo_<expocode>_sta_<station>_cast_<cast>``
- - Metadata records ``_id``: ``<cchdo_cruise_id>_m<metadata_number>``,  where ``<metadata_number>``` counts from 0 and is prefixed with ``m`` similar to Argo; allows distinctions to be made if a slow-changing metadata value, like ``pi_name``, changes over the lifetime of the cruise.
+CCHDO data documents carry the following properties; any property not explained here refers to the generic data schema.
 
-CCHDO-Specific Data Record Fields
-+++++++++++++++++++++++++++++++++++
+- ``_id``: constructed as ``expo_<expocode>_sta_<station>_cast_<cast>``
+- ``metadata``
+- ``geolocation``
+- ``basin``, required for CCHDO
+- ``timestamp``, required for CCHDO
+- ``data_warning``
+- ``data``
+- ``data_info``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.cruise_url``
 
-CCHDO treats ``timestamp`` and ``basin`` all as required items on the data document.
+  - **required:** false
+  - **type:** string
+  - **description:** TBD
 
-The following fields extend the generic data records for CCHDO:
+- ``source.file_name``
 
- - ``station``
- - ``cast``
+  - **required:** false
+  - **type:** string
+  - **description:** TBD
+  
 
-CCHDO-Specific Metadata Record Fields
-+++++++++++++++++++++++++++++++++++++++
+- ``btm_depth``
 
-The following fields extend the generic metadata records for CCHDO:
+  - **required:** false
+  - **type:** float
+  - **description:** bottom depth at the location of the profile
 
- - ``expocode``
- - ``cchdo_cruise_id``
- - ``woce_lines``
+- ``file_hash``
+
+  - **required:** false
+  - **type:** string
+  - **description:** TBD
+
+- ``station``
+
+  - **required:** true
+  - **type:** string
+  - **description:** station number
+
+- ``cast``
+
+  - **required:** true
+  - **type:** integer
+  - **description:** cast number
+
+CCHDO data example::
+
+  [
+    {
+      "_id": "expo_45CE20170427_sta_012_cast_001_type_btl",
+      "metadata": [
+        "2366_m0"
+      ],
+      "geolocation": {
+        "coordinates": [
+          -45.647,
+          42.242
+        ],
+        "type": "Point"
+      },
+      "basin": 1,
+      "timestamp": "2017-05-04T00:00:00.000Z",
+      "file_hash": "66bb8a4a9de915131470726211a05771242389a30f9a8f10dab396b262f53a98",
+      "source": [
+        {
+          "source": [
+            "cchdo_go-ship"
+          ],
+          "cruise_url": "https://cchdo.ucsd.edu/cruise/45CE20170427",
+          "url": "https://cchdo.ucsd.edu/data/39157/74CE17007_bottle.nc",
+          "file_name": "74CE17007_bottle.nc"
+        }
+      ],
+      "data_info": [
+        [
+          "bottle_number",
+          "bottle_salinity",
+          "bottle_salinity_woceqc",
+          "doxy_bfile",
+          "doxy_bfile_woceqc",
+          "salinity_bfile",
+          "salinity_bfile_woceqc",
+          "temperature_bfile",
+          "temperature_bfile_woceqc",
+          "nitrate",
+          "nitrate_woceqc",
+          "nitrite",
+          "nitrite_nitrate",
+          "nitrite_nitrate_woceqc",
+          "nitrite_woceqc",
+          "oxygen",
+          "oxygen_woceqc",
+          "phosphate",
+          "phosphate_woceqc",
+          "pressure",
+          "sample",
+          "silicate",
+          "silicate_woceqc",
+          "total_alkalinity",
+          "total_alkalinity_woceqc",
+          "total_carbon",
+          "total_carbon_woceqc"
+        ],
+        [
+          "units",
+          "reference_scale",
+          "data_keys_mapping",
+          "data_source_standard_names",
+          "data_source_units",
+          "data_source_reference_scale"
+        ],
+        [
+          [
+            null,
+            null,
+            "bottle_number",
+            null,
+            null,
+            null
+          ],
+          [
+            "psu",
+            "PSS-78",
+            "bottle_salinity",
+            "sea_water_practical_salinity",
+            "1",
+            "PSS-78"
+          ],
+          [
+            null,
+            null,
+            "bottle_salinity_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "ctd_oxygen",
+            "moles_of_oxygen_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "ctd_oxygen_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "psu",
+            "PSS-78",
+            "ctd_salinity",
+            "sea_water_practical_salinity",
+            "1",
+            "PSS-78"
+          ],
+          [
+            null,
+            null,
+            "ctd_salinity_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "Celsius",
+            "ITS-90",
+            "ctd_temperature",
+            "sea_water_temperature",
+            "degC",
+            "ITS-90"
+          ],
+          [
+            null,
+            null,
+            "ctd_temperature_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "nitrate",
+            "moles_of_nitrate_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "nitrate_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "nitrite",
+            "moles_of_nitrite_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "nitrite_nitrate",
+            "moles_of_nitrate_and_nitrite_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "nitrite_nitrate_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            "nitrite_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "oxygen",
+            "moles_of_oxygen_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "oxygen_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "phosphate",
+            "moles_of_phosphate_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "phosphate_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "decibar",
+            null,
+            "pressure",
+            "sea_water_pressure",
+            "dbar",
+            null
+          ],
+          [
+            null,
+            null,
+            "sample",
+            null,
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "silicate",
+            "moles_of_silicate_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "silicate_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "total_alkalinity",
+            null,
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "total_alkalinity_qc",
+            "status_flag",
+            null,
+            null
+          ],
+          [
+            "micromole/kg",
+            null,
+            "total_carbon",
+            "moles_of_dissolved_inorganic_carbon_per_unit_mass_in_sea_water",
+            "umol/kg",
+            null
+          ],
+          [
+            null,
+            null,
+            "total_carbon_qc",
+            "status_flag",
+            null,
+            null
+          ]
+        ]
+      ],
+      "data": [
+        [
+          "24",
+          "23",
+          ...
+          "2",
+          "1"
+        ],
+        [
+          36.428,
+          36.428,
+          ...
+          null,
+          34.883
+        ],
+        [
+          2,
+          2,
+          ...
+          9,
+          2
+        ],
+        [
+          224.086,
+          223.71,
+          ...
+          250.268,
+          250.518
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          36.4278,
+          36.4283,
+          ...
+          34.884,
+          34.8839
+        ],
+        [
+          1,
+          1,
+          ...
+          1,
+          1
+        ],
+        [
+          17.1115,
+          17.1162,
+          ...
+          2.2466,
+          2.2478
+        ],
+        [
+          1,
+          1,
+          ...
+          1,
+          1
+        ],
+        [
+          2.55,
+          2.37,
+          ...
+          18,
+          19.25
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          0.14,
+          0.13,
+          ...
+          0,
+          0
+        ],
+        [
+          2.68,
+          2.5,
+          ...
+          18.04,
+          19.28
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          229.2,
+          231.4,
+          ...
+          267.1,
+          267.6
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          ...
+          1.3,
+          1.33
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          10.486,
+          31.298,
+          ...
+          4699.661,
+          4712.712
+        ],
+        [
+          "100241",
+          "100240",
+          ...
+          "100219",
+          "100218"
+        ],
+        [
+          0.91,
+          0.97,
+          ...
+          32.62,
+          36.67
+        ],
+        [
+          3,
+          3,
+          ...
+          2,
+          2
+        ],
+        [
+          2385.9,
+          2385.8,
+          ...
+          2328.9,
+          2328.9
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ],
+        [
+          2103.2,
+          2104.4,
+          ...
+          2168.9,
+          2168.5
+        ],
+        [
+          2,
+          2,
+          ...
+          2,
+          2
+        ]
+      ],
+      "cast": 1,
+      "station": "12",
+      "btm_depth": null
+    }
+  ]
 
 Implementation
 ++++++++++++++
@@ -503,7 +1051,17 @@ Implementation
 Implementation of CCHDO's schema and pipelines to load the data from CCHDO can be found at the following links.
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/cchdo.py <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_
-- Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3 <https://github.com/BillMills/argovis_convert_netcdf_to_json/tree/2022Q3>`_ for schema compliance and mongo upload.
+- Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/bkatiemills/argovis_convert_netcdf_to_json/tree/2023Q3 <https://github.com/bkatiemills/argovis_convert_netcdf_to_json/tree/2023Q3>`_ for schema compliance and mongo upload.
+
+
+
+
+
+
+
+
+
+
 
 Drifter Schema Extension
 ------------------------
