@@ -38,8 +38,8 @@ Generic Point Schema
 
 As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema for our point-like datasets. Subsequent sections describe how specific datasets extend and implement these core definitions.
 
-Generic Data Schema
-+++++++++++++++++++
+Generic Point Data Schema
++++++++++++++++++++++++++
 
 In general, data records are intended to represent data that is unique or frequently changing per longitude / latitude / timestamp triple, in order to support efficient temporospatial indexing of these records in Mongodb. All data records contain the following fields:
 
@@ -83,8 +83,8 @@ In general, data records are intended to represent data that is unique or freque
   - **type:** array of arrays of floats, ints, strings and / or nulls
   - **description:** a matrix of per-level measurements and flags, where ``data[i][j]`` represents the ith variable as ordered by ``data_info[0]``, at the jth depth or pressure level.
 
-Generic Metadata Schema
-+++++++++++++++++++++++
+Generic Point Metadata Schema
++++++++++++++++++++++++++++++
 
 In general, metadata records in Argovis are meant to factor out constant or infrequently-changing data from the data records. They only have one required field:
 
@@ -196,6 +196,12 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
   - **required:** false
   - **type:** string
   - **description:** make or model of the platform.
+
+- ``levels``
+
+  - **required:** case
+  - **type:** array of floats
+  - **description:** Pressure or depth levels corresponding by index to each list of measurements in ``data``. Note this parameter only makes sense and only is used when the measurements in the data vectors fall on regular levels, such as for gridded or interpolated products. 
 
 Argo Schema Extension
 ---------------------
@@ -1654,7 +1660,7 @@ Argo trajectory data documents carry the following properties; any property not 
   - **type:** geojson Point
   - **description:** TBD
 
-- ``timestamp``, taken as the midpoint timestamp from the upstream file.
+- ``timestamp``, taken as the midpoint timestamp from the upstream file, required for Argo trajectories
 - ``timestamp_descending``
 
   - **required:** true
