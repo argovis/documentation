@@ -102,10 +102,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#cchdo-schema-extension">CCHDO Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#drifter-schema-extension">Drifter Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argo-trajectory-schema-extension">Argo trajectory schema extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#argo-trajectory-data">Argo trajectory data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a></li>
@@ -166,85 +166,79 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#drifter-schema-extension">Drifter Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-division">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id-construction"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drifter-specific-data-record-fields">Drifter-Specific Data Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drifter-specific-metadata-record-fields">Drifter-Specific Metadata Record Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drifter-metadata-documents">Drifter metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drifter-data-documents">Drifter data documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tc-specific-data-record-fields">TC-Specific Data Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tc-specific-metadata-record-fields">TC-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tropical-cyclone-metadata-documents">Tropical cyclone metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tropical-cyclone-data-documents">Tropical cyclone data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-trajectory-schema-extension">Argo trajectory schema extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-metadata-documents">Argo trajectory metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-data-documents">Argo trajectory data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-division">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id-construction"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid-specific-data-record-fields">Grid-Specific Data Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid-specific-metadata-record-fields">Grid-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-specific-data-record-fields">Easy Ocean-Specific Data Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-specific-metadata-record-fields">Easy Ocean-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argone-specific-data-record-fields">ARGONE-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argone-specific-metadata-record-fields">ARGONE-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">Implementation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#argo-trajectory-data">Argo trajectory data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-specific-data-record-fields">Argo trajectory-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#argo-trajectory-specific-metadata-record-fields">Argo trajectory-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-data-record-fields">NOAA sst-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-metadata-record-fields">NOAA sst-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id23">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-data-record-fields">Copernicus sla-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-metadata-record-fields">Copernicus sla-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id25">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id27">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id28"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-data-record-fields">CCMP wind-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-metadata-record-fields">CCMP wind-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id29">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id31">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id32"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ar-specific-data-record-fields">AR-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ar-specific-metadata-record-fields">AR-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id33">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -610,23 +604,21 @@
 </li>
 </ul>
 <p>Argo metadata example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;3901306_m0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;oceanicProfile&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;data_center&quot;</span><span class="p">:</span> <span class="s2">&quot;AO&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;instrument&quot;</span><span class="p">:</span> <span class="s2">&quot;profiling_float&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;pi_name&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;GREGORY C. JOHNSON&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;3901306&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;platform_type&quot;</span><span class="p">:</span> <span class="s2">&quot;NAVIS_A&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;fleetmonitoring&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fleetmonitoring.euro-argo.eu/float/3901306&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;oceanops&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.ocean-ops.org/board/wa/Platform?ref=3901306&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;positioning_system&quot;</span><span class="p">:</span> <span class="s2">&quot;GPS&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;wmo_inst_type&quot;</span><span class="p">:</span> <span class="s2">&quot;863&quot;</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;3901306_m0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;oceanicProfile&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_center&quot;</span><span class="p">:</span> <span class="s2">&quot;AO&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;instrument&quot;</span><span class="p">:</span> <span class="s2">&quot;profiling_float&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;pi_name&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;GREGORY C. JOHNSON&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;3901306&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;platform_type&quot;</span><span class="p">:</span> <span class="s2">&quot;NAVIS_A&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fleetmonitoring&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fleetmonitoring.euro-argo.eu/float/3901306&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;oceanops&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.ocean-ops.org/board/wa/Platform?ref=3901306&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;positioning_system&quot;</span><span class="p">:</span> <span class="s2">&quot;GPS&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;wmo_inst_type&quot;</span><span class="p">:</span> <span class="s2">&quot;863&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -688,122 +680,120 @@
 </li>
 </ul>
 <p>Argo data schema example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;3901306_196&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="o">-</span><span class="mf">128.3021</span><span class="p">,</span>
-        <span class="mf">0.4438</span>
-      <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-11-03T05:32:52.000Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-11-04T06:35:09.597Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
-          <span class="s2">&quot;argo_core&quot;</span>
-        <span class="p">],</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;ftp://ftp.ifremer.fr/ifremer/argo/dac/aoml/3901306/profiles/R3901306_196.nc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;date_updated&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-11-03T08:01:15.000Z&quot;</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;cycle_number&quot;</span><span class="p">:</span> <span class="mi">196</span><span class="p">,</span>
-    <span class="s2">&quot;geolocation_argoqc&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;profile_direction&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;timestamp_argoqc&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;vertical_sampling_scheme&quot;</span><span class="p">:</span> <span class="s2">&quot;Primary sampling: averaged&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="mf">4.27</span><span class="p">,</span>
-        <span class="mf">6.07</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">1898.159912</span><span class="p">,</span>
-        <span class="mf">1948.329956</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="mf">33.792</span><span class="p">,</span>
-        <span class="mf">33.764999</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">35.596699</span><span class="p">,</span>
-        <span class="mf">35.589199</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="mi">3</span><span class="p">,</span>
-        <span class="mi">3</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">3</span><span class="p">,</span>
-        <span class="mi">3</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="mf">23.306</span><span class="p">,</span>
-        <span class="mf">23.229</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">2.4614</span><span class="p">,</span>
-        <span class="mf">2.3181</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span>
-      <span class="p">]</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pressure_argoqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;salinity&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;salinity_argoqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;temperature&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;temperature_argoqc&quot;</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;units&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;data_keys_mode&quot;</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;decibar&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;A&quot;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;psu&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;A&quot;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;degree_Celsius&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;A&quot;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">]</span>
-      <span class="p">]</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;3901306_m0&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;3901306_196&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">128.3021</span><span class="p">,</span>
+      <span class="mf">0.4438</span>
     <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-11-03T05:32:52.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-11-04T06:35:09.597Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;argo_core&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;ftp://ftp.ifremer.fr/ifremer/argo/dac/aoml/3901306/profiles/R3901306_196.nc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;date_updated&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-11-03T08:01:15.000Z&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;cycle_number&quot;</span><span class="p">:</span> <span class="mi">196</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation_argoqc&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;profile_direction&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp_argoqc&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;vertical_sampling_scheme&quot;</span><span class="p">:</span> <span class="s2">&quot;Primary sampling: averaged&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="mf">4.27</span><span class="p">,</span>
+      <span class="mf">6.07</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">1898.159912</span><span class="p">,</span>
+      <span class="mf">1948.329956</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">33.792</span><span class="p">,</span>
+      <span class="mf">33.764999</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">35.596699</span><span class="p">,</span>
+      <span class="mf">35.589199</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">3</span><span class="p">,</span>
+      <span class="mi">3</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">3</span><span class="p">,</span>
+      <span class="mi">3</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">23.306</span><span class="p">,</span>
+      <span class="mf">23.229</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">2.4614</span><span class="p">,</span>
+      <span class="mf">2.3181</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pressure_argoqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_argoqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_argoqc&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data_keys_mode&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;decibar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;A&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;psu&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;A&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degree_Celsius&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;A&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;3901306_m0&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -867,26 +857,24 @@
 </li>
 </ul>
 <p>CCHDO metadata example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2366_m0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-08-16T21:29:31.526Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;oceanicProfile&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;45&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;data_center&quot;</span><span class="p">:</span> <span class="s2">&quot;CCHDO&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;instrument&quot;</span><span class="p">:</span> <span class="s2">&quot;ship_btl&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;pi_name&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;Peter Croot&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;expocode&quot;</span><span class="p">:</span> <span class="s2">&quot;45CE20170427&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;file_expocode&quot;</span><span class="p">:</span> <span class="s2">&quot;74CE17007&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;woce_lines&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;A02&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;cchdo_cruise_id&quot;</span><span class="p">:</span> <span class="mi">2366</span><span class="p">,</span>
-    <span class="s2">&quot;positioning_system&quot;</span><span class="p">:</span> <span class="s2">&quot;GPS&quot;</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2366_m0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-08-16T21:29:31.526Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;oceanicProfile&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;45&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_center&quot;</span><span class="p">:</span> <span class="s2">&quot;CCHDO&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;instrument&quot;</span><span class="p">:</span> <span class="s2">&quot;ship_btl&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;pi_name&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;Peter Croot&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;expocode&quot;</span><span class="p">:</span> <span class="s2">&quot;45CE20170427&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;file_expocode&quot;</span><span class="p">:</span> <span class="s2">&quot;74CE17007&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;woce_lines&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;A02&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;cchdo_cruise_id&quot;</span><span class="p">:</span> <span class="mi">2366</span><span class="p">,</span>
+  <span class="s2">&quot;positioning_system&quot;</span><span class="p">:</span> <span class="s2">&quot;GPS&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -949,485 +937,483 @@
 </li>
 </ul>
 <p>CCHDO data example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;expo_45CE20170427_sta_012_cast_001_type_btl&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;2366_m0&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;expo_45CE20170427_sta_012_cast_001_type_btl&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;2366_m0&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">45.647</span><span class="p">,</span>
+      <span class="mf">42.242</span>
     <span class="p">],</span>
-    <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="o">-</span><span class="mf">45.647</span><span class="p">,</span>
-        <span class="mf">42.242</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-05-04T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;file_hash&quot;</span><span class="p">:</span> <span class="s2">&quot;66bb8a4a9de915131470726211a05771242389a30f9a8f10dab396b262f53a98&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;cchdo_go-ship&quot;</span>
       <span class="p">],</span>
-      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-05-04T00:00:00.000Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;file_hash&quot;</span><span class="p">:</span> <span class="s2">&quot;66bb8a4a9de915131470726211a05771242389a30f9a8f10dab396b262f53a98&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
-          <span class="s2">&quot;cchdo_go-ship&quot;</span>
-        <span class="p">],</span>
-        <span class="s2">&quot;cruise_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://cchdo.ucsd.edu/cruise/45CE20170427&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://cchdo.ucsd.edu/data/39157/74CE17007_bottle.nc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s2">&quot;74CE17007_bottle.nc&quot;</span>
-      <span class="p">}</span>
+      <span class="s2">&quot;cruise_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://cchdo.ucsd.edu/cruise/45CE20170427&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://cchdo.ucsd.edu/data/39157/74CE17007_bottle.nc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s2">&quot;74CE17007_bottle.nc&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;bottle_number&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;bottle_salinity&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;bottle_salinity_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;doxy_bfile&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;doxy_bfile_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_bfile&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_bfile_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_bfile&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_bfile_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nitrate&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nitrate_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nitrite&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nitrite_nitrate&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nitrite_nitrate_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nitrite_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;phosphate&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;phosphate_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;total_alkalinity&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;total_alkalinity_woceqc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;total_carbon&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;total_carbon_woceqc&quot;</span>
     <span class="p">],</span>
-    <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;bottle_number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;bottle_salinity&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;bottle_salinity_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;doxy_bfile&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;doxy_bfile_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;salinity_bfile&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;salinity_bfile_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;temperature_bfile&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;temperature_bfile_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nitrate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nitrate_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nitrite&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nitrite_nitrate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nitrite_nitrate_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nitrite_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;oxygen_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;phosphate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;phosphate_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;silicate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;silicate_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;total_alkalinity&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;total_alkalinity_woceqc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;total_carbon&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;total_carbon_woceqc&quot;</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;units&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;reference_scale&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;data_keys_mapping&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;data_source_standard_names&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;data_source_units&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;data_source_reference_scale&quot;</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;bottle_number&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;psu&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;PSS-78&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;bottle_salinity&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;sea_water_practical_salinity&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;PSS-78&quot;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;bottle_salinity_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;ctd_oxygen&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_oxygen_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;ctd_oxygen_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;psu&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;PSS-78&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;ctd_salinity&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;sea_water_practical_salinity&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;PSS-78&quot;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;ctd_salinity_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;Celsius&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;ITS-90&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;ctd_temperature&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;sea_water_temperature&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;degC&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;ITS-90&quot;</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;ctd_temperature_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;nitrate&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_nitrate_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;nitrate_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;nitrite&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_nitrite_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;nitrite_nitrate&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_nitrate_and_nitrite_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;nitrite_nitrate_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;nitrite_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_oxygen_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;oxygen_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;phosphate&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_phosphate_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;phosphate_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;decibar&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;sea_water_pressure&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;dbar&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;silicate&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_silicate_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;silicate_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;total_alkalinity&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;total_alkalinity_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;total_carbon&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;moles_of_dissolved_inorganic_carbon_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="s2">&quot;total_carbon_qc&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
-          <span class="n">null</span><span class="p">,</span>
-          <span class="n">null</span>
-        <span class="p">]</span>
-      <span class="p">]</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;reference_scale&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data_keys_mapping&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data_source_standard_names&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data_source_units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data_source_reference_scale&quot;</span>
     <span class="p">],</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
       <span class="p">[</span>
-        <span class="s2">&quot;24&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;23&quot;</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;1&quot;</span>
-      <span class="p">],</span>
-      <span class="p">[</span>
-        <span class="mf">36.428</span><span class="p">,</span>
-        <span class="mf">36.428</span><span class="p">,</span>
-        <span class="o">...</span>
         <span class="n">null</span><span class="p">,</span>
-        <span class="mf">34.883</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;bottle_number&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">9</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;psu&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PSS-78&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bottle_salinity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sea_water_practical_salinity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PSS-78&quot;</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">224.086</span><span class="p">,</span>
-        <span class="mf">223.71</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">250.268</span><span class="p">,</span>
-        <span class="mf">250.518</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;bottle_salinity_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;ctd_oxygen&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_oxygen_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">36.4278</span><span class="p">,</span>
-        <span class="mf">36.4283</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">34.884</span><span class="p">,</span>
-        <span class="mf">34.8839</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;ctd_oxygen_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span>
+        <span class="s2">&quot;psu&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PSS-78&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ctd_salinity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sea_water_practical_salinity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PSS-78&quot;</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">17.1115</span><span class="p">,</span>
-        <span class="mf">17.1162</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">2.2466</span><span class="p">,</span>
-        <span class="mf">2.2478</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;ctd_salinity_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">1</span>
+        <span class="s2">&quot;Celsius&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ITS-90&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ctd_temperature&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sea_water_temperature&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;degC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ITS-90&quot;</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">2.55</span><span class="p">,</span>
-        <span class="mf">2.37</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">18</span><span class="p">,</span>
-        <span class="mf">19.25</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;ctd_temperature_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;nitrate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_nitrate_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">0.14</span><span class="p">,</span>
-        <span class="mf">0.13</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">0</span><span class="p">,</span>
-        <span class="mi">0</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;nitrate_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">2.68</span><span class="p">,</span>
-        <span class="mf">2.5</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">18.04</span><span class="p">,</span>
-        <span class="mf">19.28</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;nitrite&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_nitrite_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;nitrite_nitrate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_nitrate_and_nitrite_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;nitrite_nitrate_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">229.2</span><span class="p">,</span>
-        <span class="mf">231.4</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">267.1</span><span class="p">,</span>
-        <span class="mf">267.6</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;nitrite_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_oxygen_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">0</span><span class="p">,</span>
-        <span class="mi">0</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">1.3</span><span class="p">,</span>
-        <span class="mf">1.33</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;oxygen_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;phosphate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_phosphate_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">10.486</span><span class="p">,</span>
-        <span class="mf">31.298</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">4699.661</span><span class="p">,</span>
-        <span class="mf">4712.712</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;phosphate_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="s2">&quot;100241&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;100240&quot;</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="s2">&quot;100219&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;100218&quot;</span>
+        <span class="s2">&quot;decibar&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sea_water_pressure&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dbar&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">0.91</span><span class="p">,</span>
-        <span class="mf">0.97</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">32.62</span><span class="p">,</span>
-        <span class="mf">36.67</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">3</span><span class="p">,</span>
-        <span class="mi">3</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;silicate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_silicate_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">2385.9</span><span class="p">,</span>
-        <span class="mf">2385.8</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">2328.9</span><span class="p">,</span>
-        <span class="mf">2328.9</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;silicate_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;total_alkalinity&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mf">2103.2</span><span class="p">,</span>
-        <span class="mf">2104.4</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mf">2168.9</span><span class="p">,</span>
-        <span class="mf">2168.5</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;total_alkalinity_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">],</span>
       <span class="p">[</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="o">...</span>
-        <span class="mi">2</span><span class="p">,</span>
-        <span class="mi">2</span>
+        <span class="s2">&quot;micromole/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;total_carbon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles_of_dissolved_inorganic_carbon_per_unit_mass_in_sea_water&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;umol/kg&quot;</span><span class="p">,</span>
+        <span class="n">null</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;total_carbon_qc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;status_flag&quot;</span><span class="p">,</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="n">null</span>
       <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;24&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;23&quot;</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;1&quot;</span>
     <span class="p">],</span>
-    <span class="s2">&quot;cast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;station&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;btm_depth&quot;</span><span class="p">:</span> <span class="n">null</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+    <span class="p">[</span>
+      <span class="mf">36.428</span><span class="p">,</span>
+      <span class="mf">36.428</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="mf">34.883</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">9</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">224.086</span><span class="p">,</span>
+      <span class="mf">223.71</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">250.268</span><span class="p">,</span>
+      <span class="mf">250.518</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">36.4278</span><span class="p">,</span>
+      <span class="mf">36.4283</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">34.884</span><span class="p">,</span>
+      <span class="mf">34.8839</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">17.1115</span><span class="p">,</span>
+      <span class="mf">17.1162</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">2.2466</span><span class="p">,</span>
+      <span class="mf">2.2478</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2.55</span><span class="p">,</span>
+      <span class="mf">2.37</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">18</span><span class="p">,</span>
+      <span class="mf">19.25</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.14</span><span class="p">,</span>
+      <span class="mf">0.13</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2.68</span><span class="p">,</span>
+      <span class="mf">2.5</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">18.04</span><span class="p">,</span>
+      <span class="mf">19.28</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">229.2</span><span class="p">,</span>
+      <span class="mf">231.4</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">267.1</span><span class="p">,</span>
+      <span class="mf">267.6</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">1.3</span><span class="p">,</span>
+      <span class="mf">1.33</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">10.486</span><span class="p">,</span>
+      <span class="mf">31.298</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">4699.661</span><span class="p">,</span>
+      <span class="mf">4712.712</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;100241&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;100240&quot;</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="s2">&quot;100219&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;100218&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.91</span><span class="p">,</span>
+      <span class="mf">0.97</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">32.62</span><span class="p">,</span>
+      <span class="mf">36.67</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">3</span><span class="p">,</span>
+      <span class="mi">3</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2385.9</span><span class="p">,</span>
+      <span class="mf">2385.8</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">2328.9</span><span class="p">,</span>
+      <span class="mf">2328.9</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2103.2</span><span class="p">,</span>
+      <span class="mf">2104.4</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">2168.9</span><span class="p">,</span>
+      <span class="mf">2168.5</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;cast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;station&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;btm_depth&quot;</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1444,27 +1430,18 @@
 <h2>Drifter Schema Extension<a class="headerlink" href="#drifter-schema-extension" title="Permalink to this headline">¶</a></h2>
 <p>Argovis indexes a subset of the hourly dataset from the <a class="reference external" href="https://www.aoml.noaa.gov/phod/gdp/index.php">NOAA Global Drifter Program</a>, version 2.00 (beta pre-release) (<a class="reference external" href="http://dx.doi.org/10.1002/2016JC011716">Elipot et al. 2016</a>, <a class="reference external" href="https://arxiv.org/abs/2201.08289v1">Elipot et al. 2022 arXiv preprint</a>). See <a class="reference external" href="https://github.com/argovis/drifter-sync">https://github.com/argovis/drifter-sync</a> for data parsing and loading.</p>
 <p>Global Drifter Program data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="generic-metadata-division">
-<h3>Generic Metadata Division<a class="headerlink" href="#generic-metadata-division" title="Permalink to this headline">¶</a></h3>
-<p>Global Drifter Program measurements place all metadata fields in their metadata records; drifter data records correspond exactly to generic data records, while metadata records are per platform.</p>
-</div>
-<div class="section" id="id-construction">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id-construction" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;measurement_index&gt;</span></code></p></li>
-<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;</span></code>.</p></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="drifter-specific-data-record-fields">
-<h3>Drifter-Specific Data Record Fields<a class="headerlink" href="#drifter-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>The drifter collectoin treats <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document.</p>
-<p>Otherwise, drifter data records are exactly the generic data record specification.</p>
-</div>
-<div class="section" id="drifter-specific-metadata-record-fields">
-<h3>Drifter-Specific Metadata Record Fields<a class="headerlink" href="#drifter-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="drifter-metadata-documents">
+<h3>Drifter metadata documents<a class="headerlink" href="#drifter-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>Drifter metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rowsize</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
@@ -1472,10 +1449,10 @@
 <li><p><strong>description:</strong> number of obs for this trajectory</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WMO</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmo</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>type:</strong> int</p></li>
 <li><p><strong>description:</strong>  World Meteorological Organization buoy identification number</p></li>
 </ul>
 </li>
@@ -1550,6 +1527,205 @@
 </ul>
 </li>
 </ul>
+<p>Drifter metadata example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;101143&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;101143&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;rowsize&quot;</span><span class="p">:</span> <span class="mi">417</span><span class="p">,</span>
+  <span class="s2">&quot;wmo&quot;</span><span class="p">:</span> <span class="mi">1300915</span><span class="p">,</span>
+  <span class="s2">&quot;expno&quot;</span><span class="p">:</span> <span class="mi">9325</span><span class="p">,</span>
+  <span class="s2">&quot;deploy_lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">17.75</span><span class="p">,</span>
+  <span class="s2">&quot;deploy_lat&quot;</span><span class="p">:</span> <span class="mf">14.742</span><span class="p">,</span>
+  <span class="s2">&quot;end_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-04-02T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;end_lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">16.889999999999986</span><span class="p">,</span>
+  <span class="s2">&quot;end_lat&quot;</span><span class="p">:</span> <span class="mf">15.35</span><span class="p">,</span>
+  <span class="s2">&quot;drogue_lost_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-04-02T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;typedeath&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="s2">&quot;typebuoy&quot;</span><span class="p">:</span> <span class="s2">&quot;SVP&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;drifter&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-07-02T18:19:15.895Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;gdp&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.aoml.noaa.gov/ftp/pub/phod/lumpkin/hourly/v2.00/netcdf/drifter_101143.nc&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;ve&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;vn&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_lon&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_lat&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_ve&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_vn&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;gap&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sst&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sst1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sst2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_sst&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_sst1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;err_sst2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;flg_sst&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;flg_sst1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;flg_sst2&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;long_name&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Eastward velocity&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Northward velocity&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degrees_east&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval in longitude&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degrees_north&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval in latitude&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval in eastward velocity&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval in northward velocity&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;time interval between previous and next location fix&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;Kelvin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fitted sea water temperature&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;Kelvin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fitted non-diurnal sea water temperature&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;Kelvin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fitted diurnal sea water temperature anomaly&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;Kelvin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard uncertainty of fitted sea water temperature&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;Kelvin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard uncertainty of fitted non-diurnal sea water temperature&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;Kelvin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard uncertainty of fitted diurnal sea water temperature anomaly&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;fitted sea water temperature quality flag&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;fitted non-diurnal sea water temperature quality flag&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;fitted diurnal sea water temperature anomaly quality flag&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;deploy_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-03-15T00:00:00.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="drifter-data-documents">
+<h3>Drifter data documents<a class="headerlink" href="#drifter-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>Drifter data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;measurement_index&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code>, required for drifters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, required for drifters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>Drifter data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;101143_0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;101143&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">17.74345</span><span class="p">,</span>
+      <span class="mf">14.74677</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-03-15T22:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="o">-</span><span class="mf">0.0285</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.3101</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.00266</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.00116</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.0997</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.0277</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2333</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">293.884</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">293.907</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="o">-</span><span class="mf">0.023</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.019</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.042</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.044</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">5</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">5</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">2</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id3">
 <h3>Implementation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -1562,23 +1738,94 @@
 <div class="section" id="tropical-cyclone-schema-extension">
 <h2>Tropical Cyclone Schema Extension<a class="headerlink" href="#tropical-cyclone-schema-extension" title="Permalink to this headline">¶</a></h2>
 <p>HURDAT and JTWC tropical cyclone data is indexed by Argovis; TC data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="id5">
-<h3>Generic Metadata Division<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Tropical cyclone records place all generic metadata fields in their metadata records.</p>
-</div>
-<div class="section" id="id6">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tropical-cyclone-metadata-documents">
+<h3>Tropical cyclone metadata documents<a class="headerlink" href="#tropical-cyclone-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>Tropical cyclone metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
-<li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;_&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;HH&gt;&lt;MM&gt;&lt;SS&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code> is the ID of the cyclone measurement from the upstream data source.</p></li>
-<li><p>Metadata records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code> from the upstream data source</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.date_updated</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> name of the tropical cyclone</p></li>
 </ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> number of the tropical cyclone for that season</p></li>
+</ul>
+</li>
+</ul>
+<p>Tropical cyclone example metadata:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;AL032017&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;tropicalCyclone&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;wind&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;surface_pressure&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;kt&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;mb&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-05-31T16:12:58.299Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.nhc.noaa.gov/data/hurdat/hurdat2-atl-1851-2023-042624.txt&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;tc_hurdat&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CINDY&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;num&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="tc-specific-data-record-fields">
-<h3>TC-Specific Data Record Fields<a class="headerlink" href="#tc-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>Tropical cyclones treat <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">basin</span></code> all as required items on the data document. Specific data record fields are as follows:</p>
+</div>
+<div class="section" id="tropical-cyclone-data-documents">
+<h3>Tropical cyclone data documents<a class="headerlink" href="#tropical-cyclone-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>Tropical cyclone data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;_&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;HH&gt;&lt;MM&gt;&lt;SS&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code> required for tropical cyclones</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code> required for tropical cyclones</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">record_identifier</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> identifier for the record as defined in the HURDAT and JTWC datasets</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> class of the tropical cyclone as defined in the HURDAT and JTWC datasets</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_warning</span></code></p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
@@ -1592,16 +1839,37 @@
 </ul>
 </li>
 </ul>
+<p>Tropical cyclone example data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;AL032017_20170623000000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;AL032017&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">93.60000000000002</span><span class="p">,</span>
+      <span class="mf">32.8</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-06-23T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="mi">30</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">999</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;record_identifier&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;TD&quot;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="tc-specific-metadata-record-fields">
-<h3>TC-Specific Metadata Record Fields<a class="headerlink" href="#tc-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num</span></code></p></li>
-</ul>
 </div>
-<div class="section" id="id7">
-<h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Implementation<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of tropical cyclone schema and pipelines to load the data from source CSVs can be found at the following links.</p>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/tc.py">https://github.com/argovis/db-schema/blob/main/tc.py</a></p></li>
@@ -1609,15 +1877,306 @@
 </ul>
 </div>
 </div>
+<div class="section" id="argo-trajectory-schema-extension">
+<h2>Argo trajectory schema extension<a class="headerlink" href="#argo-trajectory-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes estimates of Argo float trajectories from <a class="reference external" href="https://doi.org/10.6075/J0FQ9WS6">https://doi.org/10.6075/J0FQ9WS6</a>.</p>
+<div class="section" id="argo-trajectory-metadata-documents">
+<h3>Argo trajectory metadata documents<a class="headerlink" href="#argo-trajectory-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>Argo trajectory metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_m&lt;metadata_number&gt;</span></code>, analogos to Argo metadata</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system_flag</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> positioning system flag</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensor_type_flag</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> flag indicating sensors on float</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mission_flag</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> flag indicating float mission type</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extrapolation_flag</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> flag indicating if velocity was extrapolated or transmitted</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> positioning system for this float.</p></li>
+<li><p><strong>current vocabulary</strong>: see Argo ref table 9</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> platform type</p></li>
+</ul>
+</li>
+</ul>
+<p>Argo trajectories metadata example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;13857_m0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;13857&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;argo_trajectory&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;scripps_argo_trajectory&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://doi.org/10.6075/J0FQ9WS6&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-02-24T22:56:16.700Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;positioning_system_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;sensor_type_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;mission_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;extrapolation_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;positioning_system&quot;</span><span class="p">:</span> <span class="s2">&quot;ARGOS&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;platform_type&quot;</span><span class="p">:</span> <span class="s2">&quot;PALACE&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;velocity_zonal&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;velocity_meridional&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;velocity_zonal_transmitted&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;velocity_meridional_transmitted&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;speed&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;speed_transmitted&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;drift_pres&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;drift_temp&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;number_surface_fixes&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;long name&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;units&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;centimeters per second&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;centimeters per second&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;centimeters per second&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;centimeters per second&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;speed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;centimeters per second&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;speed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;centimeters per second&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;sea water pressure, equals 0 at sea-level&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dbar&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;sea temperature in-situ ITS-90 scale&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;degree_Celcius&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;number of surface fixes&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;none&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="argo-trajectory-data-documents">
+<h3>Argo trajectory data documents<a class="headerlink" href="#argo-trajectory-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>Argo trajectory data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;cycle_number&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_number</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> int</p></li>
+<li><p><strong>description:</strong> probe cycle index</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code>, taken as the midpoint longitude and latitude from the upstream file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point</p></li>
+<li><p><strong>description:</strong> if available, extrapolated geolocation at descending. If not available, the transmitted geolocation at descending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_ascending</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point</p></li>
+<li><p><strong>description:</strong> if available, extrapolated geolocation at ascending. If not available, the transmitted geolocation at ascending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending_transmitted</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point</p></li>
+<li><p><strong>description:</strong> transmitted geolocation at descending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_ascending_transmitted</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point</p></li>
+<li><p><strong>description:</strong> transmitted geolocation at ascending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_midpoint_transmitted</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> geojson Point</p></li>
+<li><p><strong>description:</strong> TBD</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, taken as the midpoint timestamp from the upstream file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> if available, extrapolated timestamp at descending. If not available, the transmitted timestamp at descending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_ascending</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> if available, extrapolated timestamp at ascending. If not available, the transmitted timestamp at ascending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending_transmitted</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> transmitted timestamp at descending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_ascending_transmitted</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> transmitted timestamp at ascending</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_midpoint_transmitted</span></code></p>
+<ul>
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> ISO 8601 UTC datestring</p></li>
+<li><p><strong>description:</strong> TBD</p></li>
+</ul>
+</li>
+</ul>
+<p>Argo trajectory data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;13857_116&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;cycle_number&quot;</span><span class="p">:</span> <span class="mi">116</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">28.744391</span><span class="p">,</span>
+      <span class="mf">5.435884</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2001-01-09T17:35:31.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation_descending&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">28.632977</span><span class="p">,</span>
+      <span class="mf">5.564203</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;timestamp_descending&quot;</span><span class="p">:</span> <span class="s2">&quot;2001-01-04T16:30:43.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation_ascending&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">28.855806</span><span class="p">,</span>
+      <span class="mf">5.307566</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;timestamp_ascending&quot;</span><span class="p">:</span> <span class="s2">&quot;2001-01-14T18:40:19.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation_descending_transmitted&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">28.618</span><span class="p">,</span>
+      <span class="mf">5.567</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;timestamp_descending_transmitted&quot;</span><span class="p">:</span> <span class="s2">&quot;2001-01-04T15:25:55.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation_ascending_transmitted&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">28.833</span><span class="p">,</span>
+      <span class="mf">5.325</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;timestamp_ascending_transmitted&quot;</span><span class="p">:</span> <span class="s2">&quot;2001-01-14T20:11:02.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation_midpoint_transmitted&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">28.7255</span><span class="p">,</span>
+      <span class="mf">5.446</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;timestamp_midpoint_transmitted&quot;</span><span class="p">:</span> <span class="s2">&quot;2001-01-09T17:48:28.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;13857_m0&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Implementation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/trajectories.py">https://github.com/argovis/db-schema/blob/main/trajectories.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/argo_trajectories">https://github.com/argovis/argo_trajectories</a></p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="gridded-product-schema-extension">
 <h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
 <p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>, and the <a class="reference external" href="https://glodap.info/index.php/mapped-data-product/">GLODAP v2.2016b mapped data product</a>. These gridded product data and metadata collections extend, implement and modify the generic schema as follows (see below for other, bespoke grids).</p>
-<div class="section" id="id8">
-<h3>Generic Metadata Division<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="generic-metadata-division">
+<h3>Generic Metadata Division<a class="headerlink" href="#generic-metadata-division" title="Permalink to this headline">¶</a></h3>
 <p>Gridded products place <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> in their metadata documents.</p>
 </div>
-<div class="section" id="id9">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id-construction">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id-construction" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -1693,8 +2252,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id10">
-<h3>Implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
@@ -1704,12 +2263,12 @@
 <div class="section" id="easy-ocean-gridded-schema-extension">
 <h2>Easy Ocean Gridded Schema Extension<a class="headerlink" href="#easy-ocean-gridded-schema-extension" title="Permalink to this headline">¶</a></h2>
 <p>The Easy Ocean grid is indexed by Argovis; Easy Ocean data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="id11">
-<h3>Generic Metadata Division<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Generic Metadata Division<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>Easy Ocean places all generic metadata on the data document, save <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">country</span></code>, which is replaced by <code class="docutils literal notranslate"><span class="pre">section_countries</span></code> on the data document.</p>
 </div>
-<div class="section" id="id12">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">woce_&lt;WOCE_line&gt;_date_&lt;YYYYMMDD&gt;_lat_&lt;lat&gt;_lon_&lt;lon&gt;</span></code>, where decimals in lat and lon are hyphenated, ie 54.3 is written as 54-3 in the id.</p></li>
@@ -1818,8 +2377,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id13">
-<h3>Implementation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of Easy Ocean schema and pipelines to load the data from source CSVs can be found at the following links.</p>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/easyocean.py">https://github.com/argovis/db-schema/blob/main/easyocean.py</a></p></li>
@@ -1830,12 +2389,12 @@
 <div class="section" id="argone-argo-float-forecast-data">
 <h2>ARGONE Argo float forecast data<a class="headerlink" href="#argone-argo-float-forecast-data" title="Permalink to this headline">¶</a></h2>
 <p>Argovis includes a tabulation of forecasts of Argo float locations based on ARGONE (link / DOI forthcoming).</p>
-<div class="section" id="id14">
-<h3>Generic Metadata Division<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Generic Metadata Division<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the argone metadata document.</p>
 </div>
-<div class="section" id="id15">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;origin_lon&gt;_&lt;origin_lat&gt;_&lt;forecast_lon&gt;_&lt;forecast_lat&gt;</span></code></p></li>
@@ -1871,73 +2430,11 @@
 </ul>
 <p>Also note <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> for ARGONE data indicates forecast length in days; the first entry indicates the probability a float will move from <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> to <code class="docutils literal notranslate"><span class="pre">geolocation_forecast</span></code> in 90 days, for example.</p>
 </div>
-<div class="section" id="id16">
-<h3>Implementation<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Implementation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">https://github.com/argovis/db-schema/blob/main/argone.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ARGONE">https://github.com/argovis/ARGONE</a></p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="argo-trajectory-data">
-<h2>Argo trajectory data<a class="headerlink" href="#argo-trajectory-data" title="Permalink to this headline">¶</a></h2>
-<p>Argovis includes estimates of Argo float trajectories from <a class="reference external" href="https://doi.org/10.6075/J0FQ9WS6">https://doi.org/10.6075/J0FQ9WS6</a>.</p>
-<div class="section" id="id17">
-<h3>Generic Metadata Division<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the trajectories metadata documents.</p>
-</div>
-<div class="section" id="id18">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_&lt;cycle_number&gt;</span></code></p></li>
-<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_m&lt;metadata_number&gt;</span></code>, analogos to Argo metadata</p></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="argo-trajectory-specific-data-record-fields">
-<h3>Argo trajectory-specific data record fields<a class="headerlink" href="#argo-trajectory-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cycle_number</span></code></p>
-<ul>
-<li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> int</p></li>
-<li><p><strong>description:</strong> probe cycle index</p></li>
-</ul>
-</li>
-</ul>
-<p>The following <code class="docutils literal notranslate"><span class="pre">geolocation_*</span></code> and <code class="docutils literal notranslate"><span class="pre">timestamp_*</span></code> data fields are all required; all geolocations have type geojson Point, and all timestamps have type datetime.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_ascending</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_ascending</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending_transmitted</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending_transmitted</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_ascending_transmitted</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_ascending_transmitted</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">geolocation_midpoint_transmitted</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_midpoint_transmitted</span></code></p></li>
-</ul>
-<p>Note that Argovis’ <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> corresponds to the original files’ <code class="docutils literal notranslate"><span class="pre">LONGITUDE_</span></code> and <code class="docutils literal notranslate"><span class="pre">LATITUDE_MIDPOINT</span></code>, and <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> corresponds to the upstream <code class="docutils literal notranslate"><span class="pre">JULD_MIDPOINT</span></code>.</p>
-</div>
-<div class="section" id="argo-trajectory-specific-metadata-record-fields">
-<h3>Argo trajectory-specific metadata record fields<a class="headerlink" href="#argo-trajectory-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system_flag</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sensor_type_flag</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mission_flag</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">extrapolation_flag</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p></li>
-</ul>
-</div>
-<div class="section" id="id19">
-<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/trajectories.py">https://github.com/argovis/db-schema/blob/main/trajectories.py</a></p></li>
-<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/argo_trajectories">https://github.com/argovis/argo_trajectories</a></p></li>
 </ul>
 </div>
 </div>
@@ -1956,12 +2453,12 @@
 <div class="section" id="noaa-sea-surface-temperature-timeseries">
 <h2>NOAA sea surface temperature timeseries<a class="headerlink" href="#noaa-sea-surface-temperature-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea surface temperatures from <a class="reference external" href="https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html">https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html</a> as a timeseries dataset.</p>
-<div class="section" id="id20">
-<h3>Generic Metadata Division<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Generic Metadata Division<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SST metadata documents.</p>
 </div>
-<div class="section" id="id21">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -1977,8 +2474,8 @@
 <h3>NOAA sst-specific metadata record fields<a class="headerlink" href="#noaa-sst-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id22">
-<h3>Implementation<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Implementation<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/noaa-sst">https://github.com/argovis/noaa-sst</a></p></li>
@@ -1988,12 +2485,12 @@
 <div class="section" id="copernicus-sea-level-anomaly-timeseries">
 <h2>Copernicus sea level anomaly timeseries<a class="headerlink" href="#copernicus-sea-level-anomaly-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea level anomaly from <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global">https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id23">
-<h3>Generic Metadata Division<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Generic Metadata Division<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SLA metadata documents.</p>
 </div>
-<div class="section" id="id24">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -2009,8 +2506,8 @@
 <h3>Copernicus sla-specific metadata record fields<a class="headerlink" href="#copernicus-sla-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id25">
-<h3>Implementation<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
@@ -2020,12 +2517,12 @@
 <div class="section" id="remss-ccmp-wind-vector-timeseries">
 <h2>REMSS CCMP wind vector timeseries<a class="headerlink" href="#remss-ccmp-wind-vector-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of wind vector data from <a class="reference external" href="https://www.remss.com/measurements/ccmp/">https://www.remss.com/measurements/ccmp/</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id27">
-<h3>Generic Metadata Division<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Generic Metadata Division<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the CCMP wind metadata documents.</p>
 </div>
-<div class="section" id="id28">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -2041,8 +2538,8 @@
 <h3>CCMP wind-specific metadata record fields<a class="headerlink" href="#ccmp-wind-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id29">
-<h3>Implementation<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
@@ -2063,12 +2560,12 @@
 <div class="section" id="atmospheric-river-extended-objects">
 <h2>Atmospheric river extended objects<a class="headerlink" href="#atmospheric-river-extended-objects" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the atmospheric river (AR) climatology presented in <a class="reference external" href="https://doi.org/10.1175/MWR-D-13-00168.1">https://doi.org/10.1175/MWR-D-13-00168.1</a> as an extended object dataset.</p>
-<div class="section" id="id31">
-<h3>Generic Metadata Division<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id25">
+<h3>Generic Metadata Division<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span></code>  all live on the AR metadata documents.</p>
 </div>
-<div class="section" id="id32">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;decimal</span> <span class="pre">hour&gt;_&lt;index</span> <span class="pre">of</span> <span class="pre">phenomenon</span> <span class="pre">at</span> <span class="pre">this</span> <span class="pre">timestep&gt;</span></code></p></li>
@@ -2135,8 +2632,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id33">
-<h3>Implementation<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h3>Implementation<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>

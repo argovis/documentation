@@ -242,23 +242,22 @@ Argo metadata documents carry the following properties; any property not explain
 
 Argo metadata example::
 
-  [
-    {
-      "_id": "3901306_m0",
-      "data_type": "oceanicProfile",
-      "data_center": "AO",
-      "instrument": "profiling_float",
-      "pi_name": [
-        "GREGORY C. JOHNSON"
-      ],
-      "platform": "3901306",
-      "platform_type": "NAVIS_A",
-      "fleetmonitoring": "https://fleetmonitoring.euro-argo.eu/float/3901306",
-      "oceanops": "https://www.ocean-ops.org/board/wa/Platform?ref=3901306",
-      "positioning_system": "GPS",
-      "wmo_inst_type": "863"
-    }
-  ]
+  {
+    "_id": "3901306_m0",
+    "data_type": "oceanicProfile",
+    "data_center": "AO",
+    "instrument": "profiling_float",
+    "pi_name": [
+      "GREGORY C. JOHNSON"
+    ],
+    "platform": "3901306",
+    "platform_type": "NAVIS_A",
+    "fleetmonitoring": "https://fleetmonitoring.euro-argo.eu/float/3901306",
+    "oceanops": "https://www.ocean-ops.org/board/wa/Platform?ref=3901306",
+    "positioning_system": "GPS",
+    "wmo_inst_type": "863"
+  }
+  
 
 Argo data documents
 +++++++++++++++++++
@@ -314,122 +313,120 @@ Argo data documents carry the following properties; any property not explained h
 
 Argo data schema example::
 
-  [
-    {
-      "_id": "3901306_196",
-      "geolocation": {
-        "type": "Point",
-        "coordinates": [
-          -128.3021,
-          0.4438
-        ]
-      },
-      "basin": 2,
-      "timestamp": "2024-11-03T05:32:52.000Z",
-      "date_updated_argovis": "2024-11-04T06:35:09.597Z",
-      "source": [
-        {
-          "source": [
-            "argo_core"
-          ],
-          "url": "ftp://ftp.ifremer.fr/ifremer/argo/dac/aoml/3901306/profiles/R3901306_196.nc",
-          "date_updated": "2024-11-03T08:01:15.000Z"
-        }
-      ],
-      "cycle_number": 196,
-      "geolocation_argoqc": 1,
-      "profile_direction": "A",
-      "timestamp_argoqc": 1,
-      "vertical_sampling_scheme": "Primary sampling: averaged",
-      "data": [
-        [
-          4.27,
-          6.07,
-          ...
-          1898.159912,
-          1948.329956
-        ],
-        [
-          1,
-          1,
-          ...
-          1,
-          1
-        ],
-        [
-          33.792,
-          33.764999,
-          ...
-          35.596699,
-          35.589199
-        ],
-        [
-          3,
-          3,
-          ...
-          3,
-          3
-        ],
-        [
-          23.306,
-          23.229,
-          ...
-          2.4614,
-          2.3181
-        ],
-        [
-          1,
-          1,
-          ...
-          1,
-          1
-        ]
-      ],
-      "data_info": [
-        [
-          "pressure",
-          "pressure_argoqc",
-          "salinity",
-          "salinity_argoqc",
-          "temperature",
-          "temperature_argoqc"
-        ],
-        [
-          "units",
-          "data_keys_mode"
-        ],
-        [
-          [
-            "decibar",
-            "A"
-          ],
-          [
-            null,
-            null
-          ],
-          [
-            "psu",
-            "A"
-          ],
-          [
-            null,
-            null
-          ],
-          [
-            "degree_Celsius",
-            "A"
-          ],
-          [
-            null,
-            null
-          ]
-        ]
-      ],
-      "metadata": [
-        "3901306_m0"
+  {
+    "_id": "3901306_196",
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        -128.3021,
+        0.4438
       ]
-    }
-  ]
+    },
+    "basin": 2,
+    "timestamp": "2024-11-03T05:32:52.000Z",
+    "date_updated_argovis": "2024-11-04T06:35:09.597Z",
+    "source": [
+      {
+        "source": [
+          "argo_core"
+        ],
+        "url": "ftp://ftp.ifremer.fr/ifremer/argo/dac/aoml/3901306/profiles/R3901306_196.nc",
+        "date_updated": "2024-11-03T08:01:15.000Z"
+      }
+    ],
+    "cycle_number": 196,
+    "geolocation_argoqc": 1,
+    "profile_direction": "A",
+    "timestamp_argoqc": 1,
+    "vertical_sampling_scheme": "Primary sampling: averaged",
+    "data": [
+      [
+        4.27,
+        6.07,
+        ...
+        1898.159912,
+        1948.329956
+      ],
+      [
+        1,
+        1,
+        ...
+        1,
+        1
+      ],
+      [
+        33.792,
+        33.764999,
+        ...
+        35.596699,
+        35.589199
+      ],
+      [
+        3,
+        3,
+        ...
+        3,
+        3
+      ],
+      [
+        23.306,
+        23.229,
+        ...
+        2.4614,
+        2.3181
+      ],
+      [
+        1,
+        1,
+        ...
+        1,
+        1
+      ]
+    ],
+    "data_info": [
+      [
+        "pressure",
+        "pressure_argoqc",
+        "salinity",
+        "salinity_argoqc",
+        "temperature",
+        "temperature_argoqc"
+      ],
+      [
+        "units",
+        "data_keys_mode"
+      ],
+      [
+        [
+          "decibar",
+          "A"
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          "psu",
+          "A"
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          "degree_Celsius",
+          "A"
+        ],
+        [
+          null,
+          null
+        ]
+      ]
+    ],
+    "metadata": [
+      "3901306_m0"
+    ]
+  }
 
 Implementation
 ++++++++++++++
@@ -488,26 +485,24 @@ CCHDO metadata documents carry the following properties; any property not explai
 
 CCHDO metadata example::
 
-  [
-    {
-      "_id": "2366_m0",
-      "date_updated_argovis": "2024-08-16T21:29:31.526Z",
-      "data_type": "oceanicProfile",
-      "country": "45",
-      "data_center": "CCHDO",
-      "instrument": "ship_btl",
-      "pi_name": [
-        "Peter Croot"
-      ],
-      "expocode": "45CE20170427",
-      "file_expocode": "74CE17007",
-      "woce_lines": [
-        "A02"
-      ],
-      "cchdo_cruise_id": 2366,
-      "positioning_system": "GPS"
-    }
-  ]
+  {
+    "_id": "2366_m0",
+    "date_updated_argovis": "2024-08-16T21:29:31.526Z",
+    "data_type": "oceanicProfile",
+    "country": "45",
+    "data_center": "CCHDO",
+    "instrument": "ship_btl",
+    "pi_name": [
+      "Peter Croot"
+    ],
+    "expocode": "45CE20170427",
+    "file_expocode": "74CE17007",
+    "woce_lines": [
+      "A02"
+    ],
+    "cchdo_cruise_id": 2366,
+    "positioning_system": "GPS"
+  }
 
 
 CCHDO data documents
@@ -565,485 +560,483 @@ CCHDO data documents carry the following properties; any property not explained 
 
 CCHDO data example::
 
-  [
-    {
-      "_id": "expo_45CE20170427_sta_012_cast_001_type_btl",
-      "metadata": [
-        "2366_m0"
+  {
+    "_id": "expo_45CE20170427_sta_012_cast_001_type_btl",
+    "metadata": [
+      "2366_m0"
+    ],
+    "geolocation": {
+      "coordinates": [
+        -45.647,
+        42.242
       ],
-      "geolocation": {
-        "coordinates": [
-          -45.647,
-          42.242
+      "type": "Point"
+    },
+    "basin": 1,
+    "timestamp": "2017-05-04T00:00:00.000Z",
+    "file_hash": "66bb8a4a9de915131470726211a05771242389a30f9a8f10dab396b262f53a98",
+    "source": [
+      {
+        "source": [
+          "cchdo_go-ship"
         ],
-        "type": "Point"
-      },
-      "basin": 1,
-      "timestamp": "2017-05-04T00:00:00.000Z",
-      "file_hash": "66bb8a4a9de915131470726211a05771242389a30f9a8f10dab396b262f53a98",
-      "source": [
-        {
-          "source": [
-            "cchdo_go-ship"
-          ],
-          "cruise_url": "https://cchdo.ucsd.edu/cruise/45CE20170427",
-          "url": "https://cchdo.ucsd.edu/data/39157/74CE17007_bottle.nc",
-          "file_name": "74CE17007_bottle.nc"
-        }
+        "cruise_url": "https://cchdo.ucsd.edu/cruise/45CE20170427",
+        "url": "https://cchdo.ucsd.edu/data/39157/74CE17007_bottle.nc",
+        "file_name": "74CE17007_bottle.nc"
+      }
+    ],
+    "data_info": [
+      [
+        "bottle_number",
+        "bottle_salinity",
+        "bottle_salinity_woceqc",
+        "doxy_bfile",
+        "doxy_bfile_woceqc",
+        "salinity_bfile",
+        "salinity_bfile_woceqc",
+        "temperature_bfile",
+        "temperature_bfile_woceqc",
+        "nitrate",
+        "nitrate_woceqc",
+        "nitrite",
+        "nitrite_nitrate",
+        "nitrite_nitrate_woceqc",
+        "nitrite_woceqc",
+        "oxygen",
+        "oxygen_woceqc",
+        "phosphate",
+        "phosphate_woceqc",
+        "pressure",
+        "sample",
+        "silicate",
+        "silicate_woceqc",
+        "total_alkalinity",
+        "total_alkalinity_woceqc",
+        "total_carbon",
+        "total_carbon_woceqc"
       ],
-      "data_info": [
-        [
-          "bottle_number",
-          "bottle_salinity",
-          "bottle_salinity_woceqc",
-          "doxy_bfile",
-          "doxy_bfile_woceqc",
-          "salinity_bfile",
-          "salinity_bfile_woceqc",
-          "temperature_bfile",
-          "temperature_bfile_woceqc",
-          "nitrate",
-          "nitrate_woceqc",
-          "nitrite",
-          "nitrite_nitrate",
-          "nitrite_nitrate_woceqc",
-          "nitrite_woceqc",
-          "oxygen",
-          "oxygen_woceqc",
-          "phosphate",
-          "phosphate_woceqc",
-          "pressure",
-          "sample",
-          "silicate",
-          "silicate_woceqc",
-          "total_alkalinity",
-          "total_alkalinity_woceqc",
-          "total_carbon",
-          "total_carbon_woceqc"
-        ],
-        [
-          "units",
-          "reference_scale",
-          "data_keys_mapping",
-          "data_source_standard_names",
-          "data_source_units",
-          "data_source_reference_scale"
-        ],
-        [
-          [
-            null,
-            null,
-            "bottle_number",
-            null,
-            null,
-            null
-          ],
-          [
-            "psu",
-            "PSS-78",
-            "bottle_salinity",
-            "sea_water_practical_salinity",
-            "1",
-            "PSS-78"
-          ],
-          [
-            null,
-            null,
-            "bottle_salinity_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "ctd_oxygen",
-            "moles_of_oxygen_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "ctd_oxygen_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "psu",
-            "PSS-78",
-            "ctd_salinity",
-            "sea_water_practical_salinity",
-            "1",
-            "PSS-78"
-          ],
-          [
-            null,
-            null,
-            "ctd_salinity_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "Celsius",
-            "ITS-90",
-            "ctd_temperature",
-            "sea_water_temperature",
-            "degC",
-            "ITS-90"
-          ],
-          [
-            null,
-            null,
-            "ctd_temperature_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "nitrate",
-            "moles_of_nitrate_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "nitrate_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "nitrite",
-            "moles_of_nitrite_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "nitrite_nitrate",
-            "moles_of_nitrate_and_nitrite_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "nitrite_nitrate_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            null,
-            null,
-            "nitrite_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "oxygen",
-            "moles_of_oxygen_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "oxygen_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "phosphate",
-            "moles_of_phosphate_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "phosphate_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "decibar",
-            null,
-            "pressure",
-            "sea_water_pressure",
-            "dbar",
-            null
-          ],
-          [
-            null,
-            null,
-            "sample",
-            null,
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "silicate",
-            "moles_of_silicate_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "silicate_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "total_alkalinity",
-            null,
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "total_alkalinity_qc",
-            "status_flag",
-            null,
-            null
-          ],
-          [
-            "micromole/kg",
-            null,
-            "total_carbon",
-            "moles_of_dissolved_inorganic_carbon_per_unit_mass_in_sea_water",
-            "umol/kg",
-            null
-          ],
-          [
-            null,
-            null,
-            "total_carbon_qc",
-            "status_flag",
-            null,
-            null
-          ]
-        ]
+      [
+        "units",
+        "reference_scale",
+        "data_keys_mapping",
+        "data_source_standard_names",
+        "data_source_units",
+        "data_source_reference_scale"
       ],
-      "data": [
+      [
         [
-          "24",
-          "23",
-          ...
-          "2",
-          "1"
-        ],
-        [
-          36.428,
-          36.428,
-          ...
           null,
-          34.883
+          null,
+          "bottle_number",
+          null,
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          9,
-          2
+          "psu",
+          "PSS-78",
+          "bottle_salinity",
+          "sea_water_practical_salinity",
+          "1",
+          "PSS-78"
         ],
         [
-          224.086,
-          223.71,
-          ...
-          250.268,
-          250.518
+          null,
+          null,
+          "bottle_salinity_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "ctd_oxygen",
+          "moles_of_oxygen_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          36.4278,
-          36.4283,
-          ...
-          34.884,
-          34.8839
+          null,
+          null,
+          "ctd_oxygen_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          1,
-          1,
-          ...
-          1,
-          1
+          "psu",
+          "PSS-78",
+          "ctd_salinity",
+          "sea_water_practical_salinity",
+          "1",
+          "PSS-78"
         ],
         [
-          17.1115,
-          17.1162,
-          ...
-          2.2466,
-          2.2478
+          null,
+          null,
+          "ctd_salinity_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          1,
-          1,
-          ...
-          1,
-          1
+          "Celsius",
+          "ITS-90",
+          "ctd_temperature",
+          "sea_water_temperature",
+          "degC",
+          "ITS-90"
         ],
         [
-          2.55,
-          2.37,
-          ...
-          18,
-          19.25
+          null,
+          null,
+          "ctd_temperature_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "nitrate",
+          "moles_of_nitrate_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          0.14,
-          0.13,
-          ...
-          0,
-          0
+          null,
+          null,
+          "nitrate_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2.68,
-          2.5,
-          ...
-          18.04,
-          19.28
+          "micromole/kg",
+          null,
+          "nitrite",
+          "moles_of_nitrite_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "nitrite_nitrate",
+          "moles_of_nitrate_and_nitrite_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          null,
+          null,
+          "nitrite_nitrate_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          229.2,
-          231.4,
-          ...
-          267.1,
-          267.6
+          null,
+          null,
+          "nitrite_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "oxygen",
+          "moles_of_oxygen_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          0,
-          0,
-          ...
-          1.3,
-          1.33
+          null,
+          null,
+          "oxygen_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "phosphate",
+          "moles_of_phosphate_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          10.486,
-          31.298,
-          ...
-          4699.661,
-          4712.712
+          null,
+          null,
+          "phosphate_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          "100241",
-          "100240",
-          ...
-          "100219",
-          "100218"
+          "decibar",
+          null,
+          "pressure",
+          "sea_water_pressure",
+          "dbar",
+          null
         ],
         [
-          0.91,
-          0.97,
-          ...
-          32.62,
-          36.67
+          null,
+          null,
+          "sample",
+          null,
+          null,
+          null
         ],
         [
-          3,
-          3,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "silicate",
+          "moles_of_silicate_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
         ],
         [
-          2385.9,
-          2385.8,
-          ...
-          2328.9,
-          2328.9
+          null,
+          null,
+          "silicate_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "total_alkalinity",
+          null,
+          "umol/kg",
+          null
         ],
         [
-          2103.2,
-          2104.4,
-          ...
-          2168.9,
-          2168.5
+          null,
+          null,
+          "total_alkalinity_qc",
+          "status_flag",
+          null,
+          null
         ],
         [
-          2,
-          2,
-          ...
-          2,
-          2
+          "micromole/kg",
+          null,
+          "total_carbon",
+          "moles_of_dissolved_inorganic_carbon_per_unit_mass_in_sea_water",
+          "umol/kg",
+          null
+        ],
+        [
+          null,
+          null,
+          "total_carbon_qc",
+          "status_flag",
+          null,
+          null
         ]
+      ]
+    ],
+    "data": [
+      [
+        "24",
+        "23",
+        ...
+        "2",
+        "1"
       ],
-      "cast": 1,
-      "station": "12",
-      "btm_depth": null
-    }
-  ]
+      [
+        36.428,
+        36.428,
+        ...
+        null,
+        34.883
+      ],
+      [
+        2,
+        2,
+        ...
+        9,
+        2
+      ],
+      [
+        224.086,
+        223.71,
+        ...
+        250.268,
+        250.518
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        36.4278,
+        36.4283,
+        ...
+        34.884,
+        34.8839
+      ],
+      [
+        1,
+        1,
+        ...
+        1,
+        1
+      ],
+      [
+        17.1115,
+        17.1162,
+        ...
+        2.2466,
+        2.2478
+      ],
+      [
+        1,
+        1,
+        ...
+        1,
+        1
+      ],
+      [
+        2.55,
+        2.37,
+        ...
+        18,
+        19.25
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        0.14,
+        0.13,
+        ...
+        0,
+        0
+      ],
+      [
+        2.68,
+        2.5,
+        ...
+        18.04,
+        19.28
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        229.2,
+        231.4,
+        ...
+        267.1,
+        267.6
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        ...
+        1.3,
+        1.33
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        10.486,
+        31.298,
+        ...
+        4699.661,
+        4712.712
+      ],
+      [
+        "100241",
+        "100240",
+        ...
+        "100219",
+        "100218"
+      ],
+      [
+        0.91,
+        0.97,
+        ...
+        32.62,
+        36.67
+      ],
+      [
+        3,
+        3,
+        ...
+        2,
+        2
+      ],
+      [
+        2385.9,
+        2385.8,
+        ...
+        2328.9,
+        2328.9
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ],
+      [
+        2103.2,
+        2104.4,
+        ...
+        2168.9,
+        2168.5
+      ],
+      [
+        2,
+        2,
+        ...
+        2,
+        2
+      ]
+    ],
+    "cast": 1,
+    "station": "12",
+    "btm_depth": null
+  }
 
 Implementation
 ++++++++++++++
@@ -1053,16 +1046,6 @@ Implementation of CCHDO's schema and pipelines to load the data from CCHDO can b
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/cchdo.py <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_
 - Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/bkatiemills/argovis_convert_netcdf_to_json/tree/2023Q3 <https://github.com/bkatiemills/argovis_convert_netcdf_to_json/tree/2023Q3>`_ for schema compliance and mongo upload.
 
-
-
-
-
-
-
-
-
-
-
 Drifter Schema Extension
 ------------------------
 
@@ -1070,37 +1053,29 @@ Argovis indexes a subset of the hourly dataset from the `NOAA Global Drifter Pro
 
 Global Drifter Program data and metadata collections extend and implement the generic schema as follows.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+Drifter metadata documents
+++++++++++++++++++++++++++
 
-Global Drifter Program measurements place all metadata fields in their metadata records; drifter data records correspond exactly to generic data records, while metadata records are per platform.
+Drifter metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-``_id`` construction
-++++++++++++++++++++
-
- - Data records ``_id``: ``<platform>_<measurement_index>``
- - Metadata records ``_id``: ``<platform>``.
-
-Drifter-Specific Data Record Fields
-+++++++++++++++++++++++++++++++++++
-
-The drifter collectoin treats ``timestamp`` and ``basin`` all as required items on the data document.
-
-Otherwise, drifter data records are exactly the generic data record specification.
-
-Drifter-Specific Metadata Record Fields
-+++++++++++++++++++++++++++++++++++++++
-
+- ``_id``, constructed as ``<platform>``
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``platform``
 - ``rowsize``
 
   - **required:** true
   - **type:** int
   - **description:** number of obs for this trajectory
 
-- ``WMO``
+- ``wmo``
 
   - **required:** true
-  - **type:** string
+  - **type:** int
   - **description:**  World Meteorological Organization buoy identification number
 
 - ``expno``
@@ -1163,6 +1138,204 @@ Drifter-Specific Metadata Record Fields
   - **type:** string
   - **description:** 'Buoy type (see https://www.aoml.noaa.gov/phod/dac/dirall.html)'
 
+Drifter metadata example::
+
+  {
+    "_id": "101143",
+    "platform": "101143",
+    "rowsize": 417,
+    "wmo": 1300915,
+    "expno": 9325,
+    "deploy_lon": -17.75,
+    "deploy_lat": 14.742,
+    "end_date": "2012-04-02T00:00:00.000Z",
+    "end_lon": -16.889999999999986,
+    "end_lat": 15.35,
+    "drogue_lost_date": "2012-04-02T00:00:00.000Z",
+    "typedeath": 3,
+    "typebuoy": "SVP",
+    "data_type": "drifter",
+    "date_updated_argovis": "2024-07-02T18:19:15.895Z",
+    "source": [
+      {
+        "source": [
+          "gdp"
+        ],
+        "url": "https://www.aoml.noaa.gov/ftp/pub/phod/lumpkin/hourly/v2.00/netcdf/drifter_101143.nc"
+      }
+    ],
+    "data_info": [
+      [
+        "ve",
+        "vn",
+        "err_lon",
+        "err_lat",
+        "err_ve",
+        "err_vn",
+        "gap",
+        "sst",
+        "sst1",
+        "sst2",
+        "err_sst",
+        "err_sst1",
+        "err_sst2",
+        "flg_sst",
+        "flg_sst1",
+        "flg_sst2"
+      ],
+      [
+        "units",
+        "long_name"
+      ],
+      [
+        [
+          "m/s",
+          "Eastward velocity"
+        ],
+        [
+          "m/s",
+          "Northward velocity"
+        ],
+        [
+          "degrees_east",
+          "95% confidence interval in longitude"
+        ],
+        [
+          "degrees_north",
+          "95% confidence interval in latitude"
+        ],
+        [
+          "m/s",
+          "95% confidence interval in eastward velocity"
+        ],
+        [
+          "m/s",
+          "95% confidence interval in northward velocity"
+        ],
+        [
+          "seconds",
+          "time interval between previous and next location fix"
+        ],
+        [
+          "Kelvin",
+          "fitted sea water temperature"
+        ],
+        [
+          "Kelvin",
+          "fitted non-diurnal sea water temperature"
+        ],
+        [
+          "Kelvin",
+          "fitted diurnal sea water temperature anomaly"
+        ],
+        [
+          "Kelvin",
+          "standard uncertainty of fitted sea water temperature"
+        ],
+        [
+          "Kelvin",
+          "standard uncertainty of fitted non-diurnal sea water temperature"
+        ],
+        [
+          "Kelvin",
+          "standard uncertainty of fitted diurnal sea water temperature anomaly"
+        ],
+        [
+          null,
+          "fitted sea water temperature quality flag"
+        ],
+        [
+          null,
+          "fitted non-diurnal sea water temperature quality flag"
+        ],
+        [
+          null,
+          "fitted diurnal sea water temperature anomaly quality flag"
+        ]
+      ]
+    ],
+    "deploy_date": "2012-03-15T00:00:00.000Z"
+  }
+
+Drifter data documents
+++++++++++++++++++++++
+
+Drifter data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<platform>_<measurement_index>``
+- ``metadata``
+- ``geolocation``
+- ``basin``, required for drifters
+- ``timestamp``, required for drifters
+- ``data``
+
+Drifter data example::
+
+  {
+    "_id": "101143_0",
+    "metadata": [
+      "101143"
+    ],
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        -17.74345,
+        14.74677
+      ]
+    },
+    "basin": 1,
+    "timestamp": "2012-03-15T22:00:00.000Z",
+    "data": [
+      [
+        -0.0285
+      ],
+      [
+        0.3101
+      ],
+      [
+        0.00266
+      ],
+      [
+        0.00116
+      ],
+      [
+        0.0997
+      ],
+      [
+        0.0277
+      ],
+      [
+        2333
+      ],
+      [
+        293.884
+      ],
+      [
+        293.907
+      ],
+      [
+        -0.023
+      ],
+      [
+        0.019
+      ],
+      [
+        0.042
+      ],
+      [
+        0.044
+      ],
+      [
+        5
+      ],
+      [
+        5
+      ],
+      [
+        2
+      ]
+    ]
+  }
 
 Implementation
 ++++++++++++++
@@ -1175,24 +1348,90 @@ Tropical Cyclone Schema Extension
 
 HURDAT and JTWC tropical cyclone data is indexed by Argovis; TC data and metadata collections extend and implement the generic schema as follows.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+Tropical cyclone metadata documents
++++++++++++++++++++++++++++++++++++
 
-Tropical cyclone records place all generic metadata fields in their metadata records.
+Tropical cyclone metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-``_id`` construction
-++++++++++++++++++++
+- ``_id``, constructed as ``<TCID>`` from the upstream data source
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.doi``
+- ``source.date_updated``
+- ``name``
 
-- Data records ``_id``: ``<TCID>_<YYYY><MM><DD><HH><MM><SS>``, where ``<TCID>`` is the ID of the cyclone measurement from the upstream data source.
-- Metadata records ``_id``: ``<TCID>``
+  - **required:** true
+  - **type:** string
+  - **description:** name of the tropical cyclone
 
-TC-Specific Data Record Fields
-++++++++++++++++++++++++++++++
+- ``num``
 
-Tropical cyclones treat ``timestamp`` and ``basin`` all as required items on the data document. Specific data record fields are as follows:
+  - **required:** true
+  - **type:** int
+  - **description:** number of the tropical cyclone for that season
 
-- ``class`` 
+Tropical cyclone example metadata::
+
+  {
+    "_id": "AL032017",
+    "data_type": "tropicalCyclone",
+    "data_info": [
+      [
+        "wind",
+        "surface_pressure"
+      ],
+      [
+        "units"
+      ],
+      [
+        [
+          "kt"
+        ],
+        [
+          "mb"
+        ]
+      ]
+    ],
+    "date_updated_argovis": "2024-05-31T16:12:58.299Z",
+    "source": [
+      {
+        "url": "https://www.nhc.noaa.gov/data/hurdat/hurdat2-atl-1851-2023-042624.txt",
+        "source": [
+          "tc_hurdat"
+        ]
+      }
+    ],
+    "name": "CINDY",
+    "num": 3
+  }
+
+Tropical cyclone data documents
++++++++++++++++++++++++++++++++
+
+Tropical cyclone data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<TCID>_<YYYY><MM><DD><HH><MM><SS>``
+- ``metadata``
+- ``geolocation``
+- ``basin`` required for tropical cyclones
+- ``timestamp`` required for tropical cyclones
+- ``data``
 - ``record_identifier``
+
+  - **required:** true
+  - **type:** string
+  - **description:** identifier for the record as defined in the HURDAT and JTWC datasets
+
+- ``class``
+
+  - **required:** true
+  - **type:** string
+  - **description:** class of the tropical cyclone as defined in the HURDAT and JTWC datasets
+
 - ``data_warning``
 
   - **required:** false
@@ -1202,11 +1441,33 @@ Tropical cyclones treat ``timestamp`` and ``basin`` all as required items on the
 
     - ``duplicate``: multiple records with the same basin, cyclone number, and timestamp were found in the upstream data. In these cases, the first such record is populated in Argovis and the rest are discarded; this key lists links to the upstream files that contain the discarded duplicates.
 
-TC-Specific Metadata Record Fields
-++++++++++++++++++++++++++++++++++
+Tropical cyclone example data::
 
-- ``name``
-- ``num``
+  {
+    "_id": "AL032017_20170623000000",
+    "metadata": [
+      "AL032017"
+    ],
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        -93.60000000000002,
+        32.8
+      ]
+    },
+    "basin": -1,
+    "timestamp": "2017-06-23T00:00:00.000Z",
+    "data": [
+      [
+        30
+      ],
+      [
+        999
+      ]
+    ],
+    "record_identifier": "",
+    "class": "TD"
+  }
 
 Implementation
 ++++++++++++++
@@ -1215,6 +1476,326 @@ Implementation of tropical cyclone schema and pipelines to load the data from so
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/tc.py <https://github.com/argovis/db-schema/blob/main/tc.py>`_
 - Upload pipeline: `https://github.com/argovis/tc-sync <https://github.com/argovis/tc-sync>`_
+
+Argo trajectory schema extension
+--------------------------------
+
+Argovis includes estimates of Argo float trajectories from `https://doi.org/10.6075/J0FQ9WS6 <https://doi.org/10.6075/J0FQ9WS6>`_.
+
+Argo trajectory metadata documents
+++++++++++++++++++++++++++++++++++
+
+Argo trajectory metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
+
+- ``_id``, constructed as ``<platform>_m<metadata_number>``, analogos to Argo metadata
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.doi``
+- ``platform``
+- ``positioning_system_flag``
+
+  - **required:** true
+  - **type:** int
+  - **description:** positioning system flag
+
+- ``sensor_type_flag``
+
+  - **required:** true
+  - **type:** int
+  - **description:** flag indicating sensors on float
+
+- ``mission_flag``
+
+  - **required:** true
+  - **type:** int
+  - **description:** flag indicating float mission type
+  
+- ``extrapolation_flag``
+
+  - **required:** true
+  - **type:** int
+  - **description:** flag indicating if velocity was extrapolated or transmitted
+
+- ``positioning_system``
+
+  - **required:** true
+  - **type:** string
+  - **description:** positioning system for this float.
+  - **current vocabulary**: see Argo ref table 9
+
+- ``platform_type``
+
+  - **required:** true
+  - **type:** string
+  - **description:** platform type
+
+Argo trajectories metadata example::
+
+  {
+    "_id": "13857_m0",
+    "platform": "13857",
+    "data_type": "argo_trajectory",
+    "source": [
+      {
+        "source": [
+          "scripps_argo_trajectory"
+        ],
+        "doi": "https://doi.org/10.6075/J0FQ9WS6"
+      }
+    ],
+    "date_updated_argovis": "2023-02-24T22:56:16.700Z",
+    "positioning_system_flag": 1,
+    "sensor_type_flag": 1,
+    "mission_flag": 1,
+    "extrapolation_flag": 1,
+    "positioning_system": "ARGOS",
+    "platform_type": "PALACE",
+    "data_info": [
+      [
+        "velocity_zonal",
+        "velocity_meridional",
+        "velocity_zonal_transmitted",
+        "velocity_meridional_transmitted",
+        "speed",
+        "speed_transmitted",
+        "drift_pres",
+        "drift_temp",
+        "number_surface_fixes"
+      ],
+      [
+        "long name",
+        "units"
+      ],
+      [
+        [
+          "velocity",
+          "centimeters per second"
+        ],
+        [
+          "velocity",
+          "centimeters per second"
+        ],
+        [
+          "velocity",
+          "centimeters per second"
+        ],
+        [
+          "velocity",
+          "centimeters per second"
+        ],
+        [
+          "speed",
+          "centimeters per second"
+        ],
+        [
+          "speed",
+          "centimeters per second"
+        ],
+        [
+          "sea water pressure, equals 0 at sea-level",
+          "dbar"
+        ],
+        [
+          "sea temperature in-situ ITS-90 scale",
+          "degree_Celcius"
+        ],
+        [
+          "number of surface fixes",
+          "none"
+        ]
+      ]
+    ]
+  }
+
+Argo trajectory data documents
+++++++++++++++++++++++++++++++
+
+Argo trajectory data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<platform>_<cycle_number>``
+- ``metadata`` 
+- ``cycle_number``
+
+  - **required:** true
+  - **type:** int
+  - **description:** probe cycle index
+
+- ``geolocation``, taken as the midpoint longitude and latitude from the upstream file. 
+- ``geolocation_descending``
+
+  - **required:** true
+  - **type:** geojson Point
+  - **description:** if available, extrapolated geolocation at descending. If not available, the transmitted geolocation at descending
+
+- ``geolocation_ascending``
+
+  - **required:** true
+  - **type:** geojson Point
+  - **description:** if available, extrapolated geolocation at ascending. If not available, the transmitted geolocation at ascending
+
+- ``geolocation_descending_transmitted``
+
+  - **required:** true
+  - **type:** geojson Point
+  - **description:** transmitted geolocation at descending
+
+- ``geolocation_ascending_transmitted``
+
+  - **required:** true
+  - **type:** geojson Point
+  - **description:** transmitted geolocation at ascending
+
+- ``geolocation_midpoint_transmitted``
+
+  - **required:** true
+  - **type:** geojson Point
+  - **description:** TBD
+
+- ``timestamp``, taken as the midpoint timestamp from the upstream file.
+- ``timestamp_descending``
+
+  - **required:** true
+  - **type:** ISO 8601 UTC datestring
+  - **description:** if available, extrapolated timestamp at descending. If not available, the transmitted timestamp at descending
+
+- ``timestamp_ascending``
+
+  - **required:** true
+  - **type:** ISO 8601 UTC datestring
+  - **description:** if available, extrapolated timestamp at ascending. If not available, the transmitted timestamp at ascending  
+
+- ``timestamp_descending_transmitted``
+
+  - **required:** true
+  - **type:** ISO 8601 UTC datestring
+  - **description:** transmitted timestamp at descending
+
+- ``timestamp_ascending_transmitted``
+
+  - **required:** true
+  - **type:** ISO 8601 UTC datestring
+  - **description:** transmitted timestamp at ascending
+
+- ``timestamp_midpoint_transmitted``
+
+  - **required:** true
+  - **type:** ISO 8601 UTC datestring
+  - **description:** TBD
+
+Argo trajectory data example::
+
+  {
+    "_id": "13857_116",
+    "cycle_number": 116,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        -28.744391,
+        5.435884
+      ]
+    },
+    "timestamp": "2001-01-09T17:35:31.000Z",
+    "geolocation_descending": {
+      "type": "Point",
+      "coordinates": [
+        -28.632977,
+        5.564203
+      ]
+    },
+    "timestamp_descending": "2001-01-04T16:30:43.000Z",
+    "geolocation_ascending": {
+      "type": "Point",
+      "coordinates": [
+        -28.855806,
+        5.307566
+      ]
+    },
+    "timestamp_ascending": "2001-01-14T18:40:19.000Z",
+    "geolocation_descending_transmitted": {
+      "type": "Point",
+      "coordinates": [
+        -28.618,
+        5.567
+      ]
+    },
+    "timestamp_descending_transmitted": "2001-01-04T15:25:55.000Z",
+    "geolocation_ascending_transmitted": {
+      "type": "Point",
+      "coordinates": [
+        -28.833,
+        5.325
+      ]
+    },
+    "timestamp_ascending_transmitted": "2001-01-14T20:11:02.000Z",
+    "geolocation_midpoint_transmitted": {
+      "type": "Point",
+      "coordinates": [
+        -28.7255,
+        5.446
+      ]
+    },
+    "timestamp_midpoint_transmitted": "2001-01-09T17:48:28.000Z",
+    "data": [
+      [
+        -2.83252
+      ],
+      [
+        -3.25527
+      ],
+      [
+        -2.70414
+      ],
+      [
+        -3.037246
+      ],
+      [
+        4.315084
+      ],
+      [
+        4.0666
+      ],
+      [
+        1022.299988
+      ],
+      [
+        4.794
+      ],
+      [
+        12
+      ]
+    ],
+    "metadata": [
+      "13857_m0"
+    ]
+  }
+
+Implementation
+++++++++++++++
+
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/trajectories.py <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_
+- Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Gridded Product Schema Extension
 --------------------------------
@@ -1447,62 +2028,6 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argone.py <https://github.com/argovis/db-schema/blob/main/argone.py>`_
 - Upload pipeline: `https://github.com/argovis/ARGONE <https://github.com/argovis/ARGONE>`_
 
-Argo trajectory data
---------------------
-
-Argovis includes estimates of Argo float trajectories from `https://doi.org/10.6075/J0FQ9WS6 <https://doi.org/10.6075/J0FQ9WS6>`_.
-
-Generic Metadata Division
-+++++++++++++++++++++++++
-
-``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the trajectories metadata documents.
-
-``_id`` construction
-++++++++++++++++++++
-
- - Data records: ``<platform>_<cycle_number>``
- - Metadata records: ``<platform>_m<metadata_number>``, analogos to Argo metadata
-
-Argo trajectory-specific data record fields
-+++++++++++++++++++++++++++++++++++++++++++
-
-- ``cycle_number``
-
-  - **required:** true
-  - **type:** int
-  - **description:** probe cycle index
-
-The following ``geolocation_*`` and ``timestamp_*`` data fields are all required; all geolocations have type geojson Point, and all timestamps have type datetime.
-
-- ``geolocation_descending``
-- ``timestamp_descending``
-- ``geolocation_ascending``
-- ``timestamp_ascending``
-- ``geolocation_descending_transmitted``
-- ``timestamp_descending_transmitted``
-- ``geolocation_ascending_transmitted``
-- ``timestamp_ascending_transmitted``
-- ``geolocation_midpoint_transmitted``
-- ``timestamp_midpoint_transmitted``
-
-Note that Argovis' ``geolocation`` corresponds to the original files' ``LONGITUDE_`` and ``LATITUDE_MIDPOINT``, and ``timestamp`` corresponds to the upstream ``JULD_MIDPOINT``.
-
-Argo trajectory-specific metadata record fields
-+++++++++++++++++++++++++++++++++++++++++++++++
-
-- ``platform``
-- ``positioning_system_flag``
-- ``sensor_type_flag``
-- ``mission_flag``
-- ``extrapolation_flag``
-- ``positioning_system``
-- ``platform_type``
-
-Implementation
-++++++++++++++
-
-- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/trajectories.py <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_
-- Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
 
 Generic Timeseries Schema
 -------------------------
