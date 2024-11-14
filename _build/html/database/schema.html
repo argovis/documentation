@@ -103,6 +103,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#drifter-schema-extension">Drifter Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argo-trajectory-schema-extension">Argo trajectory schema extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roemmich-gilson-grid-schema-extension">Roemmich-Gilson grid schema extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ocean-heat-content-grid-schema-extension">Ocean heat content grid schema extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#glodap-grid-schema-extension">GLODAP grid schema extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a></li>
@@ -149,8 +152,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-point-schema">Generic Point Schema</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generic-data-schema">Generic Data Schema</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-schema">Generic Metadata Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-point-data-schema">Generic Point Data Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-point-metadata-schema">Generic Point Metadata Schema</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#argo-schema-extension">Argo Schema Extension</a><ul>
@@ -183,62 +186,80 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">Implementation</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#roemmich-gilson-grid-schema-extension">Roemmich-Gilson grid schema extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roemmich-gilson-metadata-documents">Roemmich-Gilson metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roemmich-gilson-data-documents">Roemmich-Gilson data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ocean-heat-content-grid-schema-extension">Ocean heat content grid schema extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ocean-heat-content-metadata-documents">Ocean heat content metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ocean-heat-content-data-documents">Ocean heat content data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#glodap-grid-schema-extension">GLODAP grid schema extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#glodap-metadata-documents">GLODAP metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#glodap-data-documents">GLODAP data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#gridded-product-schema-extension">Gridded Product Schema Extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#generic-metadata-division">Generic Metadata Division</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id-construction"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid-specific-data-record-fields">Grid-Specific Data Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid-specific-metadata-record-fields">Grid-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-specific-data-record-fields">Easy Ocean-Specific Data Record Fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-specific-metadata-record-fields">Easy Ocean-Specific Metadata Record Fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argone-specific-data-record-fields">ARGONE-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argone-specific-metadata-record-fields">ARGONE-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-data-record-fields">NOAA sst-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-metadata-record-fields">NOAA sst-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-data-record-fields">Copernicus sla-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-metadata-record-fields">Copernicus sla-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id21">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-data-record-fields">CCMP wind-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-metadata-record-fields">CCMP wind-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id25">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">Generic Metadata Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ar-specific-data-record-fields">AR-specific data record fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ar-specific-metadata-record-fields">AR-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id27">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -361,6 +382,10 @@
 <li><p><strong>fill value</strong> (optional): what this should be filled by if absent</p></li>
 <li><p><strong>current vocabulary</strong> (optional): current set of possible values for this key,  with explanations as required.</p></li>
 </ul>
+<div class="admonition-database-versus-api admonition">
+<p class="admonition-title">Database versus API</p>
+<p>The schema described here are as they appear in our database. Depending on filtering and transform flags used, Argovis’ API may add or remove fields to suit the user’s request; this behvior is discussed in detail in the API docs.</p>
+</div>
 </div>
 <div class="section" id="schema-enforcement-population">
 <h3>Schema enforcement &amp; population<a class="headerlink" href="#schema-enforcement-population" title="Permalink to this headline">¶</a></h3>
@@ -369,9 +394,9 @@
 </div>
 <div class="section" id="generic-point-schema">
 <h2>Generic Point Schema<a class="headerlink" href="#generic-point-schema" title="Permalink to this headline">¶</a></h2>
-<p>As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema for our point-like datasets. Subsequent sections describe how specific datasets extend and implement these core definitions.</p>
-<div class="section" id="generic-data-schema">
-<h3>Generic Data Schema<a class="headerlink" href="#generic-data-schema" title="Permalink to this headline">¶</a></h3>
+<p>As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema for our point-like datasets, including in-situ measurements and most gridded products. Subsequent sections describe how specific datasets extend and implement these core definitions.</p>
+<div class="section" id="generic-point-data-schema">
+<h3>Generic Point Data Schema<a class="headerlink" href="#generic-point-data-schema" title="Permalink to this headline">¶</a></h3>
 <p>In general, data records are intended to represent data that is unique or frequently changing per longitude / latitude / timestamp triple, in order to support efficient temporospatial indexing of these records in Mongodb. All data records contain the following fields:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code></p>
@@ -421,8 +446,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="generic-metadata-schema">
-<h3>Generic Metadata Schema<a class="headerlink" href="#generic-metadata-schema" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="generic-point-metadata-schema">
+<h3>Generic Point Metadata Schema<a class="headerlink" href="#generic-point-metadata-schema" title="Permalink to this headline">¶</a></h3>
 <p>In general, metadata records in Argovis are meant to factor out constant or infrequently-changing data from the data records. They only have one required field:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code></p>
@@ -553,6 +578,45 @@
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> string</p></li>
 <li><p><strong>description:</strong> make or model of the platform.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p>
+<ul>
+<li><p><strong>required:</strong> case</p></li>
+<li><p><strong>type:</strong> array of floats</p></li>
+<li><p><strong>description:</strong> Pressure or depth levels corresponding by index to each list of measurements in <code class="docutils literal notranslate"><span class="pre">data</span></code>. Note this parameter only makes sense and only is used when the measurements in the data vectors fall on regular levels, such as for gridded or interpolated products.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level_units</span></code></p>
+<ul>
+<li><p><strong>required:</strong> case</p></li>
+<li><p><strong>type:</strong> string</p></li>
+<li><p><strong>description:</strong> units associated with the values in the <code class="docutils literal notranslate"><span class="pre">levels</span></code> array, typically dbar or m.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p>
+<ul>
+<li><p><strong>required:</strong> case</p></li>
+<li><p><strong>type:</strong> object</p></li>
+<li><p><strong>description:</strong> describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required if <code class="docutils literal notranslate"><span class="pre">lattice</span></code> is present.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.center</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of two floats</p></li>
+<li><p><strong>description:</strong> [longitude, latitude] of a point on the grid close to [0,0].</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.spacing</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of two floats</p></li>
+<li><p><strong>description:</strong> [longitude stride, latitude stride] between points on the grid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice.[min</span> <span class="pre">|</span> <span class="pre">max][Lon</span> <span class="pre">|</span> <span class="pre">Lat]</span></code></p>
+<ul>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> [minimum | maximum] [longitude | latitude] seen in the dataset</p></li>
 </ul>
 </li>
 </ul>
@@ -2064,7 +2128,7 @@
 <li><p><strong>description:</strong> TBD</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, taken as the midpoint timestamp from the upstream file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, taken as the midpoint timestamp from the upstream file, required for Argo trajectories</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
@@ -2197,6 +2261,1405 @@
 </ul>
 </div>
 </div>
+<div class="section" id="roemmich-gilson-grid-schema-extension">
+<h2>Roemmich-Gilson grid schema extension<a class="headerlink" href="#roemmich-gilson-grid-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>. These gridded data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="roemmich-gilson-metadata-documents">
+<h3>Roemmich-Gilson metadata documents<a class="headerlink" href="#roemmich-gilson-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>Roemmich-Gilson metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">rg09_&lt;temperature</span> <span class="pre">|</span> <span class="pre">salinity&gt;_&lt;yyymm</span> <span class="pre">of</span> <span class="pre">originating</span> <span class="pre">file&gt;_Total</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level_units</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
+</ul>
+<p>Roemmich-Gilson example metadata:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;rg09_temperature_200401_Total&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;temperature&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;rg09_temperature&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degree celcius (ITS-90)&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-01-27T18:43:01.679Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Roemmich-Gilson Argo Climatology&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sio-argo.ucsd.edu/gilson/argo_climatology/RG_ArgoClim_Temperature_2019.nc.gz&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mf">2.5</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="mi">1900</span><span class="p">,</span>
+    <span class="mi">1975</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;level_units&quot;</span><span class="p">:</span> <span class="s2">&quot;dbar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.5</span><span class="p">,</span>
+      <span class="mf">0.5</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">64.5</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">79.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="roemmich-gilson-data-documents">
+<h3>Roemmich-Gilson data documents<a class="headerlink" href="#roemmich-gilson-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>Roemmich-Gilson data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>Roemmich-Gilson data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;20040115000000_20.5_-64.5&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;rg09_temperature_200401_Total&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rg09_salinity_200401_Total&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">20.5</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">64.5</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2004-01-15T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="o">-</span><span class="mf">0.033</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">0.076</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">0.175</span><span class="p">,</span>
+      <span class="mf">0.128</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">33.750999</span><span class="p">,</span>
+      <span class="mf">33.763</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">34.671001</span><span class="p">,</span>
+      <span class="mf">34.668999</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a> and <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">https://github.com/argovis/db-schema/blob/main/grids-meta.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ocean-heat-content-grid-schema-extension">
+<h2>Ocean heat content grid schema extension<a class="headerlink" href="#ocean-heat-content-grid-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes the ocean heat content grids from <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. These gridded data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="ocean-heat-content-metadata-documents">
+<h3>Ocean heat content metadata documents<a class="headerlink" href="#ocean-heat-content-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>Ocean heat content metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">kg21_ohc15to300</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level_units</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
+</ul>
+<p>Ocean heat content example metadata (note this is actually the only metadata document for this collection, applicable to all data documents):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;kg21_ohc15to300&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;ocean_heat_content&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-01-29T20:59:07.960Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Kuusela_Giglio2022&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;10.5281/zenodo.6131625&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://doi.org/10.5281/zenodo.6131625&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mi">15</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;kg21_ohc15to300&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;J/m^2&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;level_units&quot;</span><span class="p">:</span> <span class="s2">&quot;integral from 15 dbar to 300 dbar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.5</span><span class="p">,</span>
+      <span class="mf">0.5</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">64.5</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">64.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ocean-heat-content-data-documents">
+<h3>Ocean heat content data documents<a class="headerlink" href="#ocean-heat-content-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>Ocean heat content data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>Ocean heat content data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;20050115000000_107.5_-64.5&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;kg21_ohc15to300&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">107.5</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">64.5</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2005-01-15T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="mf">319333340084.3734</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Implementation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a> and <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">https://github.com/argovis/db-schema/blob/main/grids-meta.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="glodap-grid-schema-extension">
+<h2>GLODAP grid schema extension<a class="headerlink" href="#glodap-grid-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes the <a class="reference external" href="https://glodap.info/index.php/mapped-data-product/">GLODAP v2.2016b mapped data product</a>. These gridded data and metadata collections extend and implement the generic schema as follows.</p>
+<div class="section" id="glodap-metadata-documents">
+<h3>GLODAP metadata documents<a class="headerlink" href="#glodap-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>GLODAP metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">glodapv2.2016b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level_units</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snr</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> JSON object keyed by GLODAP variable</p></li>
+<li><p><strong>description:</strong> Signal to noise ratio reported for this variable.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cl</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> JSON object keyed by GLODAP variable</p></li>
+<li><p><strong>description:</strong> Correlation length, units of degrees north. Comment from the GLODAP upstream data: “Note that the [sic]correlation length is scaled to be 2x this number in the zonal direction, in order to account for the typically stronger flow zonally than meridionally in the world oceans.”</p></li>
+</ul>
+</li>
+</ul>
+<p>GLODAP example metadata (note this is actually the only metadata document for this collection, applicable to all data documents):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;glodapv2.2016b&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;glodap&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-07-27T18:41:04.941Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;GLODAPv2.2016b&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://glodap.info/index.php/mapped-data-product/&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;10.5194/essd-8-325-2016&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="mi">5000</span><span class="p">,</span>
+    <span class="mi">5500</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;Cant&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Cant_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Cant_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Cant_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Cant_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Cant_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NO3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NO3_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NO3_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NO3_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NO3_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NO3_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaA&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaA_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaA_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaA_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaA_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaA_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaC&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaC_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaC_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaC_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaC_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;OmegaC_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oxygen_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHts25p0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHts25p0_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHts25p0_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHts25p0_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHts25p0_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHts25p0_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHtsinsitutp&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHtsinsitutp_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHtsinsitutp_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHtsinsitutp_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHtsinsitutp_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;pHtsinsitutp_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PI_TCO2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PI_TCO2_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PI_TCO2_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PI_TCO2_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PI_TCO2_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PI_TCO2_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PO4&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PO4_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PO4_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PO4_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PO4_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PO4_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;salinity_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;silicate_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TAlk&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TAlk_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TAlk_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TAlk_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TAlk_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TAlk_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TCO2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TCO2_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TCO2_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TCO2_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TCO2_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TCO2_relerr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_error&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_Input_mean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_Input_std&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_Input_N&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;temperature_relerr&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;long_name&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of anthropogenic carbon content per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;anthropogenic carbon content error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of nitrate per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nitrate error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aragonite saturation state calculated at in situ temperature and pressure&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;OmegaAr error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;calcite saturation state calculated at in situ temperature and pressure&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;OmegaCa error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of dissolved molecular oxygen per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dissolved molecular oxygen error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;seawater ph reported on total scale at standard temperature (25C) and pressure (0dbar)&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pH error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;seawater ph reported on total scale at in situ temperature and pressure&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pH error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of pre-industrial dissolved inorganic carbon per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pre-industrial dissolved inorganic carbon error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of phosphate per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phosphate error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;seawater practical salinity&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;practical salinity error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of silicate per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;silicate error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;seawater alkalinity expressed as mole equivalent per unit mass&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;total alkalinity error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;moles of dissolved inorganic carbon per unit mass in seawater&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dissolved inorganic carbon error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degrees celcius&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;seawater temperature&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degrees celcius&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;temperature error&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;micro-mol kg-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;standard deviation of bin averaged input data&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of data in bins&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;relative error&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;snr&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;Cant&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;NO3&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;OmegaA&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;OmegaC&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;oxygen&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;pHts25p0&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;pHtsinsitutp&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;PI_TCO2&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;PO4&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;salinity&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;silicate&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;TAlk&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;TCO2&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mi">10</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;cl&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;Cant&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;NO3&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;OmegaA&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;OmegaC&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;oxygen&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;pHts25p0&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;pHtsinsitutp&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;PI_TCO2&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;PO4&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;salinity&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;silicate&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;TAlk&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;TCO2&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mi">7</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;level_units&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.5</span><span class="p">,</span>
+      <span class="mf">0.5</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">77.5</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">89.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="glodap-data-documents">
+<h3>GLODAP data documents<a class="headerlink" href="#glodap-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>GLODAP data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>GLODAP data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;20.5_-70.5&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;glodapv2.2016b&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">20.5</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">70.5</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;1000-01-01T00:00:00.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="mf">36.783145904541016</span><span class="p">,</span>
+      <span class="mf">36.596099853515625</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.3899955153465271</span><span class="p">,</span>
+      <span class="mf">0.40922367572784424</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.03495195135474205</span><span class="p">,</span>
+      <span class="mf">0.03667520731687546</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">27.89097023010254</span><span class="p">,</span>
+      <span class="mf">28.032878875732422</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.33694225549697876</span><span class="p">,</span>
+      <span class="mf">0.36649394035339355</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.04177294671535492</span><span class="p">,</span>
+      <span class="mf">0.045436661690473557</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">1.450399398803711</span><span class="p">,</span>
+      <span class="mf">1.464065670967102</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.10547946393489838</span><span class="p">,</span>
+      <span class="mf">0.09900103509426117</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.11943197250366211</span><span class="p">,</span>
+      <span class="mf">0.11209660023450851</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2.3149771690368652</span><span class="p">,</span>
+      <span class="mf">2.3372156620025635</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.15262079238891602</span><span class="p">,</span>
+      <span class="mf">0.14324699342250824</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.11943197250366211</span><span class="p">,</span>
+      <span class="mf">0.11209659278392792</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">352.269287109375</span><span class="p">,</span>
+      <span class="mf">349.0029602050781</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2.4798030853271484</span><span class="p">,</span>
+      <span class="mf">2.7702741622924805</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.03848491981625557</span><span class="p">,</span>
+      <span class="mf">0.04299284145236015</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">7.691878795623779</span><span class="p">,</span>
+      <span class="mf">7.697181224822998</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.016992690041661263</span><span class="p">,</span>
+      <span class="mf">0.015962157398462296</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.12015647441148758</span><span class="p">,</span>
+      <span class="mf">0.1128695011138916</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">8.104798316955566</span><span class="p">,</span>
+      <span class="mf">8.111119270324707</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.008445115759968758</span><span class="p">,</span>
+      <span class="mf">0.007926425896584988</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.1194319799542427</span><span class="p">,</span>
+      <span class="mf">0.11209660023450851</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2156.17529296875</span><span class="p">,</span>
+      <span class="mf">2161.255126953125</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">3.1917243003845215</span><span class="p">,</span>
+      <span class="mf">3.3490874767303467</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.03495195135474205</span><span class="p">,</span>
+      <span class="mf">0.03667520731687546</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">1.7402530908584595</span><span class="p">,</span>
+      <span class="mf">1.7485665082931519</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.06432818621397018</span><span class="p">,</span>
+      <span class="mf">0.06043602526187897</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.1237996518611908</span><span class="p">,</span>
+      <span class="mf">0.11630918830633163</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">34.07292556762695</span><span class="p">,</span>
+      <span class="mf">34.109130859375</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.07776444405317307</span><span class="p">,</span>
+      <span class="mf">0.08651941269636154</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.03893091529607773</span><span class="p">,</span>
+      <span class="mf">0.0433138832449913</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">60.412235260009766</span><span class="p">,</span>
+      <span class="mf">59.177825927734375</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.6439210176467896</span><span class="p">,</span>
+      <span class="mf">0.700396716594696</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.04176509380340576</span><span class="p">,</span>
+      <span class="mf">0.045428138226270676</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2310.60595703125</span><span class="p">,</span>
+      <span class="mf">2309.11376953125</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">12.729732513427734</span><span class="p">,</span>
+      <span class="mf">12.112330436706543</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.12203928083181381</span><span class="p">,</span>
+      <span class="mf">0.11612027883529663</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">2193.266357421875</span><span class="p">,</span>
+      <span class="mf">2198.168701171875</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">3.0722930431365967</span><span class="p">,</span>
+      <span class="mf">3.2237679958343506</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.03495195508003235</span><span class="p">,</span>
+      <span class="mf">0.03667520731687546</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="o">-</span><span class="mf">1.9621936082839966</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">2.04848051071167</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.4108997881412506</span><span class="p">,</span>
+      <span class="mf">0.46319112181663513</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.0387444794178009</span><span class="p">,</span>
+      <span class="mf">0.043675124645233154</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Implementation<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a> and <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">https://github.com/argovis/db-schema/blob/main/grids-meta.py</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="gridded-product-schema-extension">
 <h2>Gridded Product Schema Extension<a class="headerlink" href="#gridded-product-schema-extension" title="Permalink to this headline">¶</a></h2>
 <p>Argovis includes the total temperature and salinity grids from <a class="reference external" href="https://sio-argo.ucsd.edu/RG_Climatology.html">Roemmich-Gilson</a>, the ocean heat content grid described at <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>, and the <a class="reference external" href="https://glodap.info/index.php/mapped-data-product/">GLODAP v2.2016b mapped data product</a>. These gridded product data and metadata collections extend, implement and modify the generic schema as follows (see below for other, bespoke grids).</p>
@@ -2281,8 +3744,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
@@ -2292,12 +3755,12 @@
 <div class="section" id="easy-ocean-gridded-schema-extension">
 <h2>Easy Ocean Gridded Schema Extension<a class="headerlink" href="#easy-ocean-gridded-schema-extension" title="Permalink to this headline">¶</a></h2>
 <p>The Easy Ocean grid is indexed by Argovis; Easy Ocean data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="id8">
-<h3>Generic Metadata Division<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Generic Metadata Division<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>Easy Ocean places all generic metadata on the data document, save <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">country</span></code>, which is replaced by <code class="docutils literal notranslate"><span class="pre">section_countries</span></code> on the data document.</p>
 </div>
-<div class="section" id="id9">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records <code class="docutils literal notranslate"><span class="pre">_id</span></code>: <code class="docutils literal notranslate"><span class="pre">woce_&lt;WOCE_line&gt;_date_&lt;YYYYMMDD&gt;_lat_&lt;lat&gt;_lon_&lt;lon&gt;</span></code>, where decimals in lat and lon are hyphenated, ie 54.3 is written as 54-3 in the id.</p></li>
@@ -2406,8 +3869,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id10">
-<h3>Implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id24">
+<h3>Implementation<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of Easy Ocean schema and pipelines to load the data from source CSVs can be found at the following links.</p>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/easyocean.py">https://github.com/argovis/db-schema/blob/main/easyocean.py</a></p></li>
@@ -2418,12 +3881,12 @@
 <div class="section" id="argone-argo-float-forecast-data">
 <h2>ARGONE Argo float forecast data<a class="headerlink" href="#argone-argo-float-forecast-data" title="Permalink to this headline">¶</a></h2>
 <p>Argovis includes a tabulation of forecasts of Argo float locations based on ARGONE (link / DOI forthcoming).</p>
-<div class="section" id="id11">
-<h3>Generic Metadata Division<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id25">
+<h3>Generic Metadata Division<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, and <code class="docutils literal notranslate"><span class="pre">source</span></code> all live on the argone metadata document.</p>
 </div>
-<div class="section" id="id12">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;origin_lon&gt;_&lt;origin_lat&gt;_&lt;forecast_lon&gt;_&lt;forecast_lat&gt;</span></code></p></li>
@@ -2459,8 +3922,8 @@
 </ul>
 <p>Also note <code class="docutils literal notranslate"><span class="pre">data_info[0]</span></code> for ARGONE data indicates forecast length in days; the first entry indicates the probability a float will move from <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> to <code class="docutils literal notranslate"><span class="pre">geolocation_forecast</span></code> in 90 days, for example.</p>
 </div>
-<div class="section" id="id13">
-<h3>Implementation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h3>Implementation<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">https://github.com/argovis/db-schema/blob/main/argone.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ARGONE">https://github.com/argovis/ARGONE</a></p></li>
@@ -2482,12 +3945,12 @@
 <div class="section" id="noaa-sea-surface-temperature-timeseries">
 <h2>NOAA sea surface temperature timeseries<a class="headerlink" href="#noaa-sea-surface-temperature-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea surface temperatures from <a class="reference external" href="https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html">https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html</a> as a timeseries dataset.</p>
-<div class="section" id="id14">
-<h3>Generic Metadata Division<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3>Generic Metadata Division<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SST metadata documents.</p>
 </div>
-<div class="section" id="id15">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id29">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -2503,8 +3966,8 @@
 <h3>NOAA sst-specific metadata record fields<a class="headerlink" href="#noaa-sst-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id16">
-<h3>Implementation<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id30">
+<h3>Implementation<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/noaa-sst">https://github.com/argovis/noaa-sst</a></p></li>
@@ -2514,12 +3977,12 @@
 <div class="section" id="copernicus-sea-level-anomaly-timeseries">
 <h2>Copernicus sea level anomaly timeseries<a class="headerlink" href="#copernicus-sea-level-anomaly-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea level anomaly from <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global">https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id17">
-<h3>Generic Metadata Division<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id31">
+<h3>Generic Metadata Division<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SLA metadata documents.</p>
 </div>
-<div class="section" id="id18">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id32">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -2535,8 +3998,8 @@
 <h3>Copernicus sla-specific metadata record fields<a class="headerlink" href="#copernicus-sla-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id19">
-<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id33">
+<h3>Implementation<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
@@ -2546,12 +4009,12 @@
 <div class="section" id="remss-ccmp-wind-vector-timeseries">
 <h2>REMSS CCMP wind vector timeseries<a class="headerlink" href="#remss-ccmp-wind-vector-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of wind vector data from <a class="reference external" href="https://www.remss.com/measurements/ccmp/">https://www.remss.com/measurements/ccmp/</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id21">
-<h3>Generic Metadata Division<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id35">
+<h3>Generic Metadata Division<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the CCMP wind metadata documents.</p>
 </div>
-<div class="section" id="id22">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id36">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
@@ -2567,8 +4030,8 @@
 <h3>CCMP wind-specific metadata record fields<a class="headerlink" href="#ccmp-wind-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id23">
-<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id37">
+<h3>Implementation<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
@@ -2589,12 +4052,12 @@
 <div class="section" id="atmospheric-river-extended-objects">
 <h2>Atmospheric river extended objects<a class="headerlink" href="#atmospheric-river-extended-objects" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the atmospheric river (AR) climatology presented in <a class="reference external" href="https://doi.org/10.1175/MWR-D-13-00168.1">https://doi.org/10.1175/MWR-D-13-00168.1</a> as an extended object dataset.</p>
-<div class="section" id="id25">
-<h3>Generic Metadata Division<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id39">
+<h3>Generic Metadata Division<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span></code>  all live on the AR metadata documents.</p>
 </div>
-<div class="section" id="id26">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id40">
+<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;decimal</span> <span class="pre">hour&gt;_&lt;index</span> <span class="pre">of</span> <span class="pre">phenomenon</span> <span class="pre">at</span> <span class="pre">this</span> <span class="pre">timestep&gt;</span></code></p></li>
@@ -2661,8 +4124,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id27">
-<h3>Implementation<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id41">
+<h3>Implementation<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>

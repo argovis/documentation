@@ -28,6 +28,10 @@ Each entry in the schema fragments below contain a few keys:
 - **fill value** (optional): what this should be filled by if absent
 - **current vocabulary** (optional): current set of possible values for this key,  with explanations as required.
 
+.. admonition:: Database versus API
+
+   The schema described here are as they appear in our database. Depending on filtering and transform flags used, Argovis' API may add or remove fields to suit the user's request; this behvior is discussed in detail in the API docs.
+
 Schema enforcement & population
 +++++++++++++++++++++++++++++++
 
@@ -36,7 +40,7 @@ Argovis uses MongoDB as its backend. All datasets have their data and metadata s
 Generic Point Schema
 --------------------
 
-As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema for our point-like datasets. Subsequent sections describe how specific datasets extend and implement these core definitions.
+As noted above, generic schema form the basis of all schema in Argovis; this section describes the minimum viable information needed to populate these schema for our point-like datasets, including in-situ measurements and most gridded products. Subsequent sections describe how specific datasets extend and implement these core definitions.
 
 Generic Point Data Schema
 +++++++++++++++++++++++++
@@ -202,6 +206,33 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
   - **required:** case
   - **type:** array of floats
   - **description:** Pressure or depth levels corresponding by index to each list of measurements in ``data``. Note this parameter only makes sense and only is used when the measurements in the data vectors fall on regular levels, such as for gridded or interpolated products. 
+
+- ``level_units``
+
+  - **required:** case
+  - **type:** string
+  - **description:** units associated with the values in the ``levels`` array, typically dbar or m.
+
+- ``lattice``
+
+  - **required:** case
+  - **type:** object
+  - **description:** describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required if ``lattice`` is present.
+
+- ``lattice.center``
+
+  - **type:** array of two floats
+  - **description:** [longitude, latitude] of a point on the grid close to [0,0].
+
+- ``lattice.spacing``
+
+  - **type:** array of two floats
+  - **description:** [longitude stride, latitude stride] between points on the grid
+
+- ``lattice.[min | max][Lon | Lat]``
+
+  - **type:** float
+  - **description:** [minimum | maximum] [longitude | latitude] seen in the dataset 
 
 Argo Schema Extension
 ---------------------
@@ -1784,104 +1815,1417 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/trajectories.py <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_
 - Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
 
+Roemmich-Gilson grid schema extension
+-------------------------------------
 
+Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_. These gridded data and metadata collections extend and implement the generic schema as follows.
 
+Roemmich-Gilson metadata documents
+++++++++++++++++++++++++++++++++++
 
+Roemmich-Gilson metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Gridded Product Schema Extension
---------------------------------
-
-Argovis includes the total temperature and salinity grids from `Roemmich-Gilson <https://sio-argo.ucsd.edu/RG_Climatology.html>`_, the ocean heat content grid described at `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_, and the `GLODAP v2.2016b mapped data product <https://glodap.info/index.php/mapped-data-product/>`_. These gridded product data and metadata collections extend, implement and modify the generic schema as follows (see below for other, bespoke grids).
-
-Generic Metadata Division
-+++++++++++++++++++++++++
-
-Gridded products place ``data_type``, ``date_updated_argovis``, ``data_info``, and ``source`` in their metadata documents.
-
-``_id`` construction
-++++++++++++++++++++
-
- - Data records ``_id``: ``<yyyymmddhhmmss>_<longitude>_<latitude>``
- - Metadata records ``_id``: 
-
-   - For RG: ``rg09_<temperature | salinity>_<yyymm of originating file>_Total``
-   - For KG: ``kg21_ohc15to300``
-   - For GLODAP: ``glodapv2.2016b``
-
-Grid-Specific Data Record Fields
-++++++++++++++++++++++++++++++++
-
-Gridded data does not define any new data record fields. Do note however that gridded data documents often contain more than one key in their ``metadata`` field. As noted above, these correspond in order to the different grids listed in ``data``.
-
-
-Grid-Specific Metadata Record Fields
-++++++++++++++++++++++++++++++++++++
-
+- ``_id``, constructed as ``rg09_<temperature | salinity>_<yyymm of originating file>_Total``
+- ``data_type``
+- ``date_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.url``
 - ``levels``
-
-  - **required:** true
-  - **type:** array of floats
-  - **description:** Pressure or depth levels corresponding to each list of measurements in ``data``. Note the same spectrum of levels applies to all measurements in ``data``, as grids are required to have the same level spectrum in order to share a data document. 
-
 - ``level_units``
-
-  - **required:** true
-  - **type:** string
-  - **description:** units associated with the values in the ``levels`` array, typically dbar or m.
-
+- ``data_info``
 - ``lattice``
 
-  - **required:** true
-  - **type:** object
-  - **description:** describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required.
+Roemmich-Gilson example metadata::
 
-- ``lattice.center``
+  {
+    "_id": "rg09_temperature_200401_Total",
+    "data_type": "temperature",
+    "data_info": [
+      [
+        "rg09_temperature"
+      ],
+      [
+        "units"
+      ],
+      [
+        [
+          "degree celcius (ITS-90)"
+        ]
+      ]
+    ],
+    "date_updated_argovis": "2023-01-27T18:43:01.679Z",
+    "source": [
+      {
+        "source": [
+          "Roemmich-Gilson Argo Climatology"
+        ],
+        "url": "https://sio-argo.ucsd.edu/gilson/argo_climatology/RG_ArgoClim_Temperature_2019.nc.gz"
+      }
+    ],
+    "levels": [
+      2.5,
+      10,
+      ...
+      1900,
+      1975
+    ],
+    "level_units": "dbar",
+    "lattice": {
+      "center": [
+        0.5,
+        0.5
+      ],
+      "spacing": [
+        1,
+        1
+      ],
+      "minLat": -64.5,
+      "minLon": -179.5,
+      "maxLat": 79.5,
+      "maxLon": 179.5
+    }
+  }
 
-  - **type:** array of two floats
-  - **description:** [longitude, latitude] of a point on the grid close to [0,0].
+Roemmich-Gilson data documents
+++++++++++++++++++++++++++++++
 
-- ``lattice.spacing``
+Roemmich-Gilson data documents carry the following properties; any property not explained here refers to the generic data schema.
 
-  - **type:** array of two floats
-  - **description:** [longitude stride, latitude stride] between points on the grid
+- ``_id``, constructed as ``<yyyymmddhhmmss>_<longitude>_<latitude>``
+- ``metadata``
+- ``geolocation``
+- ``basin``
+- ``timestamp``
+- ``data``
 
-- ``[min / max](Lon / Lat)``
+Roemmich-Gilson data example::
 
-  - **type:** float
-  - **description:** [minimum / maximum] (longitude / latitude) seen in the dataset 
+  {
+    "_id": "20040115000000_20.5_-64.5",
+    "metadata": [
+      "rg09_temperature_200401_Total",
+      "rg09_salinity_200401_Total"
+    ],
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        20.5,
+        -64.5
+      ]
+    },
+    "basin": 10,
+    "timestamp": "2004-01-15T00:00:00.000Z",
+    "data": [
+      [
+        -0.033,
+        -0.076,
+        ...
+        0.175,
+        0.128
+      ],
+      [
+        33.750999,
+        33.763,
+        ...
+        34.671001,
+        34.668999
+      ]
+    ]
+  }
 
-- ``snr`` (GLODAP only)
+Implementation
+++++++++++++++
+
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
+- Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
+
+Ocean heat content grid schema extension
+----------------------------------------
+
+Argovis includes the ocean heat content grids from `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_. These gridded data and metadata collections extend and implement the generic schema as follows.
+
+Ocean heat content metadata documents
++++++++++++++++++++++++++++++++++++++
+
+Ocean heat content metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
+
+- ``_id``, constructed as ``kg21_ohc15to300``
+- ``data_type``
+- ``date_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.doi``
+- ``levels``
+- ``level_units``
+- ``data_info``
+- ``lattice``
+
+Ocean heat content example metadata (note this is actually the only metadata document for this collection, applicable to all data documents)::
+
+  {
+    "_id": "kg21_ohc15to300",
+    "data_type": "ocean_heat_content",
+    "date_updated_argovis": "2023-01-29T20:59:07.960Z",
+    "source": [
+      {
+        "source": [
+          "Kuusela_Giglio2022"
+        ],
+        "doi": "10.5281/zenodo.6131625",
+        "url": "https://doi.org/10.5281/zenodo.6131625"
+      }
+    ],
+    "levels": [
+      15
+    ],
+    "data_info": [
+      [
+        "kg21_ohc15to300"
+      ],
+      [
+        "units"
+      ],
+      [
+        [
+          "J/m^2"
+        ]
+      ]
+    ],
+    "level_units": "integral from 15 dbar to 300 dbar",
+    "lattice": {
+      "center": [
+        0.5,
+        0.5
+      ],
+      "spacing": [
+        1,
+        1
+      ],
+      "minLat": -64.5,
+      "minLon": -179.5,
+      "maxLat": 64.5,
+      "maxLon": 179.5
+    }
+  }
+
+Ocean heat content data documents
++++++++++++++++++++++++++++++++++
+
+Ocean heat content data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<yyyymmddhhmmss>_<longitude>_<latitude>``
+- ``metadata``
+- ``geolocation``
+- ``basin``
+- ``timestamp``
+- ``data``
+
+Ocean heat content data example::
+
+  {
+    "_id": "20050115000000_107.5_-64.5",
+    "metadata": [
+      "kg21_ohc15to300"
+    ],
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        107.5,
+        -64.5
+      ]
+    },
+    "basin": 10,
+    "timestamp": "2005-01-15T00:00:00.000Z",
+    "data": [
+      [
+        319333340084.3734
+      ]
+    ]
+  }
+
+Implementation
+++++++++++++++
+
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
+- Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
+
+GLODAP grid schema extension
+----------------------------
+
+Argovis includes the `GLODAP v2.2016b mapped data product <https://glodap.info/index.php/mapped-data-product/>`_. These gridded data and metadata collections extend and implement the generic schema as follows.
+
+GLODAP metadata documents
++++++++++++++++++++++++++
+
+GLODAP metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
+
+- ``_id``, constructed as ``glodapv2.2016b``
+- ``data_type``
+- ``date_updated_argovis``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.doi``
+- ``levels``
+- ``level_units``
+- ``data_info``
+- ``lattice``
+- ``snr``
 
   - **required:** false
   - **type:** JSON object keyed by GLODAP variable
   - **description:** Signal to noise ratio reported for this variable.
 
-- ``cl`` (GLODAP only)
+- ``cl``
 
   - **required:** false
   - **type:** JSON object keyed by GLODAP variable
   - **description:** Correlation length, units of degrees north. Comment from the GLODAP upstream data: "Note that the [sic]correlation length is scaled to be 2x this number in the zonal direction, in order to account for the typically stronger flow zonally than meridionally in the world oceans."
 
+GLODAP example metadata (note this is actually the only metadata document for this collection, applicable to all data documents)::
+
+  {
+    "_id": "glodapv2.2016b",
+    "data_type": "glodap",
+    "date_updated_argovis": "2023-07-27T18:41:04.941Z",
+    "source": [
+      {
+        "source": [
+          "GLODAPv2.2016b"
+        ],
+        "url": "https://glodap.info/index.php/mapped-data-product/",
+        "doi": "10.5194/essd-8-325-2016"
+      }
+    ],
+    "levels": [
+      0,
+      10,
+      ...
+      5000,
+      5500
+    ],
+    "data_info": [
+      [
+        "Cant",
+        "Cant_error",
+        "Cant_Input_mean",
+        "Cant_Input_std",
+        "Cant_Input_N",
+        "Cant_relerr",
+        "NO3",
+        "NO3_error",
+        "NO3_Input_mean",
+        "NO3_Input_std",
+        "NO3_Input_N",
+        "NO3_relerr",
+        "OmegaA",
+        "OmegaA_error",
+        "OmegaA_Input_mean",
+        "OmegaA_Input_std",
+        "OmegaA_Input_N",
+        "OmegaA_relerr",
+        "OmegaC",
+        "OmegaC_error",
+        "OmegaC_Input_mean",
+        "OmegaC_Input_std",
+        "OmegaC_Input_N",
+        "OmegaC_relerr",
+        "oxygen",
+        "oxygen_error",
+        "oxygen_Input_mean",
+        "oxygen_Input_std",
+        "oxygen_Input_N",
+        "oxygen_relerr",
+        "pHts25p0",
+        "pHts25p0_error",
+        "pHts25p0_Input_mean",
+        "pHts25p0_Input_std",
+        "pHts25p0_Input_N",
+        "pHts25p0_relerr",
+        "pHtsinsitutp",
+        "pHtsinsitutp_error",
+        "pHtsinsitutp_Input_mean",
+        "pHtsinsitutp_Input_std",
+        "pHtsinsitutp_Input_N",
+        "pHtsinsitutp_relerr",
+        "PI_TCO2",
+        "PI_TCO2_error",
+        "PI_TCO2_Input_mean",
+        "PI_TCO2_Input_std",
+        "PI_TCO2_Input_N",
+        "PI_TCO2_relerr",
+        "PO4",
+        "PO4_error",
+        "PO4_Input_mean",
+        "PO4_Input_std",
+        "PO4_Input_N",
+        "PO4_relerr",
+        "salinity",
+        "salinity_error",
+        "salinity_Input_mean",
+        "salinity_Input_std",
+        "salinity_Input_N",
+        "salinity_relerr",
+        "silicate",
+        "silicate_error",
+        "silicate_Input_mean",
+        "silicate_Input_std",
+        "silicate_Input_N",
+        "silicate_relerr",
+        "TAlk",
+        "TAlk_error",
+        "TAlk_Input_mean",
+        "TAlk_Input_std",
+        "TAlk_Input_N",
+        "TAlk_relerr",
+        "TCO2",
+        "TCO2_error",
+        "TCO2_Input_mean",
+        "TCO2_Input_std",
+        "TCO2_Input_N",
+        "TCO2_relerr",
+        "temperature",
+        "temperature_error",
+        "temperature_Input_mean",
+        "temperature_Input_std",
+        "temperature_Input_N",
+        "temperature_relerr"
+      ],
+      [
+        "units",
+        "long_name"
+      ],
+      [
+        [
+          "micro-mol kg-1",
+          "moles of anthropogenic carbon content per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "anthropogenic carbon content error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "moles of nitrate per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "nitrate error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "",
+          "aragonite saturation state calculated at in situ temperature and pressure"
+        ],
+        [
+          "",
+          "OmegaAr error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "",
+          "calcite saturation state calculated at in situ temperature and pressure"
+        ],
+        [
+          "",
+          "OmegaCa error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "moles of dissolved molecular oxygen per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "dissolved molecular oxygen error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "",
+          "seawater ph reported on total scale at standard temperature (25C) and pressure (0dbar)"
+        ],
+        [
+          "",
+          "pH error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "",
+          "seawater ph reported on total scale at in situ temperature and pressure"
+        ],
+        [
+          "",
+          "pH error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "moles of pre-industrial dissolved inorganic carbon per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "pre-industrial dissolved inorganic carbon error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "moles of phosphate per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "phosphate error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "",
+          "seawater practical salinity"
+        ],
+        [
+          "",
+          "practical salinity error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "moles of silicate per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "silicate error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "seawater alkalinity expressed as mole equivalent per unit mass"
+        ],
+        [
+          "micro-mol kg-1",
+          "total alkalinity error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "micro-mol kg-1",
+          "moles of dissolved inorganic carbon per unit mass in seawater"
+        ],
+        [
+          "micro-mol kg-1",
+          "dissolved inorganic carbon error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ],
+        [
+          "degrees celcius",
+          "seawater temperature"
+        ],
+        [
+          "degrees celcius",
+          "temperature error"
+        ],
+        [
+          "micro-mol kg-1",
+          "bin averaged input data"
+        ],
+        [
+          "micro-mol kg-1",
+          "standard deviation of bin averaged input data"
+        ],
+        [
+          "",
+          "number of data in bins"
+        ],
+        [
+          "",
+          "relative error"
+        ]
+      ]
+    ],
+    "snr": {
+      "Cant": 10,
+      "NO3": 10,
+      "OmegaA": 10,
+      "OmegaC": 10,
+      "oxygen": 10,
+      "pHts25p0": 10,
+      "pHtsinsitutp": 10,
+      "PI_TCO2": 10,
+      "PO4": 10,
+      "salinity": 10,
+      "silicate": 10,
+      "TAlk": 10,
+      "TCO2": 10,
+      "temperature": 10
+    },
+    "cl": {
+      "Cant": 7,
+      "NO3": 7,
+      "OmegaA": 7,
+      "OmegaC": 7,
+      "oxygen": 7,
+      "pHts25p0": 7,
+      "pHtsinsitutp": 7,
+      "PI_TCO2": 7,
+      "PO4": 7,
+      "salinity": 7,
+      "silicate": 7,
+      "TAlk": 7,
+      "TCO2": 7,
+      "temperature": 7
+    },
+    "level_units": "m",
+    "lattice": {
+      "center": [
+        0.5,
+        0.5
+      ],
+      "spacing": [
+        1,
+        1
+      ],
+      "minLat": -77.5,
+      "minLon": -179.5,
+      "maxLat": 89.5,
+      "maxLon": 179.5
+    }
+  }
+
+GLODAP data documents
++++++++++++++++++++++
+
+GLODAP data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<yyyymmddhhmmss>_<longitude>_<latitude>``
+- ``metadata``
+- ``geolocation``
+- ``basin``
+- ``timestamp``
+- ``data``
+
+GLODAP data example::
+
+  {
+    "_id": "20.5_-70.5",
+    "metadata": [
+      "glodapv2.2016b"
+    ],
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        20.5,
+        -70.5
+      ]
+    },
+    "basin": -1,
+    "timestamp": "1000-01-01T00:00:00.000Z",
+    "data": [
+      [
+        36.783145904541016,
+        36.596099853515625,
+        ...
+        null,
+        null
+      ],
+      [
+        0.3899955153465271,
+        0.40922367572784424,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.03495195135474205,
+        0.03667520731687546,
+        ...
+        null,
+        null
+      ],
+      [
+        27.89097023010254,
+        28.032878875732422,
+        ...
+        null,
+        null
+      ],
+      [
+        0.33694225549697876,
+        0.36649394035339355,
+        ... 
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.04177294671535492,
+        0.045436661690473557,
+        ...
+        null,
+        null
+      ],
+      [
+        1.450399398803711,
+        1.464065670967102,
+        ...
+        null,
+        null
+      ],
+      [
+        0.10547946393489838,
+        0.09900103509426117,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.11943197250366211,
+        0.11209660023450851,
+        ...
+        null,
+        null
+      ],
+      [
+        2.3149771690368652,
+        2.3372156620025635,
+        ...
+        null,
+        null
+      ],
+      [
+        0.15262079238891602,
+        0.14324699342250824,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.11943197250366211,
+        0.11209659278392792,
+        ...
+        null,
+        null
+      ],
+      [
+        352.269287109375,
+        349.0029602050781,
+        ...
+        null,
+        null
+      ],
+      [
+        2.4798030853271484,
+        2.7702741622924805,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.03848491981625557,
+        0.04299284145236015,
+        ...
+        null,
+        null
+      ],
+      [
+        7.691878795623779,
+        7.697181224822998,
+        ...
+        null,
+        null
+      ],
+      [
+        0.016992690041661263,
+        0.015962157398462296,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.12015647441148758,
+        0.1128695011138916,
+        ...
+        null,
+        null
+      ],
+      [
+        8.104798316955566,
+        8.111119270324707,
+        ...
+        null,
+        null
+      ],
+      [
+        0.008445115759968758,
+        0.007926425896584988,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.1194319799542427,
+        0.11209660023450851,
+        ...
+        null,
+        null
+      ],
+      [
+        2156.17529296875,
+        2161.255126953125,
+        ...
+        null,
+        null
+      ],
+      [
+        3.1917243003845215,
+        3.3490874767303467,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.03495195135474205,
+        0.03667520731687546,
+        ...
+        null,
+        null
+      ],
+      [
+        1.7402530908584595,
+        1.7485665082931519,
+        ...
+        null,
+        null
+      ],
+      [
+        0.06432818621397018,
+        0.06043602526187897,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.1237996518611908,
+        0.11630918830633163,
+        ...
+        null,
+        null
+      ],
+      [
+        34.07292556762695,
+        34.109130859375,
+        ...
+        null,
+        null
+      ],
+      [
+        0.07776444405317307,
+        0.08651941269636154,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.03893091529607773,
+        0.0433138832449913,
+        ...
+        null,
+        null
+      ],
+      [
+        60.412235260009766,
+        59.177825927734375,
+        ...
+        null,
+        null
+      ],
+      [
+        0.6439210176467896,
+        0.700396716594696,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.04176509380340576,
+        0.045428138226270676,
+        ...
+        null,
+        null
+      ],
+      [
+        2310.60595703125,
+        2309.11376953125,
+        ...
+        null,
+        null
+      ],
+      [
+        12.729732513427734,
+        12.112330436706543,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.12203928083181381,
+        0.11612027883529663,
+        ...
+        null,
+        null
+      ],
+      [
+        2193.266357421875,
+        2198.168701171875,
+        ...
+        null,
+        null
+      ],
+      [
+        3.0722930431365967,
+        3.2237679958343506,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.03495195508003235,
+        0.03667520731687546,
+        ... 
+        null,
+        null
+      ],
+      [
+        -1.9621936082839966,
+        -2.04848051071167,
+        ...
+        null,
+        null
+      ],
+      [
+        0.4108997881412506,
+        0.46319112181663513,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        null,
+        null
+      ],
+      [
+        0.0387444794178009,
+        0.043675124645233154,
+        ...
+        null,
+        null
+      ]
+    ]
+  }
+
+
 Implementation
 ++++++++++++++
 
-- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_
+- Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Easy Ocean Gridded Schema Extension
 -----------------------------------
