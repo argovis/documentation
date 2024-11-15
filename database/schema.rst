@@ -3593,60 +3593,234 @@ Implementation of Easy Ocean schema and pipelines to load the data from source C
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/easyocean.py <https://github.com/argovis/db-schema/blob/main/easyocean.py>`_
 - Upload pipeline: `https://github.com/argovis/convert_easy_ocean <https://github.com/argovis/convert_easy_ocean>`_
 
+ARGONE schema extension
+-----------------------
 
+Argovis includes the ARGONE product from `https://doi.org/10.1175/JTECH-D-22-0070.1 <https://doi.org/10.1175/JTECH-D-22-0070.1>`_. These data and metadata collections extend and implement the generic schema as follows.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ARGONE Argo float forecast data
--------------------------------
-
-Argovis includes a tabulation of forecasts of Argo float locations based on ARGONE (link / DOI forthcoming).
-
-Generic Metadata Division
+ARGONE metadata documents
 +++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, and ``source`` all live on the argone metadata document.
+ARGONE metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-``_id`` construction
-++++++++++++++++++++
+- ``_id``, constructed as ``argone``
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``levels``
+- ``level_units``
+- ``source``
+- ``source.source``
+- ``source.doi``
 
- - Data records: ``<origin_lon>_<origin_lat>_<forecast_lon>_<forecast_lat>``
- - Metadata records: there is only one for the entire dataset, ``argone``.
+ARGONE metadata example (note this is the only metadata document for the ARGONE collection, to which all data documents refer)::
 
-ARGONE-specific data record fields
-++++++++++++++++++++++++++++++++++
+  {
+    "_id": "argone",
+    "data_type": "covariance",
+    "data_info": [
+      [
+        "90",
+        "180",
+        "270",
+        "360",
+        "450",
+        "540",
+        "630",
+        "720",
+        "810",
+        "900",
+        "990",
+        "1080",
+        "1170",
+        "1260",
+        "1350",
+        "1440",
+        "1530",
+        "1620",
+        "1710",
+        "1800"
+      ],
+      [
+        "units"
+      ],
+      [
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ]
+      ]
+    ],
+    "date_updated_argovis": "2023-02-08T21:37:00.000Z",
+    "levels": [
+      0
+    ],
+    "source": [
+      {
+        "source": [
+          "ARGONE"
+        ],
+        "doi": "https://doi.org/10.1175/JTECH-D-22-0070.1"
+      }
+    ],
+    "level_units": "dbar"
+  }
 
- - ``geolocation_forecast``
+ARGONE data documents
++++++++++++++++++++++
+
+ARGONE data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<origin_lon>_<origin_lat>_<forecast_lon>_<forecast_lat>``
+- ``metadata``
+- ``geolocation``
+- ``data``
+- ``geolocation_forecast``
 
   - **required:** true
   - **type:** geojson Point 
   - **description:** forecast location for this record
 
-ARGONE-specific metadata record fields
-++++++++++++++++++++++++++++++++++++++
+ARGONE data example::
 
-- ``levels``
-
-  - **required:** true
-  - **type:** array of floats
-  - **description:** a single entry, ``[0]``, indicating this is all surface data
-
-Also note ``data_info[0]`` for ARGONE data indicates forecast length in days; the first entry indicates the probability a float will move from ``geolocation`` to ``geolocation_forecast`` in 90 days, for example.
+  {
+    "_id": "-178_-44_-178.0_-44.0",
+    "metadata": [
+      "argone"
+    ],
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        -178,
+        -44
+      ]
+    },
+    "geolocation_forecast": {
+      "type": "Point",
+      "coordinates": [
+        -178,
+        -44
+      ]
+    },
+    "data": [
+      [
+        0.11538461538461539
+      ],
+      [
+        0.05377610363734324
+      ],
+      [
+        0.030477499703864364
+      ],
+      [
+        0.018081056411537323
+      ],
+      [
+        0.01123815800521084
+      ],
+      [
+        0.007340254589296222
+      ],
+      [
+        0.005088014433266403
+      ],
+      [
+        0.003763789311441498
+      ],
+      [
+        0.0029577006246442254
+      ],
+      [
+        0.0024529171745545975
+      ],
+      [
+        0.0021225882833758093
+      ],
+      [
+        0.0018956428531083885
+      ],
+      [
+        0.001727359055017902
+      ],
+      [
+        0.0015998317597613408
+      ],
+      [
+        0.0014954935049800726
+      ],
+      [
+        0.001408923089337973
+      ],
+      [
+        0.001334794653985285
+      ],
+      [
+        0.001269476900788127
+      ],
+      [
+        0.0012104725610651962
+      ],
+      [
+        0.0011563930587330502
+      ]
+    ] 
+  }
 
 Implementation
 ++++++++++++++
@@ -3654,15 +3828,19 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argone.py <https://github.com/argovis/db-schema/blob/main/argone.py>`_
 - Upload pipeline: `https://github.com/argovis/ARGONE <https://github.com/argovis/ARGONE>`_
 
-
 Generic Timeseries Schema
 -------------------------
 
-The generic point schema described above and its specific instances works well for data that can be feasilby captured as documents with unique latitude, longitude, and timestamps. However, when considering higher-resolution datasets, indexing independent documents for each such coordinate triple can dramatically exceed the scale of computing resources the point data above requires; for example, while Argo has roughly 3 million such documents to consider at the time of writing, a global, quarter-degree grid measured daily for 30 years (a typical scale for satellite products) would have on the order of *10 billion* such documents. In order to represent, index and serve such high-resolution grids on similar compute infrastructure to the point data, we make a minor modification to the generic point schema to form the *generic timeseries schema*:
+The generic point schema described above and its specific instances works well for data that can be feasilby captured as documents with unique latitude, longitude, and timestamps. However, when considering higher-resolution grids, indexing independent documents for each such coordinate triple can dramatically exceed the scale of computing resources the point data above requires; for example, while Argo has roughly 3 million such documents to consider at the time of writing, a global, quarter-degree grid measured daily for 30 years (a typical scale for satellite products) would have on the order of *10 billion* such documents. In order to represent, index and serve such high-resolution grids on similar compute infrastructure to the point data, we make a minor modification to the generic point schema to form the *generic timeseries schema*:
 
  - Vectors in the ``data`` object represent surface measurements, estimates or flags as an ordered timeseries.
  - The ``data`` document no longer has a single ``timestamp`` key, as the data within corresponds to many timestamps.
- - The ``metadata`` or ``data`` document must bear a ``timeseries`` key, which is an ordered list of timestamps corresponding to the times associated with each element in the ``data`` vectors.
+ - The ``metadata`` or ``data`` document must bear a ``timeseries`` key:
+ - ``timeseries``
+
+  - **required:** true
+  - **type:** array of ISO 8601 UTC datestrings
+  - **description:** an ordered list of timestamps corresponding to the times associated with each element in the ``data`` vectors.
 
 The observant reader will notice that this is very similar to the gridded products which have a ``levels`` key indicating the model depths for each entry in their ``data`` vectors. All timeseries metadata documents also include a ``lattice`` key that is interepreted identically to the lattice metadata for gridded products. All other aspects of the generic schema remain consistent between point and timeseries datasets.
 
@@ -3671,26 +3849,111 @@ NOAA sea surface temperature timeseries
 
 Argovis represents the satellite grid of sea surface temperatures from `https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html <https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html>`_ as a timeseries dataset.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+NOAA SST metadata documents
++++++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the SST metadata documents.
+NOAA SST metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-``_id`` construction
-++++++++++++++++++++
+- ``_id``, constructed as ``noaasst``
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``timeseries``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``lattice``
 
- - Data records: ``<longitude>_<latitude>``
- - Metadata records: ``noaa-oi-sst-v2`` is the sole metadata document for this collection.
+NOAA SST metadata example (note this is the sole metadata document for this collection, to which all data documents refer)::
 
-NOAA sst-specific data record fields
-++++++++++++++++++++++++++++++++++++
+  {
+    "_id": "noaasst",
+    "data_type": "noaa-oi-sst-v2",
+    "data_info": [
+      [
+        "sst"
+      ],
+      [
+        "units",
+        "long_name"
+      ],
+      [
+        [
+          "degC",
+          "Weekly Mean of Sea Surface Temperature"
+        ]
+      ]
+    ],
+    "date_updated_argovis": "2023-08-10T00:40:59.000Z",
+    "timeseries": [
+      "1989-12-31T00:00:00.000Z",
+      "1990-01-07T00:00:00.000Z",
+      ...
+      "2023-01-22T00:00:00.000Z",
+      "2023-01-29T00:00:00.000Z"
+    ],
+    "source": [
+      {
+        "source": [
+          "NOAA Optimum Interpolation SST V2"
+        ],
+        "url": "https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html"
+      }
+    ],
+    "lattice": {
+      "center": [
+        0.5,
+        0.5
+      ],
+      "spacing": [
+        1,
+        1
+      ],
+      "minLat": -89.5,
+      "minLon": -179.5,
+      "maxLat": 89.5,
+      "maxLon": 179.5
+    }
+  }
 
-None.
 
-NOAA sst-specific metadata record fields
-++++++++++++++++++++++++++++++++++++++++
+NOAA SST data documents
++++++++++++++++++++++++
 
-None.
+NOAA SST data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<longitude>_<latitude>``
+- ``metadata``
+- ``geolocation``
+- ``basin``, required for NOAA SST data
+- ``data``
+
+NOAA SST data example::
+
+  {
+    "_id": "0.5_89.5",
+    "metadata": [
+      "noaasst"
+    ],
+    "basin": 11,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        0.5,
+        89.5
+      ]
+    },
+    "data": [
+      [
+        -1.8,
+        -1.8,
+        ...
+        -1.8,
+        -1.8
+      ]
+    ]
+  }
+
 
 Implementation
 ++++++++++++++
@@ -3703,26 +3966,181 @@ Copernicus sea level anomaly timeseries
 
 Argovis represents the satellite grid of sea level anomaly from `https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global <https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global>`_ as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+Copernicus sea level anomaly metadata documents
++++++++++++++++++++++++++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the SLA metadata documents.
+Copernicus sea level anomaly metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-``_id`` construction
-++++++++++++++++++++
+- ``_id``, constructed as ``copernicussla``
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``timeseries``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``lattice``
+- ``tpa_correction``
 
- - Data records: ``<longitude>_<latitude>``
- - Metadata records: ``copernicusSLA`` is the sole metadata document for this collection.
+  - **required:** false
+  - **type:** array of floats
+  - **description:**: This variable can be added to the gridded SLA to correct for the observed instrumental drift during the lifetime of the TOPEX-A mission (the correction is null after this period). This is a global correction to be added a posteriori (and not before) on the global mean sea level estimate derived from the gridded sea level map. It can be applied at regional or local scale as a best estimate (better than no correction, since the regional variation of the instrumental drift is unknown). See product manual for more details.
 
-Copernicus sla-specific data record fields
-++++++++++++++++++++++++++++++++++++++++++
+Copernicus sea level anomaly metadata example (note this is the only metadata document for this collection, to which all data documents refer)::
 
-None.
+  {
+    "_id": "copernicussla",
+    "data_type": "sea level anomaly",
+    "data_info": [
+      [
+        "sla",
+        "adt",
+        "ugosa",
+        "ugos",
+        "vgosa",
+        "vgos"
+      ],
+      [
+        "units",
+        "long_name"
+      ],
+      [
+        [
+          "m",
+          "Sea level anomaly"
+        ],
+        [
+          "m",
+          "Absolute dynamic topography"
+        ],
+        [
+          "m/s",
+          "Geostrophic velocity anomalies: zonal component"
+        ],
+        [
+          "m/s",
+          "Absolute geostrophic velocity: zonal component"
+        ],
+        [
+          "m/s",
+          "Geostrophic velocity anomalies: meridian component"
+        ],
+        [
+          "m/s",
+          "Absolute geostrophic velocity: meridian component"
+        ]
+      ]
+    ],
+    "date_updated_argovis": "2023-11-30T21:33:53.000Z",
+    "timeseries": [
+      "1993-01-03T00:00:00.000Z",
+      "1993-01-10T00:00:00.000Z",
+      ...
+      "2022-07-17T00:00:00.000Z",
+      "2022-07-24T00:00:00.000Z"
+    ],
+    "source": [
+      {
+        "source": [
+          "Copernicus sea level anomaly"
+        ],
+        "url": "https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global"
+      }
+    ],
+    "tpa_correction": [
+      0.0061,
+      0.0061,
+      ...
+      0,
+      0
+    ],
+    "lattice": {
+      "center": [
+        0.125,
+        0.125
+      ],
+      "spacing": [
+        0.25,
+        0.25
+      ],
+      "minLat": -78.625,
+      "minLon": -179.875,
+      "maxLat": 86.375,
+      "maxLon": 179.875
+    }
+  }
 
-Copernicus sla-specific metadata record fields
-++++++++++++++++++++++++++++++++++++++++++++++
+Copernicus sea level anomaly data documents
++++++++++++++++++++++++++++++++++++++++++++
 
-None.
+Copernicus sea level anomaly data documents carry the following properties; any property not explained here refers to the generic data schema.
+
+- ``_id``, constructed as ``<longitude>_<latitude>``
+- ``metadata``
+- ``geolocation``
+- ``basin``, required for Copernicus sea level anomaly data
+- ``data``
+
+Copernicus sea level anomaly data example::
+
+  {
+    "_id": "-164.875_-78.625",
+    "metadata": [
+      "copernicussla"
+    ],
+    "basin": 10,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        -164.875,
+        -78.625
+      ]
+    },
+    "data": [
+      [
+        -0.08482857,
+        -0.09507143,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0.00045714,
+        0.00017143,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0.00437143,
+        0.00972857,
+        ...
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ]
+    ]
+  }
 
 Implementation
 ++++++++++++++
@@ -3730,37 +4148,167 @@ Implementation
 - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
 - Upload pipeline: `https://github.com/argovis/copernicus-ssh <https://github.com/argovis/copernicus-ssh>`_
 
-REMSS CCMP wind vector timeseries
----------------------------------
+
+CCMP wind timeseries
+--------------------
 
 Argovis represents the satellite grid of wind vector data from `https://www.remss.com/measurements/ccmp/ <https://www.remss.com/measurements/ccmp/>`_ as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.
 
-Generic Metadata Division
-+++++++++++++++++++++++++
+CCMP wind metadata documents
+++++++++++++++++++++++++++++
 
-``data_type``, ``data_info``, ``date_updated_argovis``, ``source`` and ``timeseries`` all live on the CCMP wind metadata documents.
+CCMP wind metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-``_id`` construction
-++++++++++++++++++++
+- ``_id``, constructed as ``ccmpwind``
+- ``data_type``
+- ``data_info``
+- ``date_updated_argovis``
+- ``timeseries``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.version`` (see unique example below)
+- ``lattice``
 
- - Data records: ``<longitude>_<latitude>``
- - Metadata records: ``ccmpwind`` is the sole metadata document for this collection.
+CCMP wind metadata example (note this is the sole metadata document for this collection, to which all data documents refer)::
 
-CCMP wind-specific data record fields
-+++++++++++++++++++++++++++++++++++++
+  {
+    "_id": "ccmpwind",
+    "data_type": "wind vector",
+    "data_info": [
+      [
+        "uwnd",
+        "vwnd",
+        "ws",
+        "nobs"
+      ],
+      [
+        "units",
+        "long_name"
+      ],
+      [
+        [
+          "m s-1",
+          "u-wind vector component at 10 meters, averaged weekly"
+        ],
+        [
+          "m s-1",
+          "v-wind vector component at 10 meters, averaged weekly"
+        ],
+        [
+          "m s-1",
+          "wind speed at 10 meters, averaged weekly"
+        ],
+        [
+          "",
+          "number of observations used to derive wind vector components, weekly sum"
+        ]
+      ]
+    ],
+    "date_updated_argovis": "2023-10-09T19:50:24.000Z",
+    "timeseries": [
+      "1993-01-03T00:00:00.000Z",
+      "1993-01-10T00:00:00.000Z",
+      ...
+      "2019-12-22T00:00:00.000Z",
+      "2019-12-29T00:00:00.000Z"
+    ],
+    "source": [
+      {
+        "source": [
+          "REMSS CCMP wind vector analysis product"
+        ],
+        "url": "https://www.remss.com/measurements/ccmp/",
+        "version": "CCMP 3.0"
+      }
+    ],
+    "lattice": {
+      "center": [
+        0.125,
+        0.125
+      ],
+      "spacing": [
+        0.25,
+        0.25
+      ],
+      "minLat": -78.375,
+      "minLon": -179.875,
+      "maxLat": 78.375,
+      "maxLon": 179.875
+    }
+  }
 
-None.
+CCMP wind data documents
+++++++++++++++++++++++++
 
-CCMP wind-specific metadata record fields
-+++++++++++++++++++++++++++++++++++++++++
+CCMP wind data documents carry the following properties; any property not explained here refers to the generic data schema.
 
-None.
+- ``_id``, constructed as ``<longitude>_<latitude>``
+- ``metadata``
+- ``geolocation``
+- ``basin``, required for CCMP wind data
+- ``data``
+
+CCMP wind data example::
+
+  {
+    "_id": "0.125_-78.375",
+    "metadata": [
+      "ccmpwind"
+    ],
+    "basin": -999,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        0.125,
+        -78.375
+      ]
+    },
+    "data": [
+      [
+        null,
+        -2.523929267323443,
+        ...
+        -1.1238467078655958,
+        null
+      ],
+      [
+        null,
+        -3.9119683035782407,
+        ...
+        -4.273875875132425,
+        null
+      ],
+      [
+        null,
+        4.868184992245266,
+        ...
+        4.665710653577532,
+        null
+      ],
+      [
+        0,
+        0,
+        ...
+        0,
+        0
+      ]
+    ]
+  }
 
 Implementation
 ++++++++++++++
 
 - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
 - Upload pipeline: `https://github.com/argovis/ccmp_parse <https://github.com/argovis/ccmp_parse>`_
+
+
+
+
+
+
+
+
 
 Generic Extended Objects Schema
 -------------------------------
