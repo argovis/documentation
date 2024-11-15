@@ -111,7 +111,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ccmp-wind-timeseries">CCMP wind timeseries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a></li>
 </ul>
@@ -217,36 +217,28 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-division">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id-construction"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-data-record-fields">NOAA sst-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-specific-metadata-record-fields">NOAA sst-specific metadata record fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-metadata-documents">NOAA SST metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noaa-sst-data-documents">NOAA SST data documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id18">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id19">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-data-record-fields">Copernicus sla-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#copernicus-sla-specific-metadata-record-fields">Copernicus sla-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copernicus-sea-level-anomaly-metadata-documents">Copernicus sea level anomaly metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copernicus-sea-level-anomaly-data-documents">Copernicus sea level anomaly data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id23">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-data-record-fields">CCMP wind-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-specific-metadata-record-fields">CCMP wind-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id25">Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ccmp-wind-timeseries">CCMP wind timeseries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-metadata-documents">CCMP wind metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-data-documents">CCMP wind data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id27">Generic Metadata Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id28"><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ar-specific-data-record-fields">AR-specific data record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ar-specific-metadata-record-fields">AR-specific metadata record fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id29">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ar-metadata-documents">AR metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ar-data-documents">AR data documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -616,7 +608,7 @@
 <p>Argo metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_m&lt;metadata_number&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;metadata_number&gt;</span></code> counts from 0 and is prefixed with <code class="docutils literal notranslate"><span class="pre">m</span></code> to easily distinguish it from cycle number; allows distinctions to be made if a slow-changing metadata value, like <code class="docutils literal notranslate"><span class="pre">pi_name</span></code>, changes over the lifetime of the float.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘oceanicProfile’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pi_name</span></code></p></li>
@@ -865,7 +857,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;cchdo_cruise_id&gt;_m&lt;metadata_number&gt;</span></code>,  where <code class="docutils literal notranslate"><span class="pre">&lt;metadata_number&gt;`</span></code> counts from 0 and is prefixed with <code class="docutils literal notranslate"><span class="pre">m</span></code> similar to Argo; allows distinctions to be made if a slow-changing metadata value, like <code class="docutils literal notranslate"><span class="pre">pi_name</span></code>, changes over the lifetime of the cruise.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘oceanicProfile’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">instrument</span></code></p></li>
@@ -1485,7 +1477,7 @@
 <p>Drifter metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘drifter’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
@@ -1793,7 +1785,7 @@
 <p>Tropical cyclone metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;TCID&gt;</span></code> from the upstream data source</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘tropicalCyclone’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
@@ -1935,7 +1927,7 @@
 <p>Argo trajectory metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform&gt;_m&lt;metadata_number&gt;</span></code>, analogos to Argo metadata</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘argo_trajectory’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
@@ -2255,7 +2247,7 @@
 <p>Roemmich-Gilson metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">rg09_&lt;temperature</span> <span class="pre">|</span> <span class="pre">salinity&gt;_&lt;yyymm</span> <span class="pre">of</span> <span class="pre">originating</span> <span class="pre">file&gt;_Total</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘salinity’ or ‘temperature’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
@@ -2363,6 +2355,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Note this is one of the few examples where the metadata key has more than one entry. When it does, the vecotrs in <code class="docutils literal notranslate"><span class="pre">data</span></code> are in the same order as the metadata keys and their corresponding <code class="docutils literal notranslate"><span class="pre">data_info</span></code> entries.</p>
 </div>
 <div class="section" id="id7">
 <h3>Implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
@@ -2380,7 +2373,7 @@
 <p>Ocean heat content metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">kg21_ohc15to300</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘ocean_heat_content’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
@@ -2491,7 +2484,7 @@
 <p>GLODAP metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">glodapv2.2016b</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘glodap’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
@@ -3655,7 +3648,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;WOCE</span> <span class="pre">line&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘easyocean’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">occupancies</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
@@ -3808,7 +3801,6 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">woce_&lt;WOCE_line&gt;_date_&lt;YYYYMMDD&gt;_lat_&lt;lat&gt;_lon_&lt;lon&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
@@ -4050,7 +4042,7 @@
 <p>ARGONE metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">argone</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘covariance’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
@@ -4281,39 +4273,130 @@
 </div>
 <div class="section" id="generic-timeseries-schema">
 <h2>Generic Timeseries Schema<a class="headerlink" href="#generic-timeseries-schema" title="Permalink to this headline">¶</a></h2>
-<p>The generic point schema described above and its specific instances works well for data that can be feasilby captured as documents with unique latitude, longitude, and timestamps. However, when considering higher-resolution datasets, indexing independent documents for each such coordinate triple can dramatically exceed the scale of computing resources the point data above requires; for example, while Argo has roughly 3 million such documents to consider at the time of writing, a global, quarter-degree grid measured daily for 30 years (a typical scale for satellite products) would have on the order of <em>10 billion</em> such documents. In order to represent, index and serve such high-resolution grids on similar compute infrastructure to the point data, we make a minor modification to the generic point schema to form the <em>generic timeseries schema</em>:</p>
+<p>The generic point schema described above and its specific instances works well for data that can be feasilby captured as documents with unique latitude, longitude, and timestamps. However, when considering higher-resolution grids, indexing independent documents for each such coordinate triple can dramatically exceed the scale of computing resources the point data above requires; for example, while Argo has roughly 3 million such documents to consider at the time of writing, a global, quarter-degree grid measured daily for 30 years (a typical scale for satellite products) would have on the order of <em>10 billion</em> such documents. In order to represent, index and serve such high-resolution grids on similar compute infrastructure to the point data, we make a minor modification to the generic point schema to form the <em>generic timeseries schema</em>:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Vectors in the <code class="docutils literal notranslate"><span class="pre">data</span></code> object represent surface measurements, estimates or flags as an ordered timeseries.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> document no longer has a single <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> key, as the data within corresponds to many timestamps.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">metadata</span></code> or <code class="docutils literal notranslate"><span class="pre">data</span></code> document must bear a <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> key, which is an ordered list of timestamps corresponding to the times associated with each element in the <code class="docutils literal notranslate"><span class="pre">data</span></code> vectors.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">metadata</span></code> or <code class="docutils literal notranslate"><span class="pre">data</span></code> document must bear a <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> key:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeseries</span></code></p></li>
 </ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>required:</strong> true</p></li>
+<li><p><strong>type:</strong> array of ISO 8601 UTC datestrings</p></li>
+<li><p><strong>description:</strong> an ordered list of timestamps corresponding to the times associated with each element in the <code class="docutils literal notranslate"><span class="pre">data</span></code> vectors.</p></li>
+</ul>
+</div></blockquote>
 </div></blockquote>
 <p>The observant reader will notice that this is very similar to the gridded products which have a <code class="docutils literal notranslate"><span class="pre">levels</span></code> key indicating the model depths for each entry in their <code class="docutils literal notranslate"><span class="pre">data</span></code> vectors. All timeseries metadata documents also include a <code class="docutils literal notranslate"><span class="pre">lattice</span></code> key that is interepreted identically to the lattice metadata for gridded products. All other aspects of the generic schema remain consistent between point and timeseries datasets.</p>
 </div>
 <div class="section" id="noaa-sea-surface-temperature-timeseries">
 <h2>NOAA sea surface temperature timeseries<a class="headerlink" href="#noaa-sea-surface-temperature-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea surface temperatures from <a class="reference external" href="https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html">https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html</a> as a timeseries dataset.</p>
-<div class="section" id="generic-metadata-division">
-<h3>Generic Metadata Division<a class="headerlink" href="#generic-metadata-division" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SST metadata documents.</p>
-</div>
-<div class="section" id="id-construction">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id-construction" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
-<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">noaa-oi-sst-v2</span></code> is the sole metadata document for this collection.</p></li>
+<div class="section" id="noaa-sst-metadata-documents">
+<h3>NOAA SST metadata documents<a class="headerlink" href="#noaa-sst-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>NOAA SST metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">noaasst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘noaa-oi-sst-v2’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeseries</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
 </ul>
-</div></blockquote>
+<p>NOAA SST metadata example (note this is the sole metadata document for this collection, to which all data documents refer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;noaasst&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;noaa-oi-sst-v2&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;sst&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;long_name&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Weekly Mean of Sea Surface Temperature&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-08-10T00:40:59.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;1989-12-31T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1990-01-07T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="s2">&quot;2023-01-22T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2023-01-29T00:00:00.000Z&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;NOAA Optimum Interpolation SST V2&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://psl.noaa.gov/data/gridded/data.noaa.oisst.v2.html&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.5</span><span class="p">,</span>
+      <span class="mf">0.5</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">89.5</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">89.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="noaa-sst-specific-data-record-fields">
-<h3>NOAA sst-specific data record fields<a class="headerlink" href="#noaa-sst-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
 </div>
-<div class="section" id="noaa-sst-specific-metadata-record-fields">
-<h3>NOAA sst-specific metadata record fields<a class="headerlink" href="#noaa-sst-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<div class="section" id="noaa-sst-data-documents">
+<h3>NOAA SST data documents<a class="headerlink" href="#noaa-sst-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>NOAA SST data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code>, required for NOAA SST data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>NOAA SST data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5_89.5&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;noaasst&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.5</span><span class="p">,</span>
+      <span class="mf">89.5</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="o">-</span><span class="mf">1.8</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">1.8</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="o">-</span><span class="mf">1.8</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">1.8</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id18">
 <h3>Implementation<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
@@ -4326,61 +4409,339 @@
 <div class="section" id="copernicus-sea-level-anomaly-timeseries">
 <h2>Copernicus sea level anomaly timeseries<a class="headerlink" href="#copernicus-sea-level-anomaly-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of sea level anomaly from <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global">https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the daily dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id19">
-<h3>Generic Metadata Division<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the SLA metadata documents.</p>
-</div>
-<div class="section" id="id20">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
-<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">copernicusSLA</span></code> is the sole metadata document for this collection.</p></li>
+<div class="section" id="copernicus-sea-level-anomaly-metadata-documents">
+<h3>Copernicus sea level anomaly metadata documents<a class="headerlink" href="#copernicus-sea-level-anomaly-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>Copernicus sea level anomaly metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">copernicussla</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘sea level anomaly’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeseries</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tpa_correction</span></code></p>
+<ul>
+<li><p><strong>required:</strong> false</p></li>
+<li><p><strong>type:</strong> array of floats</p></li>
+<li><p><strong>description:</strong>: This variable can be added to the gridded SLA to correct for the observed instrumental drift during the lifetime of the TOPEX-A mission (the correction is null after this period). This is a global correction to be added a posteriori (and not before) on the global mean sea level estimate derived from the gridded sea level map. It can be applied at regional or local scale as a best estimate (better than no correction, since the regional variation of the instrumental drift is unknown). See product manual for more details.</p></li>
 </ul>
-</div></blockquote>
+</li>
+</ul>
+<p>Copernicus sea level anomaly metadata example (note this is the only metadata document for this collection, to which all data documents refer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;copernicussla&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;sea level anomaly&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;sla&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;adt&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ugosa&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ugos&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;vgosa&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;vgos&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;long_name&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sea level anomaly&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Absolute dynamic topography&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Geostrophic velocity anomalies: zonal component&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Absolute geostrophic velocity: zonal component&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Geostrophic velocity anomalies: meridian component&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Absolute geostrophic velocity: meridian component&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-11-30T21:33:53.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;1993-01-03T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1993-01-10T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="s2">&quot;2022-07-17T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2022-07-24T00:00:00.000Z&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Copernicus sea level anomaly&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-sea-level-global&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;tpa_correction&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mf">0.0061</span><span class="p">,</span>
+    <span class="mf">0.0061</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.125</span><span class="p">,</span>
+      <span class="mf">0.125</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.25</span><span class="p">,</span>
+      <span class="mf">0.25</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">78.625</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.875</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">86.375</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.875</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="copernicus-sla-specific-data-record-fields">
-<h3>Copernicus sla-specific data record fields<a class="headerlink" href="#copernicus-sla-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
 </div>
-<div class="section" id="copernicus-sla-specific-metadata-record-fields">
-<h3>Copernicus sla-specific metadata record fields<a class="headerlink" href="#copernicus-sla-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<div class="section" id="copernicus-sea-level-anomaly-data-documents">
+<h3>Copernicus sea level anomaly data documents<a class="headerlink" href="#copernicus-sea-level-anomaly-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>Copernicus sea level anomaly data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code>, required for Copernicus sea level anomaly data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>Copernicus sea level anomaly data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;-164.875_-78.625&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;copernicussla&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="o">-</span><span class="mf">164.875</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">78.625</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="o">-</span><span class="mf">0.08482857</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">0.09507143</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.00045714</span><span class="p">,</span>
+      <span class="mf">0.00017143</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mf">0.00437143</span><span class="p">,</span>
+      <span class="mf">0.00972857</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="id21">
-<h3>Implementation<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id19">
+<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="remss-ccmp-wind-vector-timeseries">
-<h2>REMSS CCMP wind vector timeseries<a class="headerlink" href="#remss-ccmp-wind-vector-timeseries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ccmp-wind-timeseries">
+<h2>CCMP wind timeseries<a class="headerlink" href="#ccmp-wind-timeseries" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the satellite grid of wind vector data from <a class="reference external" href="https://www.remss.com/measurements/ccmp/">https://www.remss.com/measurements/ccmp/</a> as a timeseries dataset. Note this data is averaged down to weekly averages from the 6-hourly dataset; averaging periods are selected to align with the NOAA SST timeseries.</p>
-<div class="section" id="id23">
-<h3>Generic Metadata Division<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> all live on the CCMP wind metadata documents.</p>
-</div>
-<div class="section" id="id24">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
-<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">ccmpwind</span></code> is the sole metadata document for this collection.</p></li>
+<div class="section" id="ccmp-wind-metadata-documents">
+<h3>CCMP wind metadata documents<a class="headerlink" href="#ccmp-wind-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>CCMP wind metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">ccmpwind</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘wind vector’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeseries</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.version</span></code> (see unique example below)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
 </ul>
-</div></blockquote>
+<p>CCMP wind metadata example (note this is the sole metadata document for this collection, to which all data documents refer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ccmpwind&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;wind vector&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;uwnd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;vwnd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ws&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nobs&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;long_name&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m s-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;u-wind vector component at 10 meters, averaged weekly&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m s-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;v-wind vector component at 10 meters, averaged weekly&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;m s-1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;wind speed at 10 meters, averaged weekly&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;number of observations used to derive wind vector components, weekly sum&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-10-09T19:50:24.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;1993-01-03T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1993-01-10T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="s2">&quot;2019-12-22T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2019-12-29T00:00:00.000Z&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;REMSS CCMP wind vector analysis product&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.remss.com/measurements/ccmp/&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;CCMP 3.0&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.125</span><span class="p">,</span>
+      <span class="mf">0.125</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.25</span><span class="p">,</span>
+      <span class="mf">0.25</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">78.375</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.875</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">78.375</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.875</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="ccmp-wind-specific-data-record-fields">
-<h3>CCMP wind-specific data record fields<a class="headerlink" href="#ccmp-wind-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
 </div>
-<div class="section" id="ccmp-wind-specific-metadata-record-fields">
-<h3>CCMP wind-specific metadata record fields<a class="headerlink" href="#ccmp-wind-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<div class="section" id="ccmp-wind-data-documents">
+<h3>CCMP wind data documents<a class="headerlink" href="#ccmp-wind-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>CCMP wind data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basin</span></code>, required for CCMP wind data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>CCMP wind data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0.125_-78.375&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;ccmpwind&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.125</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">78.375</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">2.523929267323443</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="o">-</span><span class="mf">1.1238467078655958</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="o">-</span><span class="mf">3.9119683035782407</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="o">-</span><span class="mf">4.273875875132425</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="n">null</span><span class="p">,</span>
+      <span class="mf">4.868184992245266</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mf">4.665710653577532</span><span class="p">,</span>
+      <span class="n">null</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="o">...</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="id25">
-<h3>Implementation<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id21">
+<h3>Implementation<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
@@ -4401,22 +4762,85 @@
 <div class="section" id="atmospheric-river-extended-objects">
 <h2>Atmospheric river extended objects<a class="headerlink" href="#atmospheric-river-extended-objects" title="Permalink to this headline">¶</a></h2>
 <p>Argovis represents the atmospheric river (AR) climatology presented in <a class="reference external" href="https://doi.org/10.1175/MWR-D-13-00168.1">https://doi.org/10.1175/MWR-D-13-00168.1</a> as an extended object dataset.</p>
-<div class="section" id="id27">
-<h3>Generic Metadata Division<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, <code class="docutils literal notranslate"><span class="pre">data_info</span></code>, <code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span></code>  all live on the AR metadata documents.</p>
-</div>
-<div class="section" id="id28">
-<h3><code class="docutils literal notranslate"><span class="pre">_id</span></code> construction<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Data records: <code class="docutils literal notranslate"><span class="pre">&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;decimal</span> <span class="pre">hour&gt;_&lt;index</span> <span class="pre">of</span> <span class="pre">phenomenon</span> <span class="pre">at</span> <span class="pre">this</span> <span class="pre">timestep&gt;</span></code></p></li>
-<li><p>Metadata records: <code class="docutils literal notranslate"><span class="pre">ar</span></code> is the sole metadata document for this collection.</p></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="ar-specific-data-record-fields">
-<h3>AR-specific data record fields<a class="headerlink" href="#ar-specific-data-record-fields" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ar-metadata-documents">
+<h3>AR metadata documents<a class="headerlink" href="#ar-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>AR metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">ar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘atmospheric_rivers’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
+</ul>
+<p>AR metadata example (note this is the only metadata document for this collection, to which all data documents refer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;atmospheric_rivers&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;longitude&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;latitude&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ivt&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;long_name&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degrees east&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;degrees east&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;degrees north&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;degrees north&quot;</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">&quot;kg/m/s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;integrated water vapor transport&quot;</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-11-07T22:28:21.192Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;see references&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://doi.org/10.1175/MWR-D-13-00168.1&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">0.625</span><span class="p">,</span>
+      <span class="mf">0.5</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span>
+    <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">180</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+    <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.375</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ar-data-documents">
+<h3>AR data documents<a class="headerlink" href="#ar-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>AR data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;&lt;decimal</span> <span class="pre">hour&gt;_&lt;index</span> <span class="pre">of</span> <span class="pre">phenomenon</span> <span class="pre">at</span> <span class="pre">this</span> <span class="pre">timestep&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basins</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code></p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
@@ -4442,44 +4866,54 @@
 </ul>
 </li>
 </ul>
+<p>AR data example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2000.01.01.00.0_1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;MultiPolygon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="p">[</span>
+          <span class="p">[</span>
+            <span class="o">-</span><span class="mf">158.4375</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">72.25</span>
+          <span class="p">],</span>
+          <span class="p">[</span>
+            <span class="o">-</span><span class="mf">157.8125</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">72.25</span>
+          <span class="p">],</span>
+          <span class="o">...</span>
+          <span class="p">[</span>
+            <span class="o">-</span><span class="mf">159.0625</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">72.25</span>
+          <span class="p">],</span>
+          <span class="p">[</span>
+            <span class="o">-</span><span class="mf">158.4375</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">72.25</span>
+          <span class="p">]</span>
+        <span class="p">]</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;basins&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mi">10</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;ar&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01T00:00:00.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="ar-specific-metadata-record-fields">
-<h3>AR-specific metadata record fields<a class="headerlink" href="#ar-specific-metadata-record-fields" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p>
-<ul>
-<li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> object</p></li>
-<li><p><strong>description:</strong> describes the shape and extent of the longitude / latitude grid data has been interpolated to. All subfields are required.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lattice.center</span></code></p>
-<ul>
-<li><p><strong>type:</strong> array of two floats</p></li>
-<li><p><strong>description:</strong> [longitude, latitude] of a point on the grid close to [0,0].</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lattice.spacing</span></code></p>
-<ul>
-<li><p><strong>type:</strong> array of two floats</p></li>
-<li><p><strong>description:</strong> [longitude stride, latitude stride] between points on the grid</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">/</span> <span class="pre">max](Lon</span> <span class="pre">/</span> <span class="pre">Lat)</span></code></p>
-<ul>
-<li><p><strong>type:</strong> float</p></li>
-<li><p><strong>description:</strong> [minimum / maximum] (longitude / latitude) seen in the dataset</p></li>
-</ul>
-</li>
-</ul>
 </div>
-<div class="section" id="id29">
-<h3>Implementation<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>
 </ul>
-<p><em>Last reviewed 2024-04-11</em></p>
+<p><em>Last reviewed 2024-11-15</em></p>
 </div>
 </div>
 </div>
