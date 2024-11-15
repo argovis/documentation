@@ -115,7 +115,6 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
   - **required:** true
   - **type:** string
   - **description:** token indicating the general class of data
-  - **current vocabulary:** ``oceanicProfile``,  ``tropicalCyclone``, ``drifter``, and ``argo_trajectory`` for point-like data, and ``temperature``, ``salinity``, ``ocean_heat_content`` and ``covariance`` for grids.
 
 - ``date_updated_argovis``
 
@@ -3212,40 +3211,177 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
+Easy Ocean schema extension
+---------------------------
 
+Argovis includes the Easy Ocean product from CCHDO. These data and metadata collections extend and implement the generic schema as follows.
 
+Easy ocean metadata documents
++++++++++++++++++++++++++++++
 
+Easy Ocean metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
+- ``_id``, constructed as ``<WOCE line>``
+- ``date_updated_argovis``
+- ``data_type``
+- ``occupancies``
 
+  - **required:** true
+  - **type:** array of objects
+  - **description:** array of data objects describing each occupancy of the WOCE line.
 
+- ``occupancies[i].varying_direction``
 
+  - **required:** true
+  - **type:** string
+  - **description:** which direction, lat or lon, is varying in this Easy Ocean entry
 
+- ``occupancies[i].static_direction``
 
+  - **required:** true
+  - **type:** string
+  - **description:** which direction, lat or lon, is interpolated to constant in this Easy Ocean entry
 
+- ``occupancies[i].expocodes``
 
+  - **required:** true
+  - **type:** array of strings
+  - **description:** expocodes for this occupancy
 
+- ``occupancies[i].time_boundaries``
 
+  - **required:** true
+  - **type:** array of two ISO 8601 UTC datestrings
+  - **description:** start and end times for this occupancy.
 
+Easy ocean metadata example::
 
-Easy Ocean Gridded Schema Extension
------------------------------------
+  {
+    "_id": "75N",
+    "occupancies": [
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "1994-07-28T00:00:00.000Z",
+          "1994-08-03T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "1995-10-09T00:00:00.000Z",
+          "1995-10-22T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "1997-09-15T00:00:00.000Z",
+          "1997-09-22T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "1998-09-20T00:00:00.000Z",
+          "1998-09-27T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "1999-07-08T00:00:00.000Z",
+          "1999-07-17T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "2000-07-06T00:00:00.000Z",
+          "2000-07-13T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "None"
+        ],
+        "time_boundaries": [
+          "2001-06-24T00:00:00.000Z",
+          "2001-07-01T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "58GS20060721"
+        ],
+        "time_boundaries": [
+          "2006-07-23T00:00:00.000Z",
+          "2006-07-30T00:00:00.000Z"
+        ]
+      },
+      {
+        "varying_direction": "lon",
+        "static_direction": "lat",
+        "expocodes": [
+          "58GS20160802"
+        ],
+        "time_boundaries": [
+          "2016-08-04T00:00:00.000Z",
+          "2016-08-09T00:00:00.000Z"
+        ]
+      }
+    ],
+    "date_updated_argovis": "2024-01-16T19:20:58.003Z",
+    "data_type": "easyocean"
+  }
 
-The Easy Ocean grid is indexed by Argovis; Easy Ocean data and metadata collections extend and implement the generic schema as follows.
-
-Generic Metadata Division
+Easy ocean data documents
 +++++++++++++++++++++++++
 
-Easy Ocean places all generic metadata on the data document, save ``date_updated_argovis``, and ``country``, which is replaced by ``section_countries`` on the data document.
+Easy Ocean data documents carry the following properties; any property not explained here refers to the generic data schema.
 
-``_id`` construction
-++++++++++++++++++++
-
- - Data records ``_id``: ``woce_<WOCE_line>_date_<YYYYMMDD>_lat_<lat>_lon_<lon>``, where decimals in lat and lon are hyphenated, ie 54.3 is written as 54-3 in the id.
- - Metadata records ``_id``: ``<WOCE line>``
-
-Easy Ocean-Specific Data Record Fields
-++++++++++++++++++++++++++++++++++++++
-
+- ``_id``, constructed as ``woce_<WOCE_line>_date_<YYYYMMDD>_lat_<lat>_lon_<lon>``
+- ``metadata``
+- ``data_type``
+- ``source``
+- ``source.source``
+- ``source.url``
+- ``source.filename``
+- ``geolocation``
+- ``basin``, required for Easy Ocean data
+- ``timestamp``, required for Easy Ocean data
+- ``data``
+- ``data_info``
+- ``instrument``
+- ``data_center``
 - ``section_expocodes``
 
   - **required:** false
@@ -3294,38 +3430,160 @@ Easy Ocean-Specific Data Record Fields
   - **type:** string
   - **description:** positioning system used for this section
 
-Easy Ocean-Specific Metadata Record Fields
-++++++++++++++++++++++++++++++++++++++++++
+Easy ocean data example::
 
-- ``occupancies``
-
-  - **required:** true
-  - **type:** array of objects
-  - **description:** array of data objects describing each occupancy of the WOCE line.
-
-- ``occupancies[x].varying_direction``
-
-  - **required:** true
-  - **type:** string
-  - **description:** which direction, lat or lon, is varying in this Easy Ocean entry
-
-- ``occupancies[x].static_direction``
-
-  - **required:** true
-  - **type:** string
-  - **description:** which direction, lat or lon, is interpolated to constant in this Easy Ocean entry
-
-- ``occupancies[x].expocodes``
-
-  - **required:** true
-  - **type:** array of strings
-  - **description:** expocodes for this occupancy
-
-- ``occupancies[x].time_boundaries``
-
-  - **required:** true
-  - **type:** array of two ISO 8601 UTC datestrings
-  - **description:** start and end times for this occupancy.
+  {
+    "_id": "woce_75n_date_19940729_lat_75-0_lon_-10-0",
+    "section_expocodes": [
+      "None"
+    ],
+    "section_start_date": "1994-07-28T00:00:00.000Z",
+    "section_end_date": "1994-08-03T00:00:00.000Z",
+    "woce_lines": [
+      "75N"
+    ],
+    "instrument": "CTD",
+    "references": "https://github.com/kkats/GO-SHIP-Easy-Ocean, https://www.go-ship.org/,  https://cchdo.ucsd.edu/, IOC, SCOR and IAPSO, 2010: The international thermodynamic equation of seawater - 2010: Calculation and use of thermodynamic properties. Intergovernmental Oceanographic Commission, Manuals and Guides No. 56, UNESCO (English), 196 pp.",
+    "dataset_created": "2023-09-27T00:00:00.000Z",
+    "section_countries": [
+      "unknown"
+    ],
+    "positioning_system": "GPS",
+    "data_center": "CCHDO",
+    "source": [
+      {
+        "source": [
+          "Easy Ocean"
+        ],
+        "url": "https://cchdo.ucsd.edu/data/41100/75n.nc",
+        "filename": "75n.nc"
+      }
+    ],
+    "geolocation": {
+      "coordinates": [
+        -10,
+        75
+      ],
+      "type": "Point"
+    },
+    "timestamp": "1994-07-29T00:00:00.000Z",
+    "data_info": [
+      [
+        "pressure",
+        "ctd_temperature",
+        "ctd_salinity",
+        "doxy",
+        "conservative_temperature",
+        "absolute_salinity"
+      ],
+      [
+        "units",
+        "reference_scale",
+        "data_keys_mapping",
+        "data_source_standard_names",
+        "data_source_units",
+        "data_source_reference_scale"
+      ],
+      [
+        [
+          "decibar",
+          null,
+          "pressure",
+          "sea_water_pressure",
+          "dbar",
+          null
+        ],
+        [
+          "Celcius",
+          "ITS-90",
+          "temperature",
+          "sea_water_temperature",
+          "degC",
+          "ITS-90"
+        ],
+        [
+          "psu",
+          "PSS-78",
+          "practical_salinity",
+          "sea_water_practical_salinity",
+          "1",
+          "PSS-78"
+        ],
+        [
+          "micromole/kg",
+          null,
+          "oxygen",
+          "moles_of_oxygen_per_unit_mass_in_sea_water",
+          "umol kg-1",
+          null
+        ],
+        [
+          "Celcius",
+          "TEOS-10",
+          "conservative_temperature",
+          "seawater_conservative_temperature",
+          "degC",
+          "TEOS-10"
+        ],
+        [
+          "g/kg",
+          "TEOS-10",
+          "absolute_salinity",
+          "sea_water_absolute_salinity",
+          "g kg-1",
+          "TEOS-10"
+        ]
+      ]
+    ],
+    "data": [
+      [
+        10,
+        20,
+        ...
+        3170,
+        3180
+      ],
+      [
+        0.91,
+        1.886,
+        ...
+        -1.014,
+        -1.015
+      ],
+      [
+        32.3,
+        34.061,
+        ...
+        34.9,
+        34.9
+      ],
+      [
+        null,
+        null,
+        ...
+        null,
+        null
+      ],
+      [
+        0.921,
+        1.888,
+        ...
+        -1.186,
+        -1.188
+      ],
+      [
+        32.454,
+        34.224,
+        ...
+        35.068,
+        35.068
+      ]
+    ],
+    "metadata": [
+      "75N"
+    ],
+    "basin": 11
+  }
 
 Implementation
 ++++++++++++++
@@ -3334,6 +3592,24 @@ Implementation of Easy Ocean schema and pipelines to load the data from source C
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/easyocean.py <https://github.com/argovis/db-schema/blob/main/easyocean.py>`_
 - Upload pipeline: `https://github.com/argovis/convert_easy_ocean <https://github.com/argovis/convert_easy_ocean>`_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ARGONE Argo float forecast data
