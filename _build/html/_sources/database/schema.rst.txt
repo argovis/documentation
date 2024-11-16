@@ -233,6 +233,8 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
   - **type:** float
   - **description:** [minimum | maximum] [longitude | latitude] seen in the dataset 
 
+.. _schema_argo:
+
 Argo Schema Extension
 ---------------------
 
