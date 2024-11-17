@@ -16,6 +16,10 @@ All the datasets described in the :ref:`schema` section have three principle rou
 
 In what follows, we will describe the querys string parameters (QSPs) available for each of these types of route, for each dataset.
 
+.. admonition:: Scope and rate limitation
+
+   This document describes QSPs available for every route, but note that no API can support arbitrarily large or frequent requests. If a search is rejected based on size or rate limitations, you will receive a JSON response that explains the problem. If you see an HTTP code 413, this means you're asking for too big a chunk of data at a time; try splitting your request up into a loop that asks for a month at a time, for example. If you see an HTTP code 429, this means you're asking for data too quickly; try adding a delay between requests, and see the message in the returned JSON for an indication of how frequently requests like the ones you are trying to make can be supported.
+
 Standardized query string parameters
 ------------------------------------
 
@@ -97,10 +101,10 @@ QSPs:
 - ``verticalRange``
 - ``batchMeta``
 - ``data``, accepts QC filters.
-- ``platform`` (string): search for argo data documents whose corresponding metadata's ``platform`` field matches this string.
-- ``platform_type`` (string): search for argo data documents whose corresponding metadata's ``platform_type`` field matches this string.
-- ``positionqc`` (list of integers, example ``0,1``): match data documents whose ``geolocation_argoqc`` value is in this list.
-- ``source`` (list of strings, example ``argo_bgc,~argo_core``): match data documents whose ``source.source`` value is in this list. Negatable with ~ similarly to ``data``. Must be combined with a temporospatial search or other metadata match. 
+- ``platform`` (string): filter for argo data documents whose corresponding metadata's ``platform`` field matches this string.
+- ``platform_type`` (string): filter for argo data documents whose corresponding metadata's ``platform_type`` field matches this string.
+- ``positionqc`` (list of integers, example ``0,1``): filter for data documents whose ``geolocation_argoqc`` value is in this list.
+- ``source`` (list of strings, example ``argo_bgc,~argo_core``): filter for data documents whose ``source.source`` value is in this list. Negatable with ~ similarly to ``data``. Must be combined with a temporospatial search or other metadata match. 
 
 Metadata
 ++++++++
@@ -456,7 +460,7 @@ QSPs:
 - ``data``
 - ``batchMeta``
 - ``verticalRange``
-- ``woceline``: tbd
+- ``woceline`` (string): filter for easy ocean data documents whose corresponding metadata's ``id`` field matches this string.
 - ``section_start_date`` (ISO 8601 UTC datestring, example ``1999-12-31T23:59:59Z``): search for data documents with this value for ``section_start_date``.
 
 Metadata
