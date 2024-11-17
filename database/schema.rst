@@ -156,7 +156,7 @@ Besides the trivially required ``_id`` field, there are a set of generic metadat
 
   - **required:** false
   - **type:** string
-  - **description:** ISO 3166-1 country code.
+  - **description:** NODC country code, see `https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt <https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt>`_
 
 - ``data_center``
 
@@ -565,13 +565,13 @@ CCHDO data documents carry the following properties; any property not explained 
 
   - **required:** false
   - **type:** string
-  - **description:** TBD
+  - **description:** link to the hydrographic cruise page at CCHDO.
 
 - ``source.file_name``
 
   - **required:** false
   - **type:** string
-  - **description:** TBD
+  - **description:** name of original file from CCHDO this profile was derived from.
   
 
 - ``btm_depth``
@@ -584,7 +584,7 @@ CCHDO data documents carry the following properties; any property not explained 
 
   - **required:** false
   - **type:** string
-  - **description:** TBD
+  - **description:** hash of the upstream file from which this record was created; changes to this hash indicate new upstream data.
 
 - ``station``
 
@@ -3441,7 +3441,7 @@ Easy Ocean data documents carry the following properties; any property not expla
 
   - **required:** false
   - **type:** array of strings
-  - **description:** country codes for contributing countries
+  - **description:**  NODC country codes, see `https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt <https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt>`_
 
 - ``positioning_system``
 
