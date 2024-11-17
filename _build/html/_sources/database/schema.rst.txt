@@ -474,6 +474,8 @@ Implementation of Argo's schema and pipelines to load the data from ifremer can 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/argo.py <https://github.com/argovis/db-schema/blob/main/argo.py>`_
 - Upload pipeline: `https://github.com/argovis/ifremer-sync <https://github.com/argovis/ifremer-sync>`_
 
+.. _schema_cchdo:
+
 CCHDO Schema Extension
 ----------------------
 
@@ -1084,6 +1086,8 @@ Implementation of CCHDO's schema and pipelines to load the data from CCHDO can b
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/cchdo.py <https://github.com/argovis/db-schema/blob/main/cchdo.py>`_
 - Upload pipeline: original from CCHDO: `https://github.com/cchdo/argovis_convert_netcdf_to_json <https://github.com/cchdo/argovis_convert_netcdf_to_json>`_; also see fork and branch `https://github.com/bkatiemills/argovis_convert_netcdf_to_json/tree/2023Q3 <https://github.com/bkatiemills/argovis_convert_netcdf_to_json/tree/2023Q3>`_ for schema compliance and mongo upload.
 
+.. _schema_drifter:
+
 Drifter Schema Extension
 ------------------------
 
@@ -1381,6 +1385,8 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/drifters.py <https://github.com/argovis/db-schema/blob/main/drifters.py>`_
 - Upload pipeline: `https://github.com/argovis/drifter-sync <https://github.com/argovis/drifter-sync>`_
 
+.. _schema_tc:
+
 Tropical Cyclone Schema Extension
 ---------------------------------
 
@@ -1514,6 +1520,8 @@ Implementation of tropical cyclone schema and pipelines to load the data from so
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/tc.py <https://github.com/argovis/db-schema/blob/main/tc.py>`_
 - Upload pipeline: `https://github.com/argovis/tc-sync <https://github.com/argovis/tc-sync>`_
+
+.. _schema_trajectory:
 
 Argo trajectory schema extension
 --------------------------------
@@ -1816,6 +1824,8 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/trajectories.py <https://github.com/argovis/db-schema/blob/main/trajectories.py>`_
 - Upload pipeline: `https://github.com/argovis/argo_trajectories <https://github.com/argovis/argo_trajectories>`_
 
+.. _schema_rg09:
+
 Roemmich-Gilson grid schema extension
 -------------------------------------
 
@@ -1943,6 +1953,8 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
+.. _schema_kg21:
+
 Ocean heat content grid schema extension
 ----------------------------------------
 
@@ -2053,6 +2065,8 @@ Implementation
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
+
+.. _schema_glodap:
 
 GLODAP grid schema extension
 ----------------------------
@@ -3215,6 +3229,8 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
+.. _schema_easyocean:
+
 Easy Ocean schema extension
 ---------------------------
 
@@ -3596,6 +3612,8 @@ Implementation of Easy Ocean schema and pipelines to load the data from source C
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/easyocean.py <https://github.com/argovis/db-schema/blob/main/easyocean.py>`_
 - Upload pipeline: `https://github.com/argovis/convert_easy_ocean <https://github.com/argovis/convert_easy_ocean>`_
 
+.. _schema_argone:
+
 ARGONE schema extension
 -----------------------
 
@@ -3847,6 +3865,8 @@ The generic point schema described above and its specific instances works well f
 
 The observant reader will notice that this is very similar to the gridded products which have a ``levels`` key indicating the model depths for each entry in their ``data`` vectors. All timeseries metadata documents also include a ``lattice`` key that is interepreted identically to the lattice metadata for gridded products. All other aspects of the generic schema remain consistent between point and timeseries datasets.
 
+.. _schema_noaasst:
+
 NOAA sea surface temperature timeseries
 ---------------------------------------
 
@@ -3963,6 +3983,8 @@ Implementation
 
 - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
 - Upload pipeline: `https://github.com/argovis/noaa-sst <https://github.com/argovis/noaa-sst>`_
+
+.. _schema_copernicussla:
 
 Copernicus sea level anomaly timeseries
 ---------------------------------------
@@ -4151,6 +4173,7 @@ Implementation
 - Schema: `https://github.com/argovis/db-schema/blob/main/timeseries.py <https://github.com/argovis/db-schema/blob/main/timeseries.py>`_
 - Upload pipeline: `https://github.com/argovis/copernicus-ssh <https://github.com/argovis/copernicus-ssh>`_
 
+.. _schema_ccmpwind:
 
 CCMP wind timeseries
 --------------------
@@ -4314,6 +4337,8 @@ The generic point schema described above and its specific instances works well f
  - ``basin`` is replaced with ``basins``, defined similarly but as a list of such tags, in order to accommodate objects that extend to more than one ocean basin.
 
  Note that the ``data`` key in the ``data`` documents for extended objects works exactly the same as it does for other datasets, but will always include longitude and latitude measurements; these values and the measurement values associated by index with them from the other data vectors capture localized data in the interior of the phenomenological boundary, such as integrated water vapor transport at specific locations inside an atmospheric river.
+
+.. _schema_ar:
 
 Atmospheric river extended objects
 ----------------------------------

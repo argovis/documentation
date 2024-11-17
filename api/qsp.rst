@@ -121,4 +121,555 @@ QSPs:
 
 - ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
 
+CCHDO QSPs
+----------
+
+The documents described in :ref:`schema_cchdo` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/cchdo``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``verticalRange``
+- ``batchMeta``
+- ``data``, accepts QC filters.
+- ``woceline`` (string): search for cchdo data documents whose corresponding metadata's ``woceline`` field matches this string.
+- ``cchdo_cruise`` (string): search for cchdo data documents whose corresponding metadata's ``cchdo_cruise`` field matches this string.
+- ``source`` (list of strings, example ``cchdo_woce,cchdo_goship``): match data documents whose ``source.source`` value is in this list. Negatable with ~ similarly to ``data``. Must be combined with a temporospatial search or other metadata match.
+
+Metadata
+++++++++
+
+Route: ``/cchdo/meta``
+
+QSPs:
+
+- ``id``
+- ``woceline`` (string): search for cchdo metadata documents whose ``woceline`` field matches this string.
+- ``cchdo_cruise`` (string): search for cchdo metadata documents whose ``cchdo_cruise`` field matches this string.
+
+Vocab
++++++
+
+Route: ``/cchdo/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Drifter QSPs
+------------
+
+The documents described in :ref:`schema_drifter` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/drifter``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``wmo`` (integer): search for drifter data documents whose corresponding metadata's ``wmo`` field matches this integer.
+- ``platform`` (string): search for drifter data documents whose corresponding metadata's ``platform`` field matches this string.
+
+Metadata
+++++++++
+
+Route: ``/drifter/meta``
+
+QSPs:
+
+- ``id``
+- ``wmo`` (integer): search for drifter metadata documents whose ``wmo`` field matches this integer.
+- ``platform`` (string): search for drifter metadata documents whose ``platform`` field matches this string.
+
+Vocab
++++++
+
+Route: ``/drifter/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Tropical Cyclone QSPs
+---------------------
+
+The documents described in :ref:`schema_tc` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/tc``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``name`` (string): search for tropical cyclone data documents whose corresponding metadata's ``name`` field matches this string.
+
+Metadata
+++++++++
+
+Route: ``/tc/meta``
+
+QSPs:
+
+- ``id``
+- ``name`` (string): search for tropical cyclone metadata documents whose ``name`` field matches this string.
+
+Vocab
++++++
+
+Route: ``/tc/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Argo trajectory QSPs
+--------------------
+
+The documents described in :ref:`schema_trajectory` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/argotrajectories``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``platform`` (string): search for argo trajectory data documents whose corresponding metadata's ``platform`` field matches this string.
+
+Metadata
+++++++++
+
+Route: ``/argotrajectories/meta``
+
+QSPs:
+
+- ``id``
+- ``platform`` (string): search for argo trajectory metadata documents whose ``platform`` field matches this string.
+
+Vocab
++++++
+
+Route: ``/argotrajectories/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Roemmich-Gilson QSPs
+--------------------
+
+The documents described in :ref:`schema_rg09` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/grids/rg09``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``verticalRange``
+
+Metadata
+++++++++
+
+Route: ``/grids/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/grids/rg09/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Ocean heat content QSPs
+-----------------------
+
+The documents described in :ref:`schema_kg21` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/grids/kg21``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``verticalRange``
+
+Metadata
+++++++++
+
+Route: ``/grids/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/grids/kg09/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+GLODAP QSPs
+-----------
+
+The documents described in :ref:`schema_glodap` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/grids/glodap``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``verticalRange``
+
+Metadata
+++++++++
+
+Route: ``/grids/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/grids/glodap/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Easy Ocean QSPs
+---------------
+
+The documents described in :ref:`schema_easyocean` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/easyocean``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+- ``verticalRange``
+- ``woceline``: tbd
+- ``section_start_date`` (ISO 8601 UTC datestring, example ``1999-12-31T23:59:59Z``): search for data documents with this value for ``section_start_date``.
+
+Metadata
+++++++++
+
+Route: ``/easyocean/meta``
+
+QSPs:
+
+- ``woceline``: match easy ocean metadata documents whose ``id`` value matches this string.
+
+Vocab
++++++
+
+Route: ``/easyocean/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+ARGONE QSPs
+-----------
+
+The documents described in :ref:`schema_argone` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/argone``
+
+QSPs:
+
+- ``id``
+- ``forecastOrigin`` (longitude, latitude pair, example: ``0,0``): search for argone data documents whose ``geolocation`` matches this point.
+- ``forecastGeolocation`` (longitude, latitude pair, example: ``0,0``): search for argone data documents whose ``geolocation_forecast`` matches this point.
+- ``metadata``
+- ``compression``
+- ``data``
+- ``batchMeta``
+
+Metadata
+++++++++
+
+Route: ``/argone/meta``
+
+QSPs:
+
+- ``id``
+
+Note ARGONE has no QSPs to enumerate vocabulary for, and so does not implement a vocabulary route.
+
+NOAA sea surface temperature QSPs
+---------------------------------
+
+The documents described in :ref:`schema_noaasst` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/timeseries/noaasst``
+
+QSPs:
+
+- ``id``
+- ``startDate`` (note for timeseries, ``startDate`` and ``endDate`` filter the arrays in the ``data`` field, rather than selecting documents by their ``timestamp`` field).
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``compression``
+- ``data``
+- ``batchMeta``
+
+Metadata
+++++++++
+
+Route: ``/timeseries/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/timeseries/noaasst/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Copernicus sea level anomaly QSPs
+---------------------------------
+
+The documents described in :ref:`schema_copernicussla` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/timeseries/copernicussla``
+
+QSPs:
+
+- ``id``
+- ``startDate`` (note for timeseries, ``startDate`` and ``endDate`` filter the arrays in the ``data`` field, rather than selecting documents by their ``timestamp`` field).
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``compression``
+- ``data``
+- ``batchMeta``
+
+Metadata
+++++++++
+
+Route: ``/timeseries/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/timeseries/copernicussla/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+CCMP wind QSPs
+--------------
+
+The documents described in :ref:`schema_ccmpwind` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/timeseries/ccmpwind``
+
+QSPs:
+
+- ``id``
+- ``startDate`` (note for timeseries, ``startDate`` and ``endDate`` filter the arrays in the ``data`` field, rather than selecting documents by their ``timestamp`` field).
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``compression``
+- ``data``
+- ``batchMeta``
+
+Metadata
+++++++++
+
+Route: ``/timeseries/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/timeseries/ccmpwind/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
+Atmospheric river QSPs
+----------------------
+
+The documents described in :ref:`schema_ar` are searchable via the following routes and QSPs.
+
+Data
+++++
+
+Route: ``/extended/ar``
+
+QSPs:
+
+- ``id``
+- ``startDate``
+- ``endDate``
+- ``polygon``
+- ``box``
+- ``center``
+- ``radius``
+- ``compression``
+- ``data``
+- ``batchMeta``
+
+Metadata
+++++++++
+
+Route: ``/extended/meta``
+
+QSPs:
+
+- ``id``
+
+Vocab
++++++
+
+Route: ``/extended/ar/vocabulary``
+
+QSPs:
+
+- ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
+
 *Last reviewed 24-11-16*
