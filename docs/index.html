@@ -292,6 +292,7 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 </pre></div>
 </div>
 <p>If all is well, open <code class="docutils literal notranslate"><span class="pre">documentation/_build/html/index.html</span></code> in your browser to see your locally-built version of the docs.</p>
+<p>Once you’re ready to publish to the public facing site on github pages, copy the contents of <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> to the <code class="docutils literal notranslate"><span class="pre">/docs</span></code> directory, and push.</p>
 <div class="admonition-warning admonition">
 <p class="admonition-title">Warning</p>
 <p>When you rebuild the docs in future, make sure your <code class="docutils literal notranslate"><span class="pre">_build</span></code> directory is empty! Otherwise, pre-existing pages may not get rebuilt, and their nav sidebar will be out of date.</p>

@@ -88,6 +88,8 @@ You'll also need a free GitHub account.
 
 If all is well, open ``documentation/_build/html/index.html`` in your browser to see your locally-built version of the docs.
 
+Once you're ready to publish to the public facing site on github pages, copy the contents of ``_build/html`` to the ``/docs`` directory, and push.
+
 .. admonition:: Warning
 
    When you rebuild the docs in future, make sure your ``_build`` directory is empty! Otherwise, pre-existing pages may not get rebuilt, and their nav sidebar will be out of date.
