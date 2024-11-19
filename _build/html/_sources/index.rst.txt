@@ -130,7 +130,7 @@ Table of contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: 4. Deployment & operations
+   :caption: 3. Deployment & operations
 
    ops/deployment
    ops/drifters-aws

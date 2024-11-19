@@ -207,39 +207,39 @@
 <li class="toctree-l2"><a class="reference internal" href="#easy-ocean-schema-extension">Easy Ocean schema extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-metadata-documents">Easy ocean metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-data-documents">Easy ocean data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#argone-schema-extension">ARGONE schema extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#argone-metadata-documents">ARGONE metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argone-data-documents">ARGONE data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-metadata-documents">NOAA SST metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-data-documents">NOAA SST data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sea-level-anomaly-metadata-documents">Copernicus sea level anomaly metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sea-level-anomaly-data-documents">Copernicus sea level anomaly data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ccmp-wind-timeseries">CCMP wind timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-metadata-documents">CCMP wind metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-data-documents">CCMP wind data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ar-metadata-documents">AR metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ar-data-documents">AR data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -257,7 +257,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../api/ops_config.html">API deployment configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/hit_logging.html">API hit logging</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">4. Deployment &amp; operations</span></p>
+<p class="caption" role="heading"><span class="caption-text">3. Deployment &amp; operations</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
@@ -507,7 +507,7 @@
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> ISO 3166-1 country code.</p></li>
+<li><p><strong>description:</strong> NODC country code, see <a class="reference external" href="https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt">https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt</a></p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code></p>
@@ -941,14 +941,14 @@
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> TBD</p></li>
+<li><p><strong>description:</strong> link to the hydrographic cruise page at CCHDO.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.file_name</span></code></p>
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> TBD</p></li>
+<li><p><strong>description:</strong> name of original file from CCHDO this profile was derived from.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">btm_depth</span></code></p>
@@ -962,7 +962,7 @@
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> TBD</p></li>
+<li><p><strong>description:</strong> hash of the upstream file from which this record was created; changes to this hash indicate new upstream data.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">station</span></code></p>
@@ -3860,7 +3860,7 @@
 <ul>
 <li><p><strong>required:</strong> false</p></li>
 <li><p><strong>type:</strong> array of strings</p></li>
-<li><p><strong>description:</strong> country codes for contributing countries</p></li>
+<li><p><strong>description:</strong>  NODC country codes, see <a class="reference external" href="https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt">https://www.ncei.noaa.gov/data/oceans/nodc/codelists/countrylist.txt</a></p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p>
@@ -4027,8 +4027,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h3>Implementation<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of Easy Ocean schema and pipelines to load the data from source CSVs can be found at the following links.</p>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/easyocean.py">https://github.com/argovis/db-schema/blob/main/easyocean.py</a></p></li>
@@ -4265,8 +4265,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Implementation<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">https://github.com/argovis/db-schema/blob/main/argone.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ARGONE">https://github.com/argovis/ARGONE</a></p></li>
@@ -4400,8 +4400,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>Implementation<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/noaa-sst">https://github.com/argovis/noaa-sst</a></p></li>
@@ -4589,8 +4589,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>Implementation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
@@ -4742,8 +4742,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id21">
-<h3>Implementation<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Implementation<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
@@ -4909,8 +4909,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id23">
-<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id24">
+<h3>Implementation<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>
