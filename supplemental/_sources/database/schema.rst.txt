@@ -503,7 +503,7 @@ CCHDO metadata documents carry the following properties; any property not explai
 
   - **required:** false
   - **type:** string
-  - **description:** TBD
+  - **description:** CCHDO alias (see corresponding CCHDO cruise page). 
 
 - ``cchdo_cruise_id``
 
@@ -1698,7 +1698,7 @@ Argo trajectory data documents carry the following properties; any property not 
 
   - **required:** true
   - **type:** geojson Point
-  - **description:** TBD
+  - **description:** midpoint of the ascending and descending transmitted geolocations
 
 - ``timestamp``, taken as the midpoint timestamp from the upstream file, required for Argo trajectories
 - ``timestamp_descending``
@@ -1729,7 +1729,7 @@ Argo trajectory data documents carry the following properties; any property not 
 
   - **required:** true
   - **type:** ISO 8601 UTC datestring
-  - **description:** TBD
+  - **description:** midpoint of the ascending and descending transmitted timestamps
 
 Argo trajectory data example::
 
