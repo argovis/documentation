@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>API Query String Parameters &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Adding new API routes" href="adding_new_endpoints.html" />
+    <link rel="prev" title="Getting started with Argovis API development" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">0. Welcome</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Argovis Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#argovis-engineering-at-a-glance">Argovis engineering at a glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#documentation-conventions">Documentation conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#table-of-contents">Table of contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">API Query String Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#standard-routes">Standard routes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#standardized-query-string-parameters">Standardized query string parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argo-qsps">Argo QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cchdo-qsps">CCHDO QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drifter-qsps">Drifter QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tropical-cyclone-qsps">Tropical Cyclone QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argo-trajectory-qsps">Argo trajectory QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roemmich-gilson-qsps">Roemmich-Gilson QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ocean-heat-content-qsps">Ocean heat content QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#glodap-qsps">GLODAP QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#easy-ocean-qsps">Easy Ocean QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argone-qsps">ARGONE QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#noaa-sea-surface-temperature-qsps">NOAA sea surface temperature QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copernicus-sea-level-anomaly-qsps">Copernicus sea level anomaly QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ccmp-wind-qsps">CCMP wind QSPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#atmospheric-river-qsps">Atmospheric river QSPs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/openshift-ssl.html">Openshift SSL Certificate Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/prometheus.html">Prometheus metrics for Argovis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">2. API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Query String Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standard-routes">Standard routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#standardized-query-string-parameters">Standardized query string parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generic-data-qsps">Generic data QSPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-metadata-qsps">Generic metadata QSPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-vocab-qsps">Generic vocab QSPs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-qsps">Argo QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vocab">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cchdo-qsps">CCHDO QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#drifter-qsps">Drifter QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tropical-cyclone-qsps">Tropical Cyclone QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argo-trajectory-qsps">Argo trajectory QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#roemmich-gilson-qsps">Roemmich-Gilson QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ocean-heat-content-qsps">Ocean heat content QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#glodap-qsps">GLODAP QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#easy-ocean-qsps">Easy Ocean QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#argone-qsps">ARGONE QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-qsps">NOAA sea surface temperature QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-qsps">Copernicus sea level anomaly QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ccmp-wind-qsps">CCMP wind QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Vocab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-qsps">Atmospheric river QSPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id38">Vocab</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">4. Deployment &amp; operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/openshift-ssl.html">Openshift SSL Certificate Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/prometheus.html">Prometheus metrics for Argovis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Archival Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>API Query String Parameters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/qsp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-query-string-parameters">
+<span id="qsp"></span><h1>API Query String Parameters<a class="headerlink" href="#api-query-string-parameters" title="Permalink to this headline">¶</a></h1>
+<p>Argovis’ core goal is to allow users to search, filter and download ocean data easily and incisively, in order to get exactly the data relevant to your porject as quickly as possible. To achieve this, we provide an API over all the datasets described in the <a class="reference internal" href="../database/schema.html#schema"><span class="std std-ref">Argovis data schema</span></a> section; use and function of the query string parameters (which describe what data you want to download and how you want to filter it) available for the core routes of this API are described in this document.</p>
+<div class="section" id="standard-routes">
+<h2>Standard routes<a class="headerlink" href="#standard-routes" title="Permalink to this headline">¶</a></h2>
+<p>All the datasets described in the <a class="reference internal" href="../database/schema.html#schema"><span class="std std-ref">Argovis data schema</span></a> section have three principle routes for exploring them:</p>
+<ul class="simple">
+<li><p><strong>data</strong>, for searching, filtering and downloading data documents</p></li>
+<li><p><strong>metadata</strong>, for searching, filtering and downloading metadata documents</p></li>
+<li><p><strong>vocab</strong>, for discovering the possible values of QSPs in the data and metadata routes.</p></li>
+</ul>
+<p>In what follows, we will describe the querys string parameters (QSPs) available for each of these types of route, for each dataset.</p>
+<div class="admonition-scope-and-rate-limitation admonition">
+<p class="admonition-title">Scope and rate limitation</p>
+<p>This document describes QSPs available for every route, but note that no API can support arbitrarily large or frequent requests. If a search is rejected based on size or rate limitations, you will receive a JSON response that explains the problem. If you see an HTTP code 413, this means you’re asking for too big a chunk of data at a time; try splitting your request up into a loop that asks for a month at a time, for example. If you see an HTTP code 429, this means you’re asking for data too quickly; try adding a delay between requests, and see the message in the returned JSON for an indication of how frequently requests like the ones you are trying to make can be supported.</p>
+</div>
+</div>
+<div class="section" id="standardized-query-string-parameters">
+<h2>Standardized query string parameters<a class="headerlink" href="#standardized-query-string-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Wherever possible, our API defines QSPs consistently across datasets. The following QSPs are resused across many routes, and will be referred to in following sections:</p>
+<div class="admonition-qsps-and admonition">
+<p class="admonition-title">QSPs AND</p>
+<p>In all cases, searches that include more than one QSP AND the results of those filters together, meaning the documents returned must satisfy <em>all</em> the filters described.</p>
+</div>
+<div class="section" id="generic-data-qsps">
+<h3>Generic data QSPs<a class="headerlink" href="#generic-data-qsps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> (string): make an exact match on the document’s <code class="docutils literal notranslate"><span class="pre">id</span></code> field.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code> (ISO 8601 UTC datestring, example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>): search for <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> on or after this date, inclusive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code> (ISO 8601 UTC datestring, example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>): search for <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> on or before this date, exclusive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code> (list of coordinates ordered as [longitude, latitude] for a single-ring geoJSON polygon, example <code class="docutils literal notranslate"><span class="pre">[[0,0],[0,1],[1,1],[0,0]]</span></code>): search for documents whose <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> field is within this polygon, where the vertexes listed are joined by great circles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code> ([[southwest longitude, latitude], [northeast longitude, latitude]]): search for documents whose <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> field is within the described box, bounded by lines of constant latitude and longitude.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code> ([longitude, latitude], must be used in conjunction with <code class="docutils literal notranslate"><span class="pre">radius</span></code>): search for documents whose <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> field is is within the circle described by this center and radius.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code> (float, must be used in conjunction with <code class="docutils literal notranslate"><span class="pre">center</span></code>): search for documents whose <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> field is within the circle described by this center and radius.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code> (string): search for documents whose <code class="docutils literal notranslate"><span class="pre">metadata</span></code> field contains this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code> (string): return a minimal stub for each data document. Stub contents are specified per dataset, and typically contain just enough information to make maps of matching documents.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code> (list of floats, example <code class="docutils literal notranslate"><span class="pre">0,1000</span></code>): filter for levels within data documents that fall in this vertical range, expressed in either dbar or meters, whichever the levels are measured by in that dataset. Upper bound is inclusive, lower bound is exclusive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code> (string): if set, perform the search over data documents described by the other QSPs, but return the metadata documents that match those data documents instead. This is useful for getting metadata for a set of data documents without having to specify an explicit metadata search.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> (list of strings and integers, example <code class="docutils literal notranslate"><span class="pre">pressure,temperature,1,~salinity</span></code>): search for data documents that meet the following requirements and perform the following filtering:</p>
+<ul>
+<li><p>Returns documents that have data for all variables listed.</p></li>
+<li><p>If a ~ preceeds a variable name, throw out any document that does have data for that variable.</p></li>
+<li><p>If a list of integers follows a variable name, these are the allowed values for that variable’s corresponding QC flag, per level. That variable will be suppressed to null on any level where their QC doesn’t fall in the list.</p></li>
+<li><p>When data variables are listed, any level that contains no information for any of the listed variables will be suppressed from the results. Any data document that has no non-null information for any one of the listed data documents will be suppressed from the results.</p></li>
+<li><p>If pressure is available in the dataset, it is always returned whether requested or not.</p></li>
+</ul>
+</li>
+</ul>
+<p>The purpose of this sophisticated data filtering is to allow you to demand data documents and vertical levels that definitely have the data you’re interested in. Some examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data=temperature,doxy</span></code>: return only data documents that have both temperature and dissolved oxygen data, only keep vertical levels that have a non null value for at least one of these, and keep only temperature, doxy, and pressure in the list of data variables returned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data=temperature,~salinity</span></code>: return only data documents that have temperature data but no salinity data, only keep vertical levels that have a non null value for temperature, and keep only temperature and pressure in the list of data variables returned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data=temperature,1,2</span></code>: return only data documents that have non-null temperature data after setting temperature to null for any level where the temperature QC flag is not 1 or 2, only keep vertical levels that have a non null value for temperature after this QC filtering, and keep only temperature and pressure in the list of data variables returned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data=doxy&amp;verticalRange=0,100</span></code>: return only data documents that have non-null dissolved oxygen data between 0 and 100 dbar or meters, only keep vertical levels that have a non null value for doxy, and keep only doxy and pressure in the list of data variables returned.</p></li>
+</ul>
+<p>In addition, there are two special cases for the <code class="docutils literal notranslate"><span class="pre">data</span></code> QSP:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data=all</span></code>: keep all data variables available for matching documents. Accepts QC filters where available, so <code class="docutils literal notranslate"><span class="pre">data=all,1</span></code> would return all data variables for matching documents, but set to null any data value on a vertical level where its corresponding QC flag isn’t 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data=...,except-data-values</span></code>: perform the data filter as described by the rest of this QSP, but drop the <code class="docutils literal notranslate"><span class="pre">data</span></code> parameter from the returned data documents. For example, <code class="docutils literal notranslate"><span class="pre">data=temperature,except-data-values</span></code> would filter for documents that have temperature data, but doesn’t actually download the data values. This is useful for quickly making maps or timeseries of where and when data documents are available that have data of interest, while minimizing the size of the download needed to complete this task.</p></li>
+</ul>
+</div>
+<div class="section" id="generic-metadata-qsps">
+<h3>Generic metadata QSPs<a class="headerlink" href="#generic-metadata-qsps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> (string): make an exact match on the document’s <code class="docutils literal notranslate"><span class="pre">id</span></code> field.</p></li>
+</ul>
+</div>
+<div class="section" id="generic-vocab-qsps">
+<h3>Generic vocab QSPs<a class="headerlink" href="#generic-vocab-qsps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code> (string): find the allowed values for this parameter in the data or metadata QSPs.</p></li>
+</ul>
+<div class="admonition-vocab-enum admonition">
+<p class="admonition-title">Vocab enum</p>
+<p>All vocab routes support <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code>, which is a special case that lists all the other variables which that vocabulary route can list the possible values of.</p>
+</div>
+</div>
+</div>
+<div class="section" id="argo-qsps">
+<h2>Argo QSPs<a class="headerlink" href="#argo-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-argo"><span class="std std-ref">Argo Schema Extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argo</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, accepts QC filters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code> (string): filter for argo data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">platform</span></code> field matches this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code> (string): filter for argo data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">platform_type</span></code> field matches this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">positionqc</span></code> (list of integers, example <code class="docutils literal notranslate"><span class="pre">0,1</span></code>): filter for data documents whose <code class="docutils literal notranslate"><span class="pre">geolocation_argoqc</span></code> value is in this list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code> (list of strings, example <code class="docutils literal notranslate"><span class="pre">argo_bgc,~argo_core</span></code>): filter for data documents whose <code class="docutils literal notranslate"><span class="pre">source.source</span></code> value is in this list. Negatable with ~ similarly to <code class="docutils literal notranslate"><span class="pre">data</span></code>. Must be combined with a temporospatial search or other metadata match.</p></li>
+</ul>
+</div>
+<div class="section" id="metadata">
+<h3>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argo/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code> (string): search for argo metadata documents whose <code class="docutils literal notranslate"><span class="pre">platform</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="vocab">
+<h3>Vocab<a class="headerlink" href="#vocab" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="cchdo-qsps">
+<h2>CCHDO QSPs<a class="headerlink" href="#cchdo-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-cchdo"><span class="std std-ref">CCHDO Schema Extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id1">
+<h3>Data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/cchdo</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, accepts QC filters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">woceline</span></code> (string): search for cchdo data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">woceline</span></code> field matches this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cchdo_cruise</span></code> (string): search for cchdo data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">cchdo_cruise</span></code> field matches this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code> (list of strings, example <code class="docutils literal notranslate"><span class="pre">cchdo_woce,cchdo_goship</span></code>): match data documents whose <code class="docutils literal notranslate"><span class="pre">source.source</span></code> value is in this list. Negatable with ~ similarly to <code class="docutils literal notranslate"><span class="pre">data</span></code>. Must be combined with a temporospatial search or other metadata match.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Metadata<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/cchdo/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">woceline</span></code> (string): search for cchdo metadata documents whose <code class="docutils literal notranslate"><span class="pre">woceline</span></code> field matches this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cchdo_cruise</span></code> (string): search for cchdo metadata documents whose <code class="docutils literal notranslate"><span class="pre">cchdo_cruise</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Vocab<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/cchdo/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="drifter-qsps">
+<h2>Drifter QSPs<a class="headerlink" href="#drifter-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-drifter"><span class="std std-ref">Drifter Schema Extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id4">
+<h3>Data<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/drifter</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmo</span></code> (integer): search for drifter data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">wmo</span></code> field matches this integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code> (string): search for drifter data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">platform</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>Metadata<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/drifter/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmo</span></code> (integer): search for drifter metadata documents whose <code class="docutils literal notranslate"><span class="pre">wmo</span></code> field matches this integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code> (string): search for drifter metadata documents whose <code class="docutils literal notranslate"><span class="pre">platform</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>Vocab<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/drifter/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="tropical-cyclone-qsps">
+<h2>Tropical Cyclone QSPs<a class="headerlink" href="#tropical-cyclone-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-tc"><span class="std std-ref">Tropical Cyclone Schema Extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id7">
+<h3>Data<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/tc</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (string): search for tropical cyclone data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">name</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>Metadata<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/tc/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (string): search for tropical cyclone metadata documents whose <code class="docutils literal notranslate"><span class="pre">name</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>Vocab<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/tc/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="argo-trajectory-qsps">
+<h2>Argo trajectory QSPs<a class="headerlink" href="#argo-trajectory-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-trajectory"><span class="std std-ref">Argo trajectory schema extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id10">
+<h3>Data<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argotrajectories</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code> (string): search for argo trajectory data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">platform</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>Metadata<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argotrajectories/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code> (string): search for argo trajectory metadata documents whose <code class="docutils literal notranslate"><span class="pre">platform</span></code> field matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h3>Vocab<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argotrajectories/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="roemmich-gilson-qsps">
+<h2>Roemmich-Gilson QSPs<a class="headerlink" href="#roemmich-gilson-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-rg09"><span class="std std-ref">Roemmich-Gilson grid schema extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id13">
+<h3>Data<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/rg09</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h3>Metadata<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3>Vocab<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/rg09/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ocean-heat-content-qsps">
+<h2>Ocean heat content QSPs<a class="headerlink" href="#ocean-heat-content-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-kg21"><span class="std std-ref">Ocean heat content grid schema extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id16">
+<h3>Data<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/kg21</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3>Metadata<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h3>Vocab<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/kg09/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="glodap-qsps">
+<h2>GLODAP QSPs<a class="headerlink" href="#glodap-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-glodap"><span class="std std-ref">GLODAP grid schema extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id19">
+<h3>Data<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/glodap</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h3>Metadata<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h3>Vocab<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/grids/glodap/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="easy-ocean-qsps">
+<h2>Easy Ocean QSPs<a class="headerlink" href="#easy-ocean-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-easyocean"><span class="std std-ref">Easy Ocean schema extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id22">
+<h3>Data<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/easyocean</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verticalRange</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">woceline</span></code> (string): filter for easy ocean data documents whose corresponding metadata’s <code class="docutils literal notranslate"><span class="pre">id</span></code> field matches this string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">section_start_date</span></code> (ISO 8601 UTC datestring, example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>): search for data documents with this value for <code class="docutils literal notranslate"><span class="pre">section_start_date</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3>Metadata<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/easyocean/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">woceline</span></code>: match easy ocean metadata documents whose <code class="docutils literal notranslate"><span class="pre">id</span></code> value matches this string.</p></li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h3>Vocab<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/easyocean/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="argone-qsps">
+<h2>ARGONE QSPs<a class="headerlink" href="#argone-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-argone"><span class="std std-ref">ARGONE schema extension</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id25">
+<h3>Data<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argone</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">forecastOrigin</span></code> (longitude, latitude pair, example: <code class="docutils literal notranslate"><span class="pre">0,0</span></code>): search for argone data documents whose <code class="docutils literal notranslate"><span class="pre">geolocation</span></code> matches this point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">forecastGeolocation</span></code> (longitude, latitude pair, example: <code class="docutils literal notranslate"><span class="pre">0,0</span></code>): search for argone data documents whose <code class="docutils literal notranslate"><span class="pre">geolocation_forecast</span></code> matches this point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h3>Metadata<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/argone/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+<p>Note ARGONE has no QSPs to enumerate vocabulary for, and so does not implement a vocabulary route.</p>
+</div>
+</div>
+<div class="section" id="noaa-sea-surface-temperature-qsps">
+<h2>NOAA sea surface temperature QSPs<a class="headerlink" href="#noaa-sea-surface-temperature-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-noaasst"><span class="std std-ref">NOAA sea surface temperature timeseries</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id27">
+<h3>Data<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/noaasst</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code> (note for timeseries, <code class="docutils literal notranslate"><span class="pre">startDate</span></code> and <code class="docutils literal notranslate"><span class="pre">endDate</span></code> filter the arrays in the <code class="docutils literal notranslate"><span class="pre">data</span></code> field, rather than selecting documents by their <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> field).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h3>Metadata<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id29">
+<h3>Vocab<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/noaasst/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="copernicus-sea-level-anomaly-qsps">
+<h2>Copernicus sea level anomaly QSPs<a class="headerlink" href="#copernicus-sea-level-anomaly-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-copernicussla"><span class="std std-ref">Copernicus sea level anomaly timeseries</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id30">
+<h3>Data<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/copernicussla</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code> (note for timeseries, <code class="docutils literal notranslate"><span class="pre">startDate</span></code> and <code class="docutils literal notranslate"><span class="pre">endDate</span></code> filter the arrays in the <code class="docutils literal notranslate"><span class="pre">data</span></code> field, rather than selecting documents by their <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> field).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h3>Metadata<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id32">
+<h3>Vocab<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/copernicussla/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ccmp-wind-qsps">
+<h2>CCMP wind QSPs<a class="headerlink" href="#ccmp-wind-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-ccmpwind"><span class="std std-ref">CCMP wind timeseries</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id33">
+<h3>Data<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/ccmpwind</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code> (note for timeseries, <code class="docutils literal notranslate"><span class="pre">startDate</span></code> and <code class="docutils literal notranslate"><span class="pre">endDate</span></code> filter the arrays in the <code class="docutils literal notranslate"><span class="pre">data</span></code> field, rather than selecting documents by their <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> field).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h3>Metadata<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id35">
+<h3>Vocab<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/timeseries/ccmpwind/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="atmospheric-river-qsps">
+<h2>Atmospheric river QSPs<a class="headerlink" href="#atmospheric-river-qsps" title="Permalink to this headline">¶</a></h2>
+<p>The documents described in <a class="reference internal" href="../database/schema.html#schema-ar"><span class="std std-ref">Atmospheric river extended objects</span></a> are searchable via the following routes and QSPs.</p>
+<div class="section" id="id36">
+<h3>Data<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/extended/ar</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchMeta</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id37">
+<h3>Metadata<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/extended/meta</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id38">
+<h3>Vocab<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<p>Route: <code class="docutils literal notranslate"><span class="pre">/extended/ar/vocabulary</span></code></p>
+<p>QSPs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter</span></code>. See <code class="docutils literal notranslate"><span class="pre">parameter=enum</span></code> for a list of all the parameters that can be enumerated with this QSP.</p></li>
+</ul>
+<p><em>Last reviewed 24-11-16</em></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="adding_new_endpoints.html" class="btn btn-neutral float-right" title="Adding new API routes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting started with Argovis API development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2024, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
