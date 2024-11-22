@@ -120,6 +120,7 @@ Table of contents
    :caption: 2. API
 
    api/getting_started
+   api/qsp
    api/adding_new_endpoints
    api/rate_limitation
    api/ops_config

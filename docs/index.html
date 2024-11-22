@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="database/adding_new_data.html">Adding a new dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="database/argo.html">Managing Argo Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/qsp.html">API Query String Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/adding_new_endpoints.html">Adding new API routes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/rate_limitation.html">API rate limitation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/ops_config.html">API deployment configuration</a></li>
@@ -135,6 +136,7 @@
 <p class="caption" role="heading"><span class="caption-text">2. API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/qsp.html">API Query String Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/adding_new_endpoints.html">Adding new API routes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/rate_limitation.html">API rate limitation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/ops_config.html">API deployment configuration</a></li>
@@ -330,14 +332,16 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#cchdo-schema-extension">CCHDO Schema Extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#drifter-schema-extension">Drifter Schema Extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database/schema.html#gridded-product-schema-extension">Gridded Product Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database/schema.html#easy-ocean-gridded-schema-extension">Easy Ocean Gridded Schema Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argone-argo-float-forecast-data">ARGONE Argo float forecast data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argo-trajectory-data">Argo trajectory data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argo-trajectory-schema-extension">Argo trajectory schema extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#roemmich-gilson-grid-schema-extension">Roemmich-Gilson grid schema extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#ocean-heat-content-grid-schema-extension">Ocean heat content grid schema extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#glodap-grid-schema-extension">GLODAP grid schema extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#easy-ocean-schema-extension">Easy Ocean schema extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#argone-schema-extension">ARGONE schema extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database/schema.html#remss-ccmp-wind-vector-timeseries">REMSS CCMP wind vector timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database/schema.html#ccmp-wind-timeseries">CCMP wind timeseries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database/schema.html#atmospheric-river-extended-objects">Atmospheric river extended objects</a></li>
 </ul>
@@ -365,6 +369,25 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <p class="caption" role="heading"><span class="caption-text">2. API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/qsp.html">API Query String Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#standard-routes">Standard routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#standardized-query-string-parameters">Standardized query string parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#argo-qsps">Argo QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#cchdo-qsps">CCHDO QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#drifter-qsps">Drifter QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#tropical-cyclone-qsps">Tropical Cyclone QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#argo-trajectory-qsps">Argo trajectory QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#roemmich-gilson-qsps">Roemmich-Gilson QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#ocean-heat-content-qsps">Ocean heat content QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#glodap-qsps">GLODAP QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#easy-ocean-qsps">Easy Ocean QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#argone-qsps">ARGONE QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#noaa-sea-surface-temperature-qsps">NOAA sea surface temperature QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#copernicus-sea-level-anomaly-qsps">Copernicus sea level anomaly QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#ccmp-wind-qsps">CCMP wind QSPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/qsp.html#atmospheric-river-qsps">Atmospheric river QSPs</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/adding_new_endpoints.html">Adding new API routes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/adding_new_endpoints.html#updating-the-openapi-spec">Updating the OpenAPI spec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/adding_new_endpoints.html#updating-server-logic">Updating server logic</a></li>
