@@ -1565,13 +1565,6 @@ Argo trajectory metadata documents carry the following properties; any property 
   - **type:** int
   - **description:** flag indicating if velocity was extrapolated or transmitted
 
-- ``positioning_system``
-
-  - **required:** true
-  - **type:** string
-  - **description:** positioning system for this float.
-  - **current vocabulary**: see Argo ref table 9
-
 - ``platform_type``
 
   - **required:** true
@@ -1589,7 +1582,7 @@ Argo trajectories metadata example::
         "source": [
           "scripps_argo_trajectory"
         ],
-        "doi": "https://doi.org/10.6075/J0FQ9WS6"
+        "doi": "https://doi.org/10.6075/J0NK3F7V"
       }
     ],
     "date_updated_argovis": "2023-02-24T22:56:16.700Z",
@@ -1597,7 +1590,6 @@ Argo trajectories metadata example::
     "sensor_type_flag": 1,
     "mission_flag": 1,
     "extrapolation_flag": 1,
-    "positioning_system": "ARGOS",
     "platform_type": "PALACE",
     "data_info": [
       [
@@ -1669,7 +1661,7 @@ Argo trajectory data documents carry the following properties; any property not 
   - **type:** int
   - **description:** probe cycle index
 
-- ``geolocation``, taken as the midpoint longitude and latitude from the upstream file. 
+- ``geolocation``, taken as the midpoint extrapolated longitude and latitude from the upstream file. If the extrapolated coordinates are not available, the transmitted coordinates are used instead. 
 - ``geolocation_descending``
 
   - **required:** true
@@ -1700,7 +1692,7 @@ Argo trajectory data documents carry the following properties; any property not 
   - **type:** geojson Point
   - **description:** midpoint of the ascending and descending transmitted geolocations
 
-- ``timestamp``, taken as the midpoint timestamp from the upstream file, required for Argo trajectories
+- ``timestamp``, midpoint of the ascending and descending extrapolated times, if available. If not, the midpoint of the ascending and descending transmitted times.
 - ``timestamp_descending``
 
   - **required:** true
