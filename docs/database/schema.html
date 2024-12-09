@@ -1964,14 +1964,6 @@
 <li><p><strong>description:</strong> flag indicating if velocity was extrapolated or transmitted</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">positioning_system</span></code></p>
-<ul>
-<li><p><strong>required:</strong> true</p></li>
-<li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> positioning system for this float.</p></li>
-<li><p><strong>current vocabulary</strong>: see Argo ref table 9</p></li>
-</ul>
-</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">platform_type</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
@@ -1990,7 +1982,7 @@
       <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;scripps_argo_trajectory&quot;</span>
       <span class="p">],</span>
-      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://doi.org/10.6075/J0FQ9WS6&quot;</span>
+      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://doi.org/10.6075/J0NK3F7V&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-02-24T22:56:16.700Z&quot;</span><span class="p">,</span>
@@ -1998,7 +1990,6 @@
   <span class="s2">&quot;sensor_type_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">&quot;mission_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">&quot;extrapolation_flag&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">&quot;positioning_system&quot;</span><span class="p">:</span> <span class="s2">&quot;ARGOS&quot;</span><span class="p">,</span>
   <span class="s2">&quot;platform_type&quot;</span><span class="p">:</span> <span class="s2">&quot;PALACE&quot;</span><span class="p">,</span>
   <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">[</span>
@@ -2072,7 +2063,7 @@
 <li><p><strong>description:</strong> probe cycle index</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code>, taken as the midpoint longitude and latitude from the upstream file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geolocation</span></code>, taken as the midpoint extrapolated longitude and latitude from the upstream file. If the extrapolated coordinates are not available, the transmitted coordinates are used instead.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">geolocation_descending</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
@@ -2108,7 +2099,7 @@
 <li><p><strong>description:</strong> midpoint of the ascending and descending transmitted geolocations</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, taken as the midpoint timestamp from the upstream file, required for Argo trajectories</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, midpoint of the ascending and descending extrapolated times, if available. If not, the midpoint of the ascending and descending transmitted times.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamp_descending</span></code></p>
 <ul>
 <li><p><strong>required:</strong> true</p></li>
