@@ -111,4 +111,4 @@ Argovis helpers
 
 Once API launch is complete, consider the necessity to update `https://github.com/argovis/argovis_helpers <https://github.com/argovis/argovis_helpers>`_, the pythonic helper package for Argovis. At a minimum, you'll need to update any references to specific API routes and collections; consider possible advantages of adding or updating other helpers simultaneously. Also, consider if these new helpers or API endpoints would do well to be illustrated in a demo in Argovis' collection of `jupyter notebooks <https://github.com/argovis/demo_notebooks>`_.
 
-*Last reviewed 24-04-11*
+*Last reviewed 25-01-17*
