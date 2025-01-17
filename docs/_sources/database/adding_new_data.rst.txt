@@ -37,7 +37,7 @@ Database population
 At this point, it's time to start populating your new collections. `https://github.com/argovis/tc-sync <https://github.com/argovis/tc-sync>`_ provides a complete but relatively simple example of what you need to produce:
 
  - `https://github.com/argovis/tc-sync/blob/main/tcload.py <https://github.com/argovis/tc-sync/blob/main/tcload.py>`_ translates upstream data into JSON data and metadata documents, and pushes those to MongoDB. The schema enforcement rules you defined above should guarantee that no malformed documents are pushed to the collection, helping you debug this script.
- - `https://github.com/argovis/tc-sync/blob/main/summary-computation.py <https://github.com/argovis/tc-sync/blob/main/summary-computation.py>`_ is an optional step to prepare summary documents for inclusion in the ``summaries`` collection. Consider this option as an opportunity to pre-compute summary statistics and descriptions, lightening load and speeding up performance for users.
+ - `https://github.com/argovis/tc-sync/blob/main/summary-computation.py <https://github.com/argovis/tc-sync/blob/main/summary-computation.py>`_ prepares summary documents for inclusion in the ``summaries`` collection. At a minimum, this should update the ``summaries.ratelimiter`` document to add a key ``summaries.ratelimiter.metadata[data collection name]`` that has keys ``startDate`` and ``endDate`` reflecting the earliest and latest data timestamps in the collection, as well as ``metagroups``, an array of planned API query string parameters that target limited groups of documents and thus should be spared the usual temporospatial limits; also ensure this document is updated when the collection is updated. Furthermore, the summary collection is an opportunity to pre-compute summary statistics and descriptions, lightening load and speeding up performance for users.
  - `https://github.com/argovis/tc-sync/blob/main/roundtrip.py <https://github.com/argovis/tc-sync/blob/main/roundtrip.py>`_ is a proofreading script, intended to be run after collection population is complete, to double check that the data in MongoDB correctly matches upstream data products. Please note that **it is not sufficient to run the same translation algorithm as originally populated the collections**. The proofreading script should convert and compare between data formats using at least a slightly different procedure, to ensure that we get the same answer in two meaningfully different cases. 
 
 Documentation
@@ -45,4 +45,4 @@ Documentation
 
 At this point, you have enough information to update the docs at :ref:`db_getting_started` and :ref:`schema`.
 
-*Last reviewed 24-04-11*
+*Last reviewed 25-01-17*
