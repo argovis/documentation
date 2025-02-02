@@ -261,16 +261,19 @@
 </div>
 <div class="section" id="useful-promql-queries">
 <h2>Useful PromQL queries<a class="headerlink" href="#useful-promql-queries" title="Permalink to this headline">¶</a></h2>
-<p>Prometheus uses its own simple query language fo visualizing things at its frontend, which you can find at <a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/">https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/</a>. Here are some common interesting queries:</p>
+<p>Prometheus uses its own simple query language fo visualizing things at its frontend, which you can find at <a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/">https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/</a> behind the CU VPN. Here are some common interesting queries:</p>
 <ul class="simple">
-<li><p><cite>sum(incoming_requests{endpoint!=”/ping”}) by (endpoint)</cite>: show the cumulative number of requests to each endpoint
-- sum is needed to sum over backend API containers
-- we exclude ping because those run every few seconds as a health check
-- note these counters will reset when pods roll over.</p></li>
-<li><p><cite>probe_success{job=”api-uptime”, instance=”https://argovis-api.colorado.edu/ping”}</cite>: see uptime for API</p></li>
-<li><p><cite>histogram_quantile(0.50, sum(rate(api_request_duration_seconds_bucket{endpoint=’/argo’}[60m])) by (le))</cite>: see median request time for the /argo endpoint over the last hour</p></li>
+<li><p><cite>sum(incoming_requests{endpoint!=’/ping’}) by (endpoint)</cite>: [<a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=sum(incoming_requests%7Bendpoint!%3D%27%2Fping%27%7D)%20by%20(endpoint)&amp;g0.tab=0&amp;g0.display_mode=lines&amp;g0.show_exemplars=0&amp;g0.range_input=1h">link</a>] show the cumulative number of requests to each endpoint</p>
+<ul>
+<li><p>sum is needed to sum over backend API containers</p></li>
+<li><p>we exclude ping because those run every few seconds as a health check</p></li>
+<li><p>note these counters will reset when pods roll over.</p></li>
 </ul>
-<p><em>Last reviewed 2024-09-19</em></p>
+</li>
+<li><p><cite>probe_success{job=’api-uptime’, instance=’https://argovis-api.colorado.edu/ping’}</cite>: [<a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=probe_success{job%3D'api-uptime'%2Cinstance%3D'https%3A%2F%2Fargovis-api.colorado.edu%2Fping'}&amp;g0.tab=0&amp;g0.display_mode=lines&amp;g0.show_exemplars=0&amp;g0.range_input=4w">link</a>] see uptime for API</p></li>
+<li><p><cite>histogram_quantile(0.50, sum(rate(api_request_duration_seconds_bucket{endpoint=”/argo”}[6h])) by (le))</cite>: [<a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=histogram_quantile(0.50%2C%20sum(rate(api_request_duration_seconds_bucket%7Bendpoint%3D%22%2Fargo%22%7D%5B6h%5D))%20by%20(le))&amp;g0.tab=0&amp;g0.display_mode=lines&amp;g0.show_exemplars=0&amp;g0.range_input=4w">link</a>] see median request time for the /argo endpoint over the last six hours.</p></li>
+</ul>
+<p><em>Last reviewed 2025-02-02</em></p>
 </div>
 </div>
 

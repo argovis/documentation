@@ -27,13 +27,15 @@ Deployment notes
 Useful PromQL queries
 ---------------------
 
-Prometheus uses its own simple query language fo visualizing things at its frontend, which you can find at https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/. Here are some common interesting queries:
+Prometheus uses its own simple query language fo visualizing things at its frontend, which you can find at https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/ behind the CU VPN. Here are some common interesting queries:
 
-- `sum(incoming_requests{endpoint!="/ping"}) by (endpoint)`: show the cumulative number of requests to each endpoint
+- `sum(incoming_requests{endpoint!='/ping'}) by (endpoint)`: [`link <https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=sum(incoming_requests%7Bendpoint!%3D%27%2Fping%27%7D)%20by%20(endpoint)&g0.tab=0&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h>`_] show the cumulative number of requests to each endpoint
+  
   - sum is needed to sum over backend API containers
   - we exclude ping because those run every few seconds as a health check
   - note these counters will reset when pods roll over.
-- `probe_success{job="api-uptime", instance="https://argovis-api.colorado.edu/ping"}`: see uptime for API
-- `histogram_quantile(0.50, sum(rate(api_request_duration_seconds_bucket{endpoint='/argo'}[60m])) by (le))`: see median request time for the /argo endpoint over the last hour
 
-*Last reviewed 2024-09-19*
+- `probe_success{job='api-uptime', instance='https://argovis-api.colorado.edu/ping'}`: [`link <https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=probe_success{job%3D'api-uptime'%2C instance%3D'https%3A%2F%2Fargovis-api.colorado.edu%2Fping'}&g0.tab=0&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=4w>`_] see uptime for API
+- `histogram_quantile(0.50, sum(rate(api_request_duration_seconds_bucket{endpoint="/argo"}[6h])) by (le))`: [`link <https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=histogram_quantile(0.50%2C%20sum(rate(api_request_duration_seconds_bucket%7Bendpoint%3D%22%2Fargo%22%7D%5B6h%5D))%20by%20(le))&g0.tab=0&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=4w>`_] see median request time for the /argo endpoint over the last six hours.
+
+*Last reviewed 2025-02-02*
