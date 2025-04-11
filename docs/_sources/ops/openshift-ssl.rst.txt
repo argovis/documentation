@@ -9,8 +9,10 @@ SSL Cert Renewal
 ----------------
 
  - When it's time to renew certs, you'll receive an email from OIT / Sectigo. Use the included links to log in to Sectigo and request renewals through their dashboard.
+
    - Some instructions at this step are a bit ambiguous; you need to make separate requests for each common name, ``argovis-api.colorado.edu`` and ``argovis-keygen.colorado.edu``. Do not put them in the same request.
    - You can also be a bit more proactive about this: log into sectigo any time before certs expire, request renewals for the frontend, core API, drifter API and keygen certs, and open an OIT ticket confirming these have no personal or confidential info associated with them and can they please approve the renewal request.
+
  - Within a day or two, you will get an enrollment successful email for each common name with links to a bunch of certs. save them all for posterity.
  - To use these certs, you need to make new routes in Openshift. Navigate netowrking -> routes, and copy the yaml for apikey-manager-<last year>. Updates:
 
