@@ -335,7 +335,7 @@
             
   <div class="section" id="api-query-string-parameters">
 <span id="qsp"></span><h1>API Query String Parameters<a class="headerlink" href="#api-query-string-parameters" title="Permalink to this headline">¶</a></h1>
-<p>Argovis’ core goal is to allow users to search, filter and download ocean data easily and incisively, in order to get exactly the data relevant to your porject as quickly as possible. To achieve this, we provide an API over all the datasets described in the <a class="reference internal" href="../database/schema.html#schema"><span class="std std-ref">Argovis data schema</span></a> section; use and function of the query string parameters (which describe what data you want to download and how you want to filter it) available for the core routes of this API are described in this document.</p>
+<p>Argovis’ core goal is to allow users to search, filter and download ocean data easily and incisively, in order to get exactly the data relevant to your project as quickly as possible. To achieve this, we provide an API over all the datasets described in the <a class="reference internal" href="../database/schema.html#schema"><span class="std std-ref">Argovis data schema</span></a> section; use and function of the query string parameters (which describe what data you want to download and how you want to filter it) available for the core routes of this API are described in this document.</p>
 <div class="section" id="standard-routes">
 <h2>Standard routes<a class="headerlink" href="#standard-routes" title="Permalink to this headline">¶</a></h2>
 <p>All the datasets described in the <a class="reference internal" href="../database/schema.html#schema"><span class="std std-ref">Argovis data schema</span></a> section have three principle routes for exploring them:</p>
@@ -344,7 +344,7 @@
 <li><p><strong>metadata</strong>, for searching, filtering and downloading metadata documents</p></li>
 <li><p><strong>vocab</strong>, for discovering the possible values of QSPs in the data and metadata routes.</p></li>
 </ul>
-<p>In what follows, we will describe the querys string parameters (QSPs) available for each of these types of route, for each dataset.</p>
+<p>In what follows, we will describe the query string parameters (QSPs) available for each of these types of route, for each dataset.</p>
 <div class="admonition-scope-and-rate-limitation admonition">
 <p class="admonition-title">Scope and rate limitation</p>
 <p>This document describes QSPs available for every route, but note that no API can support arbitrarily large or frequent requests. If a search is rejected based on size or rate limitations, you will receive a JSON response that explains the problem. If you see an HTTP code 413, this means you’re asking for too big a chunk of data at a time; try splitting your request up into a loop that asks for a month at a time, for example. If you see an HTTP code 429, this means you’re asking for data too quickly; try adding a delay between requests, and see the message in the returned JSON for an indication of how frequently requests like the ones you are trying to make can be supported.</p>
@@ -352,7 +352,7 @@
 </div>
 <div class="section" id="standardized-query-string-parameters">
 <h2>Standardized query string parameters<a class="headerlink" href="#standardized-query-string-parameters" title="Permalink to this headline">¶</a></h2>
-<p>Wherever possible, our API defines QSPs consistently across datasets. The following QSPs are resused across many routes, and will be referred to in following sections:</p>
+<p>Wherever possible, our API defines QSPs consistently across datasets. The following QSPs are reused across many routes, and will be referred to in following sections:</p>
 <div class="admonition-qsps-and admonition">
 <p class="admonition-title">QSPs AND</p>
 <p>In all cases, searches that include more than one QSP AND the results of those filters together, meaning the documents returned must satisfy <em>all</em> the filters described.</p>

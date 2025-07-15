@@ -221,7 +221,7 @@
 </div>
 </li>
 </ol>
-<p>You’ll need the absoute path to this directory in a later step; find it and note it down now before returning to the <code class="docutils literal notranslate"><span class="pre">~/argovis</span></code> directory:</p>
+<p>You’ll need the absolute path to this directory in a later step; find it and note it down now before returning to the <code class="docutils literal notranslate"><span class="pre">~/argovis</span></code> directory:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis $ <span class="nb">cd</span> data
 
@@ -315,7 +315,7 @@ argovis $ <span class="nb">cd</span> argo-database
 </ol>
 <p>All the profiles from the float 4902911 should have been written to <code class="docutils literal notranslate"><span class="pre">argo-database/profiles/aoml/4902911/profiles</span></code>. You can add more or all of the floats in this fashion if you wish.</p>
 <ol class="arabic" start="5">
-<li><p>In order to simplify environment setup, we’ll run our database update script from a containerized environment that has all the tooling you’ll need pre-installed. Start and connect to this contianerized environment from the <code class="docutils literal notranslate"><span class="pre">argo-database</span></code> directory:</p>
+<li><p>In order to simplify environment setup, we’ll run our database update script from a containerized environment that has all the tooling you’ll need pre-installed. Start and connect to this containerized environment from the <code class="docutils literal notranslate"><span class="pre">argo-database</span></code> directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argo-database $ docker container run <span class="se">\</span>
     -u <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="se">\</span>
     -it --rm --net<span class="o">=</span>host <span class="se">\</span>
@@ -324,7 +324,7 @@ argovis $ <span class="nb">cd</span> argo-database
 </pre></div>
 </div>
 </li>
-<li><p>Move to the appropriate directory in the container’s filesystem, run the data upload script, and exit the contianerized environment when complete:</p>
+<li><p>Move to the appropriate directory in the container’s filesystem, run the data upload script, and exit the containerized environment when complete:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argo-database $ <span class="nb">cd</span> add-profiles
 
 add-profiles $ python add_profiles.py <span class="se">\</span>

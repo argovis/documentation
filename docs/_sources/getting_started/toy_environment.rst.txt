@@ -28,7 +28,7 @@ Quickstart Setup
 
       argovis $ mkdir data
 
-You'll need the absoute path to this directory in a later step; find it and note it down now before returning to the ``~/argovis`` directory:
+You'll need the absolute path to this directory in a later step; find it and note it down now before returning to the ``~/argovis`` directory:
 
    .. code:: bash
 
@@ -132,7 +132,7 @@ The FTP server at ftp://ftp.ifremer.fr/ifremer/argo contains all the Argo profil
 
 All the profiles from the float 4902911 should have been written to ``argo-database/profiles/aoml/4902911/profiles``. You can add more or all of the floats in this fashion if you wish.
 
-5. In order to simplify environment setup, we'll run our database update script from a containerized environment that has all the tooling you'll need pre-installed. Start and connect to this contianerized environment from the ``argo-database`` directory:
+5. In order to simplify environment setup, we'll run our database update script from a containerized environment that has all the tooling you'll need pre-installed. Start and connect to this containerized environment from the ``argo-database`` directory:
 
    .. code:: bash
 
@@ -142,7 +142,7 @@ All the profiles from the float 4902911 should have been written to ``argo-datab
           -v $(pwd):/usr/src/argo-database/:Z \
           argovis/argo-db:tut bash
 
-6. Move to the appropriate directory in the container's filesystem, run the data upload script, and exit the contianerized environment when complete:
+6. Move to the appropriate directory in the container's filesystem, run the data upload script, and exit the containerized environment when complete:
 
    .. code:: bash
 

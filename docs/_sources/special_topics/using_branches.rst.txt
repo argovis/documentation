@@ -37,7 +37,7 @@ Suppose you're working on some API improvements, but it's a big project and you 
       argovisNg $ git pull upstream main
       argovisNg $ git checkout -b bugfix
 
-   We now have (at least) three branches: the ``main`` version of the code, our API work on the ``api`` branch, and an new branch ``bugfix`` where we'll add commits fixing the bug. If you're ever confused, do ``git branch`` with no arguments, and git will list branches and indicate which one you're currently on. You can switch between existing branches with ``git checkout <branchname>``.
+   We now have (at least) three branches: the ``main`` version of the code, our API work on the ``api`` branch, and a new branch ``bugfix`` where we'll add commits fixing the bug. If you're ever confused, do ``git branch`` with no arguments, and git will list branches and indicate which one you're currently on. You can switch between existing branches with ``git checkout <branchname>``.
 
 .. admonition:: Seriously
 

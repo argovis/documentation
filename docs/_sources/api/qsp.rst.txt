@@ -3,7 +3,7 @@
 API Query String Parameters
 ===========================
 
-Argovis' core goal is to allow users to search, filter and download ocean data easily and incisively, in order to get exactly the data relevant to your porject as quickly as possible. To achieve this, we provide an API over all the datasets described in the :ref:`schema` section; use and function of the query string parameters (which describe what data you want to download and how you want to filter it) available for the core routes of this API are described in this document.
+Argovis' core goal is to allow users to search, filter and download ocean data easily and incisively, in order to get exactly the data relevant to your project as quickly as possible. To achieve this, we provide an API over all the datasets described in the :ref:`schema` section; use and function of the query string parameters (which describe what data you want to download and how you want to filter it) available for the core routes of this API are described in this document.
 
 Standard routes
 ---------------
@@ -14,7 +14,7 @@ All the datasets described in the :ref:`schema` section have three principle rou
 - **metadata**, for searching, filtering and downloading metadata documents
 - **vocab**, for discovering the possible values of QSPs in the data and metadata routes.
 
-In what follows, we will describe the querys string parameters (QSPs) available for each of these types of route, for each dataset.
+In what follows, we will describe the query string parameters (QSPs) available for each of these types of route, for each dataset.
 
 .. admonition:: Scope and rate limitation
 
@@ -23,7 +23,7 @@ In what follows, we will describe the querys string parameters (QSPs) available 
 Standardized query string parameters
 ------------------------------------
 
-Wherever possible, our API defines QSPs consistently across datasets. The following QSPs are resused across many routes, and will be referred to in following sections:
+Wherever possible, our API defines QSPs consistently across datasets. The following QSPs are reused across many routes, and will be referred to in following sections:
 
 .. admonition:: QSPs AND
 

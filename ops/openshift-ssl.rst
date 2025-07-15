@@ -14,7 +14,7 @@ SSL Cert Renewal
    - You can also be a bit more proactive about this: `log into sectigo <https://hard.cert-manager.com/customer/cuboulder/ssl/login>`_ any time before certs expire, request renewals for the frontend, core API, drifter API and keygen certs, and open an OIT ticket confirming these have no personal or confidential info associated with them and can they please approve the renewal request.
 
  - Within a day or two, you will get an enrollment successful email for each common name with links to a bunch of certs. save them all for posterity.
- - To use these certs, you need to make new routes in Openshift. Navigate netowrking -> routes, and copy the yaml for apikey-manager-<last year>. Updates:
+ - To use these certs, you need to make new routes in Openshift. Navigate networking -> routes, and copy the yaml for apikey-manager-<last year>. Updates:
 
    - Name to ``apikey-manager-YYYY`` for this year.
    - PEM format cert: should download in the previous step with a name like argovis-keygen_colorado_edu_cert.cer, have a single BEGIN / END CERTIFICATE block

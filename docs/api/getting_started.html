@@ -233,7 +233,7 @@
 <li><p>Routes and query parameters are heavily standardized between collections. All non-experimental collections have the following minimal set of routes and query string filters:</p>
 <ul class="simple">
 <li><p>A route to search data documents, such as <code class="docutils literal notranslate"><span class="pre">/argo</span></code>. Data documents are at a minimum filterable by id, geolocation, timestamp and metadata key.</p></li>
-<li><p>A route to seatch metadata documents, such as <code class="docutils literal notranslate"><span class="pre">/argo/meta</span></code>. Metadata documents are at a minimum filterable by id.</p></li>
+<li><p>A route to search metadata documents, such as <code class="docutils literal notranslate"><span class="pre">/argo/meta</span></code>. Metadata documents are at a minimum filterable by id.</p></li>
 <li><p>A vocabulary route to request enumerations of categorical search parameters, such as <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary</span></code>. Vocabulary routes always have exactly one query string parameter, called <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, to specify the possible values for other query string parameters. For example, both Argo data and metadata are searchable by platform WMO number; <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary?parameter=platform</span></code> returns a list of all possible platform identifiers.</p></li>
 </ul>
 <p>Respect this standardization. It helps our users interoperate across datasets by defining a core logic common to them all.</p>

@@ -3,7 +3,7 @@
 Adding a new dataset
 ====================
 
-In order to add a new data product to Argovis, there are several planning and prepatory steps outlined in this document.
+In order to add a new data product to Argovis, there are several planning and preparatory steps outlined in this document.
 
 Schema development
 ------------------

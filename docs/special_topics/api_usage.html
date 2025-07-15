@@ -262,7 +262,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p>You can make a small number of requests rapidly, for example in a typical <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
-<li><p>If you need to make a large number of requests, you’ll need to add a small delay betweem them, to allow your quota time to replenish.</p></li>
+<li><p>If you need to make a large number of requests, you’ll need to add a small delay between them, to allow your quota time to replenish.</p></li>
 </ul>
 </div></blockquote>
 <p>The specifics of how many rapid requests you can make, and how fast your quota replenishes, are noted in the table on the API key generation page. Note that these parameters may change over time, as they are tuned to accommodate real usage of Argovis.</p>
@@ -307,7 +307,7 @@
 <div><ul class="simple">
 <li><p>Latitudes must be on [-90,90]; longitudes must be on [-180,180].</p></li>
 <li><p>Parameters that accept lists generally AND together the items found in their lists; so for example, <code class="docutils literal notranslate"><span class="pre">/profiles?data=pres,doxy</span></code> will filter for profiles that have <em>both</em> pressure and dissolved oxygen, not just one or the other.</p></li>
-<li><p>Some parameters note they support <em>~ negation</em>. This means you can search for documents that <em>don’t</em> match the listed value. If we changed tha above example to <code class="docutils literal notranslate"><span class="pre">/profiles?data=pres,~doxy</span></code>, this would match profiles that have pressure but do <em>not</em> have dissolved oxygen.</p></li>
+<li><p>Some parameters note they support <em>~ negation</em>. This means you can search for documents that <em>don’t</em> match the listed value. If we changed the above example to <code class="docutils literal notranslate"><span class="pre">/profiles?data=pres,~doxy</span></code>, this would match profiles that have pressure but do <em>not</em> have dissolved oxygen.</p></li>
 <li><p>Some parameters, particularly those that have a fixed vocabulary of options, like which data center to query from, have a corresponding special route to show you what all the options are. These will be noted in the API docs beside the parameter, where applicable.</p></li>
 </ul>
 </div></blockquote>

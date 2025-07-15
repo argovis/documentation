@@ -27,7 +27,7 @@ How rate limitation works
 Argovis implements a conventional *token bucket* algorithm for rate limitation, which provides you with a quota of requests that replenishes automatically over time. Qualitatively, this means two things:
 
  - You can make a small number of requests rapidly, for example in a typical ``for`` loop.
- - If you need to make a large number of requests, you'll need to add a small delay betweem them, to allow your quota time to replenish.
+ - If you need to make a large number of requests, you'll need to add a small delay between them, to allow your quota time to replenish.
 
 The specifics of how many rapid requests you can make, and how fast your quota replenishes, are noted in the table on the API key generation page. Note that these parameters may change over time, as they are tuned to accommodate real usage of Argovis.
 
@@ -74,7 +74,7 @@ A few nuances about our query string parameter encoding and behavior:
 
  - Latitudes must be on [-90,90]; longitudes must be on [-180,180].
  - Parameters that accept lists generally AND together the items found in their lists; so for example, ``/profiles?data=pres,doxy`` will filter for profiles that have *both* pressure and dissolved oxygen, not just one or the other.
- - Some parameters note they support *~ negation*. This means you can search for documents that *don't* match the listed value. If we changed tha above example to ``/profiles?data=pres,~doxy``, this would match profiles that have pressure but do *not* have dissolved oxygen.
+ - Some parameters note they support *~ negation*. This means you can search for documents that *don't* match the listed value. If we changed the above example to ``/profiles?data=pres,~doxy``, this would match profiles that have pressure but do *not* have dissolved oxygen.
  - Some parameters, particularly those that have a fixed vocabulary of options, like which data center to query from, have a corresponding special route to show you what all the options are. These will be noted in the API docs beside the parameter, where applicable.
 
 *Last reviewed 22-05-18*

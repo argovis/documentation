@@ -240,8 +240,8 @@
 <blockquote>
 <div><ul class="simple">
 <li><p>Ideally, MongoDB should be running sharded across a cluster, with significant (64 GB RAM or more) allocated to each shard. As this is usually impractical, make sure the storage mounted to <code class="docutils literal notranslate"><span class="pre">/data/db</span></code> is a local SSD, preferably regularly backed up.</p></li>
-<li><p>MongoDB getting rescheduled is disruptive; use your orchestator to reserve compute resources to prevent it from getting evicted.</p></li>
-<li><p>Consider using anti-affinity rules where available to make sure API and database containers are as spread out across your cluster as possib;e.</p></li>
+<li><p>MongoDB getting rescheduled is disruptive; use your orchestrator to reserve compute resources to prevent it from getting evicted.</p></li>
+<li><p>Consider using anti-affinity rules where available to make sure API and database containers are as spread out across your cluster as possible.</p></li>
 <li><p>You may optionally consider putting a reverse proxy between the web and the public facing components; see a simple example of an nginx configuration that accomplishes this at <a class="reference external" href="https://github.com/argovis/proxy">https://github.com/argovis/proxy</a>. Alternatively, some managed orchestration platforms (like Openshift at CU) provide public URLs and certificates that may be consumed directly.</p></li>
 </ul>
 </div></blockquote>

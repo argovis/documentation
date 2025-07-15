@@ -3,7 +3,7 @@
 Managing Argo Data
 ==================
 
-Other than the ``argo`` collection, all other collections in Argovis are essentially *static*: the expectation is that they will be updated infrequently and ad-hoc, and the scripts linked above that translate from upstream formats to MongoDB documents are largely simple and unopinonated, mapping keys to keys.
+Other than the ``argo`` collection, all other collections in Argovis are essentially *static*: the expectation is that they will be updated infrequently and ad-hoc, and the scripts linked above that translate from upstream formats to MongoDB documents are largely simple and unopinionated, mapping keys to keys.
 
 Argo data, on the other hand, is actively managed in two ways:
 

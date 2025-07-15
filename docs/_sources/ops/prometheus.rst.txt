@@ -11,7 +11,7 @@ Raw metrics
 The following Prometheus counters track the lifecycle of an incoming request:
 
  - incoming_requests: A counter of the number of requests the API has received at the top of the token bucket.
- - requests_denied: Number of incoming HTTP requests rejected due to malformed input (400), ginormous tempotospatial extent (413), or throttling (429)
+ - requests_denied: Number of incoming HTTP requests rejected due to malformed input (400), ginormous temporospatial extent (413), or throttling (429)
  - requests_error: crash encountered in lookup or transmission (500 series)
  - successful_requests: made it to the end of the pipeline, ready to be returned
 

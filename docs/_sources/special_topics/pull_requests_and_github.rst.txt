@@ -11,7 +11,7 @@ When collaborating on a coding project, we generically want a workflow that look
 - You should be able to make and experiment with your own changes on your own machine
 - There should be a way for you to then propose that your changes be accepted into the official version, with a mechanism for feedback and corrections beforehand.
 
-Git is the defacto tool for managing the detailed history of a piece of code; GitHub, by extension, adds on some critical features that support the *collaborative process*. In this tutorial, we'll learn how to set up and execute *Pull Requests*, GitHub's name for the collaborative flow pictured above.
+Git is the de facto tool for managing the detailed history of a piece of code; GitHub, by extension, adds on some critical features that support the *collaborative process*. In this tutorial, we'll learn how to set up and execute *Pull Requests*, GitHub's name for the collaborative flow pictured above.
 
 To follow this tutorial, you'll need:
 
@@ -146,7 +146,7 @@ So far, we've learned the mechanical commands of proposing changes to projects o
 
 1. **Make small, frequent PRs**: a good pull request should implement exactly one feature - not the dozen things you're currently thinking about all at once. If you're working on more than one thing in parallel, see :ref:`branches` for an introduction to using *branches*. A good rule of thumb is that whenever possible, PRs should be *no more than 500 lines*. The reason for this is speed: huge PRs take a long time to write and a long time to review, so by the time it's ready for merge, the main project might have changed a lot, conflicting with your changes and undermining their original purpose.
 
-2. **Commit and push early and often**: in the above workflow, it looks like you committed, pushed, and set up a PR all as one series of steps. Actually, you can and should commit and push code to your copy of the repositories *very frequently*; you don't need to set up a PR untill you're ready to discuss your changes, and a single PR can have arbitrarily many commits included. Remember that committing and pushing effectively backs up your code: once pushed, GitHub has a copy and keeps it safe.
+2. **Commit and push early and often**: in the above workflow, it looks like you committed, pushed, and set up a PR all as one series of steps. Actually, you can and should commit and push code to your copy of the repositories *very frequently*; you don't need to set up a PR until you're ready to discuss your changes, and a single PR can have arbitrarily many commits included. Remember that committing and pushing effectively backs up your code: once pushed, GitHub has a copy and keeps it safe.
 
 3. **Pull early and often**: if you're working on a piece of code for a long time (like longer than one day), do the ``git pull`` step every day at least. This way, if someone is making changes to the code that conflict with yours, you can catch it early and solve the problem while its still relatively easy. See :ref:`merge_conflict` for a discussion of handling merge conflicts.
 
