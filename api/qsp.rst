@@ -353,12 +353,12 @@ QSPs:
 Ocean heat content QSPs
 -----------------------
 
-The documents described in :ref:`schema_kg21` are searchable via the following routes and QSPs.
+The documents described in :ref:`schema_localGPspace` are searchable via the following routes and QSPs.
 
 Data
 ++++
 
-Route: ``/grids/kg21``
+Route: ``/grids/localGPspace``
 
 QSPs:
 

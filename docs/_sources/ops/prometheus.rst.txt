@@ -27,7 +27,7 @@ Deployment notes
 Useful PromQL queries
 ---------------------
 
-Prometheus uses its own simple query language fo visualizing things at its frontend, which you can find at https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/ behind the CU VPN. Here are some common interesting queries:
+Prometheus uses its own simple query language for visualizing things at its frontend, which you can find at https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/ behind the CU VPN. Here are some common interesting queries:
 
 - `sum(incoming_requests{endpoint!='/ping'}) by (endpoint)`: [`link <https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=sum(incoming_requests%7Bendpoint!%3D%27%2Fping%27%7D)%20by%20(endpoint)&g0.tab=0&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h>`_] show the cumulative number of requests to each endpoint
   

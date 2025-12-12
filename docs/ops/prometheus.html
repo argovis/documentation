@@ -261,7 +261,7 @@
 </div>
 <div class="section" id="useful-promql-queries">
 <h2>Useful PromQL queries<a class="headerlink" href="#useful-promql-queries" title="Permalink to this headline">¶</a></h2>
-<p>Prometheus uses its own simple query language fo visualizing things at its frontend, which you can find at <a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/">https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/</a> behind the CU VPN. Here are some common interesting queries:</p>
+<p>Prometheus uses its own simple query language for visualizing things at its frontend, which you can find at <a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/">https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/</a> behind the CU VPN. Here are some common interesting queries:</p>
 <ul class="simple">
 <li><p><cite>sum(incoming_requests{endpoint!=’/ping’}) by (endpoint)</cite>: [<a class="reference external" href="https://argovis-prom-atoc-argovis-dev.apps.containers02.colorado.edu/graph?g0.expr=sum(incoming_requests%7Bendpoint!%3D%27%2Fping%27%7D)%20by%20(endpoint)&amp;g0.tab=0&amp;g0.display_mode=lines&amp;g0.show_exemplars=0&amp;g0.range_input=1h">link</a>] show the cumulative number of requests to each endpoint</p>
 <ul>

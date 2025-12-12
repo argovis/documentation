@@ -1945,7 +1945,7 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
-.. _schema_kg21:
+.. _schema_localGPspace:
 
 Ocean heat content grid schema extension
 ----------------------------------------
@@ -1957,7 +1957,7 @@ Ocean heat content metadata documents
 
 Ocean heat content metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-- ``_id``, constructed as ``kg21_ohc15to300``
+- ``_id``, constructed as ``localGPspace_ohc15to300``
 - ``data_type``, 'ocean_heat_content'
 - ``date_updated_argovis``
 - ``source``
@@ -1972,7 +1972,7 @@ Ocean heat content metadata documents carry the following properties; any proper
 Ocean heat content example metadata (note this is actually the only metadata document for this collection, applicable to all data documents)::
 
   {
-    "_id": "kg21_ohc15to300",
+    "_id": "localGPspace_ohc15to300",
     "data_type": "ocean_heat_content",
     "date_updated_argovis": "2023-01-29T20:59:07.960Z",
     "source": [
@@ -1989,7 +1989,7 @@ Ocean heat content example metadata (note this is actually the only metadata doc
     ],
     "data_info": [
       [
-        "kg21_ohc15to300"
+        "localGPspace_ohc15to300"
       ],
       [
         "units"
@@ -2034,7 +2034,7 @@ Ocean heat content data example::
   {
     "_id": "20050115000000_107.5_-64.5",
     "metadata": [
-      "kg21_ohc15to300"
+      "localGPspace_ohc15to300"
     ],
     "geolocation": {
       "type": "Point",
