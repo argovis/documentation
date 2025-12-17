@@ -350,15 +350,15 @@ QSPs:
 
 - ``parameter``. See ``parameter=enum`` for a list of all the parameters that can be enumerated with this QSP.
 
-Ocean heat content QSPs
------------------------
+LocalGP QSPs
+------------
 
-The documents described in :ref:`schema_localGPspace` are searchable via the following routes and QSPs.
+The documents described in :ref:`schema_localGP` are searchable via the following routes and QSPs.
 
 Data
 ++++
 
-Route: ``/grids/localGPspace``
+Route: ``/grids/localGPintegral``
 
 QSPs:
 
@@ -387,7 +387,7 @@ QSPs:
 Vocab
 +++++
 
-Route: ``/grids/kg09/vocabulary``
+Route: ``/grids/localGPintegral/vocabulary``
 
 QSPs:
 

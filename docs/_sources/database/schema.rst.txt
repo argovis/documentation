@@ -1945,62 +1945,63 @@ Implementation
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
 - Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
 
-.. _schema_localGPspace:
+.. _schema_localGP:
 
-Ocean heat content grid schema extension
-----------------------------------------
+LocalGP grid schema extension
+-----------------------------
 
-Argovis includes the ocean heat content grids from `https://zenodo.org/record/6131625 <https://zenodo.org/record/6131625>`_. These gridded data and metadata collections extend and implement the generic schema as follows.
+Argovis includes a growing list of observation-based grids produced by LocalGP. At the time of writing, all indexed grids are of variables integrated over a pressure range indicated by the corresponding [min, max] noted in the metadata document's ``level`` property.
 
-Ocean heat content metadata documents
-+++++++++++++++++++++++++++++++++++++
+LocalGP metadata documents
+++++++++++++++++++++++++++
 
-Ocean heat content metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
+LocalGP metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.
 
-- ``_id``, constructed as ``localGPspace_ohc15to300``
-- ``data_type``, 'ocean_heat_content'
+- ``_id``, constructed as ``localGPintegral``
+- ``data_type``, 'localGP_integral'
 - ``date_updated_argovis``
 - ``source``
 - ``source.source``
 - ``source.url``
-- ``source.doi``
 - ``levels``
 - ``level_units``
 - ``data_info``
 - ``lattice``
 
-Ocean heat content example metadata (note this is actually the only metadata document for this collection, applicable to all data documents)::
+LocalGP example metadata (note this is actually the only metadata document for this collection, applicable to all data documents)::
 
   {
-    "_id": "localGPspace_ohc15to300",
-    "data_type": "ocean_heat_content",
-    "date_updated_argovis": "2023-01-29T20:59:07.960Z",
+    "_id": "localGPintegral",
+    "data_type": "localGP_integral",
+    "date_updated_argovis": "2025-12-16T17:46:13.475Z",
     "source": [
       {
         "source": [
-          "Kuusela_Giglio2022"
+          "localGP"
         ],
-        "doi": "10.5281/zenodo.6131625",
-        "url": "https://doi.org/10.5281/zenodo.6131625"
+        "url": "https://os.copernicus.org/articles/21/2463/2025/"
       }
     ],
     "levels": [
-      15
-    ],
-    "data_info": [
       [
-        "localGPspace_ohc15to300"
-      ],
-      [
-        "units"
-      ],
-      [
-        [
-          "J/m^2"
-        ]
+        15,
+        50
       ]
     ],
-    "level_units": "integral from 15 dbar to 300 dbar",
+    "level_units": "dbar integration ranges",
+    "data_info": [
+      [
+        "potential_temperature"
+      ],
+      [
+        "units",
+        "description"
+      ],
+      [
+        "degC*m",
+        "Potential temperature integral"
+      ]
+    ],
     "lattice": {
       "center": [
         0.5,
@@ -2010,17 +2011,18 @@ Ocean heat content example metadata (note this is actually the only metadata doc
         1,
         1
       ],
-      "minLat": -64.5,
+      "minLat": -89.5,
       "minLon": -179.5,
-      "maxLat": 64.5,
+      "maxLat": 89.5,
       "maxLon": 179.5
     }
   }
 
-Ocean heat content data documents
-+++++++++++++++++++++++++++++++++
 
-Ocean heat content data documents carry the following properties; any property not explained here refers to the generic data schema.
+LocalGP data documents
+++++++++++++++++++++++
+
+LocalGP data documents carry the following properties; any property not explained here refers to the generic data schema.
 
 - ``_id``, constructed as ``<yyyymmddhhmmss>_<longitude>_<latitude>``
 - ``metadata``
@@ -2029,34 +2031,34 @@ Ocean heat content data documents carry the following properties; any property n
 - ``timestamp``
 - ``data``
 
-Ocean heat content data example::
+LocalGP data example::
 
-  {
-    "_id": "20050115000000_107.5_-64.5",
-    "metadata": [
-      "localGPspace_ohc15to300"
-    ],
-    "geolocation": {
-      "type": "Point",
-      "coordinates": [
-        107.5,
-        -64.5
-      ]
-    },
-    "basin": 10,
-    "timestamp": "2005-01-15T00:00:00.000Z",
-    "data": [
-      [
-        319333340084.3734
-      ]
-    ]
-  }
+    {
+        "_id": "20040115000000_-58.5_38.5",
+        "metadata": [
+            "localGPintegral"
+        ],
+        "geolocation": {
+            "type": "Point",
+            "coordinates": [
+            -58.5,
+            38.5
+            ]
+        },
+        "basin": 1,
+        "timestamp": "2004-01-15T00:00:00.000Z",
+        "data": [
+            [
+            689.2109798380916
+            ]
+        ]
+    }
 
 Implementation
 ++++++++++++++
 
 - Schema implementation and indexing: `https://github.com/argovis/db-schema/blob/main/grids.py <https://github.com/argovis/db-schema/blob/main/grids.py>`_ and `https://github.com/argovis/db-schema/blob/main/grids-meta.py <https://github.com/argovis/db-schema/blob/main/grids-meta.py>`_
-- Upload pipeline: `https://github.com/argovis/grid-sync <https://github.com/argovis/grid-sync>`_
+- Upload pipeline: `https://github.com/argovis/localgp_sync <https://github.com/argovis/localgp_sync>`_
 
 .. _schema_glodap:
 
@@ -4483,4 +4485,4 @@ Implementation
 - Schema: `https://github.com/argovis/db-schema/blob/main/extended.py <https://github.com/argovis/db-schema/blob/main/extended.py>`_
 - Upload pipeline: `https://github.com/argovis/arShapes <https://github.com/argovis/arShapes>`_
 
-*Last reviewed 2024-11-15*
+*Last reviewed 2025-12-17*

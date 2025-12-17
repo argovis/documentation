@@ -104,7 +104,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#tropical-cyclone-schema-extension">Tropical Cyclone Schema Extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argo-trajectory-schema-extension">Argo trajectory schema extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#roemmich-gilson-grid-schema-extension">Roemmich-Gilson grid schema extension</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ocean-heat-content-grid-schema-extension">Ocean heat content grid schema extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#localgp-grid-schema-extension">LocalGP grid schema extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#glodap-grid-schema-extension">GLODAP grid schema extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#easy-ocean-schema-extension">Easy Ocean schema extension</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#argone-schema-extension">ARGONE schema extension</a></li>
@@ -192,54 +192,54 @@
 <li class="toctree-l3"><a class="reference internal" href="#id7">Implementation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ocean-heat-content-grid-schema-extension">Ocean heat content grid schema extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ocean-heat-content-metadata-documents">Ocean heat content metadata documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ocean-heat-content-data-documents">Ocean heat content data documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#localgp-grid-schema-extension">LocalGP grid schema extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#localgp-metadata-documents">LocalGP metadata documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#localgp-data-documents">LocalGP data documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#glodap-grid-schema-extension">GLODAP grid schema extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#glodap-metadata-documents">GLODAP metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#glodap-data-documents">GLODAP data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#easy-ocean-schema-extension">Easy Ocean schema extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-metadata-documents">Easy ocean metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#easy-ocean-data-documents">Easy ocean data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#argone-schema-extension">ARGONE schema extension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#argone-metadata-documents">ARGONE metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#argone-data-documents">ARGONE data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-timeseries-schema">Generic Timeseries Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noaa-sea-surface-temperature-timeseries">NOAA sea surface temperature timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-metadata-documents">NOAA SST metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noaa-sst-data-documents">NOAA SST data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#copernicus-sea-level-anomaly-timeseries">Copernicus sea level anomaly timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sea-level-anomaly-metadata-documents">Copernicus sea level anomaly metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copernicus-sea-level-anomaly-data-documents">Copernicus sea level anomaly data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ccmp-wind-timeseries">CCMP wind timeseries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-metadata-documents">CCMP wind metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ccmp-wind-data-documents">CCMP wind data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generic-extended-objects-schema">Generic Extended Objects Schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#atmospheric-river-extended-objects">Atmospheric river extended objects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ar-metadata-documents">AR metadata documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ar-data-documents">AR data documents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id24">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -2358,56 +2358,57 @@
 </ul>
 </div>
 </div>
-<div class="section" id="ocean-heat-content-grid-schema-extension">
-<span id="schema-localgpspace"></span><h2>Ocean heat content grid schema extension<a class="headerlink" href="#ocean-heat-content-grid-schema-extension" title="Permalink to this headline">¶</a></h2>
-<p>Argovis includes the ocean heat content grids from <a class="reference external" href="https://zenodo.org/record/6131625">https://zenodo.org/record/6131625</a>. These gridded data and metadata collections extend and implement the generic schema as follows.</p>
-<div class="section" id="ocean-heat-content-metadata-documents">
-<h3>Ocean heat content metadata documents<a class="headerlink" href="#ocean-heat-content-metadata-documents" title="Permalink to this headline">¶</a></h3>
-<p>Ocean heat content metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
+<div class="section" id="localgp-grid-schema-extension">
+<span id="schema-localgp"></span><h2>LocalGP grid schema extension<a class="headerlink" href="#localgp-grid-schema-extension" title="Permalink to this headline">¶</a></h2>
+<p>Argovis includes a growing list of observation-based grids produced by LocalGP. At the time of writing, all indexed grids are of variables integrated over a pressure range indicated by the corresponding [min, max] noted in the metadata document’s <code class="docutils literal notranslate"><span class="pre">level</span></code> property.</p>
+<div class="section" id="localgp-metadata-documents">
+<h3>LocalGP metadata documents<a class="headerlink" href="#localgp-metadata-documents" title="Permalink to this headline">¶</a></h3>
+<p>LocalGP metadata documents carry the following properties; any property not explained here refers to the generic metadata schema.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">localGPspace_ohc15to300</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘ocean_heat_content’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">localGPintegral</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>, ‘localGP_integral’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date_updated_argovis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source.url</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">source.doi</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">levels</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">level_units</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_info</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">lattice</span></code></p></li>
 </ul>
-<p>Ocean heat content example metadata (note this is actually the only metadata document for this collection, applicable to all data documents):</p>
+<p>LocalGP example metadata (note this is actually the only metadata document for this collection, applicable to all data documents):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;localGPspace_ohc15to300&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;ocean_heat_content&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-01-29T20:59:07.960Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;localGPintegral&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;localGP_integral&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;date_updated_argovis&quot;</span><span class="p">:</span> <span class="s2">&quot;2025-12-16T17:46:13.475Z&quot;</span><span class="p">,</span>
   <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;Kuusela_Giglio2022&quot;</span>
+        <span class="s2">&quot;localGP&quot;</span>
       <span class="p">],</span>
-      <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="s2">&quot;10.5281/zenodo.6131625&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://doi.org/10.5281/zenodo.6131625&quot;</span>
+      <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://os.copernicus.org/articles/21/2463/2025/&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="mi">15</span>
-  <span class="p">],</span>
-  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">[</span>
-      <span class="s2">&quot;localGPspace_ohc15to300&quot;</span>
-    <span class="p">],</span>
-    <span class="p">[</span>
-      <span class="s2">&quot;units&quot;</span>
-    <span class="p">],</span>
-    <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;J/m^2&quot;</span>
-      <span class="p">]</span>
+      <span class="mi">15</span><span class="p">,</span>
+      <span class="mi">50</span>
     <span class="p">]</span>
   <span class="p">],</span>
-  <span class="s2">&quot;level_units&quot;</span><span class="p">:</span> <span class="s2">&quot;integral from 15 dbar to 300 dbar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;level_units&quot;</span><span class="p">:</span> <span class="s2">&quot;dbar integration ranges&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;data_info&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;potential_temperature&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;description&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;degC*m&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Potential temperature integral&quot;</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
   <span class="s2">&quot;lattice&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="mf">0.5</span><span class="p">,</span>
@@ -2417,18 +2418,18 @@
       <span class="mi">1</span><span class="p">,</span>
       <span class="mi">1</span>
     <span class="p">],</span>
-    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">64.5</span><span class="p">,</span>
+    <span class="s2">&quot;minLat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">89.5</span><span class="p">,</span>
     <span class="s2">&quot;minLon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">179.5</span><span class="p">,</span>
-    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">64.5</span><span class="p">,</span>
+    <span class="s2">&quot;maxLat&quot;</span><span class="p">:</span> <span class="mf">89.5</span><span class="p">,</span>
     <span class="s2">&quot;maxLon&quot;</span><span class="p">:</span> <span class="mf">179.5</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="ocean-heat-content-data-documents">
-<h3>Ocean heat content data documents<a class="headerlink" href="#ocean-heat-content-data-documents" title="Permalink to this headline">¶</a></h3>
-<p>Ocean heat content data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
+<div class="section" id="localgp-data-documents">
+<h3>LocalGP data documents<a class="headerlink" href="#localgp-data-documents" title="Permalink to this headline">¶</a></h3>
+<p>LocalGP data documents carry the following properties; any property not explained here refers to the generic data schema.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>, constructed as <code class="docutils literal notranslate"><span class="pre">&lt;yyyymmddhhmmss&gt;_&lt;longitude&gt;_&lt;latitude&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code></p></li>
@@ -2437,26 +2438,26 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
 </ul>
-<p>Ocean heat content data example:</p>
+<p>LocalGP data example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;20050115000000_107.5_-64.5&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;localGPspace_ohc15to300&quot;</span>
-  <span class="p">],</span>
-  <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="mf">107.5</span><span class="p">,</span>
-      <span class="o">-</span><span class="mf">64.5</span>
+    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;20040115000000_-58.5_38.5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;localGPintegral&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;geolocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">-</span><span class="mf">58.5</span><span class="p">,</span>
+        <span class="mf">38.5</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2004-01-15T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+        <span class="mf">689.2109798380916</span>
+        <span class="p">]</span>
     <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="s2">&quot;basin&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2005-01-15T00:00:00.000Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">[</span>
-      <span class="mf">319333340084.3734</span>
-    <span class="p">]</span>
-  <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -2465,7 +2466,7 @@
 <h3>Implementation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a> and <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">https://github.com/argovis/db-schema/blob/main/grids-meta.py</a></p></li>
-<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
+<li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/localgp_sync">https://github.com/argovis/localgp_sync</a></p></li>
 </ul>
 </div>
 </div>
@@ -3624,8 +3625,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
-<h3>Implementation<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Implementation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids.py">https://github.com/argovis/db-schema/blob/main/grids.py</a> and <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/grids-meta.py">https://github.com/argovis/db-schema/blob/main/grids-meta.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/grid-sync">https://github.com/argovis/grid-sync</a></p></li>
@@ -4018,8 +4019,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Implementation<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of Easy Ocean schema and pipelines to load the data from source CSVs can be found at the following links.</p>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/easyocean.py">https://github.com/argovis/db-schema/blob/main/easyocean.py</a></p></li>
@@ -4256,8 +4257,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>Implementation<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Implementation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema implementation and indexing: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/argone.py">https://github.com/argovis/db-schema/blob/main/argone.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ARGONE">https://github.com/argovis/ARGONE</a></p></li>
@@ -4391,8 +4392,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Implementation<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/noaa-sst">https://github.com/argovis/noaa-sst</a></p></li>
@@ -4580,8 +4581,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>Implementation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Implementation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/copernicus-ssh">https://github.com/argovis/copernicus-ssh</a></p></li>
@@ -4733,8 +4734,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id22">
-<h3>Implementation<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Implementation<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/timeseries.py">https://github.com/argovis/db-schema/blob/main/timeseries.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/ccmp_parse">https://github.com/argovis/ccmp_parse</a></p></li>
@@ -4900,13 +4901,13 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id24">
-<h3>Implementation<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Implementation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schema: <a class="reference external" href="https://github.com/argovis/db-schema/blob/main/extended.py">https://github.com/argovis/db-schema/blob/main/extended.py</a></p></li>
 <li><p>Upload pipeline: <a class="reference external" href="https://github.com/argovis/arShapes">https://github.com/argovis/arShapes</a></p></li>
 </ul>
-<p><em>Last reviewed 2024-11-15</em></p>
+<p><em>Last reviewed 2025-12-17</em></p>
 </div>
 </div>
 </div>
