@@ -349,6 +349,12 @@ Argo data documents carry the following properties; any property not explained h
   - **description:** sampling scheme for this profile.
   - **current vocabulary:** see Argo ref table 16
 
+- ``bgc_mismatch``
+
+  - **required:** false
+  - **type:** object
+  - **description:** if there are inconsistencies between the core and synthetic files that form a BGC document, the core values are preferred and the disagreeing synthetic values are recorded on this object. 
+
 Argo data schema example::
 
   {
