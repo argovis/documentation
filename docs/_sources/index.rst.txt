@@ -135,6 +135,7 @@ Table of contents
    :caption: 4. Deployment & operations
 
    ops/deployment
+   ops/argovis-from-scratch
    ops/drifters-aws
    ops/openshift-ssl
    ops/prometheus

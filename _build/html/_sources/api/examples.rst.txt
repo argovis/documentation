@@ -1,0 +1,6 @@
+.. examples:
+
+API Examples
+============
+
+Many of the examples in the accompanying paper are available as a jupyter notebook `here <https://github.com/argovis/demo_notebooks/blob/main/special_topics/manuscript_examples.ipynb>`_. Note that while the notebook examples are in Python, each example shows the raw API URI or URI loop to acquire the relevant data, which can be called in any language. An archival PDF copy of this notebook is available :download:`here <manuscript_examples.pdf>`.

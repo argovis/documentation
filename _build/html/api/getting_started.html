@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Getting started with Argovis API development &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Query String Parameters" href="qsp.html" />
+    <link rel="prev" title="Managing Argo Data" href="../database/argo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">0. Welcome</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Argovis Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#argovis-engineering-at-a-glance">Argovis engineering at a glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#documentation-conventions">Documentation conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#contributing">Contributing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#table-of-contents">Table of contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting started with Argovis API development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qsp.html">API Query String Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/openshift-ssl.html">Openshift SSL Certificate Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ops/prometheus.html">Prometheus metrics for Argovis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">2. API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with Argovis API development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsp.html">API Query String Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hit_logging.html">API hit logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">4. Deployment &amp; operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/openshift-ssl.html">Openshift SSL Certificate Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/prometheus.html">Prometheus metrics for Argovis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Archival Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Getting started with Argovis API development</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/getting_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-argovis-api-development">
+<span id="api-getting-started"></span><h1>Getting started with Argovis API development<a class="headerlink" href="#getting-started-with-argovis-api-development" title="Permalink to this headline">¶</a></h1>
+<p>One of Argovis’ core features is its API, designed to support detailed indexing and cross-referencing of a variety of oceanographic data. Some considerations to begin with when thinking about updating our API:</p>
+<blockquote>
+<div><ul>
+<li><p>API code lives in <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a>.</p></li>
+<li><p>Our API is strictly <a class="reference external" href="https://spec.openapis.org/oas/v3.0.3">openAPI 3.0.3 compliant</a>, and built as a NodeJS container.</p></li>
+<li><p>Routes and query parameters are heavily standardized between collections. All non-experimental collections have the following minimal set of routes and query string filters:</p>
+<ul class="simple">
+<li><p>A route to search data documents, such as <code class="docutils literal notranslate"><span class="pre">/argo</span></code>. Data documents are at a minimum filterable by id, geolocation, timestamp and metadata key.</p></li>
+<li><p>A route to search metadata documents, such as <code class="docutils literal notranslate"><span class="pre">/argo/meta</span></code>. Metadata documents are at a minimum filterable by id.</p></li>
+<li><p>A vocabulary route to request enumerations of categorical search parameters, such as <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary</span></code>. Vocabulary routes always have exactly one query string parameter, called <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, to specify the possible values for other query string parameters. For example, both Argo data and metadata are searchable by platform WMO number; <code class="docutils literal notranslate"><span class="pre">/argo/vocabulary?parameter=platform</span></code> returns a list of all possible platform identifiers.</p></li>
+</ul>
+<p>Respect this standardization. It helps our users interoperate across datasets by defining a core logic common to them all.</p>
+</li>
+<li><p>In addition, custom routes may optionally be defined per dataset that offer specialized results for that product, typically pulling summary documents from the <code class="docutils literal notranslate"><span class="pre">summaries</span></code> collection, for example <code class="docutils literal notranslate"><span class="pre">/argo/bgc</span></code>.</p></li>
+<li><p>For datasets that don’t naturally fit Argovis’ point-and-lattice centric schema standards, more freeform (though still OpenAPI compliant) routes can be defined if marked <code class="docutils literal notranslate"><span class="pre">experimental</span></code> in their API spec tags. An example of this is extended objects, like atmospheric rivers.</p></li>
+<li><p>All user requests to Argovis’ API are subject to rate limitation, accomplished by providing an API key in headers which is used to allocate a limited rate of requests per user by a token bucket algorithm.</p></li>
+</ul>
+</div></blockquote>
+<p>Further sections in this chapter detail how these components work and how to update them.</p>
+<p><em>Last reviewed 23-03-07</em></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="qsp.html" class="btn btn-neutral float-right" title="API Query String Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../database/argo.html" class="btn btn-neutral float-left" title="Managing Argo Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2024, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

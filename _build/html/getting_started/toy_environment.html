@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Setting Up Argovis &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">0. Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Argovis Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">1. Data &amp; Database</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/getting_started.html">Getting started with Argovis’ data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/schema.html">Argovis data schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/db_ops.html">Database Resourcing &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/adding_new_data.html">Adding a new dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/argo.html">Managing Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">2. API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/getting_started.html">Getting started with Argovis API development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/qsp.html">API Query String Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/adding_new_endpoints.html">Adding new API routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/rate_limitation.html">API rate limitation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ops_config.html">API deployment configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/hit_logging.html">API hit logging</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">4. Deployment &amp; operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Deployment Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/drifters-aws.html">Deploy Global Drifter Program database on AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/openshift-ssl.html">Openshift SSL Certificate Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/prometheus.html">Prometheus metrics for Argovis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Archival Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/intro.html">Appendix: Archival Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/using_branches.html">Using Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/api_usage.html">Argovis API Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/performance_testing.html">Performance Testing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Setting Up Argovis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/getting_started/toy_environment.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setting-up-argovis">
+<span id="setup-argovis"></span><h1>Setting Up Argovis<a class="headerlink" href="#setting-up-argovis" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, you’ll learn how to deploy a toy version of Argovis to your laptop or development environment, so you can experiment with how it works and try modifying the codebase. In order to follow this tutorial, you’ll need:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>A linux or OSX environment with:</dt><dd><ul>
+<li><p>a bash shell</p></li>
+<li><p>docker</p></li>
+<li><p>docker-compose</p></li>
+<li><p>git</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="quickstart-setup">
+<h2>Quickstart Setup<a class="headerlink" href="#quickstart-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Make a directory to store all your Argovis assets. We’ll put this in our home directory, but you can put it anywhere you like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$ mkdir ~/argovis
+
+~$ <span class="nb">cd</span> ~/argovis
+</pre></div>
+</div>
+</li>
+<li><p>Make a directory to hold your database files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis $ mkdir data
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You’ll need the absolute path to this directory in a later step; find it and note it down now before returning to the <code class="docutils literal notranslate"><span class="pre">~/argovis</span></code> directory:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis $ <span class="nb">cd</span> data
+
+data $ <span class="nb">pwd</span>
+
+data $ <span class="nb">cd</span> ..
+</pre></div>
+</div>
+</div></blockquote>
+<p>For example, my absolute path returned by <code class="docutils literal notranslate"><span class="pre">pwd</span></code> was <code class="docutils literal notranslate"><span class="pre">/Users/billmills/argovis/data</span></code>.</p>
+<ol class="arabic" start="3">
+<li><p>Download the minimal code necessary to start up Argovis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis $ git clone -b main https://github.com/argovis/argovis_deployment
+
+argovis $ <span class="nb">cd</span> argovis_deployment
+</pre></div>
+</div>
+</li>
+<li><p>Before we launch the app, we need to tell it where to look for the data directory you made above. In your text editor of choice, open up <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> and look for the lines describing the database volume mount, near the middle, which look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>volumes:
+  - /storage/mongodb:/data/db:Z
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Change <code class="docutils literal notranslate"><span class="pre">/storage/mongodb</span></code> to the absolute path to your <code class="docutils literal notranslate"><span class="pre">data</span></code> directory you found above, in my case <code class="docutils literal notranslate"><span class="pre">/Users/billmills/argovis/data</span></code>.</p>
+<ol class="arabic" start="5">
+<li><p>Start Argovis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose up -d
+</pre></div>
+</div>
+</li>
+</ol>
+<p>After a few seconds, visit <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code> in your web browser; you should see your very own local version of Argovis.</p>
+<ol class="arabic" start="6">
+<li><p>The first time you create Argovis on your machine (or if you ever change or delete the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory mounted above), you’ll need to inject an API key into the database that your dev version can use to access the API. Connect to the database you have running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker container <span class="nb">exec</span> -it argovis_deployment_database_1 mongo
+</pre></div>
+</div>
+</li>
+<li><p>From this mongo shell, insert an API token <code class="docutils literal notranslate"><span class="pre">guest</span></code> into the <code class="docutils literal notranslate"><span class="pre">argo</span></code> database, <code class="docutils literal notranslate"><span class="pre">user</span></code> collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; use argo
+&gt; db.user.insertOne<span class="o">({</span><span class="s2">&quot;key&quot;</span>: <span class="s2">&quot;guest&quot;</span>, <span class="s2">&quot;tokenValid&quot;</span>: <span class="m">1</span><span class="o">})</span>
+&gt; <span class="nb">exit</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once you’re satisfied all is well, tear your local deployment down:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose down
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="loading-data">
+<span id="startup-load-test-data"></span><h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+<p>The version of Argovis you have up and running from the previous section works, but has no actual data loaded in it. In this section we’ll see how to fetch and load some Argo float data so there’s something to look at in our development environment.</p>
+<p>The FTP server at <a class="reference external" href="ftp://ftp.ifremer.fr/ifremer/argo">ftp://ftp.ifremer.fr/ifremer/argo</a> contains all the Argo profile data used by the database. Getting the data into the database involves downloading files and directories to argo. We will use the rsync utility to download a few profiles, and use the argo-database repository to convert these files to entries on the server.</p>
+<ol class="arabic">
+<li><p>Start your development version of argovis back up if you tore it down at the end of the last section:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$ <span class="nb">cd</span> ~/argovis/argovis_deployment
+
+argovis_deployment $ docker-compose up -d
+</pre></div>
+</div>
+</li>
+<li><p>Return to the directory containing all your Argovis assets, and clone the Argovis database management code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$ <span class="nb">cd</span> ~/argovis
+
+argovis $ git clone -b dev https://github.com/argovis/argo-database
+
+argovis $ <span class="nb">cd</span> argo-database
+</pre></div>
+</div>
+</li>
+<li><p>Make a directory to hold some demo profiles:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argo-database $ mkdir -p profiles/aoml
+</pre></div>
+</div>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">rsync</span></code> to fetch some profiles:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argo-database $ rsync -arvzhim --delete <span class="se">\</span>
+    --include<span class="o">=</span><span class="s1">&#39;**/&#39;</span> <span class="se">\</span>
+    --include<span class="o">=</span><span class="s1">&#39;**/profiles/[RDM]*.nc&#39;</span> <span class="se">\</span>
+    --exclude<span class="o">=</span><span class="s1">&#39;*&#39;</span> <span class="se">\</span>
+    --exclude<span class="o">=</span><span class="s1">&#39;**/profiles/B*&#39;</span> <span class="se">\</span>
+    vdmzrs.ifremer.fr::argo/aoml/4902911 ./profiles/aoml
+</pre></div>
+</div>
+</li>
+</ol>
+<p>All the profiles from the float 4902911 should have been written to <code class="docutils literal notranslate"><span class="pre">argo-database/profiles/aoml/4902911/profiles</span></code>. You can add more or all of the floats in this fashion if you wish.</p>
+<ol class="arabic" start="5">
+<li><p>In order to simplify environment setup, we’ll run our database update script from a containerized environment that has all the tooling you’ll need pre-installed. Start and connect to this containerized environment from the <code class="docutils literal notranslate"><span class="pre">argo-database</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argo-database $ docker container run <span class="se">\</span>
+    -u <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="se">\</span>
+    -it --rm --net<span class="o">=</span>host <span class="se">\</span>
+    -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/usr/src/argo-database/:Z <span class="se">\</span>
+    argovis/argo-db:tut bash
+</pre></div>
+</div>
+</li>
+<li><p>Move to the appropriate directory in the container’s filesystem, run the data upload script, and exit the containerized environment when complete:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argo-database $ <span class="nb">cd</span> add-profiles
+
+add-profiles $ python add_profiles.py <span class="se">\</span>
+    --mirrorDir /usr/src/argo-database/profiles <span class="se">\</span>
+    --logName tutorial.log
+
+add-profiles $ <span class="nb">exit</span>
+</pre></div>
+</div>
+</li>
+<li><p>In your browser, visit your deployment of Argovis at <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code>, and use the search box in the left sidebar to search for float 4902911; if all is well, you should see this float’s data populated on the map.</p></li>
+</ol>
+</div>
+<div class="section" id="building-dev-versions">
+<span id="id1"></span><h2>Building Dev Versions<a class="headerlink" href="#building-dev-versions" title="Permalink to this headline">¶</a></h2>
+<p>So far, we’ve relied on pre-built container images for Argovis to get things stood up and working quickly. But, of course you’ll want to build your code into new containers and try them out as part of your local deployment. We’ll learn how to do that in this section.</p>
+<ol class="arabic simple">
+<li><p>There are four component you can build in Argovis:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>The API: <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a></p></li>
+<li><p>The Angular frontend: <a class="reference external" href="https://github.com/argovis/argovisNg">https://github.com/argovis/argovisNg</a></p></li>
+<li><p>The datapages addon: <a class="reference external" href="https://github.com/argovis/datapages">https://github.com/argovis/datapages</a></p></li>
+<li><p>The redis kv store: <a class="reference external" href="https://github.com/argovis/argovis_redis">https://github.com/argovis/argovis_redis</a></p></li>
+</ul>
+</div></blockquote>
+<p>Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we’ll assume you built a new Angular frontend image and called it <code class="docutils literal notranslate"><span class="pre">argovis/ng:dev</span></code>.</p>
+<ol class="arabic" start="2">
+<li><p>Open up <code class="docutils literal notranslate"><span class="pre">argovis_deployment/docker-compose.yaml</span></code>, and change the appropriate image name to the development image you just created. So for our example, we’d change the <code class="docutils literal notranslate"><span class="pre">image</span></code> key under <code class="docutils literal notranslate"><span class="pre">ng</span></code> to be <code class="docutils literal notranslate"><span class="pre">image:</span> <span class="pre">argovis/ng:dev</span></code>.</p></li>
+<li><p>Tear down your current local version, if running, with <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> from the <code class="docutils literal notranslate"><span class="pre">argovis_deployment</span></code> directory.</p></li>
+<li><p>Stand up Argovis with your new container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose up -d
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Argovis should be available after a moment in your browser at <code class="docutils literal notranslate"><span class="pre">localhost:3000</span></code>, using your new dev container.</p>
+<p><em>Last reviewed –</em></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2024, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
